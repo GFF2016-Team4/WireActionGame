@@ -5,7 +5,7 @@ public class sample : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Debug.Log("テスト");
+        Debug.Log("テスト3");
 
 	}
 	
