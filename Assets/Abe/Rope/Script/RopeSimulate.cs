@@ -21,6 +21,7 @@ public class RopeSimulate : MonoBehaviour
     private ListLineDraw    listLineDraw;           //LineRenderer管理スクリプト
     private float           maxAngle_;              //Inspector変更しないように
     private const float     ignoreDistance = 0.1f;
+    private bool            isEnd = false;          //ロープのシミュレーションはおわりか？
 
     void Awake()
     {
@@ -39,6 +40,8 @@ public class RopeSimulate : MonoBehaviour
 
     void Update()
     {
+        if(isEnd) return;
+
         Vector3 origin = originRope.position;
         Vector3 tail   = tailRope.position;
         Vector3 nowVec = origin - tail;
@@ -168,6 +171,8 @@ public class RopeSimulate : MonoBehaviour
     /// </summary>
     public void RopeEnd()
     {
+        isEnd = true;
+
         //親の取得と削除
         Joint originJoint = originRope.GetComponent<Joint>();
         while(!originJoint.IsRootJoint())
@@ -175,9 +180,11 @@ public class RopeSimulate : MonoBehaviour
             GameObject oldObject  = originJoint.gameObject;
             Rigidbody  prevOrigin = originJoint.connectedBody;
             originJoint = prevOrigin.GetComponent<Joint>();
+
+            listLineDraw.RemoveDrawList(oldObject.transform);
             Destroy(oldObject);
         }
-
+        
         //ロック解除
         Rigidbody originRig = originJoint.GetComponent<Rigidbody>();
         originRig.isKinematic = false;
