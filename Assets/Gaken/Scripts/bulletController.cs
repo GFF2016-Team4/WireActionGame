@@ -3,6 +3,7 @@ using System.Collections;
 
 public class bulletController : MonoBehaviour {
 
+    //射出力
 	public float force = 300f;
 
 	void Start () {

@@ -5,7 +5,8 @@ using System.Collections;
 public class MouseOrbitImproved : MonoBehaviour {
 	
 	public Transform target;
-	public float distance = 3.0f;
+	public float distance = 1.0f;
+    //マウス移動速度
 	public float xSpeed = 120.0f;
 	public float ySpeed = 120.0f;
 	
@@ -19,7 +20,12 @@ public class MouseOrbitImproved : MonoBehaviour {
 	public GameObject leftGunTag;
 	
 	private Rigidbody rigidbody;
+
+    //カメラの上下制限
+    public float cameraLimitUp = 30f;
+    public float cameraLimitDown = -30f;
 	
+    //カメラの視点
 	float x = 0.0f;
 	float y = 0.0f;
 	
@@ -40,14 +46,24 @@ public class MouseOrbitImproved : MonoBehaviour {
 	
 	void LateUpdate (){
 		if (target){
-
+            //カメラのリセット
             if(Input.GetKeyDown(KeyCode.R))
             {
-                x = 0;
                 y = 0;
             }
-			x += Input.GetAxis("Mouse X") * xSpeed * distance * 0.02f;
+            //カメラ移動速度
+			x += Input.GetAxis("Mouse X") * xSpeed * 0.02f;
 			y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02f;
+
+            //カメラの上下移動制限
+            if(y<= cameraLimitDown)
+            {
+                y = cameraLimitDown;
+            }
+            else if(y>= cameraLimitUp)
+            {
+                y = cameraLimitUp;
+            }
 			
 			y = ClampAngle(y, yMinLimit, yMaxLimit);
 			
@@ -55,7 +71,8 @@ public class MouseOrbitImproved : MonoBehaviour {
 			
 			distance = Mathf.Clamp(distance, distanceMin, distanceMax);
 
-			Vector3 negDistance = new Vector3(0.0f, 0.0f, -distance);
+            //三人称カメラ視点の調整
+			Vector3 negDistance = new Vector3(0.0f, 0.2f, -distance);
 			Vector3 position = rotation * negDistance + target.position;
 
 			transform.rotation = rotation;
@@ -64,6 +81,7 @@ public class MouseOrbitImproved : MonoBehaviour {
 
 			transform.position = position;
 		}
+        //ESCを押したらカーソルを出せる
 		if (Input.GetButtonDown ("Cancel")) {
 			Screen.lockCursor = false;
 			Cursor.visible = true;
