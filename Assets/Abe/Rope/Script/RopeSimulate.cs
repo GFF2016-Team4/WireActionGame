@@ -18,10 +18,24 @@ public class RopeSimulate : MonoBehaviour
     private float takeupTime = 0.5f;
 
     private SpringJoint     tailJoint;              //ロープ末尾のジョイント
+    private Rigidbody       tailRigidbody;          //ロープ末尾のリジッドボディ
     private ListLineDraw    listLineDraw;           //LineRenderer管理スクリプト
     private float           maxAngle_;              //Inspector変更しないように
     private const float     ignoreDistance = 0.1f;
     private bool            isEnd = false;          //ロープのシミュレーションはおわりか？
+
+    /// <summary>
+    /// 末尾から引っかかっている部分の角度
+    /// </summary>
+    public Vector3 ropeDirection
+    {
+        get
+        {
+            Vector3 dir = originRope.position - tailRope.position;
+            dir.Normalize();
+            return dir;
+        }
+    }
 
     void Awake()
     {
@@ -71,17 +85,7 @@ public class RopeSimulate : MonoBehaviour
 
             if(angle <= maxAngle_ && !Physics.Raycast(ray, maxDistance))
             {
-                //最下層から１つ上のロープオブジェクトを削除
-                listLineDraw.RemoveDrawList(originRope);
-                Destroy(originRope.gameObject);
-                originRope = null;
-
-                Rigidbody previousRig   = previousOrigin.GetComponent<Rigidbody>();
-                tailJoint.connectedBody = previousRig;
-
-                originRope = previousRig.transform;
-
-                CalcMinDistance();
+                RemoveOrigin();
                 return;
             }
         }
@@ -115,6 +119,22 @@ public class RopeSimulate : MonoBehaviour
         tailJoint.minDistance = distance;
     }
 
+    private void RemoveOrigin()
+    {
+        Joint     originJoint = originRope.GetComponent<Joint>();
+        Rigidbody previousRig = originJoint.connectedBody;
+        
+        //最下層から１つ上のロープオブジェクトを削除
+        listLineDraw.RemoveDrawList(originRope);
+        Destroy(originRope.gameObject);
+        originRope = null;
+        
+        tailJoint.connectedBody = previousRig;
+        originRope = previousRig.transform;
+
+        CalcMinDistance();
+    }
+
     /// <summary>
     /// ロープの初期化
     /// </summary>
@@ -124,6 +144,7 @@ public class RopeSimulate : MonoBehaviour
     {
         originRope.transform.position = origin;
         tailRope.transform.position   = tail;
+        CalcMinDistance();
     }
 
     /// <summary>
@@ -161,9 +182,25 @@ public class RopeSimulate : MonoBehaviour
         float   dis = vec.magnitude;
 
         dis = Mathf.Max(0, dis + distance);
+        if(dis == 0 && !originRope.GetComponent<Joint>().IsRootJoint())
+        {
+            RemoveOrigin();
+        }
+
         tailRope.position = originRope.position + dir * dis;
 
         CalcMinDistance();
+    }
+
+    public void RopeLock()
+    {
+        tailRope.GetComponent<Rigidbody>().isKinematic = true;;
+
+    }
+
+    public void RopeUnLock()
+    {
+        
     }
 
     /// <summary>
@@ -196,26 +233,23 @@ public class RopeSimulate : MonoBehaviour
 
     private IEnumerator RopeEnd_(Transform origin)
     {
-        //巻き取りの開始
-        Vector3 startPos  = origin.position;
+        ////巻き取りの開始
+        //Vector3 startPos  = origin.position;
 
-        for(float time = takeupTime; time > 0.0f; time -= Time.deltaTime)
-        {
-            Vector3 tail = tailRope.position;
-            float t = 1 - (time / takeupTime);
-            origin.position = Vector3.Lerp(startPos, tail, t);
+        //for(float time = takeupTime; time > 0.0f; time -= Time.deltaTime)
+        //{
+        //    Vector3 tail = tailRope.position;
+        //    float t = 1 - (time / takeupTime);
+        //    origin.position = Vector3.Lerp(startPos, tail, t);
 
-            yield return null;
-        }
+        //    yield return null;
+        //}
+
+        StickyObject stickyObject = origin.gameObject.AddComponent<StickyObject>();
+        stickyObject.target = tailRope;
+
+        yield return null;
 
         Destroy(gameObject);
-    }
-
-    //デバッグ
-    void OnDrawGizmosSelected()
-    {
-        Vector3 origin = originRope.position;
-        Vector3 rope   = tailRope.position;
-        Gizmos.DrawLine(origin, rope);
     }
 }
