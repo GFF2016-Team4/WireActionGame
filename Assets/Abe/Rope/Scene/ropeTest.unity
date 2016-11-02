@@ -98,11 +98,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 120000011149234506, guid: d2ee03d9b246e9047a5702b0d489b167,
-        type: 2}
-      propertyPath: m_Positions.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4000012304236088, guid: d2ee03d9b246e9047a5702b0d489b167, type: 2}
       propertyPath: m_LocalPosition.x
       value: -1.4985132
@@ -113,7 +108,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012304236088, guid: d2ee03d9b246e9047a5702b0d489b167, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -13.334277
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000012304236088, guid: d2ee03d9b246e9047a5702b0d489b167, type: 2}
       propertyPath: m_LocalRotation.x
@@ -134,59 +129,6 @@ Prefab:
     - target: {fileID: 4000012304236088, guid: d2ee03d9b246e9047a5702b0d489b167, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014181534864, guid: d2ee03d9b246e9047a5702b0d489b167,
-        type: 2}
-      propertyPath: maxAngle
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 120000011149234506, guid: d2ee03d9b246e9047a5702b0d489b167,
-        type: 2}
-      propertyPath: m_Positions.Array.data[0].y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 120000011149234506, guid: d2ee03d9b246e9047a5702b0d489b167,
-        type: 2}
-      propertyPath: m_Positions.Array.data[1].x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 120000011149234506, guid: d2ee03d9b246e9047a5702b0d489b167,
-        type: 2}
-      propertyPath: m_Positions.Array.data[1].y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 120000011149234506, guid: d2ee03d9b246e9047a5702b0d489b167,
-        type: 2}
-      propertyPath: m_Positions.Array.data[1].z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014181534864, guid: d2ee03d9b246e9047a5702b0d489b167,
-        type: 2}
-      propertyPath: ropeThickness
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 120000011149234506, guid: d2ee03d9b246e9047a5702b0d489b167,
-        type: 2}
-      propertyPath: m_Parameters.m_StartColor.rgba
-      value: 4279871700
-      objectReference: {fileID: 0}
-    - target: {fileID: 120000011149234506, guid: d2ee03d9b246e9047a5702b0d489b167,
-        type: 2}
-      propertyPath: m_Parameters.m_EndColor.rgba
-      value: 4284794075
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013854028908, guid: d2ee03d9b246e9047a5702b0d489b167, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 29.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013854028908, guid: d2ee03d9b246e9047a5702b0d489b167, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -20.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014181534864, guid: d2ee03d9b246e9047a5702b0d489b167,
-        type: 2}
-      propertyPath: takeupTime
-      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2ee03d9b246e9047a5702b0d489b167, type: 2}
@@ -351,8 +293,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 936466217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -5, z: 3.04}
-  m_LocalScale: {x: 2, y: 2, z: 10}
+  m_LocalPosition: {x: -14.1, y: -5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 10}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -430,8 +372,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1076682883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 10}
+  m_LocalPosition: {x: 0, y: 2.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 10}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}

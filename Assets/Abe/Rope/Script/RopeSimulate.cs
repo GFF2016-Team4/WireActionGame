@@ -14,7 +14,7 @@ public class RopeSimulate : MonoBehaviour
     [SerializeField, Range(0, 180), Tooltip("判定する角度(小さすぎると戻らなくなる)")]
     private float maxAngle;
 
-    [SerializeField, Range(0, 60), Tooltip("巻き取るのに必要な時間")]
+    [SerializeField, Range(0.0001f, 10.0f), Tooltip("巻き取るスピード")]
     private float takeupTime = 0.5f;
 
     private SpringJoint     tailJoint;              //ロープ末尾のジョイント
@@ -39,8 +39,9 @@ public class RopeSimulate : MonoBehaviour
 
     void Awake()
     {
-        tailJoint = tailRope.GetComponent<SpringJoint>();
-        listLineDraw = GetComponent<ListLineDraw>();
+        tailJoint     = tailRope.GetComponent<SpringJoint>();
+        tailRigidbody = tailRope.GetComponent<Rigidbody>();
+        listLineDraw  = GetComponent<ListLineDraw>();
         CalcMinDistance();
 
         //このままだと2倍の角度になるので
@@ -194,13 +195,12 @@ public class RopeSimulate : MonoBehaviour
 
     public void RopeLock()
     {
-        tailRope.GetComponent<Rigidbody>().isKinematic = true;;
-
+        tailRigidbody.isKinematic = true;
     }
 
     public void RopeUnLock()
     {
-        
+        tailRigidbody.isKinematic = false;
     }
 
     /// <summary>
@@ -228,28 +228,32 @@ public class RopeSimulate : MonoBehaviour
 
         //Jointを削除して自然落下をさせる
         Destroy(originJoint);
+
         StartCoroutine(RopeEnd_(originRig.transform));
     }
 
     private IEnumerator RopeEnd_(Transform origin)
     {
-        ////巻き取りの開始
-        //Vector3 startPos  = origin.position;
+        //巻き取りの開始
+        Vector3 startPos = origin.position;
 
-        //for(float time = takeupTime; time > 0.0f; time -= Time.deltaTime)
+        for(float time = takeupTime; time > 0.0f; time -= Time.deltaTime)
+        {
+            Vector3 tail = tailRope.position;
+            float t = 1 - (time / takeupTime);
+            origin.position = Vector3.Lerp(startPos, tail, t);
+
+            yield return null;
+        }
+
+        //StickyObject stickyObject = origin.gameObject.AddComponent<StickyObject>();
+        //stickyObject.target = tailRope;
+        //stickyObject.moveAcceleration = 1000;
+
+        //while(stickyObject.Distance > 2.0f)
         //{
-        //    Vector3 tail = tailRope.position;
-        //    float t = 1 - (time / takeupTime);
-        //    origin.position = Vector3.Lerp(startPos, tail, t);
-
         //    yield return null;
         //}
-
-        StickyObject stickyObject = origin.gameObject.AddComponent<StickyObject>();
-        stickyObject.target = tailRope;
-
-        yield return null;
-
         Destroy(gameObject);
     }
 }

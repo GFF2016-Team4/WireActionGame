@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011439032750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4985132, y: 11.019366, z: -13.334277}
+  m_LocalPosition: {x: -1.4985132, y: 11.019366, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -85,7 +85,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014241011040}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4985132, y: -1.0193663, z: 13.334277}
+  m_LocalPosition: {x: 1.4985132, y: -1.0193663, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -98,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012959738922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38.30924, y: -29.172413, z: -12.931201}
+  m_LocalPosition: {x: 23, y: -11.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -113,7 +113,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -128,7 +128,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originRope: {fileID: 4000012418786294}
   tailRope: {fileID: 4000013854028908}
-  maxAngle: 2.5
+  maxAngle: 3
   takeupTime: 0.5
 --- !u!120 &120000011149234506
 LineRenderer:
@@ -192,18 +192,16 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 10, z: 0}
-  - {x: 36.810726, y: -18.153046, z: -26.265478}
+  m_Positions: []
   m_Parameters:
     startWidth: 0.1
     endWidth: 0.1
     m_StartColor:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 4279871700
     m_EndColor:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 4284794075
   m_UseWorldSpace: 1
 --- !u!145 &145000010555160884
 SpringJoint:
@@ -217,7 +215,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_Spring: 10000
-  m_Damper: 50000
+  m_Damper: 10000
   m_MinDistance: 53.26168
   m_MaxDistance: 0
   m_Tolerance: 0.025

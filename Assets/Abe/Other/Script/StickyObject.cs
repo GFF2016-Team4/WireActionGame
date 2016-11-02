@@ -2,14 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(Collider))]
 public class StickyObject : MonoBehaviour
 {
     [SerializeField, Tooltip("くっつきたいオブジェクト")]
     public Transform target = null;
 
     [SerializeField, Tooltip("速度")]
-    float moveAcceleration = 1.0f;
+    public float moveAcceleration = 1.0f;
 
     Rigidbody body;
 
@@ -17,6 +16,7 @@ public class StickyObject : MonoBehaviour
     {
         get
         {
+            Debug.Log(transform.position.Distance(target.position));
             return transform.position.Distance(target.position);
         }
     }
@@ -34,9 +34,11 @@ public class StickyObject : MonoBehaviour
 
     public void FixedUpdate()
     {
+        float distance = transform.position.Distance(target.position);
+
         Vector3 direction = target.position - transform.position;
         direction.Normalize();
 
-        body.AddForce(moveAcceleration * direction, ForceMode.Acceleration);
+        body.AddForce(moveAcceleration * distance / 10 * direction, ForceMode.Force);
     }
 }
