@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - NoRopeHit
+  - kinoko
+  - GameOver
+  - Jump
   layers:
   - Default
   - TransparentFX
