@@ -19,7 +19,12 @@ public class PlayerCamera : MonoBehaviour
 
     [Tooltip("カメラの上下回転の限界")]
     public float cameraLimitDown = -30f;
-    
+
+    public void Start()
+    {
+        LockCursor();
+    }
+
     void LateUpdate()
     {
         ChangeCursorState();
@@ -29,7 +34,7 @@ public class PlayerCamera : MonoBehaviour
         rotate.y = Input.GetAxis("Vertical2") * rotationSpeed.y * Time.deltaTime;
 
         //回転
-        transform.RotateAround(target.position, Vector3.up     , rotate.x);
+        transform.RotateAround(target.position, Vector3.up, rotate.x);
         transform.RotateAround(target.position, transform.right, rotate.y);
 
         FixedAngle();
@@ -49,7 +54,7 @@ public class PlayerCamera : MonoBehaviour
         {
             LockCursor();
         }
-        
+
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             UnLockCursor();
@@ -58,13 +63,13 @@ public class PlayerCamera : MonoBehaviour
 
     void LockCursor()
     {
-         Cursor.visible   = false;
-         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void UnLockCursor()
     {
-        Cursor.visible   = true;
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
@@ -83,9 +88,9 @@ public class PlayerCamera : MonoBehaviour
             {
                 angle.x -= 360;
             }
-            
+
             //上限値・下限値を設定してカメラが変な挙動をしないように
-            angle.x = Mathf.Clamp(angle.x, -20, 80); 
+            angle.x = Mathf.Clamp(angle.x, -20, 80);
         }
 
         angle.z = 0;

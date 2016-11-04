@@ -91,6 +91,11 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &65926130 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000013854028908, guid: d2ee03d9b246e9047a5702b0d489b167,
+    type: 2}
+  m_PrefabInternal: {fileID: 366336334}
 --- !u!1001 &366336334
 Prefab:
   m_ObjectHideFlags: 0
@@ -130,6 +135,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114000014181534864, guid: d2ee03d9b246e9047a5702b0d489b167,
+        type: 2}
+      propertyPath: maxDis
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000014181534864, guid: d2ee03d9b246e9047a5702b0d489b167,
+        type: 2}
+      propertyPath: maxAngle
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000014181534864, guid: d2ee03d9b246e9047a5702b0d489b167,
+        type: 2}
+      propertyPath: rope.originRope
+      value: 
+      objectReference: {fileID: 1655335589}
+    - target: {fileID: 114000014181534864, guid: d2ee03d9b246e9047a5702b0d489b167,
+        type: 2}
+      propertyPath: rope.tailRope
+      value: 
+      objectReference: {fileID: 65926130}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d2ee03d9b246e9047a5702b0d489b167, type: 2}
   m_IsPrefabParent: 0
@@ -293,7 +318,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 936466217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.1, y: -5, z: 0}
+  m_LocalPosition: {x: -8.4, y: -1.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 10}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -444,6 +469,11 @@ Transform:
 --- !u!1 &1429663226 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011439032750, guid: d2ee03d9b246e9047a5702b0d489b167,
+    type: 2}
+  m_PrefabInternal: {fileID: 366336334}
+--- !u!4 &1655335589 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000012418786294, guid: d2ee03d9b246e9047a5702b0d489b167,
     type: 2}
   m_PrefabInternal: {fileID: 366336334}
 --- !u!1 &1983437509

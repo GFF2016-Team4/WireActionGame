@@ -22,63 +22,91 @@ public class RopeController : MonoBehaviour
     public Transform leftGun;
 
     [Header("編集不可")]
-    [SerializeField, Tooltip("左射出弾インスタンス")]
-    private GameObject leftBulletInst;
-
-    [Header("編集不可")]
     [SerializeField, Tooltip("左ロープインスタンス")]
-    private GameObject leftRopeInst;
+    private RopeSimulate leftRopeInst;
 
     [Header("Right")]
     [SerializeField, Tooltip("右射出機")]
     public Transform rightGun;
 
     [Header("編集不可")]
-    [SerializeField, Tooltip("右射出弾インスタンス")]
-    private GameObject rightBulletInst;
-
-    [Header("編集不可")]
     [SerializeField, Tooltip("右ロープインスタンス")]
-    private GameObject rightRopeInst;
+    private RopeSimulate rightRopeInst;
 
     private bool isLeftShoot  = false;
     private bool isRightShoot = false;
 
+    const string leftButton  = "Fire1";
+    const string rightButton = "Fire2";
+
     public void OnValidate()
     {
         //変更不可
-        if(leftBulletInst  != null) { leftBulletInst  = null; }
         if(leftRopeInst    != null) { leftRopeInst    = null; }
-        
-        if(rightBulletInst != null) { rightBulletInst = null; }
         if(rightRopeInst   != null) { rightRopeInst   = null; }
     }
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        Shoot();
+        Sync();
+        TakeUp();
+    }
+
+    void Shoot()
+    {
+        if(Input.GetButtonDown(leftButton )) { LeftRopeShoot();  }
+        if(Input.GetButtonDown(rightButton)) { RightRopeShoot(); }
+    }
+
+    void Sync()
+    {
+        if(LeftRopeExist())
         {
-            LeftRopeShoot();
+            leftRopeInst.SetLockTailPosition(leftGun.position);
         }
 
-        if(Input.GetButtonDown("Fire2"))
+        if(RightRopeExist())
         {
-            RightRopeShoot();
+            rightRopeInst.SetLockTailPosition(rightGun.position);
+        }
+    }
+
+    void TakeUp()
+    {
+        if(Input.GetButtonUp(leftButton)  && LeftRopeExist())
+        {
+            leftRopeInst .RopeEnd();
+        }
+
+        if(Input.GetButtonUp(rightButton) && RightRopeExist())
+        {
+            rightRopeInst.RopeEnd();
         }
     }
     
     void LeftRopeShoot()
     {
-        StartCoroutine(RopeShoot(leftGun,  "Fire1", (result)=>leftRopeInst  = result));
+        StartCoroutine(RopeShoot(leftGun,  leftButton, (result)=>leftRopeInst  = result));
     }
 
     void RightRopeShoot()
     {
-        StartCoroutine(RopeShoot(rightGun, "Fire2", (result)=>rightRopeInst = result));
+        StartCoroutine(RopeShoot(rightGun, rightButton, (result)=>rightRopeInst = result));
+    }
+
+    bool LeftRopeExist()
+    {
+        return leftRopeInst != null;
+    }
+
+    bool RightRopeExist()
+    {
+        return rightRopeInst != null;
     }
 
     //ref outが使えないのでUnityActionを使う
-    IEnumerator RopeShoot(Transform gun, string buttonName, UnityAction<GameObject> callback)
+    IEnumerator RopeShoot(Transform gun, string buttonName, UnityAction<RopeSimulate> callback)
     {
         //射出弾の生成
         GameObject bulletInst = Instantiate(bulletPrefab) as GameObject;
@@ -98,23 +126,29 @@ public class RopeController : MonoBehaviour
         
         //ロープの生成
 
-        //射出弾のあたった情報
+        //射出弾の当たった情報
         Collision hitInfo  = collisionCheck.CollisionInfo;
         Vector3   hitPoint = hitInfo.contacts[0].point;
         
         GameObject   rope     = Instantiate(ropePrefab) as GameObject;
         RopeSimulate simulate = rope.GetComponent<RopeSimulate>();
+        
         simulate.RopeInitialize(hitPoint, gun.position);
-
         simulate.RopeLock();
-        if(Input.GetButton(buttonName))
+
+        bool canRopeHook = hitInfo.transform.tag != "NoRopeHit";
+
+        if(Input.GetButton(buttonName) && canRopeHook)
         {
-            
-            callback(rope);
+            //引っかかった
+            callback(simulate);
         }
         else
         {
+            //引っかからなかった キャンセル
             simulate.RopeEnd();
         }
+
+        Destroy(bulletInst);
     }
 }

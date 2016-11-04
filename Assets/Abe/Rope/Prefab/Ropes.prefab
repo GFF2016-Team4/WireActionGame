@@ -159,9 +159,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5171c06d113137f4abeaadf183be3713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originRope: {fileID: 4000012418786294}
-  tailRope: {fileID: 4000013854028908}
-  maxAngle: 3
+  rope:
+    tailRope: {fileID: 4000013854028908}
+    originRope: {fileID: 4000012418786294}
+  maxDis: 2
   takeupTime: 0.5
 --- !u!120 &120000011149234506
 LineRenderer:
