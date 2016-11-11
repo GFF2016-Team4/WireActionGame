@@ -35,7 +35,7 @@ namespace Player
                 Vector3 position = transform.position;
                 position.y      += 0.6f; //始点を上げないと
                 Ray ray          = new Ray(position, Vector3.down);
-                bool isRayHit    = Physics.SphereCast(ray, controller.radius, 0.15f, LayerMask.NameToLayer("Player"));
+                bool isRayHit    = Physics.SphereCast(ray, controller.radius, 0.3f, LayerMask.NameToLayer("Player"));
 
                 return controller.isGrounded || isRayHit;
             }

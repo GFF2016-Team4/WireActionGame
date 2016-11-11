@@ -72,11 +72,13 @@ public class RopeController : MonoBehaviour
     {
         if(RopeInput.isLeftRopeButtonUp  && LeftRopeExist)
         {
+            SendRopeReleaseEvent(leftRopeInst);
             leftRopeInst .RopeEnd();
         }
 
         if(RopeInput.isRightRopeButtonUp && RightRopeExist)
         {
+            SendRopeReleaseEvent(rightRopeInst);
             rightRopeInst.RopeEnd();
         }
     }
@@ -98,9 +100,33 @@ public class RopeController : MonoBehaviour
         GameObject bulletInst = Instantiate(bulletPrefab) as GameObject;
         bulletInst.transform.position = gun.position;
 
+        Ray ray = new Ray(camera.transform.position, camera.transform.forward);
         //飛ばす
         Rigidbody bulletRig = bulletInst.GetComponent<Rigidbody>();
-        bulletRig.AddForce(camera.transform.forward * bulletSpeed, ForceMode.VelocityChange);
+
+        Vector3 dir = Vector3.zero;
+        RaycastHit[] raycasthit = Physics.RaycastAll(ray, 50.0f);
+        if(raycasthit.Length != 0)
+        {
+            foreach(RaycastHit hit in raycasthit)
+            {
+                Vector3 player2HitPoint = hit.point - transform.position;
+                float dot = Vector3.Dot(camera.transform.forward, player2HitPoint);
+
+                //プレイヤーより前にオブジェクトがある
+                if(dot >= 0)
+                {
+                    dir = hit.point  - gun.position;
+                }
+            }
+        }
+        else
+        {
+            Vector3 point = camera.transform.position + (camera.transform.forward * 50);
+            dir = point - gun.position;
+        }
+        bulletRig.AddForce(dir.normalized * bulletSpeed, ForceMode.VelocityChange);
+       
 
         RopeBullet collisionCheck = bulletInst.GetComponent<RopeBullet>();
         collisionCheck.target = gun;
@@ -158,6 +184,15 @@ public class RopeController : MonoBehaviour
             gameObject,
             null,
             (obj, baseEvent) => { obj.OnRopeCreate(rope); }
+        );
+    }
+
+    void SendRopeReleaseEvent(RopeSimulate rope)
+    {
+        ExecuteEvents.Execute<RopeEventHandlar>(
+            gameObject,
+            null,
+            (obj, baseEvent) => { obj.OnRopeRelease(rope); }
         );
     }
 }
