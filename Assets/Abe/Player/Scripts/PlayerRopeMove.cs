@@ -16,25 +16,8 @@ namespace Player
             enabled = false;
         }
 
-        void Start()
-        {
-
-        }
-
-        public void OnEnable()
-        {
-            
-        }
-
-        public void FixedUpdate()
-        {
-
-        }
-
         void Update()
         {
-            player.RopeReleaseCheck();
-
             if(player.isGround)
             {
                 player.StartAnimation();

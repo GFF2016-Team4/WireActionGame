@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace Player
 {
-    public class Player : MonoBehaviour, RopeCreateHandlar
+    public class Player : MonoBehaviour, RopeEventHandlar
     {
         [SerializeField]
         private Camera playerCamera;
 
         [SerializeField]
         private float moveSpeed;
+
+        [SerializeField]
+        private float ropeAcceleration;
 
         Vector3 gravity;
         Vector3 playerVelocity;
@@ -30,8 +31,9 @@ namespace Player
         {
             get
             {
+                //CharacterControllerのisGroundedだけだとうまく判定しない為
                 Vector3 position = transform.position;
-                position.y      += 0.6f;
+                position.y      += 0.6f; //始点を上げないと
                 Ray ray          = new Ray(position, Vector3.down);
                 bool isRayHit    = Physics.SphereCast(ray, controller.radius, 0.15f, LayerMask.NameToLayer("Player"));
 
@@ -41,50 +43,18 @@ namespace Player
 
         public bool isLeftRopeExist
         {
-            get { return ropeController.leftRopeInst  != null; }
+            get { return ropeController.LeftRopeExist; }
         }
 
         public bool isRightRopeExist
         {
-            get { return ropeController.rightRopeInst != null; }
+            get { return ropeController.RightRopeExist; }
         }
 
         public bool isRopeExist
         {
             get { return isLeftRopeExist || isRightRopeExist; }
         }
-
-        //クラスに昇格できそう？
-        public bool isLeftRopeButton
-        {
-            get { return Input.GetButton("Fire1");     }
-        }
-
-        public bool isRightRopeButton
-        {
-            get { return Input.GetButton("Fire2");     }
-        }
-
-        public bool isLeftRopeButtonUp
-        {
-            get { return Input.GetButtonUp("Fire1");   }
-        }
-
-        public bool isRightRopeButtonUp
-        {
-            get { return Input.GetButtonUp("Fire2");   }
-        }
-
-        public bool isLeftRopeButtonDown
-        {
-            get { return Input.GetButtonDown("Fire1"); }
-        }
-
-        public bool isRightRopeButtonDown
-        {
-            get { return Input.GetButtonDown("Fire2"); }
-        }
-        //
 
         void Awake()
         {
@@ -102,14 +72,9 @@ namespace Player
             gravity = Physics.gravity;
         }
     
-        void Start()
-        {
-            
-        }
-    
         void Update()
         {
-            bool keyDown =  isLeftRopeButton|| isRightRopeButton;
+            bool keyDown =  RopeInput.isLeftRopeButton|| RopeInput.isRightRopeButton;
             playerMove.enabled     = !keyDown;
             playerRopeMove.enabled =  keyDown;
         }
@@ -122,7 +87,7 @@ namespace Player
             GetCameraAxis(out forward, out right);
 
             Vector3 velocity = GetInputVelocity(forward, right);
-            float speed = velocity.magnitude;
+            float   speed    = velocity.magnitude;
 
             //アニメーションで移動させる
             animator.SetFloat("MoveSpeed", speed);
@@ -170,138 +135,91 @@ namespace Player
         public void StopAnimation()
         {
             animator.SetBool("Stop", true);
-            
         }
 
         public void ResetGravity()
         {
+            //地面についているときなど
             playerVelocity = Vector3.zero;
         }
 
         public void ApplyGravity()
         {
             playerVelocity += gravity * Time.fixedDeltaTime;
-
             controller.Move(playerVelocity * Time.fixedDeltaTime);
         }
 
-        public void FreezeLeftRope()
+        public void FreezeRope(RopeSimulate rope)
         {
-            if(isLeftRopeExist)
+            if(rope != null)
             {
-                ropeController.leftRopeInst.RopeLock();
+                rope.RopeLock();
             }
         }
 
-        public void FreezeRightRope()
+        public void UnFreezeRope(RopeSimulate rope)
         {
-            if(isRightRopeExist)
+            if(rope != null)
             {
-                ropeController.rightRopeInst.RopeLock();
+                rope.RopeUnLock();
             }
-        }
-
-        public void UnFreezeLeftRope()
-        {
-            if(isLeftRopeExist)
-            {
-                ropeController.leftRopeInst.RopeUnLock();
-            }
-        }
-
-        public void UnFreezeRightRope()
-        {
-            if(isRightRopeExist)
-            {
-                ropeController.rightRopeInst.RopeUnLock();
-            }
-        }
-
-        public void RopeReleaseCheck()
-        {
-            if(isGround) return;
-            
-            //
-            if(isLeftRopeButtonUp  && isLeftRopeExist)
-            {
-                AddRopeVelocity(ropeController.leftRopeInst);
-            }
-
-            if(isRightRopeButtonUp && isRightRopeExist)
-            {
-                AddRopeVelocity(ropeController.rightRopeInst);
-            }
-        }
-
-        void AddRopeVelocity(RopeSimulate rope)
-        {
-            Rigidbody tailRig = rope.tailRig;
-            playerVelocity += tailRig.velocity;
         }
 
         public void SyncRope()
         {
-            if(isLeftRopeButton && isRightRopeButton)
-            {
-                if(SyncRopeLeftAndRight()) return;
-            }
+            bool leftButton  = RopeInput.isLeftRopeButton;
+            bool rightButton = RopeInput.isRightRopeButton;
 
-            if(isLeftRopeButton)
+            if(leftButton && rightButton)
             {
-                if(SyncLeftRope())  return;
+                SyncRopeLeftAndRight();
             }
-
-            if(isRightRopeButton)
+            else if(leftButton)
             {
-                if(SyncRightRope()) return;
+                SyncLeftRope();
+            }
+            else if(rightButton)
+            {
+                SyncRightRope();
             }
         }
 
-        bool SyncRopeLeftAndRight()
+        void SyncRopeLeftAndRight()
         {
-            if(!isLeftRopeExist ) return false;
-            if(!isRightRopeExist) return false;
+            if(!isLeftRopeExist ) return;
+            if(!isRightRopeExist) return;
 
-            UnFreezeLeftRope();
-            UnFreezeRightRope();
+            //ロック解除（解除しているのであればそのまま）
+            UnFreezeRope(ropeController.leftRopeInst);
+            UnFreezeRope(ropeController.rightRopeInst);
 
             Vector3 leftRopeTailPos  = ropeController.leftRopeInst .tailPosition;
-            //Vector3 player2leftRope  = leftRopeTailPos  - transform.position;
-
             Vector3 rightRopeTailPos = ropeController.rightRopeInst.tailPosition;
-            //Vector3 player2rightRope = rightRopeTailPos - transform.position;
 
             Vector3 applyVelocity = rightRopeTailPos - leftRopeTailPos;
             applyVelocity /= 2;
 
             transform.position = leftRopeTailPos + applyVelocity;
-
-            return true;
         }
 
-        bool SyncLeftRope()
+        void SyncLeftRope()
         {
-            if(!isLeftRopeExist) return false;
-            UnFreezeLeftRope();
+            if(!isLeftRopeExist) return;
+            UnFreezeRope(ropeController.leftRopeInst);
 
             Vector3 leftHandPos    = transform.position - ropeController.leftGun .position;
             Vector3 playerPosition = leftHandPos  + ropeController.leftRopeInst.tailPosition;
             transform.position     = playerPosition;
-
-            return true;
         }
 
-        bool SyncRightRope()
+        void SyncRightRope()
         {
-            if(!isRightRopeExist) return false;
-
-            UnFreezeRightRope();
+            if(!isRightRopeExist) return;
+            UnFreezeRope(ropeController.rightRopeInst);
 
             Vector3 rightHandPos   = transform.position - ropeController.rightGun.position;
             Vector3 playerPosition = rightHandPos + ropeController.rightRopeInst.tailPosition;
             transform.position     = playerPosition;
-
-            return true;
         }
 
         public void OnRopeCreate(RopeSimulate rope)
@@ -310,10 +228,18 @@ namespace Player
             {
                 //同期するためにロックする
                 rope.RopeLock();
+                return;
             }
-
-            rope.tailRig.AddForce(playerVelocity * 1.2f, ForceMode.VelocityChange);
+            rope.tailRig.AddForce(playerVelocity * ropeAcceleration, ForceMode.VelocityChange);
             ResetGravity();
+        }
+
+        public void OnRopeRelease(RopeSimulate rope)
+        {
+            if(isGround) return;
+            Rigidbody tailRig  = rope.tailRig;
+            playerVelocity    += tailRig.velocity;
+            rope.RopeLock();
         }
     }
 }

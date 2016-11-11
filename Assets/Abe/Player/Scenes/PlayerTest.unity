@@ -112,9 +112,7 @@ MonoBehaviour:
   bulletSpeed: 20
   camera: {fileID: 436543434}
   leftGun: {fileID: 965740764}
-  leftRopeInst: {fileID: 0}
   rightGun: {fileID: 161193640}
-  rightRopeInst: {fileID: 0}
 --- !u!4 &17697816 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 552ed76f4780ccb4f87cd05121088d4f, type: 3}
@@ -149,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 436543434}
   moveSpeed: 1
+  ropeAcceleration: 2
 --- !u!1 &78629709
 GameObject:
   m_ObjectHideFlags: 0

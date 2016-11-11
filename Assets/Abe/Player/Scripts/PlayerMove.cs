@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-
 
 namespace Player
 {
@@ -13,12 +10,6 @@ namespace Player
         void Awake()
         {
             enabled = false;
-        }
-
-        public void OnEnable()
-        {
-            player.RopeReleaseCheck();
-            player.StartAnimation();
         }
 
         public void FixedUpdate()
@@ -36,7 +27,15 @@ namespace Player
 
         void Update()
         {
-            player.NormalMove();
+            if(player.isGround)
+            {
+                player.StartAnimation();
+                player.NormalMove();
+            }
+            else
+            {
+                player.StopAnimation();
+            }
         }
     }
 }
