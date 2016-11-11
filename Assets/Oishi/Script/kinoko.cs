@@ -20,25 +20,26 @@ public class kinoko : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        kinokoPos.transform.position = Vector3.Reflect(targetPos.transform.position, Vector3.right);
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        Rigidbody rd = GetComponent<Rigidbody>();
-        rd.AddForce(x * speed, 0, z * speed);
+        //float x = Input.GetAxis("Horizontal");
+        //float z = Input.GetAxis("Vertical");
+        //Rigidbody rd = GetComponent<Rigidbody>();
+        //rd.AddForce(x * speed, 0, z * speed);
 
-        //ジャンプ処理
-        if (isJump == true && limit >= 0)
-        {
-            //rd.AddForce(Vector3.up * Power);
+        ////ジャンプ処理
+        //if (isJump == true && limit >= 0)
+        //{
+        //    //rd.AddForce(Vector3.up * Power);
 
-            limit -= 1.0f;
-            Debug.Log("ジャンプ中です");
-        }
-        if (limit <= 0)
-        {
-            isJump = false;
-            limit = Jumptemp;
-        }
+        //    limit -= 1.0f;
+        //    Debug.Log("ジャンプ中です");
+        //}
+        //if (limit <= 0)
+        //{
+        //    isJump = false;
+        //    limit = Jumptemp;
+        //}
 
         //if (Input.GetKey(KeyCode.W))
         //{
@@ -58,15 +59,15 @@ public class kinoko : MonoBehaviour
         //}
     }
 
-    //Jumpタグオブジェクトに接触したら
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.tag == "Player" && isJump == false)
-        {
-            isJump = true;
-            Jumptemp = limit;
+    ////Jumpタグオブジェクトに接触したら
+    //void OnCollisionEnter(Collision col)
+    //{
+    //    if (col.gameObject.tag == "Player" && isJump == false)
+    //    {
+    //        isJump = true;
+    //        Jumptemp = limit;
 
-            Debug.Log("ジャンプします");
-        }
-    }
+    //        Debug.Log("ジャンプします");
+    //    }
+    //}
 }
