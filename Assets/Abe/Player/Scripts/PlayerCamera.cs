@@ -44,7 +44,7 @@ public class PlayerCamera : MonoBehaviour
         position += offset;                       //オフセット値
 
         //座標の変更
-        transform.position = Vector3.Lerp(transform.position, position, 0.8f);
+        transform.position = position; // Vector3.Lerp(transform.position, position, 0.2f);
     }
 
     void ChangeCursorState()
@@ -90,10 +90,10 @@ public class PlayerCamera : MonoBehaviour
             }
 
             //上限値・下限値を設定してカメラが変な挙動をしないように
-            angle.x = Mathf.Clamp(angle.x, -20, 80);
+            angle.x = Mathf.Clamp(angle.x, cameraLimitDown, cameraLimitUp);
         }
-
+        
         angle.z = 0;
-        transform.rotation = Quaternion.Euler(angle);
+        transform.eulerAngles = angle;
     }
 }

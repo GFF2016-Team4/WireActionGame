@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class RopeController : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class RopeController : MonoBehaviour
 
     [Header("編集不可")]
     [SerializeField, Tooltip("左ロープインスタンス")]
-    private RopeSimulate leftRopeInst;
+    public RopeSimulate leftRopeInst;
 
     [Header("Right")]
     [SerializeField, Tooltip("右射出機")]
@@ -31,10 +32,7 @@ public class RopeController : MonoBehaviour
 
     [Header("編集不可")]
     [SerializeField, Tooltip("右ロープインスタンス")]
-    private RopeSimulate rightRopeInst;
-
-    private bool isLeftShoot  = false;
-    private bool isRightShoot = false;
+    public RopeSimulate rightRopeInst;
 
     const string leftButton  = "Fire1";
     const string rightButton = "Fire2";
@@ -42,8 +40,8 @@ public class RopeController : MonoBehaviour
     public void OnValidate()
     {
         //変更不可
-        if(leftRopeInst    != null) { leftRopeInst    = null; }
-        if(rightRopeInst   != null) { rightRopeInst   = null; }
+        if(leftRopeInst  != null) { leftRopeInst  = null; }
+        if(rightRopeInst != null) { rightRopeInst = null; }
     }
 
     void Update()
@@ -87,7 +85,7 @@ public class RopeController : MonoBehaviour
     
     void LeftRopeShoot()
     {
-        StartCoroutine(RopeShoot(leftGun,  leftButton, (result)=>leftRopeInst  = result));
+        StartCoroutine(RopeShoot(leftGun,  leftButton,  (result)=>leftRopeInst  = result));
     }
 
     void RightRopeShoot()
@@ -134,13 +132,13 @@ public class RopeController : MonoBehaviour
         RopeSimulate simulate = rope.GetComponent<RopeSimulate>();
         
         simulate.RopeInitialize(hitPoint, gun.position);
-        simulate.RopeLock();
 
         bool canRopeHook = hitInfo.transform.tag != "NoRopeHit";
 
         if(Input.GetButton(buttonName) && canRopeHook)
         {
             //引っかかった
+            SendCreateRopeEvent(simulate);
             callback(simulate);
         }
         else
@@ -150,5 +148,15 @@ public class RopeController : MonoBehaviour
         }
 
         Destroy(bulletInst);
+    }
+
+    //イベントを送信
+    void SendCreateRopeEvent(RopeSimulate rope)
+    {
+        ExecuteEvents.Execute<RopeCreateHandlar>(
+            gameObject,
+            null,
+            (obj, baseEvent) => { obj.OnRopeCreate(rope); }
+        );
     }
 }

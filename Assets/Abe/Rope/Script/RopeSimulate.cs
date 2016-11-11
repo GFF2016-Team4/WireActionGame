@@ -15,7 +15,6 @@ public class RopeSimulate : MonoBehaviour
     private float takeupTime = 0.5f;
 
     private ListLineDraw    listLineDraw;           //LineRenderer管理スクリプト
-    private float           maxAngle_;              //Inspector変更しないように
     private const float     ignoreDistance = 0.1f;
     private bool            isEnd = false;          //ロープのシミュレーションはおわりか？
     private int             ignorelayer;
@@ -32,6 +31,16 @@ public class RopeSimulate : MonoBehaviour
             dir.Normalize();
             return dir;
         }
+    }
+
+    public Vector3 tailPosition
+    {
+        get { return rope.tailPos; }
+    }
+
+    public Rigidbody tailRig
+    {
+        get { return rope.tailRig; }
     }
 
     void Awake()
@@ -192,7 +201,7 @@ public class RopeSimulate : MonoBehaviour
     /// </summary>
     public void SetLockTailPosition(Vector3 position)
     {
-        Debug.Assert(rope.tailRig.isKinematic);
+       if(!rope.tailRig.isKinematic) return;
 
         rope.tailPos = position;
     }

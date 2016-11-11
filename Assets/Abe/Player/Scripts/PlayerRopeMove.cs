@@ -9,19 +9,47 @@ namespace Player
         [SerializeField, Tooltip("説明文")]
         GameObject rope;
 
+        public Player player;
+
         void Awake()
         {
             enabled = false;
         }
-    
+
         void Start()
         {
-        
+
         }
-    
+
+        public void OnEnable()
+        {
+            
+        }
+
+        public void FixedUpdate()
+        {
+
+        }
+
         void Update()
         {
-            Debug.Log("RopeMove");
+            player.RopeReleaseCheck();
+
+            if(player.isGround)
+            {
+                player.StartAnimation();
+                player.NormalMove();
+            }
+            else
+            {
+                if(!player.isRopeExist)
+                {
+                    player.ApplyGravity();
+                }
+
+                player.SyncRope();
+                player.StopAnimation();
+            }
         }
     }
 }
