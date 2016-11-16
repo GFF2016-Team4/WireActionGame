@@ -43,6 +43,11 @@ public class RopeSimulate : MonoBehaviour
         get { return rope.tailRig; }
     }
 
+    public Vector3 originPosision
+    {
+        get { return rope.originPos; }
+    }
+
     void Awake()
     {
         listLineDraw  = GetComponent<ListLineDraw>();
@@ -69,10 +74,7 @@ public class RopeSimulate : MonoBehaviour
         
         if(!nowOriginJoint.IsRootJoint())
         {
-            if(CheckObstacle())
-            {
-                return;
-            }
+            if(CheckObstacle()) return;
         }
 
         Ray   ray         = new Ray(tail, nowVec);
@@ -221,6 +223,7 @@ public class RopeSimulate : MonoBehaviour
     /// </summary>
     public void RopeEnd()
     {
+        if(isEnd) return;
         isEnd = true;
 
         //親の取得と削除
@@ -233,11 +236,13 @@ public class RopeSimulate : MonoBehaviour
 
             listLineDraw.RemoveDrawList(oldObject.transform);
             Destroy(oldObject);
-        }
+        } 
         
         //ロック解除
         Rigidbody originRig = rope.originRig;
         originRig.isKinematic = false;
+
+        rope.originRope = originJoint.transform;
 
         //Jointを削除して自然落下をさせる
         Destroy(originJoint);

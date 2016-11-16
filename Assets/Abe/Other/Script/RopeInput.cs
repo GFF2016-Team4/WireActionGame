@@ -2,8 +2,21 @@
 
 public class RopeInput
 {
-    public const string leftButton  = "Fire1";
-    public const string rightButton = "Fire2";
+    public const string leftButton          = "Fire1";
+    public const string rightButton         = "Fire2";
+    public const string ropeTakeUpButton    = "RopeTakeUp";
+    public const string ropeTakeDownButton  = "RopeTakeDown";
+
+    //ロープの上下
+    public static bool isTakeUpButton
+    {
+        get { return Input.GetButton(ropeTakeUpButton);   }
+    }
+
+    public static bool isTakeDownButton
+    {
+        get { return Input.GetButton(ropeTakeDownButton); }
+    }
 
     //左
     public static bool isLeftRopeButton

@@ -58,10 +58,6 @@ public struct Rope
         Rigidbody connectBody   = newOrigin.GetComponent<Rigidbody>();
         tailJoint.connectedBody = connectBody;
 
-        ////１つ前のオブジェクトに戻れるように
-        //SpringJoint newJoint   = newOrigin.GetComponent<SpringJoint>();
-        //newJoint.connectedBody = originRope.GetComponent<Rigidbody>();
-
         originRope  = newOrigin.transform;
         originJoint = originRope.GetComponent<SpringJoint>();
     }
