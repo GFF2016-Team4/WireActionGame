@@ -20,6 +20,9 @@ namespace Player
         [SerializeField, Header("ロープの伸ばすスピード")]
         private float ropeTakeDownSpeed;
 
+        [SerializeField, Header("ロープの加える力")]
+        private float ropeForcePower;
+
         Vector3 gravity;
         Vector3 playerVelocity;
 
@@ -91,6 +94,7 @@ namespace Player
             animator.SetFloat("MoveSpeed", speed);
             animator.speed = moveSpeed;
 
+#warning 修正かも？（Ｓキーを押したときに正常な方向に動かない）
             //velocityがゼロベクトルだとだと変な方向に向くため
             if(velocity != Vector3.zero)
             {
@@ -110,6 +114,18 @@ namespace Player
             if(rope == null) return false;
 
             bool isDown = false;
+
+            Vector3 forward;
+            Vector3 right;
+            GetCameraAxis(out forward, out right);
+
+            Vector3 velocity = GetInputVelocity(forward, right);
+            if(velocity != Vector3.zero)
+            {
+                rope.tailRig.AddForce(velocity * ropeForcePower, ForceMode.Force);
+                isDown = true;
+            }
+
             if(RopeInput.isTakeUpButton)
             {
                 rope.AddRopeLength(ropeTakeUpSpeed);
