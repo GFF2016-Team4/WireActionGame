@@ -14,6 +14,12 @@ namespace Player
         [SerializeField]
         private float ropeAcceleration;
 
+        [SerializeField, Header("ロープの縮めるスピード")]
+        private float ropeTakeUpSpeed;
+
+        [SerializeField, Header("ロープの伸ばすスピード")]
+        private float ropeTakeDownSpeed;
+
         Vector3 gravity;
         Vector3 playerVelocity;
 
@@ -94,25 +100,29 @@ namespace Player
 
         public void RopeMove()
         {
-            //if(Input.GetKey(KeyCode.Space))
-            //{
-            //    ropeParent.GetComponent<RopeSimulate>().SubRopeLength(1);
-            //}
+            if(RopeControl(ropeController.centerRopeInst)) return;
+            RopeControl(ropeController.left .ropeInst);
+            RopeControl(ropeController.right.ropeInst);
+        }
 
-            //if(Input.GetKey(KeyCode.B))
-            //{
-            //    ropeParent.GetComponent<RopeSimulate>().AddRopeLength(1);
-            //}
+        bool RopeControl(RopeSimulate rope)
+        {
+            if(rope == null) return false;
 
-            //if(Input.GetKeyDown(KeyCode.Return))
-            //{
-            //    ropeParent.GetComponent<RopeSimulate>().RopeEnd();
-            //}
+            bool isDown = false;
+            if(RopeInput.isTakeUpButton)
+            {
+                rope.AddRopeLength(ropeTakeUpSpeed);
+                isDown = true;
+            }
 
-            //if(RopeInput.isTakeUpButton)
-            //{
+            if(RopeInput.isTakeDownButton)
+            {
+                rope.SubRopeLength(ropeTakeDownSpeed);
+                isDown = true;
+            }
 
-            //}
+            return isDown;
         }
 
         public void GetCameraAxis(out Vector3 forward, out Vector3 right)
