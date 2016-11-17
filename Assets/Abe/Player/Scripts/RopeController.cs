@@ -24,7 +24,6 @@ public class RopeController : MonoBehaviour
         }
     }
 
-
     [SerializeField, Tooltip("ロープのプレハブ")]
     private GameObject ropePrefab;
 
@@ -37,21 +36,8 @@ public class RopeController : MonoBehaviour
     [SerializeField, Tooltip("プレイヤーのカメラ")]
     private new Transform camera;
 
-    //[SerializeField, Tooltip("左射出機")]
-    //public Transform leftGun;
-
-    //[System.NonSerialized]
-    //public RopeSimulate leftRopeInst;
-
     [SerializeField]
     public RopeGun left;
-
-    //[Header("Right")]
-    //[SerializeField, Tooltip("右射出機")]
-    //public Transform rightGun;
-
-    //[System.NonSerialized]
-    //public RopeSimulate rightRopeInst;
 
     [SerializeField]
     public RopeGun right;
@@ -253,7 +239,7 @@ public class RopeController : MonoBehaviour
 
         GameObject rope = Instantiate(ropePrefab) as GameObject;
         RopeSimulate simulate = rope.GetComponent<RopeSimulate>();
-        //rope.GetComponent<ListLineDraw>().DrawEnd();
+        rope.GetComponent<ListLineDraw>().DrawEnd();
 
         simulate.RopeInitialize(centerPos, transform.position + Vector3.up);
 

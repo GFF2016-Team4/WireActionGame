@@ -109,8 +109,6 @@ public class ListLineDraw : MonoBehaviour
     {
         isDraw = false;
         lineRenderer.enabled = false;
-
-
     }
 
     private void FixVertexCount()

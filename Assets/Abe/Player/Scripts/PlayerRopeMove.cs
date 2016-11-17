@@ -28,12 +28,12 @@ namespace Player
                 if(!player.isRopeExist)
                 {
                     player.ApplyGravity();
-                    player.StopAnimation();
-                    return;
                 }
-
+                else
+                {
+                    player.SyncRope();
+                }
                 player.RopeMove();
-                player.SyncRope();
                 player.StopAnimation();
             }
         }

@@ -28,7 +28,6 @@ public class RopeSimulate : MonoBehaviour
         get
         {
             Vector3 dir = rope.originPos - rope.tailPos;
-            dir.Normalize();
             return dir;
         }
     }
@@ -97,6 +96,9 @@ public class RopeSimulate : MonoBehaviour
             //最後尾の１つ上に挿入
             listLineDraw.Insert(listLineDraw.listCount-1, newRopeObj);
             newRopeObj.parent = transform;
+
+#warning ここでイベントを送信して第三のロープの位置を変える処理を
+
         }
     }
 

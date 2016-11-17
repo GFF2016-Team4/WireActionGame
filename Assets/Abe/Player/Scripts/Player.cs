@@ -20,6 +20,9 @@ namespace Player
         [SerializeField, Header("ロープの伸ばすスピード")]
         private float ropeTakeDownSpeed;
 
+        [SerializeField, Header("ロープの伸縮時に加える力")]
+        private float ropeTakeForce;
+
         [SerializeField, Header("ロープの加える力")]
         private float ropeForcePower;
 
@@ -120,7 +123,7 @@ namespace Player
             GetCameraAxis(out forward, out right);
 
             Vector3 velocity = GetInputVelocity(forward, right);
-            if(velocity != Vector3.zero)
+            if(velocity != Vector3.zero && !isGround)
             {
                 rope.tailRig.AddForce(velocity * ropeForcePower, ForceMode.Force);
                 isDown = true;
@@ -128,13 +131,17 @@ namespace Player
 
             if(RopeInput.isTakeUpButton)
             {
+                //Vector3 dir = rope.ropeDirection;
                 rope.AddRopeLength(ropeTakeUpSpeed);
+                //rope.tailRig.AddForce( dir * ropeTakeForce);
                 isDown = true;
             }
 
             if(RopeInput.isTakeDownButton)
             {
+                //Vector3 dir = rope.ropeDirection;
                 rope.SubRopeLength(ropeTakeDownSpeed);
+                //rope.tailRig.AddForce(-dir * ropeTakeForce);
                 isDown = true;
             }
 
@@ -211,41 +218,30 @@ namespace Player
             if(leftButton && rightButton)
             {
                 //第三のロープと同期
-                if(SyncRopeCenter()) return;
+                if(SyncRope(ropeController.centerRopeInst, Vector3.up + transform.position)) return;
             }
 
             if(leftButton)
             {
                 //左のロープと同期
-                if(SyncRope(ropeController.left)) return;
+                RopeController.RopeGun gun = ropeController.left;
+                if(SyncRope(gun.ropeInst, gun.gun.position)) return;
             }
 
             if(rightButton)
             {
                 //右のロープと同期
-                if(SyncRope(ropeController.right)) return;
+                RopeController.RopeGun gun = ropeController.right;
+                if(SyncRope(gun.ropeInst, gun.gun.position)) return;
             }
         }
 
-        bool SyncRopeCenter()
+        bool SyncRope(RopeSimulate rope, Vector3 syncPos)
         {
-            if(!ropeController.centerRopeExist) return false;
-            UnFreezeRope(ropeController.centerRopeInst);
-
-            Vector3 center         = Vector3.down;
-            Vector3 playerPosition = center + ropeController.centerRopeInst.tailPosition;
-            transform.position     = playerPosition;
-            return true;
-        }
-
-        bool SyncRope(RopeController.RopeGun rope)
-        {
-            if(!rope.ropeExist) return false;
-            UnFreezeRope(rope.ropeInst);
-
-            Vector3 handPos    = transform.position - rope.gun.position;
-            Vector3 playerPosition = handPos  + rope.ropeInst.tailPosition;
-            transform.position     = playerPosition;
+            if(rope == null) return false;
+            Vector3 pos = transform.position - syncPos;
+            Vector3 playerPosition = pos + rope.tailPosition;
+            transform.position = playerPosition;
             return true;
         }
 
