@@ -18,7 +18,7 @@ namespace Player
 
         void Update()
         {
-            if(player.isGround)
+            if(player.isGround && !RopeInput.isTakeUpButton)
             {
                 player.StartAnimation();
                 player.NormalMove();
@@ -31,9 +31,9 @@ namespace Player
                 }
                 else
                 {
+                    player.RopeMove();
                     player.SyncRope();
                 }
-                player.RopeMove();
                 player.StopAnimation();
             }
         }

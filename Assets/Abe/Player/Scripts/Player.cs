@@ -93,16 +93,16 @@ namespace Player
             Vector3 velocity = GetInputVelocity(forward, right);
             float   speed    = velocity.magnitude;
 
-            //アニメーションで移動させる
-            animator.SetFloat("MoveSpeed", speed);
-            animator.speed = moveSpeed;
-
-#warning 修正かも？（Ｓキーを押したときに正常な方向に動かない）
             //velocityがゼロベクトルだとだと変な方向に向くため
             if(velocity != Vector3.zero)
             {
                 LookRotation(velocity);
             }
+            
+            //回転の後に移動
+            //アニメーションで移動させる
+            animator.SetFloat("MoveSpeed", speed);
+            animator.speed = moveSpeed;
         }
 
         public void RopeMove()
@@ -131,17 +131,17 @@ namespace Player
 
             if(RopeInput.isTakeUpButton)
             {
-                //Vector3 dir = rope.ropeDirection;
-                rope.AddRopeLength(ropeTakeUpSpeed);
-                //rope.tailRig.AddForce( dir * ropeTakeForce);
+                Vector3 dir = rope.ropeDirection;
+                rope.SubRopeLength(ropeTakeUpSpeed);
+                rope.tailRig.AddForce( dir * ropeTakeForce);
                 isDown = true;
             }
 
             if(RopeInput.isTakeDownButton)
             {
-                //Vector3 dir = rope.ropeDirection;
-                rope.SubRopeLength(ropeTakeDownSpeed);
-                //rope.tailRig.AddForce(-dir * ropeTakeForce);
+                Vector3 dir = rope.ropeDirection;
+                rope.AddRopeLength(ropeTakeDownSpeed);
+                rope.tailRig.AddForce(-dir * ropeTakeForce);
                 isDown = true;
             }
 
@@ -239,6 +239,7 @@ namespace Player
         bool SyncRope(RopeSimulate rope, Vector3 syncPos)
         {
             if(rope == null) return false;
+            UnFreezeRope(rope);
             Vector3 pos = transform.position - syncPos;
             Vector3 playerPosition = pos + rope.tailPosition;
             transform.position = playerPosition;
