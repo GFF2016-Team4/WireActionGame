@@ -2153,7 +2153,8 @@ MonoBehaviour:
   ropeAcceleration: 1.5
   ropeTakeUpSpeed: 0.5
   ropeTakeDownSpeed: 0.5
-  ropeForcePower: 1
+  ropeTakeForce: 1
+  ropeForcePower: 10
 --- !u!137 &137000010562534828
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

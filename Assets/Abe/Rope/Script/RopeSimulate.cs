@@ -189,7 +189,7 @@ public class RopeSimulate : MonoBehaviour
         Vector3 dir = vec.normalized;
         float   dis = vec.magnitude;
 
-        //dis = Mathf.Max(0, dis + distance);
+        dis = Mathf.Max(0, dis + distance);
         if(dis == 0 && !rope.originJoint.IsRootJoint())
         {
             RemoveOrigin();
