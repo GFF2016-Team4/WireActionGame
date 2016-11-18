@@ -132,16 +132,20 @@ namespace Player
             if(RopeInput.isTakeUpButton)
             {
                 Vector3 dir = rope.ropeDirection;
+                dir += rope.tailRig.velocity + Vector3.up;
+                dir.Normalize();
                 rope.SubRopeLength(ropeTakeUpSpeed);
-                rope.tailRig.AddForce( dir * ropeTakeForce);
+                //rope.tailRig.AddForce( dir  * ropeTakeForce);
                 isDown = true;
             }
 
             if(RopeInput.isTakeDownButton)
             {
                 Vector3 dir = rope.ropeDirection;
+                dir += rope.tailRig.velocity + Vector3.up;
+                dir.Normalize();
                 rope.AddRopeLength(ropeTakeDownSpeed);
-                rope.tailRig.AddForce(-dir * ropeTakeForce);
+                //rope.tailRig.AddForce(-dir * ropeTakeForce);
                 isDown = true;
             }
 

@@ -91,7 +91,7 @@ public class RopeSimulate : MonoBehaviour
             newRopeObj.position = hitInfo.point;
 
             rope.SetOrigin(newRopeObj.gameObject);
-            CalcMinDistance();
+            //CalcMinDistance();
 
             //最後尾の１つ上に挿入
             listLineDraw.Insert(listLineDraw.listCount-1, newRopeObj);
@@ -189,12 +189,13 @@ public class RopeSimulate : MonoBehaviour
         Vector3 dir = vec.normalized;
         float   dis = vec.magnitude;
 
-        dis = Mathf.Max(0, dis + distance);
+        //dis = Mathf.Max(0, dis + distance);
         if(dis == 0 && !rope.originJoint.IsRootJoint())
         {
             RemoveOrigin();
         }
 
+        //rope.tailJoint.maxDistance += distance;
         rope.tailPos = rope.originPos + dir * dis;
 
         CalcMinDistance();
