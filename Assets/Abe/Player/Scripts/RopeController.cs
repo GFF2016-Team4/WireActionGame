@@ -78,19 +78,13 @@ public class RopeController : MonoBehaviour
         }
     }
 
-    public void FixedUpdate()
-    {
-        Sync(left);
-        Sync(right);
-    }
-
     void Update()
     {
         Shoot();
         TakeUp();
     }
 
-    public void LateUpdate()
+    public void Sync()
     {
         Sync(left);
         Sync(right);
