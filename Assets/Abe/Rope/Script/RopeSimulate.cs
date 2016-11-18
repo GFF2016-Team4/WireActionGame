@@ -91,8 +91,11 @@ public class RopeSimulate : MonoBehaviour
             newRopeObj.position = hitInfo.point;
 
             rope.SetOrigin(newRopeObj.gameObject);
-            //CalcMinDistance();
 
+            if(Player.Player.isDebug)
+            {
+                CalcMinDistance();
+            }
             //最後尾の１つ上に挿入
             listLineDraw.Insert(listLineDraw.listCount-1, newRopeObj);
             newRopeObj.parent = transform;

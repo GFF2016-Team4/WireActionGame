@@ -78,6 +78,12 @@ public class RopeController : MonoBehaviour
         }
     }
 
+    public void FixedUpdate()
+    {
+        Sync(left);
+        Sync(right);
+    }
+
     void Update()
     {
         Shoot();
@@ -104,13 +110,14 @@ public class RopeController : MonoBehaviour
 
     void Sync(RopeGun ropeGun)
     {
-        if(!ropeGun.ropeExist) return;
+        if(!ropeGun.ropeExist)
+            return;
         ropeGun.ropeInst.SetLockTailPosition(ropeGun.gun.position);
     }
 
     void TakeUp()
     {
-        bool isLeftUp  = RopeInput.isLeftRopeButtonUp;
+        bool isLeftUp = RopeInput.isLeftRopeButtonUp;
         bool isRightUp = RopeInput.isRightRopeButtonUp;
 
         if(centerRopeExist)
@@ -122,8 +129,14 @@ public class RopeController : MonoBehaviour
             }
         }
 
-        if(isLeftUp ) { TakeUp(left ); }
-        if(isRightUp) { TakeUp(right); }
+        if(isLeftUp)
+        {
+            TakeUp(left);
+        }
+        if(isRightUp)
+        {
+            TakeUp(right);
+        }
     }
 
     void TakeUp(RopeGun ropeGun)

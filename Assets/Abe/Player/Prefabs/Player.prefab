@@ -2129,7 +2129,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1000013608364856, guid: a1a5ec346aa78594e9dfe170dcc53fb0,
     type: 2}
   bulletSpeed: 300
-  camera: {fileID: 0}
+  camera: {fileID: 4000012588242424, guid: 4276d41f44605a74698bb020091d79a8, type: 2}
   left:
     gun: {fileID: 4000011373498590}
     ropeInst: {fileID: 0}
@@ -2148,7 +2148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a5a6b3e9bb0e64b9df5326efd6234a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 20000013778126110, guid: 4276d41f44605a74698bb020091d79a8,
+    type: 2}
   moveSpeed: 1
   ropeAcceleration: 1.5
   ropeTakeUpSpeed: 0.5

@@ -5,6 +5,10 @@ namespace Player
 {
     public class Player : MonoBehaviour, RopeEventHandlar
     {
+#warning 後で消す
+        public bool debug;
+        public static bool isDebug;
+
         [SerializeField]
         private Camera playerCamera;
 
@@ -60,6 +64,8 @@ namespace Player
 
         void Awake()
         {
+            isDebug = debug;
+
             playerMove     = gameObject.AddComponent<PlayerMove>();
             playerRopeMove = gameObject.AddComponent<PlayerRopeMove>();
             
@@ -310,7 +316,7 @@ namespace Player
 
             if(isGround) return;
             Rigidbody tailRig  = rope.tailRig;
-            playerVelocity    += tailRig.velocity;
+            playerVelocity     = tailRig.velocity;
             rope.RopeLock();
         }
     }
