@@ -262,6 +262,7 @@ GameObject:
   - 224: {fileID: 1250649526}
   - 222: {fileID: 1250649529}
   - 114: {fileID: 1250649528}
+  - 114: {fileID: 1250649530}
   - 114: {fileID: 1250649527}
   m_Layer: 5
   m_Name: Panel
@@ -296,11 +297,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1250649525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22b7e8fe9f62b6b449c439b29f38ee1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 67597fe96239a45408ba3bfacffa839a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeInSpeed: 0.01
-  fadeOutSpeed: 0.01
+  sceneName: Title
 --- !u!114 &1250649528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +334,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1250649525}
+--- !u!114 &1250649530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1250649525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254c8ab6c8ce872408b5fedcb3e8cb01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInSpeed: 0.01
+  fadeOutSpeed: 0.01
+  judgeObj: {fileID: 0}
 --- !u!1 &1571417235
 GameObject:
   m_ObjectHideFlags: 0

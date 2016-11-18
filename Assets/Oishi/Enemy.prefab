@@ -55,12 +55,12 @@ GameObject:
   - 33: {fileID: 33000012249163812}
   - 136: {fileID: 136000010877697590}
   - 23: {fileID: 23000013246076088}
-  - 114: {fileID: 114000010863188808}
   - 195: {fileID: 195000012410529232}
   - 135: {fileID: 135000012615001620}
+  - 114: {fileID: 114000012290800596}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011511082860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.9, y: 4.33, z: 1.1871266}
+  m_LocalPosition: {x: 17.82, y: 4.33, z: -6}
   m_LocalScale: {x: 3.174757, y: 3.1747563, z: 3.1747563}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -119,7 +119,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c013e66e7d259e64b8333571cfb7b743, type: 2}
+  - {fileID: 2100000, guid: c9d8de9cb5f0e504baddddd20eb7ec93, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -190,7 +190,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114000010863188808
+--- !u!114 &114000012290800596
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -198,17 +198,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011511082860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbff08479211aba4f9e8bed9a90b18c8, type: 3}
+  m_Script: {fileID: 11500000, guid: e8db6d30dfa9ef541a39c0289230fb75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Destination: {fileID: 0}
   PlayerTarget: {fileID: 0}
-  time: 0
-  EnemyAttack: 3
-  EnemyMissileAttack: 1
-  walkSpeed: 2
-  Attack: 0
-  MissileAttack: 0
+  judgeGameOver: {fileID: 0}
+  t: Main
+  walkSpeed: 10
 --- !u!135 &135000012615001620
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -219,7 +216,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136000010877697590
 CapsuleCollider:
@@ -228,7 +225,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011511082860}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
