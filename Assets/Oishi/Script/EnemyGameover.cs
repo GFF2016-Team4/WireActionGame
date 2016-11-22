@@ -6,7 +6,6 @@ public class EnemyGameover : MonoBehaviour
 {
     public Transform Destination;
     public Transform PlayerTarget;
-    public GameObject judgeGameOver;
     private NavMeshAgent agent;
 
     public int walkSpeed;
@@ -18,14 +17,6 @@ public class EnemyGameover : MonoBehaviour
         agent.speed = walkSpeed;
     }
 
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.tag == "GameOver")
-        {
-            Debug.Log("ゲームオーバー");
-            Destroy(judgeGameOver);
-        }
-    }
     // Update is called once per frame
     void Update()
     {
