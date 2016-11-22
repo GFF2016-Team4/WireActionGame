@@ -19,6 +19,7 @@ namespace Player
                 player.ResetGravity();
                 player.StartAnimation();
                 player.NormalMove();
+                player.Jump();
             }
             else
             {
@@ -26,13 +27,5 @@ namespace Player
                 player.ApplyGravity();
             }
         }
-
-        //public void OnControllerColliderHit(ControllerColliderHit hit)
-        //{
-        //    if(!player.isGround) return;
-
-        //    //地面についたときにロープの物理挙動解除
-            
-        //}
     }
 }

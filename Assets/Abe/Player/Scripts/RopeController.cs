@@ -48,26 +48,17 @@ public class RopeController : MonoBehaviour
 
     public bool leftRopeExist
     {
-        get
-        {
-            return left.ropeExist;
-        }
+        get { return left.ropeExist; }
     }
 
     public bool rightRopeExist
     {
-        get
-        {
-            return right.ropeExist;
-        }
+        get { return right.ropeExist; }
     }
 
     public bool centerRopeExist
     {
-        get
-        {
-            return centerRopeInst != null;
-        }
+        get { return centerRopeInst != null; }
     }
 
     public bool ropeExist
@@ -104,8 +95,7 @@ public class RopeController : MonoBehaviour
 
     void Sync(RopeGun ropeGun)
     {
-        if(!ropeGun.ropeExist)
-            return;
+        if(!ropeGun.ropeExist) return;
         ropeGun.ropeInst.SetLockTailPosition(ropeGun.gun.position);
     }
 
@@ -120,25 +110,27 @@ public class RopeController : MonoBehaviour
             {
                 SendRopeReleaseEvent(centerRopeInst);
                 centerRopeInst.RopeEnd();
+                centerRopeInst = null;
             }
         }
 
         if(isLeftUp)
         {
-            TakeUp(left);
+            TakeUp(ref left);
         }
         if(isRightUp)
         {
-            TakeUp(right);
+            TakeUp(ref right);
         }
     }
 
-    void TakeUp(RopeGun ropeGun)
+    void TakeUp(ref RopeGun ropeGun)
     {
         if(ropeGun.ropeExist)
         {
             SendRopeReleaseEvent(ropeGun.ropeInst);
             ropeGun.ropeInst.RopeEnd();
+            ropeGun.ropeInst = null;
         }
     }
 

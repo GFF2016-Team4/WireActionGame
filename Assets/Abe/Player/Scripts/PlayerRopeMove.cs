@@ -6,9 +6,6 @@ namespace Player
 {
     public class PlayerRopeMove : MonoBehaviour
     {
-        [SerializeField, Tooltip("説明文")]
-        GameObject rope;
-
         public Player player;
 
         void Awake()
@@ -22,11 +19,21 @@ namespace Player
             {
                 player.StartAnimation();
                 player.NormalMove();
+                player.Jump();
+                return;
+            }
+
+            bool buttonDown = Input.GetButton("Jump");
+
+            if(!player.isRopeExist)
+            {
+                player.ApplyGravity();
             }
             else
             {
-                if(!player.isRopeExist)
+                if(buttonDown)
                 {
+                    player.FreezeRope();
                     player.ApplyGravity();
                 }
                 else
@@ -34,8 +41,8 @@ namespace Player
                     player.RopeMove();
                     player.SyncRope();
                 }
-                player.StopAnimation();
             }
+            player.StopAnimation();
         }
     }
 }
