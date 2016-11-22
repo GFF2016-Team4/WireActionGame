@@ -15,6 +15,9 @@ namespace Player
         [SerializeField]
         private float moveSpeed;
 
+        [SerializeField]
+        private float airMoveSpeed;
+
         [SerializeField, Tooltip("ジャンプの強さ")]
         private float jumpPower;
 
@@ -39,6 +42,8 @@ namespace Player
         [SerializeField, Header("ロープの加える力")]
         private float ropeForcePower;
 
+        bool isJump_ = false;
+        float jumpTime = 0.0f;
         Vector3 gravity;
         Vector3 playerVelocity;
 
@@ -73,6 +78,11 @@ namespace Player
             get { return ropeController.ropeExist; }
         }
 
+        public bool isJump
+        {
+            get { return isJump_; }
+        }
+
         void Awake()
         {
             isDebug = debug;
@@ -102,6 +112,8 @@ namespace Player
         //地面についているときの移動
         public void NormalMove()
         {
+            if(isJump_) isJump_ = false;
+
             Vector3 right;
             Vector3 forward;
 
@@ -131,6 +143,17 @@ namespace Player
 
             playerVelocity += Vector3.up * jumpPower;
             controller.Move(playerVelocity * Time.deltaTime);
+            isJump_ = true;
+            jumpTime = Time.time;
+        }
+
+        public void JumpMove()
+        {
+            if(isGround) return;
+            Vector3 forward;
+            Vector3 right;
+            GetCameraAxis(out forward, out right);
+            transform.position += GetInputVelocity(forward, right).normalized * airMoveSpeed * Time.deltaTime;
         }
 
         public void RopeMove()
@@ -143,6 +166,8 @@ namespace Player
         bool RopeControl(RopeSimulate rope)
         {
             if(rope == null) return false;
+
+            if(isJump_) isJump_ = false;
 
             bool isDown = false;
 
@@ -228,6 +253,7 @@ namespace Player
 
         public void ApplyGravity()
         {
+            transform.rotation = Quaternion.identity;
             if(playerVelocity.y > 0.1f)
             {
                 playerVelocity.y *= upVecDampingPow;
@@ -243,6 +269,12 @@ namespace Player
 
             playerVelocity += gravity * Time.deltaTime;
             controller.Move(playerVelocity * Time.deltaTime);
+
+            //重力加速度をみて初速度より速くなればjump状態解除
+            if(jumpPower + gravity.y * (Time.time - jumpTime) < -jumpPower * Time.deltaTime)
+            {
+                isJump_ = false;
+            }
         }
 
         public void FreezeRope(RopeSimulate rope)

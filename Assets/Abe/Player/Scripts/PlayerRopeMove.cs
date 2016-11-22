@@ -23,18 +23,22 @@ namespace Player
                 return;
             }
 
+            if(player.isGround) return;
+
             bool buttonDown = Input.GetButton("Jump");
 
             if(!player.isRopeExist)
             {
                 player.ApplyGravity();
+                player.JumpMove();
             }
             else
             {
-                if(buttonDown)
+                if(buttonDown && player.isJump)
                 {
                     player.FreezeRope();
                     player.ApplyGravity();
+                    player.JumpMove();
                 }
                 else
                 {

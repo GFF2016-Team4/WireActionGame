@@ -24,6 +24,7 @@ namespace Player
             else
             {
                 player.StopAnimation();
+                player.JumpMove();
                 player.ApplyGravity();
             }
         }

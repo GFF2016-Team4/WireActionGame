@@ -22,7 +22,7 @@ GameObject:
   - 114: {fileID: 114000014181534864}
   - 120: {fileID: 120000011149234506}
   - 114: {fileID: 114000010200944238}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ropes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - 54: {fileID: 54000011863402050}
   - 145: {fileID: 145000010555160884}
   - 135: {fileID: 135000010032148302}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ropetail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - 4: {fileID: 4000012418786294}
   - 54: {fileID: 54000013253331578}
   - 145: {fileID: 145000013819500678}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ropeOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!145 &145000010555160884
 SpringJoint:

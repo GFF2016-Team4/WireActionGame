@@ -192,7 +192,9 @@ public class RopeSimulate : MonoBehaviour
         Vector3 dir = vec.normalized;
         float   dis = vec.magnitude;
 
-        dis = Mathf.Max(0, dis + distance);
+        RaycastHit hitInfo;
+
+        dis = Mathf.Max(1, dis + distance);
         if(dis == 0 && !rope.originJoint.IsRootJoint())
         {
             RemoveOrigin();
