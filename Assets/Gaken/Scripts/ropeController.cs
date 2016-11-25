@@ -93,7 +93,7 @@ public class ropeController : MonoBehaviour {
     void CreateLeftRope()
     {
         leftRopeInstance = Instantiate(ropePrefab) as GameObject;
-        leftRopeInstance.GetComponent<RopeSimulate>().RopeInitialize(leftBulletInstance.transform.position, leftGunTag.transform.position);
+        //leftRopeInstance.GetComponent<RopeSimulate>().RopeInitialize(leftBulletInstance.transform.position, leftGunTag.transform.position);
         isCreateLeftRope = true;
     }
 
