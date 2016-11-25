@@ -42,6 +42,9 @@ namespace Player
         [SerializeField, Header("ロープの加える力")]
         private float ropeForcePower;
 
+        [SerializeField]
+        private Transform footOrigin;
+
         bool isJump_ = false;
         float jumpTime = 0.0f;
         Vector3 gravity;
@@ -61,15 +64,21 @@ namespace Player
         {
             get
             {
-                //CharacterControllerのisGroundedだけだとうまく判定しない為
-                Vector3 position = transform.position;
-                position.y += 0.6f; //始点を上げないと
-                Ray ray = new Ray(position, Vector3.down);
-                bool isRayHit = Physics.SphereCast(ray, controller.radius, 0.3f, LayerMask.NameToLayer("Player"));
+                ////CharacterControllerのisGroundedだけだとうまく判定しない為
+                //Vector3 position = footOrigin.position;
+                //position.y += 0.1f; //始点を上げないと
+                //Ray ray = new Ray(position, Vector3.down);
+                //bool isRayHit = Physics.Raycast(ray, 0.26f, ~(1 << gameObject.layer));
+                //Physics.CheckCapsule();
+                //bool isUpVelocity = playerVelocity.y > 0.25f;
 
-                bool isUpVelocity = playerVelocity.y > 0.01f;
+                //Debug.Log(controller.isGrounded.ToString() + " "+ isRayHit.ToString() + " " + isUpVelocity);
+                //return (controller.isGrounded || isRayHit) && !isUpVelocity;
 
-                return (controller.isGrounded || isRayHit) && !isUpVelocity;
+                //Vector3 center2position = transform.position - controller.center;
+                //Debug.Log(transform.position + controller.center - transform.up * (controller.height/2));
+                bool isHit = Physics.CheckSphere(transform.position + controller.center - transform.up * (controller.height/2), controller.radius);
+                return isHit;
             }
         }
 
@@ -251,6 +260,22 @@ namespace Player
             playerVelocity = Vector3.zero;
         }
 
+        //public void Ground()
+        //{
+        //    Vector3 position = footOrigin.position;
+        //    position.y += 0.1f;
+        //    Ray ray = new Ray(position, Vector3.down);
+        //    RaycastHit hitInfo;
+
+        //    bool isHit = Physics.Raycast(ray, out hitInfo, 0.26f, ~(1 << gameObject.layer));
+        //    if(!isHit) return;
+
+        //    ResetGravity();
+
+        //    Vector3 move = hitInfo.point - footOrigin.position;
+        //    controller.Move(move);
+        //}
+
         public void ApplyGravity()
         {
             transform.rotation = Quaternion.identity;
@@ -412,25 +437,10 @@ namespace Player
                 return;
             }
 
-            if(isGround)
-                return;
+            if(isGround) return;
             Rigidbody tailRig = rope.tailRig;
             playerVelocity = tailRig.velocity;
             rope.RopeLock();
-        }
-
-         public void OnControllerColliderHit(ControllerColliderHit hit)
-        {
-            if(!isGround) return;
-
-            //地面についたときにロープの物理挙動無効
-            if(ropeController.centerRopeExist)
-            {
-                FreezeRope(ropeController.centerRopeInst);
-                return;
-            }
-            FreezeRope(ropeController.left.ropeInst);
-            FreezeRope(ropeController.right.ropeInst);
         }
     }
 }

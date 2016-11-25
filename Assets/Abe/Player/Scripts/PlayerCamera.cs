@@ -44,7 +44,7 @@ public class PlayerCamera : MonoBehaviour
         position += offset;                       //オフセット値
 
         //座標の変更
-        transform.position = position; // Vector3.Lerp(transform.position, position, 0.2f);
+        transform.position = position;
     }
 
     void ChangeCursorState()

@@ -17,7 +17,8 @@ namespace Player
         {
             if(player.isGround && !RopeInput.isTakeUpButton)
             {
-                player.StartAnimation();
+                player.FreezeRope();
+                player.ResetGravity();
                 player.NormalMove();
                 player.Jump();
                 return;
@@ -42,11 +43,11 @@ namespace Player
                 }
                 else
                 {
+                    player.ResetGravity();
                     player.RopeMove();
                     player.SyncRope();
                 }
             }
-            player.StopAnimation();
         }
     }
 }

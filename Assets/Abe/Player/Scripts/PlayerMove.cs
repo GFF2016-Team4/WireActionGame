@@ -17,15 +17,13 @@ namespace Player
             if(player.isGround)
             {
                 player.ResetGravity();
-                player.StartAnimation();
                 player.NormalMove();
                 player.Jump();
             }
             else
             {
-                player.StopAnimation();
-                player.JumpMove();
                 player.ApplyGravity();
+                player.JumpMove();
             }
         }
     }

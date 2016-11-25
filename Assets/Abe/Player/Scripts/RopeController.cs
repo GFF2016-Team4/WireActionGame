@@ -85,14 +85,8 @@ public class RopeController : MonoBehaviour
 
     void Shoot()
     {
-        if(RopeInput.isLeftRopeButtonDown)
-        {
-            LeftRopeShoot();
-        }
-        if(RopeInput.isRightRopeButtonDown)
-        {
-            RightRopeShoot();
-        }
+        if(RopeInput.isLeftRopeButtonDown)  LeftRopeShoot();
+        if(RopeInput.isRightRopeButtonDown) RightRopeShoot();
     }
 
     void Sync(RopeGun ropeGun)
