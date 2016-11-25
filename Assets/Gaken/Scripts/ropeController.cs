@@ -16,7 +16,7 @@ public class ropeController : MonoBehaviour {
 
     public GameObject player;
 
-    private RopeSimulate leftRope;
+   // private RopeSimulate leftRope;
     private GameObject leftRopeInstance;
     private bool isCreateLeftRope = false;
 
@@ -52,7 +52,7 @@ public class ropeController : MonoBehaviour {
                     CreateLeftRope();
                 }
 
-                player.transform.position = leftRope.transform.position;
+                //player.transform.position = leftRope.transform.position;
             } 
 			lineRendererLeft.SetWidth(ropeSize, ropeSize);
 			lineRendererLeft.SetPosition (0, leftGunTag.transform.position);
@@ -99,9 +99,9 @@ public class ropeController : MonoBehaviour {
 
     void EraseLeftRope()
     {
-        leftRope = leftRopeInstance.GetComponent<RopeSimulate>();
+        //leftRope = leftRopeInstance.GetComponent<RopeSimulate>();
 
-        leftRope.RopeEnd();
+        //leftRope.RopeEnd();
         //Destroy(ropeInstance);
         isCreateLeftRope = false;
     }
