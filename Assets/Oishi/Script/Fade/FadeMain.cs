@@ -3,13 +3,13 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class FadeMain : MonoBehaviour
 {
 
     public float fadeInSpeed = 0.01f;     //フェードインの長さ
     public float fadeOutSpeed = 0.01f;    //フェードアウトの長さ
     public GameObject judgeObj;           //フェードアウト開始判定用
+
     float alfaIn;
     float alfaOut;
     float alfaInTemp;

@@ -808,11 +808,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011722558534, guid: 16313cba1e1ca584ca7912f32dda7017,
-        type: 2}
-      propertyPath: playerCamera
-      value: 
-      objectReference: {fileID: 436543434}
     - target: {fileID: 114000011647840674, guid: 16313cba1e1ca584ca7912f32dda7017,
         type: 2}
       propertyPath: camera
@@ -820,13 +815,13 @@ Prefab:
       objectReference: {fileID: 293148449}
     - target: {fileID: 114000011722558534, guid: 16313cba1e1ca584ca7912f32dda7017,
         type: 2}
-      propertyPath: ropeTakeForce
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 436543434}
     - target: {fileID: 114000011722558534, guid: 16313cba1e1ca584ca7912f32dda7017,
         type: 2}
-      propertyPath: ropeForcePower
-      value: 10
+      propertyPath: debug
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16313cba1e1ca584ca7912f32dda7017, type: 2}

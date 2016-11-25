@@ -48,26 +48,17 @@ public class RopeController : MonoBehaviour
 
     public bool leftRopeExist
     {
-        get
-        {
-            return left.ropeExist;
-        }
+        get { return left.ropeExist; }
     }
 
     public bool rightRopeExist
     {
-        get
-        {
-            return right.ropeExist;
-        }
+        get { return right.ropeExist; }
     }
 
     public bool centerRopeExist
     {
-        get
-        {
-            return centerRopeInst != null;
-        }
+        get { return centerRopeInst != null; }
     }
 
     public bool ropeExist
@@ -84,7 +75,7 @@ public class RopeController : MonoBehaviour
         TakeUp();
     }
 
-    public void LateUpdate()
+    public void Sync()
     {
         Sync(left);
         Sync(right);
@@ -110,7 +101,7 @@ public class RopeController : MonoBehaviour
 
     void TakeUp()
     {
-        bool isLeftUp  = RopeInput.isLeftRopeButtonUp;
+        bool isLeftUp = RopeInput.isLeftRopeButtonUp;
         bool isRightUp = RopeInput.isRightRopeButtonUp;
 
         if(centerRopeExist)
@@ -119,19 +110,27 @@ public class RopeController : MonoBehaviour
             {
                 SendRopeReleaseEvent(centerRopeInst);
                 centerRopeInst.RopeEnd();
+                centerRopeInst = null;
             }
         }
 
-        if(isLeftUp ) { TakeUp(left ); }
-        if(isRightUp) { TakeUp(right); }
+        if(isLeftUp)
+        {
+            TakeUp(ref left);
+        }
+        if(isRightUp)
+        {
+            TakeUp(ref right);
+        }
     }
 
-    void TakeUp(RopeGun ropeGun)
+    void TakeUp(ref RopeGun ropeGun)
     {
         if(ropeGun.ropeExist)
         {
             SendRopeReleaseEvent(ropeGun.ropeInst);
             ropeGun.ropeInst.RopeEnd();
+            ropeGun.ropeInst = null;
         }
     }
 

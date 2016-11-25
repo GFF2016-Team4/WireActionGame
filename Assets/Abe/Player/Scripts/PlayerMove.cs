@@ -12,29 +12,20 @@ namespace Player
             enabled = false;
         }
 
-        public void FixedUpdate()
-        {
-            //地面についている
-            if(player.isGround)
-            {
-                player.ResetGravity();
-            }
-            else
-            {
-                player.ApplyGravity();
-            }
-        }
-
         void Update()
         {
             if(player.isGround)
             {
+                player.ResetGravity();
                 player.StartAnimation();
                 player.NormalMove();
+                player.Jump();
             }
             else
             {
                 player.StopAnimation();
+                player.JumpMove();
+                player.ApplyGravity();
             }
         }
     }

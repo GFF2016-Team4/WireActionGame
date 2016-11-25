@@ -2148,12 +2148,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a5a6b3e9bb0e64b9df5326efd6234a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
   playerCamera: {fileID: 0}
   moveSpeed: 1
+  jumpPower: 20
+  upVecDampingPow: 0.95
+  sideVecDampingPow: 0.98
   ropeAcceleration: 1.5
   ropeTakeUpSpeed: 0.5
   ropeTakeDownSpeed: 0.5
-  ropeForcePower: 1
+  ropeTakeForce: 1
+  ropeForcePower: 10
 --- !u!137 &137000010562534828
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
