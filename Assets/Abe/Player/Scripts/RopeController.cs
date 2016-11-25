@@ -75,6 +75,8 @@ public class RopeController : MonoBehaviour
         TakeUp();
     }
 
+
+
     public void Sync()
     {
         Sync(left);
@@ -191,7 +193,7 @@ public class RopeController : MonoBehaviour
                 GameObject ropeInst = Instantiate(ropePrefab) as GameObject;
                 RopeSimulate ropeSimulate = ropeInst.GetComponent<RopeSimulate>();
 
-                ropeSimulate.RopeInitialize(bulleftTrans.position, ropeGun.gun.position);
+                ropeSimulate.RopeInitialize(bulleftTrans.position, ropeGun.gun.position, null);
                 ropeSimulate.RopeLock();
                 ropeSimulate.RopeEnd();
                 Destroy(bulletInst);
@@ -208,7 +210,7 @@ public class RopeController : MonoBehaviour
         GameObject rope = Instantiate(ropePrefab) as GameObject;
         RopeSimulate simulate = rope.GetComponent<RopeSimulate>();
 
-        simulate.RopeInitialize(hitPoint, ropeGun.gun.position);
+        simulate.RopeInitialize(hitPoint, ropeGun.gun.position, hitInfo.transform);
 
         bool canRopeHook = hitInfo.transform.tag != "NoRopeHit";
 
@@ -233,14 +235,14 @@ public class RopeController : MonoBehaviour
         Debug.Assert(right.ropeExist);
 
         //左のロープと右のロープの中間に作る
-        Vector3 left2right = right.ropeInst.originPosision - left.ropeInst.originPosision;
-        Vector3 centerPos = left.ropeInst.originPosision + left2right / 2;
+        Vector3 left2right = right.ropeInst.originPosition - left.ropeInst.originPosition;
+        Vector3 centerPos = left.ropeInst.originPosition + left2right / 2;
 
         GameObject rope = Instantiate(ropePrefab) as GameObject;
         RopeSimulate simulate = rope.GetComponent<RopeSimulate>();
         rope.GetComponent<ListLineDraw>().DrawEnd();
 
-        simulate.RopeInitialize(centerPos, transform.position + Vector3.up);
+        simulate.RopeInitialize(centerPos, transform.position + Vector3.up, null);
 
         //現在の加速度を第三のロープに反映
         Vector3 leftVelocity = left.ropeInst.tailRig.velocity;

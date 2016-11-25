@@ -187,7 +187,7 @@ namespace Player
                 //Vector3 dir = rope.ropeDirection;
                 //dir += rope.tailRig.velocity + Vector3.up;
                 //dir.Normalize();
-                rope.SubRopeLength(ropeTakeUpSpeed);
+                rope.SubRopeLength(ropeTakeUpSpeed * Time.deltaTime);
                 //rope.tailRig.AddForce( dir  * ropeTakeForce);
                 isDown = true;
             }
@@ -197,7 +197,7 @@ namespace Player
                 //Vector3 dir = rope.ropeDirection;
                 //dir += rope.tailRig.velocity + Vector3.up;
                 //dir.Normalize();
-                rope.AddRopeLength(ropeTakeDownSpeed);
+                rope.AddRopeLength(ropeTakeDownSpeed * Time.deltaTime);
                 //rope.tailRig.AddForce(-dir * ropeTakeForce);
                 isDown = true;
             }

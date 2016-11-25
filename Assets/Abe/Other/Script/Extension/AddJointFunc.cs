@@ -7,4 +7,9 @@ public static class AddJointFunc
     {
         return joint.connectedBody == null;
     }
+
+    public static Joint GetParentJoint(this Joint joint)
+    {
+        return joint.connectedBody.GetComponent<Joint>();
+    }
 }
