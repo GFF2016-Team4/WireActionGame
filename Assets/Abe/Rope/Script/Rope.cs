@@ -24,7 +24,7 @@ public struct Rope
     [NonSerialized]
     public Rigidbody   originRig;   //現在の振り子運動の基準となるリジッドボディ
 
-    public GameObject previousOrigin
+    public GameObject PreviousOrigin
     {
         get
         {
@@ -33,12 +33,12 @@ public struct Rope
         }
     }
 
-    public Vector3 tailPos
+    public Vector3 TailPos
     {
         get { return tailRope.position;  }
         set { tailRope.position = value; }
     }
-    public Vector3 originPos
+    public Vector3 OriginPos
     {
         get { return originRope.position;  }
         set { originRope.position = value; }

@@ -15,7 +15,7 @@ public class RopeController : MonoBehaviour
         [SerializeField]
         public RopeSimulate ropeInst;
 
-        public bool ropeExist
+        public bool RopeExist
         {
             get
             {
@@ -46,26 +46,26 @@ public class RopeController : MonoBehaviour
     [Header("Center")]
     public RopeSimulate centerRopeInst;
 
-    public bool leftRopeExist
+    public bool LeftRopeExist
     {
-        get { return left.ropeExist; }
+        get { return left.RopeExist; }
     }
 
-    public bool rightRopeExist
+    public bool RightRopeExist
     {
-        get { return right.ropeExist; }
+        get { return right.RopeExist; }
     }
 
-    public bool centerRopeExist
+    public bool CenterRopeExist
     {
         get { return centerRopeInst != null; }
     }
 
-    public bool ropeExist
+    public bool RopeExist
     {
         get
         {
-            return leftRopeExist || rightRopeExist || centerRopeExist;
+            return LeftRopeExist || RightRopeExist || CenterRopeExist;
         }
     }
 
@@ -91,7 +91,7 @@ public class RopeController : MonoBehaviour
 
     void Sync(RopeGun ropeGun)
     {
-        if(!ropeGun.ropeExist) return;
+        if(!ropeGun.RopeExist) return;
         ropeGun.ropeInst.SetLockTailPosition(ropeGun.gun.position);
     }
 
@@ -100,7 +100,7 @@ public class RopeController : MonoBehaviour
         bool isLeftUp = RopeInput.isLeftRopeButtonUp;
         bool isRightUp = RopeInput.isRightRopeButtonUp;
 
-        if(centerRopeExist)
+        if(CenterRopeExist)
         {
             if(isLeftUp || isRightUp)
             {
@@ -122,7 +122,7 @@ public class RopeController : MonoBehaviour
 
     void TakeUp(ref RopeGun ropeGun)
     {
-        if(ropeGun.ropeExist)
+        if(ropeGun.RopeExist)
         {
             SendRopeReleaseEvent(ropeGun.ropeInst);
             ropeGun.ropeInst.RopeEnd();
@@ -225,8 +225,8 @@ public class RopeController : MonoBehaviour
 
     public void CreateCenterRope()
     {
-        Debug.Assert(left.ropeExist);
-        Debug.Assert(right.ropeExist);
+        Debug.Assert(left.RopeExist);
+        Debug.Assert(right.RopeExist);
 
         //左のロープと右のロープの中間に作る
         Vector3 left2right = right.ropeInst.originPosition - left.ropeInst.originPosition;

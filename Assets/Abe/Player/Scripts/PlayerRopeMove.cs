@@ -15,7 +15,7 @@ namespace Player
 
         void Update()
         {
-            if(player.isGround && !RopeInput.isTakeUpButton)
+            if(player.IsGround && !RopeInput.isTakeUpButton)
             {
                 player.FreezeRope();
                 player.ResetGravity();
@@ -24,18 +24,18 @@ namespace Player
                 return;
             }
 
-            if(player.isGround) return;
+            if(player.IsGround) return;
 
             bool buttonDown = Input.GetButton("Jump");
 
-            if(!player.isRopeExist)
+            if(!player.IsRopeExist)
             {
                 player.ApplyGravity();
                 player.JumpMove();
             }
             else
             {
-                if(buttonDown && player.isJump)
+                if(buttonDown && player.IsJump)
                 {
                     player.FreezeRope();
                     player.ApplyGravity();

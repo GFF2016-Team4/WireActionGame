@@ -28,12 +28,12 @@ public class RopeSimulate : MonoBehaviour
     /// </summary>
     public Vector3 ropeDirection
     {
-        get { return rope.originPos - rope.tailPos; }
+        get { return rope.OriginPos - rope.TailPos; }
     }
 
     public Vector3 tailPosition
     {
-        get { return rope.tailPos; }
+        get { return rope.TailPos; }
     }
 
     public Rigidbody tailRig
@@ -43,7 +43,7 @@ public class RopeSimulate : MonoBehaviour
 
     public Vector3 originPosition
     {
-        get { return rope.originPos; }
+        get { return rope.OriginPos; }
     }
 
     void Awake()
@@ -64,8 +64,8 @@ public class RopeSimulate : MonoBehaviour
     {
         if(isEnd) return;
 
-        Vector3 origin = rope.originPos;
-        Vector3 tail = rope.tailPos;
+        Vector3 origin = rope.OriginPos;
+        Vector3 tail = rope.TailPos;
         Vector3 nowVec = origin - tail;
 
         Joint nowOriginJoint = rope.originJoint;
@@ -108,13 +108,13 @@ public class RopeSimulate : MonoBehaviour
     {
         //if(syncObstacle == null) return;
 
-        Vector3 previousOriginPos = rope.originPos;
+        Vector3 previousOriginPos = rope.OriginPos;
         //rope.originPos = syncObstacle.position + obstacleOffset;
         
         //動いていなければ何もしない
-        if(rope.originPos == previousOriginPos) return;
+        if(rope.OriginPos == previousOriginPos) return;
 
-        Vector3 moveVal = rope.originPos - previousOriginPos;
+        Vector3 moveVal = rope.OriginPos - previousOriginPos;
         Joint joint = rope.originJoint;
         if(joint != null && !joint.IsRootJoint())
         {
@@ -127,10 +127,10 @@ public class RopeSimulate : MonoBehaviour
 
     private bool CheckObstacle()
     {
-        Transform previousOrigin = rope.previousOrigin.transform;
+        Transform previousOrigin = rope.PreviousOrigin.transform;
         Vector3 previous = previousOrigin.position;
-        Vector3 prev2tail = rope.tailPos - previous;
-        Vector3 prev2now = rope.originPos - previous;
+        Vector3 prev2tail = rope.TailPos - previous;
+        Vector3 prev2now = rope.OriginPos - previous;
 
         Vector3 normal = prev2now.normalized;
         float dot = Vector3.Dot(prev2tail, normal);
@@ -138,7 +138,7 @@ public class RopeSimulate : MonoBehaviour
 
         float distance = height.magnitude;
 
-        Ray ray = new Ray(rope.tailPos, -prev2tail);
+        Ray ray = new Ray(rope.TailPos, -prev2tail);
         float maxDistance = prev2tail.magnitude - ignoreDistance;
 
         if(distance <= maxDis && !Physics.Raycast(ray, maxDistance, ignorelayer))
@@ -150,7 +150,7 @@ public class RopeSimulate : MonoBehaviour
     }
     private void CalcMinDistance()
     {
-        float distance = rope.originPos.Distance(rope.tailPos);
+        float distance = rope.OriginPos.Distance(rope.TailPos);
         rope.tailJoint.minDistance = distance;
     }
 
@@ -195,10 +195,10 @@ public class RopeSimulate : MonoBehaviour
         Debug.Assert(distance > 0, "マイナスを指定しないでください");
         rope.tailJoint.minDistance = distance;
 
-        Vector3 vec = rope.originPos - rope.tailPos;
+        Vector3 vec = rope.OriginPos - rope.TailPos;
         Vector3 dir = vec.normalized;
 
-        rope.tailPos = rope.originPos + dir * distance;
+        rope.TailPos = rope.OriginPos + dir * distance;
     }
 
     /// <summary>
@@ -216,7 +216,7 @@ public class RopeSimulate : MonoBehaviour
     /// <param name="distance">長くするロープの長さ</param>
     public void AddRopeLength(float distance)
     {
-        Vector3 vec = rope.tailPos - rope.originPos;
+        Vector3 vec = rope.TailPos - rope.OriginPos;
         Vector3 dir = vec.normalized;
         float dis = vec.magnitude;
 
@@ -227,7 +227,7 @@ public class RopeSimulate : MonoBehaviour
         }
 
         //rope.tailJoint.maxDistance += distance;
-        rope.tailPos = rope.originPos + dir * dis;
+        rope.TailPos = rope.OriginPos + dir * dis;
 
         CalcMinDistance();
     }
@@ -240,7 +240,7 @@ public class RopeSimulate : MonoBehaviour
         if(!rope.tailRig.isKinematic)
             return;
 
-        rope.tailPos = position;
+        rope.TailPos = position;
     }
 
     public void RopeLock()
@@ -292,7 +292,7 @@ public class RopeSimulate : MonoBehaviour
 
         for(float time = takeupTime; time > 0.0f; time -= Time.deltaTime)
         {
-            Vector3 tail = rope.tailPos;
+            Vector3 tail = rope.TailPos;
             float t = 1 - (time / takeupTime);
             origin.position = Vector3.Lerp(startPos, tail, t);
 

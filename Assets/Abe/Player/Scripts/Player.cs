@@ -60,34 +60,48 @@ namespace Player
         [NonSerialized]
         public CharacterController controller;
 
-        public bool isGround
+        public bool IsGround
         {
             get
             {
-                ////CharacterControllerのisGroundedだけだとうまく判定しない為
-                //Vector3 position = footOrigin.position;
-                //position.y += 0.1f; //始点を上げないと
+                //CharacterControllerのisGroundedだけだとうまく判定しない為
+                Vector3 position = footOrigin.position;
+                position.y += transform.localScale.y; //始点を上げないと
                 //Ray ray = new Ray(position, Vector3.down);
-                //bool isRayHit = Physics.Raycast(ray, 0.26f, ~(1 << gameObject.layer));
-                //Physics.CheckCapsule();
-                //bool isUpVelocity = playerVelocity.y > 0.25f;
+                //bool isSphereHit = Physics.CheckSphere
+                //bool isRayHit = Physics.SphereCast(ray, 0.26f, ~(1 << gameObject.layer));
+                Vector3 size = new Vector3(controller.radius, transform.localScale.y, controller.radius);
 
-                //Debug.Log(controller.isGrounded.ToString() + " "+ isRayHit.ToString() + " " + isUpVelocity);
-                //return (controller.isGrounded || isRayHit) && !isUpVelocity;
+                size.x *= transform.localScale.x;
+                size.z *= transform.localScale.z;
+
+                bool isRayHit = Physics.BoxCast(position, 
+                                                size,
+                                                Vector3.down,
+                                                Quaternion.identity,
+                                                1.0f);
+
+                bool isBoxHit = Physics.CheckBox(position, size, Quaternion.identity, ~(1<<gameObject.layer));
+
+                Debug.DrawRay(position, Vector3.down * 1.0f);
+
+                bool isUpVelocity = playerVelocity.y > 0.25f;
+
+                Debug.Log(controller.isGrounded.ToString() + " " + isRayHit.ToString() + " " + isBoxHit.ToString() + " " + isUpVelocity);
+                return (controller.isGrounded || (isRayHit || isBoxHit) && !isUpVelocity);
 
                 //Vector3 center2position = transform.position - controller.center;
                 //Debug.Log(transform.position + controller.center - transform.up * (controller.height/2));
-                bool isHit = Physics.CheckSphere(transform.position + controller.center - transform.up * (controller.height/2), controller.radius);
-                return isHit;
+                //return isHit;
             }
         }
 
-        public bool isRopeExist
+        public bool IsRopeExist
         {
-            get { return ropeController.ropeExist; }
+            get { return ropeController.RopeExist; }
         }
 
-        public bool isJump
+        public bool IsJump
         {
             get { return isJump_; }
         }
@@ -147,7 +161,7 @@ namespace Player
 
         public void Jump()
         {
-            if(!isGround) return;
+            if(!IsGround) return;
             if(!Input.GetButtonDown("Jump")) return;
 
             playerVelocity += Vector3.up * jumpPower;
@@ -158,7 +172,7 @@ namespace Player
 
         public void JumpMove()
         {
-            if(isGround) return;
+            if(IsGround) return;
             Vector3 forward;
             Vector3 right;
             GetCameraAxis(out forward, out right);
@@ -185,7 +199,7 @@ namespace Player
             GetCameraAxis(out forward, out right);
 
             Vector3 velocity = GetInputVelocity(forward, right);
-            if(velocity != Vector3.zero && !isGround)
+            if(velocity != Vector3.zero && !IsGround)
             {
                 rope.tailRig.AddForce(velocity * ropeForcePower, ForceMode.Force);
                 isDown = true;
@@ -314,17 +328,17 @@ namespace Player
 
         public void FreezeRope()
         {
-            if(ropeController.centerRopeExist)
+            if(ropeController.CenterRopeExist)
             {
                 ropeController.centerRopeInst.RopeLock();
             }
 
-            if(ropeController.leftRopeExist)
+            if(ropeController.LeftRopeExist)
             {
                 ropeController.left.ropeInst.RopeLock();
             }
 
-            if(ropeController.rightRopeExist)
+            if(ropeController.RightRopeExist)
             {
                 ropeController.right.ropeInst.RopeLock();
             }
@@ -394,7 +408,7 @@ namespace Player
             rope.tailRig.AddForce(playerVelocity * ropeAcceleration, ForceMode.VelocityChange);
             ResetGravity();
 
-            bool ropeExist = ropeController.leftRopeExist && ropeController.rightRopeExist;
+            bool ropeExist = ropeController.LeftRopeExist && ropeController.RightRopeExist;
             bool isButtonDown = RopeInput.isLeftRopeButton && RopeInput.isRightRopeButton;
 
             if(ropeExist && isButtonDown)
@@ -402,12 +416,12 @@ namespace Player
                 CreateCenterRope();
             }
 
-            if(isGround)
+            if(IsGround)
             {
                 //同期するためにロックする
                 rope.RopeLock();
 
-                if(ropeController.centerRopeExist)
+                if(ropeController.CenterRopeExist)
                 {
                     ropeController.centerRopeInst.RopeLock();
                 }
@@ -417,8 +431,8 @@ namespace Player
         //ロープを放した時のイベント
         public void OnRopeRelease(RopeSimulate rope)
         {
-            bool isLeftGrab  = ropeController.leftRopeExist && RopeInput.isLeftRopeButton;
-            bool isRightGrab = ropeController.rightRopeExist && RopeInput.isRightRopeButton;
+            bool isLeftGrab  = ropeController.LeftRopeExist && RopeInput.isLeftRopeButton;
+            bool isRightGrab = ropeController.RightRopeExist && RopeInput.isRightRopeButton;
 
             if(isLeftGrab)
             {
@@ -437,7 +451,7 @@ namespace Player
                 return;
             }
 
-            if(isGround) return;
+            if(IsGround) return;
             Rigidbody tailRig = rope.tailRig;
             playerVelocity = tailRig.velocity;
             rope.RopeLock();

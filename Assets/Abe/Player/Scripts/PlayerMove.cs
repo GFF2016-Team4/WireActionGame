@@ -14,7 +14,8 @@ namespace Player
 
         void Update()
         {
-            if(player.isGround)
+            player.ApplyGravity();
+            if(player.IsGround)
             {
                 player.ResetGravity();
                 player.NormalMove();
@@ -22,7 +23,6 @@ namespace Player
             }
             else
             {
-                player.ApplyGravity();
                 player.JumpMove();
             }
         }
