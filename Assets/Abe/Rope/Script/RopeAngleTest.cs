@@ -26,16 +26,24 @@ namespace Test.Abe
 
         void Update()
         {
-            Vector3 origin2tail   = tail.position   - origin.position;
-            Vector3 origin2middle = middle.position - origin.position;
+            //Vector3 origin2tail   = tail.position   - origin.position;
+            //Vector3 origin2middle = middle.position - origin.position;
 
-            Vector3 normal = origin2middle.normalized;
-            float dot = Vector3.Dot(origin2tail, normal);
-            Vector3 height = -origin2tail + normal * dot;
+            //Vector3 normal = origin2middle.normalized;
+            //float dot = Vector3.Dot(origin2tail, normal);
+            //Vector3 height = -origin2tail + normal * dot;
 
-            distance = height.magnitude;
+            //distance = height.magnitude;
 
-            v = height.normalized;
+            //v = height.normalized;
+
+            Ray ray = new Ray();
+            ray.origin = origin.position;
+            ray.direction = middle.position - origin.position;
+            Vector3 vec = tail.position.DistanceToLine(ray);
+
+            distance = vec.magnitude;
+            v        = vec.normalized;
         }
 
         public void OnDrawGizmos()
