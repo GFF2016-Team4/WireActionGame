@@ -114,9 +114,15 @@ public class ListLineDraw : MonoBehaviour
     private void FixVertexCount()
     {
         lineRenderer.SetVertexCount(drawList.Count);
+        Draw();
     }
 
     void Update()
+    {
+        Draw();
+    }
+
+    void Draw()
     {
         if(!isDraw) return;
 
