@@ -104,27 +104,6 @@ public class RopeSimulate : MonoBehaviour
         }
     }
 
-    public void LateUpdate()
-    {
-        //if(syncObstacle == null) return;
-
-        Vector3 previousOriginPos = rope.OriginPos;
-        //rope.originPos = syncObstacle.position + obstacleOffset;
-        
-        //動いていなければ何もしない
-        if(rope.OriginPos == previousOriginPos) return;
-
-        Vector3 moveVal = rope.OriginPos - previousOriginPos;
-        Joint joint = rope.originJoint;
-        if(joint != null && !joint.IsRootJoint())
-        {
-            joint = joint.GetParentJoint();
-            joint.transform.position += moveVal;
-        }
-
-        CalcMinDistance();
-    }
-
     private bool CheckObstacle()
     {
         Transform previousOrigin = rope.PreviousOrigin.transform;

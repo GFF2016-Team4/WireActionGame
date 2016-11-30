@@ -67,9 +67,6 @@ namespace Player
                 //CharacterControllerのisGroundedだけだとうまく判定しない為
                 Vector3 position = footOrigin.position;
                 position.y += transform.localScale.y; //始点を上げないと
-                //Ray ray = new Ray(position, Vector3.down);
-                //bool isSphereHit = Physics.CheckSphere
-                //bool isRayHit = Physics.SphereCast(ray, 0.26f, ~(1 << gameObject.layer));
                 Vector3 size = new Vector3(controller.radius, transform.localScale.y, controller.radius);
 
                 size.x *= transform.localScale.x;
@@ -81,18 +78,16 @@ namespace Player
                                                 Quaternion.identity,
                                                 1.0f);
 
-                bool isBoxHit = Physics.CheckBox(position, size, Quaternion.identity, ~(1<<gameObject.layer));
+                int layermask = -1 - (1 << gameObject.layer | 1 << LayerMask.NameToLayer("Rope"));
+
+                bool isBoxHit = Physics.CheckBox(position, size, Quaternion.identity, layermask);
 
                 Debug.DrawRay(position, Vector3.down * 1.0f);
 
                 bool isUpVelocity = playerVelocity.y > 0.25f;
 
-                Debug.Log(controller.isGrounded.ToString() + " " + isRayHit.ToString() + " " + isBoxHit.ToString() + " " + isUpVelocity);
+                //Debug.Log(controller.isGrounded.ToString() + " " + isRayHit.ToString() + " " + isBoxHit.ToString() + " " + isUpVelocity);
                 return (controller.isGrounded || (isRayHit || isBoxHit) && !isUpVelocity);
-
-                //Vector3 center2position = transform.position - controller.center;
-                //Debug.Log(transform.position + controller.center - transform.up * (controller.height/2));
-                //return isHit;
             }
         }
 
@@ -146,10 +141,7 @@ namespace Player
             float speed = velocity.magnitude;
 
             //velocityがゼロベクトルだとだと変な方向に向くため
-            if(velocity != Vector3.zero)
-            {
-                LookRotation(velocity);
-            }
+            if(velocity != Vector3.zero) LookRotation(velocity);
 
             //回転の後に移動
             //アニメーションで移動させる

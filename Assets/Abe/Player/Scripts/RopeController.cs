@@ -75,7 +75,10 @@ public class RopeController : MonoBehaviour
         TakeUp();
     }
 
+    private void LateUpdate()
+    {
 
+    }
 
     public void Sync()
     {

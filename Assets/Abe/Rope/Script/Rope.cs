@@ -58,6 +58,11 @@ public struct Rope
         Rigidbody connectBody   = newOrigin.GetComponent<Rigidbody>();
         tailJoint.connectedBody = connectBody;
 
+        Collider collider  = newOrigin.GetComponent<Collider>();
+        collider.isTrigger = true;
+
+        newOrigin.AddComponent<SyncObject>();
+
         originRope  = newOrigin.transform;
         originJoint = originRope.GetComponent<SpringJoint>();
     }
