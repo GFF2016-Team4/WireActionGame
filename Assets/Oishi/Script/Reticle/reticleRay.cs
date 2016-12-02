@@ -30,7 +30,7 @@ public class reticleRay : MonoBehaviour
         {
             target.position = hit.point;
             //target = hit.transform;
-
+            
             return true;
         }
         else

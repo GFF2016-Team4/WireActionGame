@@ -24,7 +24,6 @@ public class reticlemove : MonoBehaviour
     {
         m_changeColor = GetComponent<changeColor>();
         m_reticleRay = rayobj.GetComponent<reticleRay>();
-
     }
 
     void Update()
@@ -34,7 +33,7 @@ public class reticlemove : MonoBehaviour
         {
             m_rectTransform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, m_reticleRay.target.position);
 
-            iTween.MoveTo(img, iTween.Hash("position",m_rectTransform.position,
+            iTween.MoveTo(img, iTween.Hash("position", m_rectTransform.position,
                                            "time", 0.3f));
             m_changeColor.chgColor();
         }
@@ -48,6 +47,5 @@ public class reticlemove : MonoBehaviour
 
             m_changeColor.orgColor();
         }
-
     }
 }
