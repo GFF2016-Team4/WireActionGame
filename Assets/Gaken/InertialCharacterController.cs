@@ -16,6 +16,11 @@ public class InertialCharacterController : MonoBehaviour
 
     int m_Flag = 0;
 
+    public Transform child;
+
+    public Transform rightHand;
+    float x, y, speed;
+
     CharacterController m_Controller;
 
     Animator m_Animator;
@@ -29,13 +34,19 @@ public class InertialCharacterController : MonoBehaviour
     {
         deadReplace = false;
         m_Controller = GetComponent<CharacterController>();
-        m_Animator = GetComponent<Animator>();
+        m_Animator = transform.Find("EnemyRobot").GetComponent<Animator>();
+
+        rightHand = transform.Find("mixamorig:RightArm").GetComponent<Transform>();
 
         ropeCounter = 0;
+        speed = 1;
+
     }
 
     void Update()
     {
+        Debug.Log("rightHand:" + rightHand.transform.childCount);
+
         float axisVertical = Input.GetAxisRaw("Vertical");
 
         // 減速する（入力が無い場合 or 進行方向と逆に入力がある場合）
@@ -86,9 +97,22 @@ public class InertialCharacterController : MonoBehaviour
         m_Animator.SetFloat("Speed", m_Speed);
         m_Animator.SetInteger("Flag", m_Flag);
 
+        if (Input.GetMouseButton(0))
+        {
+            rightHand.Rotate(0, 0, 90);
+        }
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            x = -1;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            x = 1;
+        }
 
+        //m_Animator.GetBoneTransform(rightHand).transform.Rotate(x, y, 0);
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.Z))
         {
             deadReplace = true;
         }
@@ -128,7 +152,7 @@ public class InertialCharacterController : MonoBehaviour
 
             // 左右キーで回転
             transform.Rotate(
-    0,
+    Mathf.Clamp(x * m_RotateSpeed * Time.deltaTime,-10, 10),
     Input.GetAxis("Horizontal") * m_RotateSpeed * Time.deltaTime,
     0);
         }
@@ -145,15 +169,15 @@ public class InertialCharacterController : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha5)) m_Animator.SetLayerWeight(5, 1);
         else m_Animator.SetLayerWeight(5, 0);
 
-        if(Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             m_Flag = 1;
         }
-        else if(Input.GetKeyDown(KeyCode.K))
+        else if (Input.GetKeyDown(KeyCode.K))
         {
             m_Flag = 2;
         }
-        else if(Input.GetKeyUp(KeyCode.L))
+        else if (Input.GetKeyUp(KeyCode.L))
         {
             m_Flag = 0;
         }
