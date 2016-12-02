@@ -3,50 +3,58 @@ using System.Collections;
 
 public class InertialCharacterController : MonoBehaviour
 {
-    public float m_MaxSpeed = 4.0f;     // 最高速度（メートル/秒）
+    public float m_MaxSpeed = 4.0f;         // 最高速度（メートル/秒）
     public float m_MinSpeed = -2.0f;        // 最低速度（最大バック速度）
     public float m_AccelPower = 2.0f;       // 加速度（メートル/秒/秒）
     public float m_BrakePower = 6.0f;       // ブレーキ速度（メートル/秒/秒）
     public float m_RotateSpeed = 180.0f;    // 回転速度（度/秒）
-    public float m_Gravity = 18.0f;     // 重力加速度（メートル/秒/秒）
-    public float m_JumpPower = 0.0f;       // ジャンプ力（初速(メートル/秒)）
+    public float m_Gravity = 18.0f;         // 重力加速度（メートル/秒/秒）
+    public float m_JumpPower = 0.0f;        // ジャンプ力（初速(メートル/秒)）
 
-    float m_VelocityY = 0f;     // y軸方向の移動量
-    float m_Speed = 0f;         // 前進速度（前進はプラス、後退はマイナス）
+    float m_VelocityY = 0f;                 // y軸方向の移動量
+    float m_Speed = 0f;                     // 前進速度（前進はプラス、後退はマイナス）
 
-    int m_Flag = 0;
+    int m_Flag = 0;                         //攻撃パターンフラグ
 
-    public Transform child;
+    public Transform child;                 //Enemyの子供
 
-    public Transform rightHand;
-    float x, y, speed;
+    /************************************************************************
+                                  仮宣言 
+    ************************************************************************/
+    public Transform rightHand;          //右腕Transform
+    float x, y, speed;                   //ローテート引数
 
-    CharacterController m_Controller;
+    CharacterController m_Controller;    //キャラクタコントローラ
+    Animator m_Animator;                 //アニメター
 
-    Animator m_Animator;
+    public GameObject deadReplacement;   //死亡切替オブジェクト
+    private bool deadReplace;            //死亡切替を行うか?
+    private int ropeCounter;             //ロープとエネミーの接触点数
 
-    public GameObject deadReplacement;
-    private bool deadReplace;
-
-    private int ropeCounter;
 
     void Start()
     {
+        //初期化
         deadReplace = false;
         m_Controller = GetComponent<CharacterController>();
-        m_Animator = transform.Find("EnemyRobot").GetComponent<Animator>();
-
-        rightHand = transform.Find("mixamorig:RightArm").GetComponent<Transform>();
 
         ropeCounter = 0;
-        speed = 1;
 
+        //アニメターは子のアニメターを取得
+        //m_Animator = transform.Find("EnemyRobot").GetComponent<Animator>();             //こっちはfbx形式
+        m_Animator = transform.Find("EnemyRobotPre_Ragdoll").GetComponent<Animator>();  //こっちはラグドール
+
+        /************************************************************************
+                                    仮初期化 
+        ************************************************************************/
+        //右腕の取得（使えるかどうか確定できていない）
+        rightHand = transform.Find("mixamorig:RightArm").GetComponent<Transform>();
+        speed = 1;
     }
 
     void Update()
     {
-        Debug.Log("rightHand:" + rightHand.transform.childCount);
-
+        //垂直軸の値取得
         float axisVertical = Input.GetAxisRaw("Vertical");
 
         // 減速する（入力が無い場合 or 進行方向と逆に入力がある場合）
@@ -62,15 +70,12 @@ public class InertialCharacterController : MonoBehaviour
         }
 
         // 上下キーで加速
-        m_Speed +=
-            m_AccelPower
-            * axisVertical
-            * Time.deltaTime;
+        m_Speed += m_AccelPower * axisVertical * Time.deltaTime;
 
         // 速度制限
         m_Speed = Mathf.Clamp(m_Speed, m_MinSpeed, m_MaxSpeed);
 
-        // 速度を、プレイヤーが向いている方向のベクトルに変換する
+        // 速度を、エネミーが向いている方向のベクトルに変換する
         Vector3 velocity = transform.forward * m_Speed;
 
         // 接地しているなら
@@ -94,41 +99,73 @@ public class InertialCharacterController : MonoBehaviour
 
         // CharacterControllerに命令して移動する
 
+        //アニメターに数値を知らせる
         m_Animator.SetFloat("Speed", m_Speed);
         m_Animator.SetInteger("Flag", m_Flag);
 
-        if (Input.GetMouseButton(0))
-        {
-            rightHand.Rotate(0, 0, 90);
-        }
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            x = -1;
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            x = 1;
-        }
-
-        //m_Animator.GetBoneTransform(rightHand).transform.Rotate(x, y, 0);
-
+        //エネミーを即死させる
         if (Input.GetKey(KeyCode.Z))
         {
             deadReplace = true;
         }
-
+        //死亡交代
         if (deadReplace)
         {
-            //gameObject.GetComponent<Animator>().enabled = false;
-            Destroy(gameObject);
+            //アニメターを閉じる(ラグドール用)
+            m_Animator.enabled = false;
+            m_Controller.enabled = false;
+            transform.GetComponent<CapsuleCollider>().enabled = false;
 
-            Transform dead = Instantiate(deadReplacement, transform.position, transform.rotation) as Transform;
-            dead.GetComponent<AnimationClip>().legacy = true;
-            dead.GetComponent<Animation>().GetClip("walking");
+            //新しいラグドールを生成してモデル交代（fbx用）
+            //Destroy(gameObject);
 
-            CopyTransformsRecurse(transform, dead);
+            //Transform dead = Instantiate(deadReplacement, transform.position, transform.rotation) as Transform;
+            //dead.transform.position = gameObject.transform.position;
+            //dead.transform.rotation = gameObject.transform.rotation;
+
+            //CopyTransformsRecurse(transform, dead);
+        }
+        else
+        {
+            // 左右キーで回転
+            transform.Rotate(0, Input.GetAxis("Horizontal") * m_RotateSpeed * Time.deltaTime, 0);
+
+            //移動させる
+            m_Controller.Move(velocity * Time.deltaTime);
         }
 
+        /****************************************************************
+                                    仮更新
+        ****************************************************************/
+        //右腕のカウント数(使えるかどうか)
+        //Debug.Log("rightHand:" + rightHand.transform.childCount);
+
+        //敵部分的な回転
+        if (Input.GetMouseButton(0))
+        {
+            rightHand.Rotate(0, 0, 90);
+        }
+
+        //使い方わかんないっす
+        //m_Animator.GetBoneTransform(rightHand).transform.Rotate(x, y, 0);
+
+        //攻撃です！
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            m_Flag = 1;
+        }
+        //もう一種の攻撃です！
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            m_Flag = 2;
+        }
+        //攻撃回収です！（多分）
+        else if (Input.GetKeyUp(KeyCode.L))
+        {
+            m_Flag = 0;
+        }
+
+        //アバターマスクテスト
         if (Input.GetKey(KeyCode.Alpha1))
         {
             m_Speed -= Time.deltaTime * 0.01f;
@@ -148,13 +185,6 @@ public class InertialCharacterController : MonoBehaviour
             m_Animator.SetLayerWeight(1, 0);
             m_Animator.SetLayerWeight(3, 0);
             m_Animator.SetLayerWeight(4, 0);
-            m_Controller.Move(velocity * Time.deltaTime);
-
-            // 左右キーで回転
-            transform.Rotate(
-    Mathf.Clamp(x * m_RotateSpeed * Time.deltaTime,-10, 10),
-    Input.GetAxis("Horizontal") * m_RotateSpeed * Time.deltaTime,
-    0);
         }
 
         if (Input.GetKey(KeyCode.Alpha2)) m_Animator.SetLayerWeight(2, 1);
@@ -169,21 +199,9 @@ public class InertialCharacterController : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha5)) m_Animator.SetLayerWeight(5, 1);
         else m_Animator.SetLayerWeight(5, 0);
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            m_Flag = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.K))
-        {
-            m_Flag = 2;
-        }
-        else if (Input.GetKeyUp(KeyCode.L))
-        {
-            m_Flag = 0;
-        }
-
     }
 
+    //Transformの循環コピー
     static void CopyTransformsRecurse(Transform src, Transform dst)
     {
         dst.position = src.position;
@@ -191,38 +209,45 @@ public class InertialCharacterController : MonoBehaviour
 
         foreach (Transform child in dst)
         {
-            // Match the transform with the same name
+            // 同じ名前でTransformをマッチする = Match the transform with the same name
             Transform curSrc = src.Find(child.name);
             if (curSrc)
                 CopyTransformsRecurse(curSrc, child);
         }
     }
 
+    //死んでいますか?
     public bool IsDead()
     {
         return deadReplace;
     }
 
+    //トリガーに入ると同時に
     public void OnTriggerEnter(Collider other)
     {
+        //ロープカウンタ数を+1
         if (other.gameObject.tag == "Rope")
             ropeCounter += 1;
-
-        Debug.Log("In");
+        
+        Debug.Log("入ったぜ!");
 
     }
 
+    //トリガーに出ると同時に
     public void OnTriggerExit(Collider other)
     {
+        //ロープカウンタ数を-1
         if (other.gameObject.tag == "Rope")
             ropeCounter -= 1;
 
-        Debug.Log("Out");
+        Debug.Log("出たぜ!");
 
     }
 
+    //トリガに入っているときに
     public void OnTriggerStay(Collider other)
     {
+        //同時に4点がロープとぶつかっているなら死ぬ
         if (ropeCounter >= 4)
             deadReplace = true;
 
