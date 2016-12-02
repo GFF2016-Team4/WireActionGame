@@ -23,10 +23,15 @@ public class FadeManager : MonoBehaviour
 
     float red, green, blue;         //RGB変数
 
-
+    //public Color c;
     // Update is called once per frame
     public void FadeIn()
     {
+
+        //フェードインの色変更
+        //c.a = alfaIn;
+        //GetComponent<Image>().color = c;
+
         GetComponent<Image>().color = new Color(red, green, blue, alfaIn);
         alfaIn -= fadeInSpeed;
         Time.timeScale = 0;
