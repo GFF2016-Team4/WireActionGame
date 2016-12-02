@@ -27,9 +27,6 @@ public class ListLineDraw : MonoBehaviour
         FixVertexCount();
     }
     
-    
-    
-    
     /// <summary>
     /// <para>描画リストにセットします </para>
     /// <para>注意:この関数は登録されているリストに上書きされます</para>
@@ -117,9 +114,15 @@ public class ListLineDraw : MonoBehaviour
     private void FixVertexCount()
     {
         lineRenderer.SetVertexCount(drawList.Count);
+        Draw();
     }
 
     void Update()
+    {
+        Draw();
+    }
+    
+    void Draw()
     {
         if(!isDraw) return;
 

@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 [System.Serializable]
 public struct Rope
@@ -66,7 +64,7 @@ public struct Rope
         tailJoint.connectedBody = connectBody;
 
         rigOrigin      = newOrigin;
-        rigOriginJoint = newOrigin.GetComponent<SpringJoint>();
+        rigOriginJoint = rigOrigin.GetComponent<SpringJoint>();
         rigOriginRig   = connectBody;
     }
 
@@ -76,7 +74,7 @@ public struct Rope
         tailPosition      = tail;
     }
 
-    public Transform AddRigOrigin(Vector3 createPoint)
+    public Transform AddRigOrigin(Vector3 createPoint, bool isCalcMinDistance = true)
     {
         Transform newRigOrigin    = GameObject.Instantiate(tail);
         Rigidbody newRigOriginRig = newRigOrigin.GetComponent<Rigidbody>();
@@ -87,9 +85,11 @@ public struct Rope
 
         SetRigOrigin(newRigOrigin);
 
-        //これをしないとおかしくなる
-        //CalcMinDistance();
-
+        if(isCalcMinDistance)
+        {
+            //これをしないとおかしくなる
+            CalcMinDistance();
+        }
         return newRigOrigin;
     }
 

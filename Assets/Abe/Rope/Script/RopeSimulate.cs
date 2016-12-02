@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class RopeSimulate : MonoBehaviour
 {
     [SerializeField, Tooltip("ロープの構造体")]
-    Rope rope;
+    Rope  rope;
 
     [SerializeField]
     float checkDistance;
@@ -14,9 +14,11 @@ public class RopeSimulate : MonoBehaviour
     [SerializeField]
     float takeupTime;
 
+    public  bool            isCalcDistance  = false;
+
     private ListLineDraw    listLineDraw;
     private const float     ignoreDistance  = 0.1f;
-    private bool            isEnd           = false; //ロープのシミュレーションはおわりか？
+    private bool            isEnd           = true; //ロープのシミュレーションはおわりか？
     private int             ignorelayer;
 
     public Vector3 TailPosition
@@ -58,8 +60,7 @@ public class RopeSimulate : MonoBehaviour
 
         if(!rope.rigOriginJoint.IsRootJoint())
         {
-            CheckRemoveOrigin();
-            return;
+            if(CheckRemoveOrigin()) return;
         }
 
         if(Physics.Raycast(ray, out hitInfo, maxDistance, ignorelayer))
@@ -70,7 +71,7 @@ public class RopeSimulate : MonoBehaviour
 
     void CreateRigOrigin(Vector3 createPoint)
     {
-        Transform newOrigin = rope.AddRigOrigin(createPoint);
+        Transform newOrigin = rope.AddRigOrigin(createPoint, isCalcDistance);
         newOrigin.parent = transform;
         listLineDraw.Insert(listLineDraw.count-1, newOrigin);
 
@@ -78,7 +79,7 @@ public class RopeSimulate : MonoBehaviour
         newOrigin.name = "origin" + (transform.childCount-1);
     }
 
-    void CheckRemoveOrigin()
+    bool CheckRemoveOrigin()
     {
         Transform prevRigOrigin = rope.GetPrevRigOrigin<Transform>();
         
@@ -86,22 +87,25 @@ public class RopeSimulate : MonoBehaviour
         float distance = v.magnitude;
 
         //判定の範囲内か
-        if(distance > checkDistance) return;
+        if(distance > checkDistance) return false;
 
-        Ray ray = new Ray();
-        ray.origin    = rope.tailPosition;
-        ray.direction = rope.tailPosition - prevRigOrigin.position;
-
+        Ray ray = new Ray()
+        {
+            origin    =  rope.tailPosition,
+            direction = -rope.tailPosition + prevRigOrigin.position
+        };
         float maxDistance = rope.tailPosition.Distance(prevRigOrigin.position);
         maxDistance -= ignoreDistance;
 
         //当たっている -> 引っかかっている
-        if(Physics.Raycast(ray, maxDistance, ignorelayer)) return;
+        if(Physics.Raycast(ray, maxDistance, ignorelayer)) return false;
 
         listLineDraw.RemoveDrawList(rope.rigOrigin);
 
         //引っかかりを取る
         rope.RemoveLastRigOrigin();
+
+        return true;
     }
 
     public void SimulationStart()
