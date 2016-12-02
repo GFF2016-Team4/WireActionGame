@@ -19,7 +19,7 @@ public class EnemyMotion : MonoBehaviour {
         animator = GetComponent<Animator>();
         agent.speed = walkSpeed;
 
-        time2 += 2;
+        time2 += 1;
     }
 
     // Update is called once per frame
@@ -43,6 +43,18 @@ public class EnemyMotion : MonoBehaviour {
         //        time += Time.deltaTime;
         //    }
         //}
+
+        if (time2 >= NextAttackTime)
+        {
+            time2 = 0;
+            Attack = true;
+
+            //PlayerTargetに指定したObjectを見続ける
+            Vector3 eye = PlayerTarget.position;
+            eye.y = transform.position.y;
+            transform.LookAt(eye);
+        }
+
         if (Attack == true)
         {
             if (time >= 0.3f)
@@ -52,20 +64,12 @@ public class EnemyMotion : MonoBehaviour {
                 time = 0;
             }
         }
+        //モーションのAttack中の処理
         if (Info.IsName("BaseLayer.Attack"))
         {
             agent.speed = 0;
-            Debug.Log("攻撃now");
-        }
-        
-        if(time2 >= NextAttackTime)
-        {
-            time2 = 0;
-            Attack = true;
 
-            Vector3 eye = PlayerTarget.position;
-            eye.y = transform.position.y;
-            transform.LookAt(eye);
+            Debug.Log("攻撃now");
         }
     }
 
