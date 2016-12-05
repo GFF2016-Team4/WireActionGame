@@ -111,7 +111,7 @@ public struct Rope
 
     public void ChangeLength(float distance)
     {
-        Debug.Assert(distance > 0, "マイナスを指定しないでください");
+        distance = Mathf.Max(0, distance);
         tailJoint.minDistance = distance;
 
         Vector3 vec = rigOriginPosition - tailPosition;
@@ -124,7 +124,7 @@ public struct Rope
     {
         Vector3 vec = tailPosition - rigOriginPosition;
         Vector3 dir = vec.normalized;
-        float dis = vec.magnitude;
+        float   dis = vec.magnitude;
 
         dis = Mathf.Max(1, dis + distance);
         if(dis == 0 && !rigOriginJoint.IsRootJoint())

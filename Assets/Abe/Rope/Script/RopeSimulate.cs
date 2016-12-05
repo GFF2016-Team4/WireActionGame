@@ -18,16 +18,37 @@ public class RopeSimulate : MonoBehaviour
 
     private ListLineDraw    listLineDraw;
     private const float     ignoreDistance  = 0.1f;
-    private bool            isEnd           = true; //ロープのシミュレーションはおわりか？
-    private int             ignorelayer;
+    private int             ignoreLayer;
 
-    public Vector3 TailPosition
+    public Vector3 originPosition
     {
+        get { return rope.rigOriginPosition; }
+    }
+
+    public Vector3 tailPosition
+    {
+        get { return rope.tailPosition; }
+
         set
         {
-            if(!rope.isKinematic) return;
+            if(!rope.isKinematic)
+            {
+                Debug.Log("物理挙動している時は位置を変えられません");
+                return;
+            }
             rope.tailPosition = value;
         }
+    }
+
+    public float ropeLength
+    {
+        get { return rope.length; }
+        set { rope.ChangeLength(value);}
+    }
+
+    public Vector3 velocity
+    {
+        get { return rope.tailRig.velocity; }
     }
 
     void Awake()
@@ -36,9 +57,15 @@ public class RopeSimulate : MonoBehaviour
         rope.Initailize();
         rope.CalcMinDistance();
 
-        ignorelayer = LayerMask.NameToLayer("Player");
+        ignoreLayer = LayerMask.NameToLayer("Player");
     }
     
+    public void Initialize(Vector3 origin, Vector3 tail)
+    {
+        rope.rigOriginPosition = origin;
+        rope.tailPosition      = tail;
+    }
+
     IEnumerator Start()
     {
         listLineDraw.DrawStart();
@@ -54,16 +81,14 @@ public class RopeSimulate : MonoBehaviour
     
     void CheckObstacle()
     {
-        Ray ray = new Ray(rope.tailPosition, rope.direction);
-        float maxDistance = rope.length - ignoreDistance;
-        RaycastHit hitInfo;
-
         if(!rope.rigOriginJoint.IsRootJoint())
         {
+            //成功時のみリターン
             if(CheckRemoveOrigin()) return;
         }
 
-        if(Physics.Raycast(ray, out hitInfo, maxDistance, ignorelayer))
+        RaycastHit hitInfo;
+        if(IsCollisionObstacle(rope.tailPosition, rope.rigOriginPosition, out hitInfo))
         {
             CreateRigOrigin(hitInfo.point);
         }
@@ -71,6 +96,7 @@ public class RopeSimulate : MonoBehaviour
 
     void CreateRigOrigin(Vector3 createPoint)
     {
+#warning 捕獲用ロープと通常のロープの挙動を分ける
         Transform newOrigin = rope.AddRigOrigin(createPoint, isCalcDistance);
         newOrigin.parent = transform;
         listLineDraw.Insert(listLineDraw.count-1, newOrigin);
@@ -82,47 +108,68 @@ public class RopeSimulate : MonoBehaviour
     bool CheckRemoveOrigin()
     {
         Transform prevRigOrigin = rope.GetPrevRigOrigin<Transform>();
-        
-        Vector3 v = rope.tailPosition.DistanceToLine(prevRigOrigin.position, rope.rigOriginPosition);
-        float distance = v.magnitude;
 
-        //判定の範囲内か
-        if(distance > checkDistance) return false;
-
-        Ray ray = new Ray()
-        {
-            origin    =  rope.tailPosition,
-            direction = -rope.tailPosition + prevRigOrigin.position
-        };
-        float maxDistance = rope.tailPosition.Distance(prevRigOrigin.position);
-        maxDistance -= ignoreDistance;
+        if(!IsCheckRange(prevRigOrigin.position, rope.rigOriginPosition))  return false;
 
         //当たっている -> 引っかかっている
-        if(Physics.Raycast(ray, maxDistance, ignorelayer)) return false;
-
-        listLineDraw.RemoveDrawList(rope.rigOrigin);
-
+        if(IsCollisionObstacle(rope.tailPosition, prevRigOrigin.position)) return false;
+        
         //引っかかりを取る
+        listLineDraw.RemoveDrawList(rope.rigOrigin);
         rope.RemoveLastRigOrigin();
 
         return true;
     }
 
-    public void SimulationStart()
+    bool IsCollisionObstacle(Vector3 linePos1, Vector3 linePos2)
     {
-        rope.isKinematic = true; 
+        RaycastHit hitInfo;
+        return IsCollisionObstacle(linePos1, linePos2, out hitInfo);
     }
 
-    public void SimulationStop()
+    bool IsCollisionObstacle(Vector3 linePos1, Vector3 linePos2, out RaycastHit hitInfo)
     {
-        rope.isKinematic = false;
+        Ray ray = new Ray()
+        {
+            origin    =  linePos1,
+            direction = -linePos1 + linePos2
+        };
+
+        float maxDistance = Vector3.Distance(linePos1, linePos2);
+        maxDistance -= ignoreDistance;
+        
+        return Physics.Raycast(ray, out hitInfo, maxDistance, ignoreLayer);
     }
+
+    bool IsCheckRange(Vector3 linePoint1, Vector3 linePoint2)
+    {
+        Vector3 v = rope.tailPosition.DistanceToLine(linePoint1, linePoint2);
+        float distance = v.magnitude;
+
+        return distance <= checkDistance;
+    }
+
+    public void SimulationStart() { rope.isKinematic =  true; }
+    public void SimulationStop()  { rope.isKinematic = false; }
 
     public void SimulationEnd()
     {
+        SimulationStop();
+
         if(!rope.rigOriginRig.isKinematic) return;
         StopCoroutine(Start());
 
+        DeleteAllMiddileOrigin();
+
+        //自然落下
+        rope.rigOriginRig.isKinematic = false;
+        Destroy(rope.rigOriginJoint);
+
+        StartCoroutine(TakeUp());
+    }
+
+    private void DeleteAllMiddileOrigin()
+    {
         //ルートrigOriginとtail以外を消す
         rope.EachOrigin<Joint>((origin) => 
         {
@@ -135,9 +182,27 @@ public class RopeSimulate : MonoBehaviour
                 Destroy(origin.gameObject);
             }
         });
+    }
 
-        //自然落下
-        rope.rigOriginRig.isKinematic = false;
-        Destroy(rope.rigOriginJoint);
+    private IEnumerator TakeUp()
+    {
+        //巻き取りの開始
+        Vector3 startPos = rope.rigOriginPosition;
+
+        for(float time = takeupTime; time > 0.0f; time -= Time.deltaTime)
+        {
+            Vector3 tail = rope.tailPosition;
+            float t = 1 - (time / takeupTime);
+            rope.rigOriginPosition = Vector3.Lerp(startPos, tail, t);
+
+            yield return null;
+        }
+
+        Destroy(gameObject);
+    }
+
+    public void AddForce(Vector3 force, ForceMode forceMode)
+    {
+        rope.tailRig.AddForce(force, forceMode);
     }
 }

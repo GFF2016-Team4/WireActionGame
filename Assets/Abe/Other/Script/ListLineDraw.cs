@@ -100,6 +100,7 @@ public class ListLineDraw : MonoBehaviour
     {
         isDraw = true;
         lineRenderer.enabled = true;
+        FixVertexCount();
     }
 
     /// <summary>
@@ -107,6 +108,9 @@ public class ListLineDraw : MonoBehaviour
     /// </summary>
     public void DrawEnd()
     {
+        //停止
+        lineRenderer.SetVertexCount(0);
+
         isDraw = false;
         lineRenderer.enabled = false;
     }
@@ -135,13 +139,11 @@ public class ListLineDraw : MonoBehaviour
         int count = 0;
         foreach(Transform child in drawList)
         {
-            if(child.gameObject.activeSelf)
-            {
-                //追加
-                linePositions[count] = child.position;
-                lastActiveChild = child;
-                count++;
-            }
+            if(!child.gameObject.activeSelf) continue;
+            //追加
+            linePositions[count] = child.position;
+            lastActiveChild = child;
+            count++;
         }
 
         for(;count < drawList.Count; count++)
