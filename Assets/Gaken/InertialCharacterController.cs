@@ -48,7 +48,7 @@ public class InertialCharacterController : MonoBehaviour
                                     仮初期化 
         ************************************************************************/
         //右腕の取得（使えるかどうか確定できていない）
-        rightHand = transform.Find("mixamorig:RightArm").GetComponent<Transform>();
+        //rightHand = transform.Find("mixamorig:RightArm").GetComponent<Transform>();
         speed = 1;
     }
 
@@ -141,10 +141,10 @@ public class InertialCharacterController : MonoBehaviour
         //Debug.Log("rightHand:" + rightHand.transform.childCount);
 
         //敵部分的な回転
-        if (Input.GetMouseButton(0))
-        {
-            rightHand.Rotate(0, 0, 90);
-        }
+        //if (Input.GetMouseButton(0))
+        //{
+        //    rightHand.Rotate(0, 0, 90);
+        //}
 
         //使い方わかんないっす
         //m_Animator.GetBoneTransform(rightHand).transform.Rotate(x, y, 0);
