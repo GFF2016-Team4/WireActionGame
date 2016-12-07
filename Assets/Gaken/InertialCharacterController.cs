@@ -42,7 +42,7 @@ public class InertialCharacterController : MonoBehaviour
 
         //アニメターは子のアニメターを取得
         //m_Animator = transform.Find("EnemyRobot").GetComponent<Animator>();             //こっちはfbx形式
-        m_Animator = transform.Find("EnemyRobotPre_Ragdoll").GetComponent<Animator>();  //こっちはラグドール
+        m_Animator = transform.Find("EnemyRobotPre_Ragdoll02").GetComponent<Animator>();  //こっちはラグドール
 
         /************************************************************************
                                     仮初期化 
@@ -114,7 +114,8 @@ public class InertialCharacterController : MonoBehaviour
             //アニメターを閉じる(ラグドール用)
             m_Animator.enabled = false;
             m_Controller.enabled = false;
-            transform.GetComponent<CapsuleCollider>().enabled = false;
+            //transform.GetComponent<CapsuleCollider>().enabled = false;
+            m_Speed = 0;    
 
             //新しいラグドールを生成してモデル交代（fbx用）
             //Destroy(gameObject);
@@ -251,6 +252,6 @@ public class InertialCharacterController : MonoBehaviour
         if (ropeCounter >= 4)
             deadReplace = true;
 
-        Debug.Log(ropeCounter);
+        //Debug.Log(ropeCounter);
     }
 }
