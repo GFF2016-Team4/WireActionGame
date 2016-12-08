@@ -20,6 +20,8 @@ public class RopeSimulate : MonoBehaviour
     private const float     ignoreDistance  = 0.1f;
     private int             ignoreLayer;
 
+    bool isEnd = false;
+
     public Vector3 originPosition
     {
         get { return rope.rigOriginPosition; }
@@ -43,12 +45,16 @@ public class RopeSimulate : MonoBehaviour
     public float ropeLength
     {
         get { return rope.length; }
-        set { rope.ChangeLength(value);}
     }
 
     public Vector3 velocity
     {
         get { return rope.tailRig.velocity; }
+    }
+
+    public Vector3 direction
+    {
+        get { return rope.direction; }
     }
 
     void Awake()
@@ -64,12 +70,15 @@ public class RopeSimulate : MonoBehaviour
     {
         rope.rigOriginPosition = origin;
         rope.tailPosition      = tail;
+        rope.CalcMinDistance();
     }
 
     IEnumerator Start()
     {
         listLineDraw.DrawStart();
         yield return null;
+
+        if(isEnd == true) yield break;
 
         //main loop
         while(true)
@@ -149,39 +158,34 @@ public class RopeSimulate : MonoBehaviour
         return distance <= checkDistance;
     }
 
-    public void SimulationStart() { rope.isKinematic =  true; }
-    public void SimulationStop()  { rope.isKinematic = false; }
+    public void SimulationStart() { rope.isKinematic = false; }
+    public void SimulationStop()  { rope.isKinematic = true;  }
 
     public void SimulationEnd()
     {
+        if(isEnd) return;
+        isEnd = true;
+
+        StopAllCoroutines();
         SimulationStop();
+        
+        //親の取得と削除
+        Joint originJoint = rope.rigOriginJoint;
+        while(!originJoint.IsRootJoint())
+        {
+            GameObject oldObject = originJoint.gameObject;
+            originJoint = originJoint.GetParentJoint();
 
-        if(!rope.rigOriginRig.isKinematic) return;
-        StopCoroutine(Start());
-
-        DeleteAllMiddileOrigin();
+            listLineDraw.RemoveDrawList(oldObject.transform);
+            Destroy(oldObject);
+        }
+        rope.SetRigOrigin(originJoint.transform);
 
         //自然落下
         rope.rigOriginRig.isKinematic = false;
         Destroy(rope.rigOriginJoint);
 
         StartCoroutine(TakeUp());
-    }
-
-    private void DeleteAllMiddileOrigin()
-    {
-        //ルートrigOriginとtail以外を消す
-        rope.EachOrigin<Joint>((origin) => 
-        {
-            if(origin.IsRootJoint())
-            {
-                rope.SetRigOrigin(origin.transform);
-            }
-            else
-            {
-                Destroy(origin.gameObject);
-            }
-        });
     }
 
     private IEnumerator TakeUp()
@@ -192,7 +196,7 @@ public class RopeSimulate : MonoBehaviour
         for(float time = takeupTime; time > 0.0f; time -= Time.deltaTime)
         {
             Vector3 tail = rope.tailPosition;
-            float t = 1 - (time / takeupTime);
+            float   t    = 1 - (time / takeupTime);
             rope.rigOriginPosition = Vector3.Lerp(startPos, tail, t);
 
             yield return null;
@@ -204,5 +208,10 @@ public class RopeSimulate : MonoBehaviour
     public void AddForce(Vector3 force, ForceMode forceMode)
     {
         rope.tailRig.AddForce(force, forceMode);
+    }
+
+    public void AddLength(float length)
+    {
+        rope.AddLength(length);
     }
 }

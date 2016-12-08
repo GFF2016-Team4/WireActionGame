@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 [System.Serializable]
 public struct Rope
@@ -133,6 +134,8 @@ public struct Rope
         }
         
         tailPosition = rigOriginPosition + dir * dis;
+
+        CalcMinDistance();
     }
 
     public void SubLength(float distance)
@@ -146,16 +149,23 @@ public struct Rope
     //巡回
     public void EachOrigin<T>(EachFunc<T> func)  where T : Component
     {
+        SpringJoint joint = rigOriginJoint;
         EachOrigin<T>(func, rigOriginJoint);
+        if(joint != null)
+        {
+            rigOriginJoint = joint;
+        }
     }
 
     //巡回
-    public void EachOrigin<T>(EachFunc<T> func, Joint rigOriginJoint) where T : Component
+    void EachOrigin<T>(EachFunc<T> func, SpringJoint rigOriginJoint) where T : Component
     {
         if(rigOriginJoint == null) return;
 
         //Destoryも考慮
-        Joint parentJoint = GetPrevRigOrigin<Joint>();
+        this.rigOriginJoint     = rigOriginJoint;
+        SpringJoint parentJoint = GetPrevRigOrigin<SpringJoint>();
+
         func(rigOriginJoint.GetComponent<T>());
 
         //再帰処理 ルートのジョイントになるまで処理を続ける

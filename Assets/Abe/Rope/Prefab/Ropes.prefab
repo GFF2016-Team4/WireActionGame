@@ -161,10 +161,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rope:
-    tailRope: {fileID: 4000013854028908}
-    originRope: {fileID: 4000012418786294}
-  maxDis: 2
+    tail: {fileID: 4000013854028908}
+    rigOrigin: {fileID: 4000012418786294}
+  checkDistance: 0
   takeupTime: 0.5
+  isCalcDistance: 0
 --- !u!120 &120000011149234506
 LineRenderer:
   m_ObjectHideFlags: 1

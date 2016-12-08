@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -142,7 +141,7 @@ public class ListLineDraw : MonoBehaviour
             if(!child.gameObject.activeSelf) continue;
             //追加
             linePositions[count] = child.position;
-            lastActiveChild = child;
+            lastActiveChild      = child;
             count++;
         }
 
