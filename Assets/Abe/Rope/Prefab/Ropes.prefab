@@ -57,6 +57,8 @@ GameObject:
   - 4: {fileID: 4000012418786294}
   - 54: {fileID: 54000013253331578}
   - 145: {fileID: 145000013819500678}
+  - 135: {fileID: 135000010345670136}
+  - 114: {fileID: 114000014211422896}
   m_Layer: 10
   m_Name: ropeOrigin
   m_TagString: Untagged
@@ -166,6 +168,18 @@ MonoBehaviour:
   checkDistance: 0
   takeupTime: 0.5
   isCalcDistance: 0
+--- !u!114 &114000014211422896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014241011040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf864ea0ebef60428cf337006d9fe80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sync: {fileID: 0}
 --- !u!120 &120000011149234506
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -214,6 +228,18 @@ SphereCollider:
   m_GameObject: {fileID: 1000012959738922}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135000010345670136
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014241011040}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.25
