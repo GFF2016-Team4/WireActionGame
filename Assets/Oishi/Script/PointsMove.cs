@@ -2,43 +2,62 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PointsMove : MonoBehaviour {
+public class PointsMove : MonoBehaviour
+{
+    [Header("親オブジェクト")]
+    public GameObject oyaObj;
 
-	public GameObject oyaObj;
-	private GameObject[] childObj;
-	private Vector3[] childPos;
+    private GameObject[] childObj;
+    private Vector3[] childPos;
 
-	public int moveTime;
+    [Header("移動速度")]
+    public float moveTime;
 
-	int childcount;
+    [Header("ループ時[on]、停止時[off]")]
+    public bool isLoop;
 
-	// Use this for initialization
-	void Start ()
-	{
-		childcount = oyaObj.transform.childCount;
+    int childcount;
+    bool isMove = false;
 
-		childPos=new Vector3[childcount];
-		childObj = new GameObject[childcount];
+    // Use this for initialization
+    void Start()
+    {
+        childcount = oyaObj.transform.childCount;
 
+        childObj = new GameObject[childcount];
+        childPos = new Vector3[childcount];
 
-		for(int i =0; i< childcount; i++)
-		{
-			childObj[i]=oyaObj.transform.GetChild(i).gameObject;
-			childPos [i] = childObj [i].transform.position;
-		}
-	}
-	void Update ()
-	{	
-		if (Input.GetKeyDown (KeyCode.Space)) 
-		{
-			Move ();
-		}
-	}
+    }
+    void Update()
+    {
 
-	void Move()
-	{
-		iTween.MoveTo (gameObject, iTween.Hash ("path", childPos,
-												"time", moveTime));
-											 
-	}
+        if (Input.GetKey(KeyCode.Space))
+        {
+            isMove = true;
+
+        }
+        Move();
+    }
+
+    void Move()
+    {
+        if (isMove == true && isLoop == true)
+        {
+
+            iTween.MoveTo(gameObject, iTween.Hash("path", childPos,
+                                                  "time", moveTime,
+                                                  "onstart", "getchildPos"));
+        }
+    }
+    public void getchildPos()
+    {
+        for (int i = 0; i < childcount; i++)
+        {
+            childObj[i] = oyaObj.transform.GetChild(i).gameObject;
+            childPos[i] = childObj[i].transform.position;
+
+        }
+
+    }
+
 }
