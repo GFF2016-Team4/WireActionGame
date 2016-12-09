@@ -17,7 +17,7 @@ namespace Gaken
         float m_VelocityY = 0f;                 // y軸方向の移動量
         float m_Speed = 0f;                     // 前進速度（前進はプラス、後退はマイナス）
 
-        int m_Flag = 0;                         //攻撃パターンフラグ
+        bool m_IsAttack = false;                         //攻撃パターンフラグ
 
         public Transform child;                 //Enemyの子供
 
@@ -104,7 +104,6 @@ namespace Gaken
 
             //アニメターに数値を知らせる
             m_Animator.SetFloat("Speed", m_Speed);
-            m_Animator.SetInteger("Flag", m_Flag);
 
             //エネミーを即死させる
             if (Input.GetKey(KeyCode.Z))
@@ -153,54 +152,30 @@ namespace Gaken
             //m_Animator.GetBoneTransform(rightHand).transform.Rotate(x, y, 0);
 
             //攻撃です！
-            if (Input.GetKeyDown(KeyCode.L))
+            if (Input.GetButtonDown("Fire1"))
             {
-                m_Flag = 1;
-            }
-            //もう一種の攻撃です！
-            else if (Input.GetKeyDown(KeyCode.K))
-            {
-                m_Flag = 2;
+                m_Animator.SetBool("IsAttack", true);
             }
             //攻撃回収です！（多分）
-            else if (Input.GetKeyUp(KeyCode.L))
+            if (Input.GetButtonUp("Fire1"))
             {
-                m_Flag = 0;
+                m_Animator.SetBool("IsAttack", false);
             }
 
             //アバターマスクテスト
-            if (Input.GetKey(KeyCode.Alpha1))
-            {
-                m_Speed -= Time.deltaTime * 0.01f;
-                if (m_Speed <= 0)
-                {
-                    m_Speed = 0;
-                }
-                m_Animator.SetLayerWeight(1, 1f);
-                //m_Animator.SetLayerWeight(2, 1f);
-                //m_Animator.SetLayerWeight(4, 1f);
-                //m_Animator.SetLayerWeight(5, 1f);
-                //m_Controller.Move(Vector3.zero);
-                //transform.Rotate(Vector3.zero);
-            }
-            else
-            {
-                m_Animator.SetLayerWeight(1, 0);
-                m_Animator.SetLayerWeight(3, 0);
-                m_Animator.SetLayerWeight(4, 0);
-            }
-
-            if (Input.GetKey(KeyCode.Alpha2)) m_Animator.SetLayerWeight(2, 1);
-            else m_Animator.SetLayerWeight(2, 0);
-
-            if (Input.GetKey(KeyCode.Alpha3)) m_Animator.SetLayerWeight(3, 1);
-            else m_Animator.SetLayerWeight(3, 0);
-
-            if (Input.GetKey(KeyCode.Alpha4)) m_Animator.SetLayerWeight(4, 1);
-            else m_Animator.SetLayerWeight(4, 0);
-
-            if (Input.GetKey(KeyCode.Alpha5)) m_Animator.SetLayerWeight(5, 1);
-            else m_Animator.SetLayerWeight(5, 0);
+            //if (Input.GetKey(KeyCode.Alpha1))
+            //{
+            //    m_Speed -= Time.deltaTime * 0.01f;
+            //    if (m_Speed <= 0)
+            //    {
+            //        m_Speed = 0;
+            //    }
+            //    m_Animator.SetLayerWeight(1, 1f);
+            //}
+            //else
+            //{
+            //    m_Animator.SetLayerWeight(1, 0);
+            //}
 
         }
 
