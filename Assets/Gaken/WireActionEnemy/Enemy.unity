@@ -122,7 +122,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1213691296}
+  - {fileID: 948533163}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!114 &142676021
@@ -433,47 +433,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
---- !u!1001 &699119702
+--- !u!1001 &557811704
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 142676019}
     m_Modifications:
-    - target: {fileID: 4000012636170346, guid: 644d35db3cdf67041ad7388bf7b3df95, type: 2}
+    - target: {fileID: 4000013000674772, guid: 79c7563ce4a9c3747bce6f6499276828, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012636170346, guid: 644d35db3cdf67041ad7388bf7b3df95, type: 2}
+    - target: {fileID: 4000013000674772, guid: 79c7563ce4a9c3747bce6f6499276828, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012636170346, guid: 644d35db3cdf67041ad7388bf7b3df95, type: 2}
+    - target: {fileID: 4000013000674772, guid: 79c7563ce4a9c3747bce6f6499276828, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012636170346, guid: 644d35db3cdf67041ad7388bf7b3df95, type: 2}
+    - target: {fileID: 4000013000674772, guid: 79c7563ce4a9c3747bce6f6499276828, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012636170346, guid: 644d35db3cdf67041ad7388bf7b3df95, type: 2}
+    - target: {fileID: 4000013000674772, guid: 79c7563ce4a9c3747bce6f6499276828, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012636170346, guid: 644d35db3cdf67041ad7388bf7b3df95, type: 2}
+    - target: {fileID: 4000013000674772, guid: 79c7563ce4a9c3747bce6f6499276828, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012636170346, guid: 644d35db3cdf67041ad7388bf7b3df95, type: 2}
+    - target: {fileID: 4000013000674772, guid: 79c7563ce4a9c3747bce6f6499276828, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012636170346, guid: 644d35db3cdf67041ad7388bf7b3df95, type: 2}
+    - target: {fileID: 4000013000674772, guid: 79c7563ce4a9c3747bce6f6499276828, type: 2}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95000013281508420, guid: 79c7563ce4a9c3747bce6f6499276828,
+        type: 2}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some transforms are animated by both a Humanoid animation
+        clip and a Generic animation clip. Only the Humanoid clip will be applied
+        on those transforms.\n\tTransform 'mixamorig:RightArm'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+        'mixamorig:RightShoulder'\n\tTransform 'mixamorig:Spine2'\n\tTransform 'mixamorig:RightForeArm'\n\tTransform
+        'mixamorig:RightShoulder'\n\tTransform 'mixamorig:Spine2'\n\tTransform 'mixamorig:RightForeArm'\n\tFrom
+        animation clip 'EnemyRobot@punch'"
+      objectReference: {fileID: 0}
+    - target: {fileID: 95000013281508420, guid: 79c7563ce4a9c3747bce6f6499276828,
+        type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 644d35db3cdf67041ad7388bf7b3df95, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 79c7563ce4a9c3747bce6f6499276828, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &722428360
 GameObject:
@@ -537,11 +552,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
---- !u!4 &1213691296 stripped
+--- !u!4 &948533163 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 4000012636170346, guid: 644d35db3cdf67041ad7388bf7b3df95,
+  m_PrefabParentObject: {fileID: 4000013000674772, guid: 79c7563ce4a9c3747bce6f6499276828,
     type: 2}
-  m_PrefabInternal: {fileID: 699119702}
+  m_PrefabInternal: {fileID: 557811704}
 --- !u!1 &1513363242
 GameObject:
   m_ObjectHideFlags: 0
