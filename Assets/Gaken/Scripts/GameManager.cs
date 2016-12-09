@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
 
     bool isClear;
+    public float clearHeight = 5f;
 
     // Use this for initialization
     void Start()
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour
     {
         if (!isClear)
         {
-            if (GameObject.FindGameObjectWithTag("Point").transform.position.y <= 2f)
+            if (GameObject.FindGameObjectWithTag("Point").transform.position.y <= clearHeight)
             {
                 isClear = true;
                 Debug.Log("GameClear");
