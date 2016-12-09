@@ -19,7 +19,7 @@ public class MouseOrbitImproved : MonoBehaviour {
 	public GameObject rightGunTag;
 	public GameObject leftGunTag;
 	
-	private Rigidbody rigidbody;
+	//private Rigidbody rigidbody;
 
     //カメラの上下制限
     public float cameraLimitUp = 30f;
@@ -34,14 +34,14 @@ public class MouseOrbitImproved : MonoBehaviour {
 		x = angles.y;
 		y = angles.x;
 		
-		rigidbody = GetComponent<Rigidbody>();
+		//GetComponent<Rigidbody>() = GetComponent<Rigidbody>();
 		
-		if (rigidbody != null){
-			rigidbody.freezeRotation = true;
+		if (GetComponent<Rigidbody>() != null){
+			GetComponent<Rigidbody>().freezeRotation = true;
 		}
 
 		Cursor.visible = false;
-		Screen.lockCursor = true;
+		//Screen.lockCursor = true;
 	}
 	
 	void LateUpdate (){
@@ -83,7 +83,7 @@ public class MouseOrbitImproved : MonoBehaviour {
 		}
         //ESCを押したらカーソルを出せる
 		if (Input.GetButtonDown ("Cancel")) {
-			Screen.lockCursor = false;
+			//Screen.lockCursor = false;
 			Cursor.visible = true;
 		}
 	}

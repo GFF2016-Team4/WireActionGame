@@ -517,7 +517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &387201244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,8 +529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f8e97cd53cd7641ba1be2bf77adfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 580413107}
-  pari: {fileID: 1960912565}
 --- !u!4 &387201245
 Transform:
   m_ObjectHideFlags: 0
@@ -545,7 +543,7 @@ Transform:
   - {fileID: 1960912569}
   - {fileID: 580413111}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &395859351
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,7 +923,7 @@ Transform:
   - {fileID: 661071485}
   - {fileID: 1177538043}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!54 &653581191
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2278,7 +2276,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &1583255922
 GameObject:
   m_ObjectHideFlags: 0
@@ -2537,7 +2535,7 @@ GameObject:
   - 4: {fileID: 1657104355}
   - 114: {fileID: 1657104354}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SoundPlayback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2551,7 +2549,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1657104353}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53be94ebc85975944a802ae42eb4bbd3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5608bdb9e06fa744589a8b6cab3f9eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1657104355
@@ -2566,7 +2564,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
 --- !u!1 &1695828212
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,8 +3099,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7682bcea0b52536488ffd5964671c660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  efe: {fileID: 1960912565}
-  basho: []
 --- !u!199 &1960912567
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
