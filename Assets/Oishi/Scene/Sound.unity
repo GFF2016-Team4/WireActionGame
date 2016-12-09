@@ -529,8 +529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f8e97cd53cd7641ba1be2bf77adfc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 580413107}
-  pari: {fileID: 1960912565}
 --- !u!4 &387201245
 Transform:
   m_ObjectHideFlags: 0
@@ -2551,7 +2549,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1657104353}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53be94ebc85975944a802ae42eb4bbd3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5608bdb9e06fa744589a8b6cab3f9eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1657104355
@@ -3101,8 +3099,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7682bcea0b52536488ffd5964671c660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  efe: {fileID: 1960912565}
-  basho: []
 --- !u!199 &1960912567
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
