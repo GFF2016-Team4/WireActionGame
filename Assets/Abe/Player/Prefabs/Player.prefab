@@ -2196,6 +2196,7 @@ MonoBehaviour:
   ropeTakeDownSpeed: 5
   ropeTakeForce: 1
   ropeForcePower: 10
+  lockRopeDistance: 50
   footOrigin: {fileID: 4000010522052402}
 --- !u!137 &137000010562534828
 SkinnedMeshRenderer:

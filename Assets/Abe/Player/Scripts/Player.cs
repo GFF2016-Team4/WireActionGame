@@ -37,6 +37,9 @@ public class Player : MonoBehaviour, RopeEventHandlar
     [SerializeField, Header("ロープの加える力")]
     private float ropeForcePower;
 
+    [SerializeField, Header("打ち込み用ロープの飛ぶ長さ")]
+    private float lockRopeDistance = 50.0f;
+
     [SerializeField]
     private Transform footOrigin;
 
@@ -295,7 +298,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
         Vector3 rayOffset = Vector3.up * 0.01f;
 
-        if(ropeController.CreateLockRope(footOrigin.position + rayOffset))
+        if(ropeController.CreateLockRope(footOrigin.position + rayOffset, lockRopeDistance))
         {
             animator.SetTrigger("ShootLockRope");
         }

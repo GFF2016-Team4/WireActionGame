@@ -179,7 +179,7 @@ public class RopeController : MonoBehaviour
 
     Vector3 GetShootDirection(Vector3 shootPosition)
     {
-        Vector3? position = IsPlayerBeforePoint(shootPosition);
+        Vector3? position = IsPlayerBeforePoint(shootPosition, 50.0f);
         if(position.HasValue)
         {
             return position.Value;
@@ -198,14 +198,14 @@ public class RopeController : MonoBehaviour
         return dot > 0;
     }
 
-    Vector3? IsPlayerBeforePoint(Vector3 shootPosition)
+    Vector3? IsPlayerBeforePoint(Vector3 shootPosition, float maxDistance)
     {
         //当たった場所を検証
         Ray ray = new Ray(camera.position, camera.forward);
 
         //Playerは判定しない
         int ignoreLayer =  -1 - (1 << gameObject.layer | 1 << LayerMask.NameToLayer("Rope"));
-        RaycastHit[] raycasthit = Physics.RaycastAll(ray, 50.0f, ignoreLayer);
+        RaycastHit[] raycasthit = Physics.RaycastAll(ray, maxDistance, ignoreLayer);
 
         if(raycasthit.Length == 0) return null;
 
@@ -296,9 +296,9 @@ public class RopeController : MonoBehaviour
         }
     }
 
-    public bool CreateLockRope(Vector3 shootPosition)
+    public bool CreateLockRope(Vector3 shootPosition, float ropeDistance)
     {
-        Vector3? result = IsPlayerBeforePoint(Vector3.zero);
+        Vector3? result = IsPlayerBeforePoint(Vector3.zero, ropeDistance);
         if(!result.HasValue) return false;
 
         GameObject lockRopeInst = Instantiate(lockRopePrefab);
