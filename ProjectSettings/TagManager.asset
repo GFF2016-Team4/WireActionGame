@@ -23,6 +23,7 @@ TagManager:
   - PlayerNoCollision
   - Player
   - Rope
+  - Bullet
   - 
   - 
   - 
