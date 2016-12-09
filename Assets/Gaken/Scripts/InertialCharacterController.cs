@@ -19,6 +19,7 @@ namespace Gaken
 
         bool m_IsAttack = false;                         //攻撃パターンフラグ
 
+        public GameObject target;               //Player
         public Transform child;                 //Enemyの子供
 
         /************************************************************************
@@ -53,6 +54,8 @@ namespace Gaken
             //右腕の取得（使えるかどうか確定できていない）
             //rightHand = transform.Find("mixamorig:RightArm").GetComponent<Transform>();
             speed = 1;
+
+            target.GetComponent<GameObject>().transform.Find("Player");
         }
 
         void Update()
@@ -155,6 +158,14 @@ namespace Gaken
             if (Input.GetButtonDown("Fire1"))
             {
                 m_Animator.SetBool("IsAttack", true);
+
+                //float x = target.transform.position.x - this.transform.position.x;
+                //float y = target.transform.position.y - this.transform.position.y;
+                //float z = target.transform.position.z - this.transform.position.z;
+                //this.transform.forward = target.transform.position;
+                //this.transform.TransformDirection(new Vector3(x, -z, y) * 7);
+
+                child.transform.Translate(child.transform.position - target.transform.position);
             }
             //攻撃回収です！（多分）
             if (Input.GetButtonUp("Fire1"))
