@@ -2,6 +2,6 @@
 
 public interface RopeEventHandlar : IEventSystemHandler
 {
-    void OnRopeCreate (RopeSimulate rope);
-    void OnRopeRelease(RopeSimulate rope);
+    void OnNormalRopeCreate (NormalRopeSimulate rope);
+    void OnNormalRopeRelease(NormalRopeSimulate rope);
 }

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 [System.Serializable]
-public struct Rope
+public struct NormalRope
 {
     [Header("末尾")]
     public Transform   tail;           //末尾のロープオブジェクト

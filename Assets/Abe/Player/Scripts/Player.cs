@@ -137,7 +137,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
     public void RopeControl()
     {
-        var axis = GetCameraAxis();
+        var     axis     = GetCameraAxis();
         Vector3 velocity = GetInputVelocity(axis);
         if(velocity != Vector3.zero && !IsGround())
         {
@@ -178,7 +178,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
         Vector3 forward = playerCamera.transform.forward;
 
         //変な方向に動くため
-        right.y   = 0;
+        right  .y = 0;
         forward.y = 0;
 
         right  .Normalize();
@@ -260,7 +260,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
     /// </summary>
     public void SyncPlayerToRope()
     {
-        transform.up = ropeController.direction;
+        transform.up = ropeController.Direction;
 
         ropeController.SimulateStart();
         ropeController.SyncTransformToRope(transform);
@@ -275,16 +275,29 @@ public class Player : MonoBehaviour, RopeEventHandlar
         ropeController.SyncRopeToTransform();
     }
 
-    public void OnRopeCreate(RopeSimulate rope)
+    public void OnNormalRopeCreate(NormalRopeSimulate rope)
     {
         rope.AddForce(playerVelocity * ropeAcceleration, ForceMode.VelocityChange);
         ResetGravity();
     }
 
-    public void OnRopeRelease(RopeSimulate rope)
+    public void OnNormalRopeRelease(NormalRopeSimulate rope)
     {
         ResetGravity();
         if(IsGround()) return;
         playerVelocity = rope.velocity;
+    }
+
+    public void ShootLockRope()
+    {
+        if(!Input.GetButtonDown("LockRope")) return;
+
+
+        Vector3 rayOffset = Vector3.up * 0.01f;
+
+        if(ropeController.CreateLockRope(footOrigin.position + rayOffset))
+        {
+            animator.SetTrigger("ShootLockRope");
+        }
     }
 }

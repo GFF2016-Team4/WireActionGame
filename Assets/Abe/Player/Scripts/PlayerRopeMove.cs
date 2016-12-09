@@ -22,6 +22,7 @@ public class PlayerRopeMove : MonoBehaviour
     {
         if(player.IsGround())
         {
+            player.ShootLockRope();
             player.ResetUpTrans();
             player.animator.SetBool("IsGrab",   false);
             player.animator.SetBool("IsGround", true);

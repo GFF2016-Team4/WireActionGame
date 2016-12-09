@@ -28,6 +28,7 @@ public class PlayerMove : MonoBehaviour
             player.ResetGravity();
             player.NormalMove();
             player.Jump();
+            player.ShootLockRope();
         }
         else
         {

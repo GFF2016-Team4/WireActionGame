@@ -23,7 +23,7 @@ GameObject:
   - 54: {fileID: 54000012435301096}
   - 114: {fileID: 114000012165425728}
   - 120: {fileID: 120000012553631718}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: RopeBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

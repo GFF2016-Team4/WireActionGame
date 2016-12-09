@@ -6,18 +6,18 @@ using UnityEngine.EventSystems;
 public class RopeController : MonoBehaviour
 {
     [System.Serializable]
-    public struct Rope
+    public struct NormalRope
     {
         [SerializeField, Tooltip("同期するトランスフォーム")]
         public Transform sync;
 
         [SerializeField]
-        public RopeSimulate ropeInst;
+        public NormalRopeSimulate ropeInst;
 
         [SerializeField]
         public string[] shootButton;
 
-        public bool ropeExist
+        public bool RopeExist
         {
             get { return ropeInst != null; }
         }
@@ -26,7 +26,7 @@ public class RopeController : MonoBehaviour
         {
             get
             {
-                if(!ropeExist) return false;
+                if(!RopeExist) return false;
                 if(!InputExtension.GetButtonAll(shootButton)) return false;
                 return true;
             }
@@ -34,7 +34,10 @@ public class RopeController : MonoBehaviour
     }
 
     [SerializeField, Tooltip("ロープのプレハブ")]
-    private GameObject ropePrefab;
+    private GameObject normalRopePrefab;
+
+    [SerializeField]
+    private GameObject lockRopePrefab;
 
     [SerializeField, Tooltip("射出弾インスタンス")]
     private GameObject bulletPrefab;
@@ -46,25 +49,25 @@ public class RopeController : MonoBehaviour
     private new Transform camera;
 
     [SerializeField]
-    Rope left;
+    NormalRope left;
 
     [SerializeField]
-    Rope right;
+    NormalRope right;
 
     [SerializeField]
-    Rope center;
+    NormalRope center;
 
     public bool IsRopeExist
     {
         get
         {
-            return left  .ropeExist ||
-                   right .ropeExist ||
-                   center.ropeExist;
+            return left  .RopeExist ||
+                   right .RopeExist ||
+                   center.RopeExist;
         }
     }
 
-    public Vector3 direction
+    public Vector3 Direction
     {
         get
         {
@@ -90,22 +93,22 @@ public class RopeController : MonoBehaviour
 
     void Update()
     {
-        Shoot();
+        ShootRopes();
         CheckSimulationEnd();
     }
 
-    void Shoot()
+    void ShootRopes()
     {
         if(Input.GetButtonDown(left.shootButton[0]))
         {
-            StartCoroutine(ShootRope(left,  (result) =>
+            StartCoroutine(ShootNormalRope(left,  (result) =>
                 left.ropeInst  = result
             ));
         }
 
         if(Input.GetButtonDown(right.shootButton[0]))
         {
-            StartCoroutine(ShootRope(right, (result) =>
+            StartCoroutine(ShootNormalRope(right, (result) =>
                 right.ropeInst = result
             ));
         }
@@ -118,18 +121,18 @@ public class RopeController : MonoBehaviour
         CheckSimulationEnd(ref right );
     }
 
-    void CheckSimulationEnd(ref Rope rope)
+    void CheckSimulationEnd(ref NormalRope rope)
     {
-        if(!rope.ropeExist) return;
+        if(!rope.RopeExist) return;
         if(!InputExtension.GetButtonAnyUp(rope.shootButton)) return;
-        SendRopeReleaseEvent(rope.ropeInst);
+        SendNormalRopeReleaseEvent(rope.ropeInst);
         TakeOverVelocity(left,  rope);
         TakeOverVelocity(right, rope);
         rope.ropeInst.SimulationEnd();
         rope.ropeInst = null;
     }
 
-    void TakeOverVelocity(Rope takeOverRope, Rope takenOverRope)
+    void TakeOverVelocity(NormalRope takeOverRope, NormalRope takenOverRope)
     {
         if(!takeOverRope.IsCanConrol) return;
 
@@ -138,14 +141,14 @@ public class RopeController : MonoBehaviour
         takeOverRope.ropeInst.AddForce(takenOverVelocity, ForceMode.VelocityChange);
     }
 
-    IEnumerator ShootRope(Rope rope, UnityAction<RopeSimulate> callback)
+    IEnumerator ShootNormalRope(NormalRope rope, UnityAction<NormalRopeSimulate> callback)
     {
         //射出弾の生成
         GameObject bulletInst = Instantiate(bulletPrefab);
         bulletInst.transform.position = rope.sync.position;
 
         //弾丸を飛ばす
-        Shoot(bulletInst, rope);
+        Shoot(bulletInst);
 
         RopeBullet ropeBullet = bulletInst.GetComponent<RopeBullet>();
         ropeBullet.target = rope.sync;
@@ -157,46 +160,36 @@ public class RopeController : MonoBehaviour
         //ボタンを離した場合
         if(!ropeBullet.IsHit)
         {
-            CreateFailed(rope, bulletInst);
+            CreateNormalRopeFailed(rope, bulletInst);
             Destroy(bulletInst);
             yield break;
         }
         
-        CreateRope(rope, ropeBullet.HitInfo, callback);
+        CreateNormalRope(rope, ropeBullet.HitInfo, callback);
         Destroy(bulletInst);
     }
 
-    void Shoot(GameObject bulletInst, Rope rope)
+    void Shoot(GameObject bulletInst)
     {
-        Vector3 dir = GetShootDirection(rope);
+        Vector3 dir = GetShootDirection(bulletInst.transform.position);
 
         Rigidbody bulletRig = bulletInst.GetComponent<Rigidbody>();
         bulletRig.AddForce(dir.normalized * bulletSpeed, ForceMode.VelocityChange);
     }
 
-    Vector3 GetShootDirection(Rope rope)
+    Vector3 GetShootDirection(Vector3 shootPosition)
     {
-        //当たった場所を検証
-        Ray ray = new Ray(camera.position, camera.forward);
-
-        //Playerは判定しない
-        int ignoreLayer =  -1 - 1 << gameObject.layer;
-        RaycastHit[] raycasthit = Physics.RaycastAll(ray, 50.0f, ignoreLayer);
-        if(raycasthit.Length != 0)
+        Vector3? position = IsPlayerBeforePoint(shootPosition);
+        if(position.HasValue)
         {
-            foreach(RaycastHit hit in raycasthit)
-            {
-                //プレイヤーとカメラの間にオブジェクトがあると意図しない方向に飛ぶ為
-                if(!IsPlayerBeforePoint(hit.point)) continue;
-                return hit.point - rope.sync.position;
-            }
+            return position.Value;
         }
 
         Vector3 point = camera.position + (camera.forward * 50);
-        return  point - rope.sync.position;
+        return  point - shootPosition;
     }
 
-    bool IsPlayerBeforePoint(Vector3 point)
+    bool IsPlayerBeforePoint_(Vector3 point)
     {
         Vector3 player2HitPoint = point - transform.position;
         float dot = Vector3.Dot(camera.forward, player2HitPoint);
@@ -205,7 +198,28 @@ public class RopeController : MonoBehaviour
         return dot > 0;
     }
 
-    IEnumerator WaitForBulletUpdate(Rope rope, RopeBullet ropeBullet)
+    Vector3? IsPlayerBeforePoint(Vector3 shootPosition)
+    {
+        //当たった場所を検証
+        Ray ray = new Ray(camera.position, camera.forward);
+
+        //Playerは判定しない
+        int ignoreLayer =  -1 - (1 << gameObject.layer | 1 << LayerMask.NameToLayer("Rope"));
+        RaycastHit[] raycasthit = Physics.RaycastAll(ray, 50.0f, ignoreLayer);
+
+        if(raycasthit.Length == 0) return null;
+
+        foreach(RaycastHit hit in raycasthit)
+        {
+            //プレイヤーとカメラの間にオブジェクトがあると意図しない方向に飛ぶ為
+            if(!IsPlayerBeforePoint_(hit.point)) continue;
+            return hit.point - shootPosition;
+        }
+
+        return null;
+    }
+
+    IEnumerator WaitForBulletUpdate(NormalRope rope, RopeBullet ropeBullet)
     {
         //何かに当たるか、ボタンを離したら終了
         while(true)
@@ -217,27 +231,27 @@ public class RopeController : MonoBehaviour
         }
     }
 
-    void CreateFailed(Rope rope, GameObject bullet)
-    {
-        GameObject   ropeInst     = Instantiate(ropePrefab) as GameObject;
-        RopeSimulate ropeSimulate = ropeInst.GetComponent<RopeSimulate>();
-
-        ropeSimulate.Initialize(bullet.transform.position, rope.sync.position);
-        ropeSimulate.SimulationEnd();
-    }
-
     bool IsBothRopeButtonDown()
     {
         return InputExtension.GetButtonAll(center.shootButton);
     }
 
-    void CreateCenterRope()
+    void CreateNormalRopeFailed(NormalRope rope, GameObject bullet)
+    {
+        GameObject   ropeInst     = Instantiate(normalRopePrefab) as GameObject;
+        NormalRopeSimulate ropeSimulate = ropeInst.GetComponent<NormalRopeSimulate>();
+
+        ropeSimulate.Initialize(bullet.transform.position, rope.sync.position);
+        ropeSimulate.SimulationEnd();
+    }
+
+    void CreateCenterNormalRope()
     {
         Vector3 centerPos = Vector3.Lerp(right.ropeInst.originPosition,
                                          left .ropeInst.originPosition, 0.5f);
 
-        GameObject   rope     = Instantiate(ropePrefab) as GameObject;
-        RopeSimulate simulate = rope.GetComponent<RopeSimulate>();
+        GameObject   rope     = Instantiate(normalRopePrefab) as GameObject;
+        NormalRopeSimulate simulate = rope.GetComponent<NormalRopeSimulate>();
 
         simulate.Initialize(centerPos, center.sync.position);
         simulate.isCalcDistance = true;
@@ -255,10 +269,10 @@ public class RopeController : MonoBehaviour
         right.ropeInst.SimulationStop();
     }
 
-    public void CreateRope(Rope rope, Collision hitInfo, UnityAction<RopeSimulate> callback)
+    public void CreateNormalRope(NormalRope rope, Collision hitInfo, UnityAction<NormalRopeSimulate> callback)
     {
-        GameObject   ropeInst = Instantiate(ropePrefab) as GameObject;
-        RopeSimulate simulate = ropeInst.GetComponent<RopeSimulate>();
+        GameObject   ropeInst = Instantiate(normalRopePrefab) as GameObject;
+        NormalRopeSimulate simulate = ropeInst.GetComponent<NormalRopeSimulate>();
 
         simulate.Initialize(hitInfo.contacts[0].point, rope.sync.position);
 
@@ -268,11 +282,11 @@ public class RopeController : MonoBehaviour
         {
             //引っかかった
             callback(simulate);
-            SendCreateRopeEvent(simulate);
+            SendCreateNormalRopeEvent(simulate);
 
             if(left.IsCanConrol && right.IsCanConrol)
             {
-                CreateCenterRope();
+                CreateCenterNormalRope();
             }
         }
         else
@@ -282,8 +296,19 @@ public class RopeController : MonoBehaviour
         }
     }
 
-    delegate bool RopeEvent(Rope rope);
-    delegate void Action(Rope rope);
+    public bool CreateLockRope(Vector3 shootPosition)
+    {
+        Vector3? result = IsPlayerBeforePoint(Vector3.zero);
+        if(!result.HasValue) return false;
+
+        GameObject lockRopeInst = Instantiate(lockRopePrefab);
+        LockRope   lockRope     = lockRopeInst.GetComponent<LockRope>();
+        lockRope.Initialize(shootPosition, result.Value);
+        return true;
+    }
+
+    delegate bool RopeEvent(NormalRope rope);
+    delegate void Action(NormalRope rope);
     void RopeSendEvent(Action action)
     {
         RopeEvent e = (rope)=> {
@@ -328,18 +353,18 @@ public class RopeController : MonoBehaviour
     /// <param name="syncTransform">同期させるトランスフォーム</param>
     public void SyncTransformToRope(Transform syncTransform)
     {
-        if(center.ropeExist)
+        if(center.RopeExist)
         {
             SyncTransformToRope_(center, syncTransform);
             SyncRopeToTransform_(left);
             SyncRopeToTransform_(right);
         }
 
-        if(left .ropeExist) SyncTransformToRope_(left , syncTransform);
-        if(right.ropeExist) SyncTransformToRope_(right, syncTransform);
+        if(left .RopeExist) SyncTransformToRope_(left , syncTransform);
+        if(right.RopeExist) SyncTransformToRope_(right, syncTransform);
     }
 
-    private void SyncTransformToRope_(Rope rope, Transform syncTransform)
+    private void SyncTransformToRope_(NormalRope rope, Transform syncTransform)
     {
         //差分を計算
         Vector3 offset = syncTransform.position - rope.sync.position;
@@ -357,36 +382,36 @@ public class RopeController : MonoBehaviour
         SyncRopeToTransform_(right);
     }
 
-    private void SyncRopeToTransform_(Rope rope)
+    private void SyncRopeToTransform_(NormalRope rope)
     {
         if(!rope.IsCanConrol) return;
         rope.ropeInst.tailPosition = rope.sync.position;
     }
 
     //イベントを送信
-    //SendMessage("OnRopeCreate");と同じ
-    void SendCreateRopeEvent(RopeSimulate rope)
+    //SendMessage("OnNormalRopeCreate");と同じ
+    void SendCreateNormalRopeEvent(NormalRopeSimulate rope)
     {
         ExecuteEvents.Execute<RopeEventHandlar>(
             gameObject,
             null,
             (obj, baseEvent) =>
             {
-                obj.OnRopeCreate(rope);
+                obj.OnNormalRopeCreate(rope);
             }
         );
     }
 
     //イベントを送信
     //SendMessage("OnRopeRelease");と同じ
-    void SendRopeReleaseEvent(RopeSimulate rope)
+    void SendNormalRopeReleaseEvent(NormalRopeSimulate rope)
     {
         ExecuteEvents.Execute<RopeEventHandlar>(
             gameObject,
             null,
             (obj, baseEvent) =>
             {
-                obj.OnRopeRelease(rope);
+                obj.OnNormalRopeRelease(rope);
             }
         );
     }

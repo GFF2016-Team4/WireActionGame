@@ -23,7 +23,7 @@ GameObject:
   - 120: {fileID: 120000011149234506}
   - 114: {fileID: 114000010200944238}
   m_Layer: 10
-  m_Name: Ropes
+  m_Name: NormalRopes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

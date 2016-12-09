@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(ListLineDraw))]
-public class RopeSimulate : MonoBehaviour
+public class NormalRopeSimulate : MonoBehaviour
 {
     [SerializeField, Tooltip("ロープの構造体")]
-    Rope  rope;
+    NormalRope  rope;
 
     [SerializeField]
     float checkDistance;
@@ -184,6 +184,7 @@ public class RopeSimulate : MonoBehaviour
         //自然落下
         rope.rigOriginRig.isKinematic = false;
         Destroy(rope.rigOriginJoint);
+        Destroy(rope.rigOriginJoint.GetComponent<SyncObject>());
 
         StartCoroutine(TakeUp());
     }
