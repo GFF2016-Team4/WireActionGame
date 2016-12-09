@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -12,7 +11,7 @@ public class ListLineDraw : MonoBehaviour
 
     private bool isDraw;
 
-    public int listCount
+    public int count
     {
         get { return drawList.Count; }
     }
@@ -26,7 +25,7 @@ public class ListLineDraw : MonoBehaviour
     {
         FixVertexCount();
     }
-
+    
     /// <summary>
     /// <para>描画リストにセットします </para>
     /// <para>注意:この関数は登録されているリストに上書きされます</para>
@@ -100,6 +99,7 @@ public class ListLineDraw : MonoBehaviour
     {
         isDraw = true;
         lineRenderer.enabled = true;
+        FixVertexCount();
     }
 
     /// <summary>
@@ -107,6 +107,9 @@ public class ListLineDraw : MonoBehaviour
     /// </summary>
     public void DrawEnd()
     {
+        //停止
+        lineRenderer.SetVertexCount(0);
+
         isDraw = false;
         lineRenderer.enabled = false;
     }
@@ -121,7 +124,7 @@ public class ListLineDraw : MonoBehaviour
     {
         Draw();
     }
-
+    
     void Draw()
     {
         if(!isDraw) return;
@@ -135,13 +138,11 @@ public class ListLineDraw : MonoBehaviour
         int count = 0;
         foreach(Transform child in drawList)
         {
-            if(child.gameObject.activeSelf)
-            {
-                //追加
-                linePositions[count] = child.position;
-                lastActiveChild = child;
-                count++;
-            }
+            if(!child.gameObject.activeSelf) continue;
+            //追加
+            linePositions[count] = child.position;
+            lastActiveChild      = child;
+            count++;
         }
 
         for(;count < drawList.Count; count++)

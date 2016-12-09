@@ -15,7 +15,7 @@ public class PlayerCamera : MonoBehaviour
     public Vector2 rotationSpeed = new Vector2(120.0f, 120.0f);
 
     [Tooltip("カメラの上下回転の限界")]
-    public float cameraLimitUp = 30f;
+    public float cameraLimitUp   = 30f;
 
     [Tooltip("カメラの上下回転の限界")]
     public float cameraLimitDown = -30f;
@@ -31,7 +31,7 @@ public class PlayerCamera : MonoBehaviour
 
         Vector2 rotate;
         rotate.x = Input.GetAxis("Horizontal2") * rotationSpeed.x * Time.deltaTime;
-        rotate.y = Input.GetAxis("Vertical2") * rotationSpeed.y * Time.deltaTime;
+        rotate.y = Input.GetAxis("Vertical2")   * rotationSpeed.y * Time.deltaTime;
 
         //回転
         transform.RotateAround(target.position, Vector3.up, rotate.x);
@@ -63,13 +63,13 @@ public class PlayerCamera : MonoBehaviour
 
     void LockCursor()
     {
-        Cursor.visible = false;
+        Cursor.visible   = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void UnLockCursor()
     {
-        Cursor.visible = true;
+        Cursor.visible   = true;
         Cursor.lockState = CursorLockMode.None;
     }
 

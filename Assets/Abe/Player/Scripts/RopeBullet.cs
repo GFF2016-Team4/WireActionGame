@@ -10,7 +10,7 @@ public class RopeBullet : MonoBehaviour
     public  Transform target;
     private Vector3[] positions = new Vector3[2];
 
-    public bool IsCollision
+    public bool IsHit
     {
         get
         {
@@ -18,7 +18,23 @@ public class RopeBullet : MonoBehaviour
         }
     }
 
-    public Collision CollisionInfo
+    public bool IsHitEnemy
+    {
+        get
+        {
+            return collisionInfo.gameObject.tag == "Enemy";
+        }
+    }
+
+    public Vector3 HitPosition
+    {
+        get
+        {
+            return collisionInfo.contacts[0].point;
+        }
+    }
+
+    public Collision HitInfo
     {
         get
         {

@@ -1,30 +1,38 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace Player
+[RequireComponent(typeof(Animator))]
+public class PlayerMove : MonoBehaviour
 {
-    [RequireComponent(typeof(Animator))]
-    public class PlayerMove : MonoBehaviour
+    public Player player;
+
+    void Awake()
     {
-        public Player player;
+        enabled = false;
+    }
 
-        void Awake()
+    void OnEnable()
+    {
+        player.animator.SetBool("IsGrab", false);
+        player.ResetUpTrans();
+    }
+
+    void Update()
+    {
+        player.ApplyGravity();
+        
+        if(player.IsGround())
         {
-            enabled = false;
+            player.animator.SetBool("IsGround", true);
+            player.ResetGravity();
+            player.NormalMove();
+            player.Jump();
         }
-
-        void Update()
+        else
         {
-            player.ApplyGravity();
-            if(player.IsGround)
-            {
-                player.ResetGravity();
-                player.NormalMove();
-                player.Jump();
-            }
-            else
-            {
-                player.JumpMove();
-            }
+            player.animator.SetBool("IsGround", false);
+            player.AirMove();
         }
     }
 }

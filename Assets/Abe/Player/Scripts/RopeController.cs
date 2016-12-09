@@ -1,25 +1,34 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
 public class RopeController : MonoBehaviour
 {
     [System.Serializable]
-    public struct RopeGun
+    public struct Rope
     {
-        [SerializeField, Tooltip("射出機")]
-        public Transform gun;
+        [SerializeField, Tooltip("同期するトランスフォーム")]
+        public Transform sync;
 
         [SerializeField]
         public RopeSimulate ropeInst;
 
-        public bool RopeExist
+        [SerializeField]
+        public string[] shootButton;
+
+        public bool ropeExist
+        {
+            get { return ropeInst != null; }
+        }
+
+        public bool IsCanConrol
         {
             get
             {
-                return ropeInst != null;
+                if(!ropeExist) return false;
+                if(!InputExtension.GetButtonAll(shootButton)) return false;
+                return true;
             }
         }
     }
@@ -37,219 +46,321 @@ public class RopeController : MonoBehaviour
     private new Transform camera;
 
     [SerializeField]
-    public RopeGun left;
+    Rope left;
 
     [SerializeField]
-    public RopeGun right;
+    Rope right;
 
+    [SerializeField]
+    Rope center;
 
-    [Header("Center")]
-    public RopeSimulate centerRopeInst;
-
-    public bool LeftRopeExist
-    {
-        get { return left.RopeExist; }
-    }
-
-    public bool RightRopeExist
-    {
-        get { return right.RopeExist; }
-    }
-
-    public bool CenterRopeExist
-    {
-        get { return centerRopeInst != null; }
-    }
-
-    public bool RopeExist
+    public bool IsRopeExist
     {
         get
         {
-            return LeftRopeExist || RightRopeExist || CenterRopeExist;
+            return left  .ropeExist ||
+                   right .ropeExist ||
+                   center.ropeExist;
         }
+    }
+
+    public Vector3 direction
+    {
+        get
+        {
+            if(center.IsCanConrol) return center.ropeInst.direction;
+            if(left  .IsCanConrol) return left  .ropeInst.direction;
+            if(right .IsCanConrol) return right .ropeInst.direction;
+            Debug.Assert(false, "ロープは生成されていません");
+            throw null;
+        }
+    }
+
+    void Start()
+    {
+        left  .shootButton = new string[1];
+        right .shootButton = new string[1];
+        center.shootButton = new string[2];
+
+        left .shootButton[0]  = "Fire1";
+        right.shootButton[0]  = "Fire2";
+        center.shootButton[0] = "Fire1";
+        center.shootButton[1] = "Fire2"; 
     }
 
     void Update()
     {
         Shoot();
-        TakeUp();
-    }
-
-    private void LateUpdate()
-    {
-
-    }
-
-    public void Sync()
-    {
-        Sync(left);
-        Sync(right);
+        CheckSimulationEnd();
     }
 
     void Shoot()
     {
-        if(RopeInput.isLeftRopeButtonDown)  LeftRopeShoot();
-        if(RopeInput.isRightRopeButtonDown) RightRopeShoot();
-    }
-
-    void Sync(RopeGun ropeGun)
-    {
-        if(!ropeGun.RopeExist) return;
-        ropeGun.ropeInst.SetLockTailPosition(ropeGun.gun.position);
-    }
-
-    void TakeUp()
-    {
-        bool isLeftUp = RopeInput.isLeftRopeButtonUp;
-        bool isRightUp = RopeInput.isRightRopeButtonUp;
-
-        if(CenterRopeExist)
+        if(Input.GetButtonDown(left.shootButton[0]))
         {
-            if(isLeftUp || isRightUp)
-            {
-                SendRopeReleaseEvent(centerRopeInst);
-                centerRopeInst.RopeEnd();
-                centerRopeInst = null;
-            }
+            StartCoroutine(ShootRope(left,  (result) =>
+                left.ropeInst  = result
+            ));
         }
 
-        if(isLeftUp)
+        if(Input.GetButtonDown(right.shootButton[0]))
         {
-            TakeUp(ref left);
-        }
-        if(isRightUp)
-        {
-            TakeUp(ref right);
+            StartCoroutine(ShootRope(right, (result) =>
+                right.ropeInst = result
+            ));
         }
     }
 
-    void TakeUp(ref RopeGun ropeGun)
+    void CheckSimulationEnd()
     {
-        if(ropeGun.RopeExist)
-        {
-            SendRopeReleaseEvent(ropeGun.ropeInst);
-            ropeGun.ropeInst.RopeEnd();
-            ropeGun.ropeInst = null;
-        }
+        CheckSimulationEnd(ref center);
+        CheckSimulationEnd(ref left  );
+        CheckSimulationEnd(ref right );
     }
 
-    void LeftRopeShoot()
+    void CheckSimulationEnd(ref Rope rope)
     {
-        StartCoroutine(RopeShoot(left, RopeInput.leftButton, (result) => left.ropeInst = result));
+        if(!rope.ropeExist) return;
+        if(!InputExtension.GetButtonAnyUp(rope.shootButton)) return;
+        SendRopeReleaseEvent(rope.ropeInst);
+        TakeOverVelocity(left,  rope);
+        TakeOverVelocity(right, rope);
+        rope.ropeInst.SimulationEnd();
+        rope.ropeInst = null;
     }
 
-    void RightRopeShoot()
+    void TakeOverVelocity(Rope takeOverRope, Rope takenOverRope)
     {
-        StartCoroutine(RopeShoot(right, RopeInput.rightButton, (result) => right.ropeInst = result));
+        if(!takeOverRope.IsCanConrol) return;
+
+        takeOverRope.ropeInst.SimulationStart();
+        Vector3 takenOverVelocity = takenOverRope.ropeInst.velocity;
+        takeOverRope.ropeInst.AddForce(takenOverVelocity, ForceMode.VelocityChange);
     }
 
-    IEnumerator RopeShoot(RopeGun ropeGun, string buttonName, UnityAction<RopeSimulate> callback)
+    IEnumerator ShootRope(Rope rope, UnityAction<RopeSimulate> callback)
     {
         //射出弾の生成
-        GameObject bulletInst = Instantiate(bulletPrefab) as GameObject;
-        Transform bulleftTrans = bulletInst.transform;
-        bulleftTrans.position = ropeGun.gun.position;
+        GameObject bulletInst = Instantiate(bulletPrefab);
+        bulletInst.transform.position = rope.sync.position;
 
-        Ray ray = new Ray(camera.position, camera.forward);
-        //飛ばす
+        //弾丸を飛ばす
+        Shoot(bulletInst, rope);
+
+        RopeBullet ropeBullet = bulletInst.GetComponent<RopeBullet>();
+        ropeBullet.target = rope.sync;
+
+        //アップデートが終わるまで待機
+        var wait = StartCoroutine(WaitForBulletUpdate(rope, ropeBullet));
+        yield return wait;
+
+        //ボタンを離した場合
+        if(!ropeBullet.IsHit)
+        {
+            CreateFailed(rope, bulletInst);
+            Destroy(bulletInst);
+            yield break;
+        }
+        
+        CreateRope(rope, ropeBullet.HitInfo, callback);
+        Destroy(bulletInst);
+    }
+
+    void Shoot(GameObject bulletInst, Rope rope)
+    {
+        Vector3 dir = GetShootDirection(rope);
+
         Rigidbody bulletRig = bulletInst.GetComponent<Rigidbody>();
+        bulletRig.AddForce(dir.normalized * bulletSpeed, ForceMode.VelocityChange);
+    }
 
-        Vector3 dir = Vector3.zero;
-        RaycastHit[] raycasthit = Physics.RaycastAll(ray, 50.0f);
-        if(raycasthit.Length != 0) //当たった場合
+    Vector3 GetShootDirection(Rope rope)
+    {
+        //当たった場所を検証
+        Ray ray = new Ray(camera.position, camera.forward);
+
+        //Playerは判定しない
+        int ignoreLayer =  -1 - 1 << gameObject.layer;
+        RaycastHit[] raycasthit = Physics.RaycastAll(ray, 50.0f, ignoreLayer);
+        if(raycasthit.Length != 0)
         {
             foreach(RaycastHit hit in raycasthit)
             {
-                Vector3 player2HitPoint = hit.point - transform.position;
-                float dot = Vector3.Dot(camera.forward, player2HitPoint);
-
-                //プレイヤーより前にオブジェクトがある
-                if(dot > 0)
-                {
-                    dir = hit.point - ropeGun.gun.position;
-                    break;
-                }
+                //プレイヤーとカメラの間にオブジェクトがあると意図しない方向に飛ぶ為
+                if(!IsPlayerBeforePoint(hit.point)) continue;
+                return hit.point - rope.sync.position;
             }
         }
-        else
+
+        Vector3 point = camera.position + (camera.forward * 50);
+        return  point - rope.sync.position;
+    }
+
+    bool IsPlayerBeforePoint(Vector3 point)
+    {
+        Vector3 player2HitPoint = point - transform.position;
+        float dot = Vector3.Dot(camera.forward, player2HitPoint);
+        
+        //ドット積が正 -> 前方向にある
+        return dot > 0;
+    }
+
+    IEnumerator WaitForBulletUpdate(Rope rope, RopeBullet ropeBullet)
+    {
+        //何かに当たるか、ボタンを離したら終了
+        while(true)
         {
-            Vector3 point = camera.position + (camera.forward * 50);
-            dir = point - ropeGun.gun.position;
-        }
-        bulletRig.AddForce(dir.normalized * bulletSpeed, ForceMode.VelocityChange);
+            if(Input.GetButtonUp(rope.shootButton[0])) yield break;
+            if(ropeBullet.IsHit)                       yield break;
 
-
-        RopeBullet collisionCheck = bulletInst.GetComponent<RopeBullet>();
-        collisionCheck.target = ropeGun.gun;
-
-        //当たるまで待機
-        while(!collisionCheck.IsCollision)
-        {
-            if(Input.GetButtonUp(buttonName))
-            {
-                GameObject ropeInst = Instantiate(ropePrefab) as GameObject;
-                RopeSimulate ropeSimulate = ropeInst.GetComponent<RopeSimulate>();
-
-                ropeSimulate.RopeInitialize(bulleftTrans.position, ropeGun.gun.position, null);
-                ropeSimulate.RopeLock();
-                ropeSimulate.RopeEnd();
-                Destroy(bulletInst);
-                yield break;
-            }
             yield return null;
         }
-        //ロープの生成
+    }
 
-        //射出弾の当たった情報
-        Collision hitInfo = collisionCheck.CollisionInfo;
-        Vector3 hitPoint = hitInfo.contacts[0].point;
+    void CreateFailed(Rope rope, GameObject bullet)
+    {
+        GameObject   ropeInst     = Instantiate(ropePrefab) as GameObject;
+        RopeSimulate ropeSimulate = ropeInst.GetComponent<RopeSimulate>();
 
-        GameObject rope = Instantiate(ropePrefab) as GameObject;
+        ropeSimulate.Initialize(bullet.transform.position, rope.sync.position);
+        ropeSimulate.SimulationEnd();
+    }
+
+    bool IsBothRopeButtonDown()
+    {
+        return InputExtension.GetButtonAll(center.shootButton);
+    }
+
+    void CreateCenterRope()
+    {
+        Vector3 centerPos = Vector3.Lerp(right.ropeInst.originPosition,
+                                         left .ropeInst.originPosition, 0.5f);
+
+        GameObject   rope     = Instantiate(ropePrefab) as GameObject;
         RopeSimulate simulate = rope.GetComponent<RopeSimulate>();
 
-        simulate.RopeInitialize(hitPoint, ropeGun.gun.position, hitInfo.transform);
+        simulate.Initialize(centerPos, center.sync.position);
+        simulate.isCalcDistance = true;
+
+        center.ropeInst = simulate;
+
+        Vector3 leftVelocity   = left .ropeInst.velocity;
+        Vector3 rightVelocity  = right.ropeInst.velocity;
+
+        Vector3 centerVelocity = leftVelocity + rightVelocity;
+
+        simulate.AddForce(centerVelocity, ForceMode.VelocityChange);
+
+        left .ropeInst.SimulationStop();
+        right.ropeInst.SimulationStop();
+    }
+
+    public void CreateRope(Rope rope, Collision hitInfo, UnityAction<RopeSimulate> callback)
+    {
+        GameObject   ropeInst = Instantiate(ropePrefab) as GameObject;
+        RopeSimulate simulate = ropeInst.GetComponent<RopeSimulate>();
+
+        simulate.Initialize(hitInfo.contacts[0].point, rope.sync.position);
 
         bool canRopeHook = hitInfo.transform.tag != "NoRopeHit";
 
-        if(Input.GetButton(buttonName) && canRopeHook)
+        if(Input.GetButton(rope.shootButton[0]) && canRopeHook)
         {
             //引っかかった
             callback(simulate);
             SendCreateRopeEvent(simulate);
+
+            if(left.IsCanConrol && right.IsCanConrol)
+            {
+                CreateCenterRope();
+            }
         }
         else
         {
             //引っかからなかった キャンセル
-            simulate.RopeLock();
-            simulate.RopeEnd();
+            simulate.SimulationEnd();
         }
-        Destroy(bulletInst);
     }
 
-    public void CreateCenterRope()
+    delegate bool RopeEvent(Rope rope);
+    delegate void Action(Rope rope);
+    void RopeSendEvent(Action action)
     {
-        Debug.Assert(left.RopeExist);
-        Debug.Assert(right.RopeExist);
+        RopeEvent e = (rope)=> {
+            if(!rope.IsCanConrol) return false;
+            action(rope);
+            return true;
+        };
 
-        //左のロープと右のロープの中間に作る
-        Vector3 left2right = right.ropeInst.originPosition - left.ropeInst.originPosition;
-        Vector3 centerPos = left.ropeInst.originPosition + left2right / 2;
+        if(e(center)) return;
+        if(e(left  )) return;
+        if(e(right )) return;
+    }
 
-        GameObject rope = Instantiate(ropePrefab) as GameObject;
-        RopeSimulate simulate = rope.GetComponent<RopeSimulate>();
-        rope.GetComponent<ListLineDraw>().DrawEnd();
+    public void AddForce(Vector3 force, ForceMode forceMode)
+    {
+        RopeSendEvent((rope) => { rope.ropeInst.AddForce(force, forceMode); });
+    }
 
-        simulate.RopeInitialize(centerPos, transform.position + Vector3.up, null);
+    public void AddLength(float add)
+    {
+        RopeSendEvent((rope) => { rope.ropeInst.AddLength(add); });
+    }
 
-        //現在の加速度を第三のロープに反映
-        Vector3 leftVelocity = left.ropeInst.tailRig.velocity;
-        Vector3 rightVelocity = right.ropeInst.tailRig.velocity;
+    public void SubLength(float sub)
+    {
+        AddLength(-sub);
+    }
 
-        Vector3 centerVelocity = leftVelocity + rightVelocity;
+    public void SimulateStart()
+    {
+        RopeSendEvent((rope) => { rope.ropeInst.SimulationStart(); });
+    }
 
-        simulate.tailRig.AddForce(centerVelocity, ForceMode.VelocityChange);
+    public void SimulateStop()
+    {
+        RopeSendEvent((rope) => { rope.ropeInst.SimulationStop(); });
+    }
 
-        centerRopeInst = simulate;
+    /// <summary>
+    /// ロープの動きに指定したトランスフォームを同期
+    /// </summary>
+    /// <param name="syncTransform">同期させるトランスフォーム</param>
+    public void SyncTransformToRope(Transform syncTransform)
+    {
+        if(center.ropeExist)
+        {
+            SyncTransformToRope_(center, syncTransform);
+            SyncRopeToTransform_(left);
+            SyncRopeToTransform_(right);
+        }
+
+        if(left .ropeExist) SyncTransformToRope_(left , syncTransform);
+        if(right.ropeExist) SyncTransformToRope_(right, syncTransform);
+    }
+
+    private void SyncTransformToRope_(Rope rope, Transform syncTransform)
+    {
+        //差分を計算
+        Vector3 offset = syncTransform.position - rope.sync.position;
+        Vector3 transformPosition = offset + rope.ropeInst.tailPosition;
+        syncTransform.position = transformPosition;
+    }
+
+    /// <summary>
+    /// トランスフォームの動きにロープを同期
+    /// </summary>
+    public void SyncRopeToTransform()
+    {
+        SyncRopeToTransform_(center);
+        SyncRopeToTransform_(left);
+        SyncRopeToTransform_(right);
+    }
+
+    private void SyncRopeToTransform_(Rope rope)
+    {
+        if(!rope.IsCanConrol) return;
+        rope.ropeInst.tailPosition = rope.sync.position;
     }
 
     //イベントを送信

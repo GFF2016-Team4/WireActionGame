@@ -2,51 +2,51 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Player
+public class PlayerRopeMove : MonoBehaviour
 {
-    public class PlayerRopeMove : MonoBehaviour
+    //[SerializeField, Tooltip("説明文")]
+    
+    public Player player;
+
+    void Awake()
     {
-        public Player player;
-
-        void Awake()
+        enabled = false;
+    }
+    
+    void Start()
+    {
+        
+    }
+    
+    void Update()
+    {
+        if(player.IsGround())
         {
-            enabled = false;
+            player.ResetUpTrans();
+            player.animator.SetBool("IsGrab",   false);
+            player.animator.SetBool("IsGround", true);
+            player.ResetGravity();
+            player.NormalMove();
+            player.Jump();
+            player.SyncRopeToPlayer();
+            player.RopeTakeUp();
         }
-
-        void Update()
+        else
         {
-            if(player.IsGround && !RopeInput.isTakeUpButton)
+            player.animator.SetBool("IsGround", false);
+            if((Input.GetButton("Jump") && player.IsJump) || (!player.IsRopeExist))
             {
-                player.FreezeRope();
-                player.ResetGravity();
-                player.NormalMove();
-                player.Jump();
-                return;
-            }
-
-            if(player.IsGround) return;
-
-            bool buttonDown = Input.GetButton("Jump");
-
-            if(!player.IsRopeExist)
-            {
+                player.ResetUpTrans();
+                player.animator.SetBool("IsGrab", false);
                 player.ApplyGravity();
-                player.JumpMove();
+                player.AirMove();
+                player.SyncRopeToPlayer();
             }
             else
             {
-                if(buttonDown && player.IsJump)
-                {
-                    player.FreezeRope();
-                    player.ApplyGravity();
-                    player.JumpMove();
-                }
-                else
-                {
-                    player.ResetGravity();
-                    player.RopeMove();
-                    player.SyncRope();
-                }
+                player.animator.SetBool("IsGrab", true);
+                player.SyncPlayerToRope();
+                player.RopeControl();
             }
         }
     }
