@@ -37,6 +37,9 @@ public class Player : MonoBehaviour, RopeEventHandlar
     [SerializeField, Header("ロープの加える力")]
     private float ropeForcePower;
 
+    [SerializeField, Header("移動用・捕獲用ロープの飛ぶ長さ")]
+    private float normalRopeDistance = Mathf.Infinity;
+
     [SerializeField, Header("打ち込み用ロープの飛ぶ長さ")]
     private float lockRopeDistance = 50.0f;
 
@@ -83,7 +86,12 @@ public class Player : MonoBehaviour, RopeEventHandlar
         //物理演算と出来る限り同じ挙動にするため
         gravity = Physics.gravity;
     }
-    
+
+    void Start()
+    {
+        ropeController.normalRopeDistance = normalRopeDistance;
+    }
+
     void Update()
     {
         bool keyDown = RopeInput.isLeftRopeButton || RopeInput.isRightRopeButton;

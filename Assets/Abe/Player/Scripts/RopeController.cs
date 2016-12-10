@@ -57,6 +57,9 @@ public class RopeController : MonoBehaviour
     [SerializeField]
     NormalRope center;
 
+    [System.NonSerialized]
+    public float normalRopeDistance;
+
     public bool IsRopeExist
     {
         get
@@ -224,8 +227,9 @@ public class RopeController : MonoBehaviour
         //何かに当たるか、ボタンを離したら終了
         while(true)
         {
-            if(Input.GetButtonUp(rope.shootButton[0])) yield break;
-            if(ropeBullet.IsHit)                       yield break;
+            if(Input.GetButtonUp(rope.shootButton[0]))    yield break;
+            if(ropeBullet.IsHit)                          yield break;
+            if(ropeBullet.Distance >= normalRopeDistance) yield break;
 
             yield return null;
         }

@@ -42,6 +42,14 @@ public class RopeBullet : MonoBehaviour
         }
     }
 
+    public float Distance
+    {
+        get
+        {
+            return Vector3.Distance(transform.position, target.position);
+        }
+    }
+
     public void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
