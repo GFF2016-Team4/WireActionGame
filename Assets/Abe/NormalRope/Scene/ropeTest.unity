@@ -190,6 +190,14 @@ Prefab:
       propertyPath: m_Positions.Array.data[0].z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4000013854028908, guid: d2ee03d9b246e9047a5702b0d489b167, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 20.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013854028908, guid: d2ee03d9b246e9047a5702b0d489b167, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -8.1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000014181534864, guid: d2ee03d9b246e9047a5702b0d489b167, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d2ee03d9b246e9047a5702b0d489b167, type: 2}
@@ -523,7 +531,7 @@ MonoBehaviour:
     rigOrigin: {fileID: 1655335589}
   checkDistance: 1
   takeupTime: 0.5
-  isCalcDistance: 0
+  isCalcDistance: 1
 --- !u!4 &1655335589 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012418786294, guid: d2ee03d9b246e9047a5702b0d489b167,

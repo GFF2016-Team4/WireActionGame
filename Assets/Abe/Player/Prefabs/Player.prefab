@@ -2186,7 +2186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  airMoveSpeed: 0
+  airMoveSpeed: 1
   jumpPower: 20
   upVecDampingPow: 0.95
   sideVecDampingPow: 0.98

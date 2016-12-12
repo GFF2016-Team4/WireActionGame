@@ -165,7 +165,7 @@ MonoBehaviour:
   rope:
     tail: {fileID: 4000013854028908}
     rigOrigin: {fileID: 4000012418786294}
-  checkDistance: 0
+  checkDistance: 5
   takeupTime: 0.5
   isCalcDistance: 0
 --- !u!114 &114000014211422896
