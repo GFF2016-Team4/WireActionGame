@@ -474,6 +474,7 @@ GameObject:
   - 143: {fileID: 143000010743714336}
   - 114: {fileID: 114000012488377334}
   - 114: {fileID: 114000010517949644}
+  - 114: {fileID: 114000013754771954}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -2161,7 +2162,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1000013608364856, guid: a1a5ec346aa78594e9dfe170dcc53fb0,
     type: 2}
   bulletSpeed: 300
-  camera: {fileID: 0}
   left:
     sync: {fileID: 4000011373498590}
     ropeInst: {fileID: 0}
@@ -2185,20 +2185,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a5a6b3e9bb0e64b9df5326efd6234a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
   moveSpeed: 1
   airMoveSpeed: 0
   jumpPower: 20
   upVecDampingPow: 0.95
   sideVecDampingPow: 0.98
   ropeAcceleration: 1.5
-  ropeTakeUpSpeed: 5
-  ropeTakeDownSpeed: 5
+  ropeTakeSpeed: 5
   ropeTakeForce: 1
   ropeForcePower: 10
   normalRopeDistance: Infinity
   lockRopeDistance: 50
   footOrigin: {fileID: 4000010522052402}
+--- !u!114 &114000013754771954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012173519354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e60f55dae376dfc4d889e39bead452b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
 --- !u!137 &137000010562534828
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

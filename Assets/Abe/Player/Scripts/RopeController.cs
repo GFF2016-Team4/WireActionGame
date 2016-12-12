@@ -22,7 +22,7 @@ public class RopeController : MonoBehaviour
             get { return ropeInst != null; }
         }
 
-        public bool IsCanConrol
+        public bool IsCanControl
         {
             get
             {
@@ -30,6 +30,11 @@ public class RopeController : MonoBehaviour
                 if(!InputExtension.GetButtonAll(shootButton)) return false;
                 return true;
             }
+        }
+
+        public bool IsCatchRope
+        {
+            get { return !ropeInst.isCalcDistance; }
         }
     }
 
@@ -45,9 +50,6 @@ public class RopeController : MonoBehaviour
     [SerializeField, Tooltip("射出弾のスピード")]
     private float bulletSpeed;
 
-    [SerializeField, Tooltip("プレイヤーのカメラ")]
-    private new Transform camera;
-
     [SerializeField]
     NormalRope left;
 
@@ -59,6 +61,8 @@ public class RopeController : MonoBehaviour
 
     [System.NonSerialized]
     public float normalRopeDistance;
+
+    PlayerCameraInfo cameraInfo;
 
     public bool IsRopeExist
     {
@@ -74,12 +78,29 @@ public class RopeController : MonoBehaviour
     {
         get
         {
-            if(center.IsCanConrol) return center.ropeInst.direction;
-            if(left  .IsCanConrol) return left  .ropeInst.direction;
-            if(right .IsCanConrol) return right .ropeInst.direction;
+            if(center.IsCanControl) return center.ropeInst.direction;
+            if(left.IsCanControl  && 
+               (!left.IsCatchRope ||
+               (left.IsCatchRope && !right.RopeExist)))
+            {
+                return left  .ropeInst.direction;
+            }
+
+            if(right .IsCanControl &&
+               (!right.IsCatchRope ||
+               (right.IsCatchRope && !left.RopeExist)))
+            {
+                return right .ropeInst.direction;
+            }
+
             Debug.Assert(false, "ロープは生成されていません");
             throw null;
         }
+    }
+
+    void Awake()
+    {
+        cameraInfo = GetComponent<PlayerCameraInfo>();
     }
 
     void Start()
@@ -137,7 +158,7 @@ public class RopeController : MonoBehaviour
 
     void TakeOverVelocity(NormalRope takeOverRope, NormalRope takenOverRope)
     {
-        if(!takeOverRope.IsCanConrol) return;
+        if(!takeOverRope.IsCanControl) return;
 
         takeOverRope.ropeInst.SimulationStart();
         Vector3 takenOverVelocity = takenOverRope.ropeInst.velocity;
@@ -188,14 +209,14 @@ public class RopeController : MonoBehaviour
             return position.Value;
         }
 
-        Vector3 point = camera.position + (camera.forward * 50);
+        Vector3 point = cameraInfo.position + (cameraInfo.forward * 50);
         return  point - shootPosition;
     }
 
     bool IsPlayerBeforePoint_(Vector3 point)
     {
         Vector3 player2HitPoint = point - transform.position;
-        float dot = Vector3.Dot(camera.forward, player2HitPoint);
+        float dot = Vector3.Dot(cameraInfo.forward, player2HitPoint);
         
         //ドット積が正 -> 前方向にある
         return dot > 0;
@@ -204,10 +225,12 @@ public class RopeController : MonoBehaviour
     Vector3? IsPlayerBeforePoint(Vector3 shootPosition, float maxDistance)
     {
         //当たった場所を検証
-        Ray ray = new Ray(camera.position, camera.forward);
+        Ray ray = new Ray(cameraInfo.position, cameraInfo.forward);
 
         //Playerは判定しない
-        int ignoreLayer =  -1 - (1 << gameObject.layer | 1 << LayerMask.NameToLayer("Rope"));
+        int ignoreLayer =  -1 - (1 << gameObject.layer |
+                                 1 << LayerMask.NameToLayer("Rope/Normal") |
+                                 1 << LayerMask.NameToLayer("Rope/Lock"));
         RaycastHit[] raycasthit = Physics.RaycastAll(ray, maxDistance, ignoreLayer);
 
         if(raycasthit.Length == 0) return null;
@@ -275,7 +298,7 @@ public class RopeController : MonoBehaviour
 
     public void CreateNormalRope(NormalRope rope, Collision hitInfo, UnityAction<NormalRopeSimulate> callback)
     {
-        GameObject   ropeInst = Instantiate(normalRopePrefab) as GameObject;
+        GameObject         ropeInst = Instantiate(normalRopePrefab) as GameObject;
         NormalRopeSimulate simulate = ropeInst.GetComponent<NormalRopeSimulate>();
 
         simulate.Initialize(hitInfo.contacts[0].point, rope.sync.position);
@@ -288,7 +311,10 @@ public class RopeController : MonoBehaviour
             callback(simulate);
             SendCreateNormalRopeEvent(simulate);
 
-            if(left.IsCanConrol && right.IsCanConrol)
+            simulate.isCalcDistance = hitInfo.transform.tag != "Enemy";
+            CheckFreezeNormalRope(simulate);
+
+            if(IsCenterRopeCreate())
             {
                 CreateCenterNormalRope();
             }
@@ -297,6 +323,32 @@ public class RopeController : MonoBehaviour
         {
             //引っかからなかった キャンセル
             simulate.SimulationEnd();
+        }
+    }
+
+    bool IsCenterRopeCreate()
+    {
+        //両方とも捕獲用ロープか両方とも移動用ロープの場合true
+        return left .IsCanControl &&
+               right.IsCanControl &&
+               !(left.IsCatchRope ^ right.IsCatchRope);
+    }
+
+    void CheckFreezeNormalRope(NormalRopeSimulate rope)
+    {
+        //捕獲用ロープか true->捕獲用ロープではない
+        if(rope.isCalcDistance) return;
+
+        if(left.IsCanControl && left.IsCatchRope)
+        {
+            left.ropeInst.SimulationStop();
+            return;
+        }
+
+        if(right.IsCanControl && right.IsCatchRope)
+        {
+            right.ropeInst.SimulationStop();
+            return;
         }
     }
 
@@ -316,7 +368,7 @@ public class RopeController : MonoBehaviour
     void RopeSendEvent(Action action)
     {
         RopeEvent e = (rope)=> {
-            if(!rope.IsCanConrol) return false;
+            if(!rope.IsCanControl) return false;
             action(rope);
             return true;
         };
@@ -362,6 +414,27 @@ public class RopeController : MonoBehaviour
             SyncTransformToRope_(center, syncTransform);
             SyncRopeToTransform_(left);
             SyncRopeToTransform_(right);
+            return;
+        }
+
+        if(left.IsCanControl && right.IsCanControl)
+        {
+            //捕獲用ロープか
+            if(left.IsCatchRope)
+            {
+                left.ropeInst.SimulationStop();
+                SyncRopeToTransform_(left);
+                SyncTransformToRope_(right, syncTransform);
+                return;
+            }
+
+            if(right.IsCatchRope)
+            {
+                right.ropeInst.SimulationStop();
+                SyncRopeToTransform_(right);
+                SyncTransformToRope_(left, syncTransform);
+                return;
+            }
         }
 
         if(left .RopeExist) SyncTransformToRope_(left , syncTransform);
@@ -388,7 +461,7 @@ public class RopeController : MonoBehaviour
 
     private void SyncRopeToTransform_(NormalRope rope)
     {
-        if(!rope.IsCanConrol) return;
+        if(!rope.IsCanControl) return;
         rope.ropeInst.tailPosition = rope.sync.position;
     }
 

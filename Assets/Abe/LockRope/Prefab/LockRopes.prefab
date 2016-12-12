@@ -22,9 +22,9 @@ GameObject:
   - 120: {fileID: 120000011829836376}
   - 114: {fileID: 114000012115762680}
   - 114: {fileID: 114000013381031984}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: LockRopes
-  m_TagString: Untagged
+  m_TagString: Rope/Lock
   m_Icon: {fileID: -4738709637730668739, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ GameObject:
   - 4: {fileID: 4000014070353964}
   - 135: {fileID: 135000013130081178}
   - 54: {fileID: 54000011740984936}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: ropePoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - 4: {fileID: 4000013415088052}
   - 135: {fileID: 135000011401867386}
   - 54: {fileID: 54000013312859040}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: ropePoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

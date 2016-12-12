@@ -30,7 +30,11 @@ public class PlayerRopeMove : MonoBehaviour
             player.NormalMove();
             player.Jump();
             player.SyncRopeToPlayer();
-            player.RopeTakeUp();
+
+            if(Input.GetAxisRaw("RopeTake") > 0)
+            {
+                player.RopeTake();
+            }
         }
         else
         {

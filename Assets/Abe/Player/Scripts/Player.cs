@@ -5,9 +5,6 @@ using UniRx;
 public class Player : MonoBehaviour, RopeEventHandlar
 {
     [SerializeField]
-    private Camera playerCamera;
-
-    [SerializeField]
     private float moveSpeed;
 
     [SerializeField]
@@ -25,11 +22,8 @@ public class Player : MonoBehaviour, RopeEventHandlar
     [SerializeField]
     private float ropeAcceleration;
 
-    [SerializeField, Header("ロープの縮めるスピード")]
-    private float ropeTakeUpSpeed;
-
-    [SerializeField, Header("ロープの伸ばすスピード")]
-    private float ropeTakeDownSpeed;
+    [SerializeField, Header("ロープの伸縮スピード")]
+    private float ropeTakeSpeed;
 
     [SerializeField, Header("ロープの伸縮時に加える力")]
     private float ropeTakeForce;
@@ -55,6 +49,8 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
     PlayerMove     playerMove;
     PlayerRopeMove playerRopeMove;
+
+    PlayerCameraInfo cameraInfo;
 
     [NonSerialized]
     public Animator animator;
@@ -82,6 +78,8 @@ public class Player : MonoBehaviour, RopeEventHandlar
         animator       = GetComponent<Animator>();
         controller     = GetComponent<CharacterController>();
         ropeController = GetComponent<RopeController>();
+
+        cameraInfo     = GetComponent<PlayerCameraInfo>();
 
         //物理演算と出来る限り同じ挙動にするため
         gravity = Physics.gravity;
@@ -111,23 +109,21 @@ public class Player : MonoBehaviour, RopeEventHandlar
             z = controller.radius * transform.localScale.z
         };
 
-        bool isRayHit = false; //Physics.BoxCast(position, size, Vector3.down, Quaternion.identity, 0.1f);
-
-        int  layerMask = -1 - (1 << gameObject.layer | 1 << LayerMask.NameToLayer("Rope"));
+        int  layerMask = -1 - (1 << gameObject.layer |
+                               1 << LayerMask.NameToLayer("Rope/Normal") |
+                               1 << LayerMask.NameToLayer("Rope/Lock"));
 
         bool isBoxHit  = Physics.CheckBox(position, size, Quaternion.identity, layerMask);
 
         bool isUpVelocity = playerVelocity.y > 0.25f;
 
-        return (controller.isGrounded || (isBoxHit || isRayHit) && !isUpVelocity);
+        return (controller.isGrounded || (isBoxHit) && !isUpVelocity);
     }
 
     public void NormalMove()
     {
         if(isJump) isJump = false;
-
-        var     cameraAxis = GetCameraAxis();
-        Vector3 velocity   = GetInputVelocity(cameraAxis);
+        Vector3 velocity   = cameraInfo.GetInputVelocity();
         float   speed      = velocity.magnitude;
 
         //velocityがゼロベクトルだとだと変な方向に向くため
@@ -142,35 +138,24 @@ public class Player : MonoBehaviour, RopeEventHandlar
     public void AirMove()
     {
         if(IsGround()) return;
-        var axis = GetCameraAxis();
-        transform.position += GetInputVelocity(axis) * airMoveSpeed * Time.deltaTime;
+        transform.position += cameraInfo.GetInputVelocity() * airMoveSpeed * Time.deltaTime;
     }
 
     public void RopeControl()
     {
-        var     axis     = GetCameraAxis();
-        Vector3 velocity = GetInputVelocity(axis);
+        Vector3 velocity = cameraInfo.GetInputVelocity();
         if(velocity != Vector3.zero && !IsGround())
         {
             ropeController.AddForce(velocity * ropeForcePower, ForceMode.Force);
         }
 
-        RopeTakeUp();
-        RopeTakeDown();
+        RopeTake();
     }
 
-    public void RopeTakeUp()
+    public void RopeTake()
     {
-        if(!RopeInput.isTakeUpButton)   return;
-        ropeController.SubLength(ropeTakeUpSpeed   * Time.deltaTime);
+        ropeController.AddLength(ropeTakeSpeed * -Input.GetAxisRaw("RopeTake") * Time.deltaTime);
     }
-
-    public void RopeTakeDown()
-    {
-        if(!RopeInput.isTakeDownButton) return;
-        ropeController.AddLength(ropeTakeDownSpeed * Time.deltaTime);
-    }
-
     public void Jump()
     {
         if(!IsGround())                  return;
@@ -181,36 +166,6 @@ public class Player : MonoBehaviour, RopeEventHandlar
         isJump = true;
         jumpTime = Time.time;
     }
-    
-    //Item1:forward, Item2:right
-    public Tuple<Vector3, Vector3> GetCameraAxis()
-    {
-        Vector3 right   = playerCamera.transform.right;
-        Vector3 forward = playerCamera.transform.forward;
-
-        //変な方向に動くため
-        right  .y = 0;
-        forward.y = 0;
-
-        right  .Normalize();
-        forward.Normalize();
-
-        return new Tuple<Vector3, Vector3>(forward, right);
-    }
-
-    public Vector3 GetInputVelocity(Vector3 forward, Vector3 right)
-    {
-        Vector3 velocity;
-        velocity  = forward * Input.GetAxis("Vertical");
-        velocity += right   * Input.GetAxis("Horizontal");
-        return velocity; //正規化はしない
-    }
-
-    //axis -> Item1:forward, Item2:right
-    public Vector3 GetInputVelocity(Tuple<Vector3, Vector3> axis)
-    {
-        return GetInputVelocity(axis.Item1, axis.Item2);
-    }
 
     public void ApplyGravity()
     {
@@ -220,6 +175,11 @@ public class Player : MonoBehaviour, RopeEventHandlar
         playerVelocity += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
+        CheckJumpState();
+    }
+
+    void CheckJumpState()
+    {
         //重力加速度をみて初速度より速くなればjump状態解除
         if(jumpPower + gravity.y * (Time.time - jumpTime) < -jumpPower * Time.deltaTime)
         {
@@ -302,10 +262,8 @@ public class Player : MonoBehaviour, RopeEventHandlar
     public void ShootLockRope()
     {
         if(!Input.GetButtonDown("LockRope")) return;
-
-
+        
         Vector3 rayOffset = Vector3.up * 0.01f;
-
         if(ropeController.CreateLockRope(footOrigin.position + rayOffset, lockRopeDistance))
         {
             animator.SetTrigger("ShootLockRope");
