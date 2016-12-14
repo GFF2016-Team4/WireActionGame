@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7dd6067eabcffbb449ec5cd122bb0ea8
-timeCreated: 1481701975
+guid: 57de45c626f1da84a81aa1c89a8bac2f
+timeCreated: 1481701974
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -60,7 +60,7 @@ ModelImporter:
     400050: mixamorig:Spine2
     400052: mqo_mesh
     4300000: mqo_mesh
-    7400000: walking
+    7400000: run
     9500000: //RootNode
     13700000: mqo_mesh
   materials:
@@ -85,13 +85,13 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: walking
+      name: run
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 62
+      lastFrame: 19
       wrapMode: 0
-      orientationOffsetY: 0
-      level: -0.665
+      orientationOffsetY: -0.08
+      level: -0.6
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
