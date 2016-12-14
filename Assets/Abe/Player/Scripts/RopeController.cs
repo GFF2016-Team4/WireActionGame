@@ -422,23 +422,26 @@ public class RopeController : MonoBehaviour
             //捕獲用ロープか
             if(left.IsCatchRope)
             {
-                left.ropeInst.SimulationStop();
-                SyncRopeToTransform_(left);
-                SyncTransformToRope_(right, syncTransform);
+                SyncCatchRopeToTransform( left, right, syncTransform);
                 return;
             }
 
             if(right.IsCatchRope)
             {
-                right.ropeInst.SimulationStop();
-                SyncRopeToTransform_(right);
-                SyncTransformToRope_(left, syncTransform);
+                SyncCatchRopeToTransform(right,  left, syncTransform);
                 return;
             }
         }
 
         if(left .RopeExist) SyncTransformToRope_(left , syncTransform);
         if(right.RopeExist) SyncTransformToRope_(right, syncTransform);
+    }
+
+    private void SyncCatchRopeToTransform(NormalRope catchRope, NormalRope normalRope, Transform syncTransform)
+    {
+        catchRope.ropeInst.SimulationStop();
+        SyncRopeToTransform_(catchRope);
+        SyncTransformToRope_(normalRope, syncTransform);
     }
 
     private void SyncTransformToRope_(NormalRope rope, Transform syncTransform)

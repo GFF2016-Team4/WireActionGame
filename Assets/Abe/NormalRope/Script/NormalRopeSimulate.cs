@@ -87,7 +87,7 @@ public class NormalRopeSimulate : MonoBehaviour
             yield return null;
         }
     }
-    
+
     void CheckObstacle()
     {
         if(!rope.rigOriginJoint.IsRootJoint())

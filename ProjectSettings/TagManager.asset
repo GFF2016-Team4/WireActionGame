@@ -10,7 +10,9 @@ TagManager:
   - Jump
   - tree
   - Point
-  - Rope
+  - Rope/Normal
+  - Enemy
+  - Rope/Lock
   layers:
   - Default
   - TransparentFX
@@ -22,10 +24,10 @@ TagManager:
   - 
   - PlayerNoCollision
   - Player
-  - Rope
+  - Rope/Normal
   - Bullet
-  - 
-  - 
+  - Rope/Lock
+  - Enemy
   - 
   - 
   - 
