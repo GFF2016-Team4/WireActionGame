@@ -33,6 +33,7 @@ namespace Gaken
 
         public bool ikActive = false;
         public Transform child;                 //Enemyの子供
+        public Transform spine;
 
         public int attackCount = 0;
 
@@ -58,7 +59,7 @@ namespace Gaken
 
         private bool setWaitshotFlag = false; //　構え終わった時に値をセットしたらOn
 
-
+        public GameObject rightArm;
         void Start()
         {
             //初期化
@@ -103,7 +104,7 @@ namespace Gaken
             }
 
             // 上下キーで加速
-            m_Speed += m_AccelPower * axisVertical * Time.deltaTime;
+            //m_Speed += m_AccelPower * axisVertical * Time.deltaTime;
 
             // 速度制限
             m_Speed = Mathf.Clamp(m_Speed, m_MinSpeed, m_MaxSpeed);
@@ -133,7 +134,7 @@ namespace Gaken
             // CharacterControllerに命令して移動する
 
             //アニメターに数値を知らせる
-            m_Animator.SetFloat("Speed", m_Speed);
+            //m_Animator.SetFloat("Speed", m_Speed);
 
             //エネミーを即死させる
             if (Input.GetKey(KeyCode.Z))
@@ -160,10 +161,10 @@ namespace Gaken
             else
             {
                 // 左右キーで回転
-                transform.Rotate(0, Input.GetAxis("Horizontal") * m_RotateSpeed * Time.deltaTime, 0);
+                //transform.Rotate(0, Input.GetAxis("Horizontal") * m_RotateSpeed * Time.deltaTime, 0);
 
                 //移動させる
-                m_Controller.Move(velocity * Time.deltaTime);
+                //m_Controller.Move(velocity * Time.deltaTime);
             }
 
             /****************************************************************
@@ -194,22 +195,49 @@ namespace Gaken
             //使い方わかんないっす
             //m_Animator.GetBoneTransform(HumanBodyBones.Hips).Rotate(x * Time.deltaTime, 0, 0);
 
+            AnimatorStateInfo state = transform.Find("EnemyRobot").GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
+            if (state.IsName("UpperBody.Ready"))
+            {
+                spine.transform.localScale = new Vector3(30f, 30f, 0.5f);
+            }
+            else {
+                transform.localScale = new Vector3(1f, 1f, 1f);
+            }
 
-            if(Input.GetKeyDown(KeyCode.Alpha1))
+            if(Input.GetKey(KeyCode.Space))
+            {
+                rightArm.GetComponent<SkinnedMeshRenderer>().enabled = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 m_Animator.SetLayerWeight(1, 1);
                 m_Animator.SetBool("IsAttackReady", true);
 
-                if(m_Animator.GetTime() == m_Animator.recorderStopTime)
+
+                spine.transform.Rotate(new Vector3(30, 30, 0));
+
+
+                if (m_Animator.enabled == false)
                 {
-                    m_Animator.enabled = false;
+                    Vector3 vec = PlayerTarget.position - spine.position;
+                    spine.transform.Rotate(vec);
+
+                    spine.transform.Rotate(new Vector3(30, 30, 0));
+
+                    transform.FindChild("SPINE_BASE").transform.Rotate(new Vector3(30, 30, 0));
                 }
 
-                m_Animator.GetBoneTransform(HumanBodyBones.Hips).Rotate(x * Time.deltaTime, 0, 0);
+                //if(m_Animator.GetTime() == m_Animator.recorderStopTime)
+                //{
+                //    m_Animator.enabled = false;
+                //}
+
+                //m_Animator.GetBoneTransform(HumanBodyBones.Hips).Rotate(x * Time.deltaTime, 0, 0);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                m_Animator.enabled = true;
+                //m_Animator.enabled = true;
 
                 m_Animator.SetBool("IsAttack", true);
             }
@@ -299,7 +327,7 @@ namespace Gaken
         public void OnTriggerEnter(Collider other)
         {
             //ロープカウンタ数を+1
-            if (other.gameObject.tag == "Rope")
+            if (other.gameObject.tag == "NormalRope")
                 ropeCounter += 1;
 
             Debug.Log("入ったぜ!");
@@ -310,7 +338,7 @@ namespace Gaken
         public void OnTriggerExit(Collider other)
         {
             //ロープカウンタ数を-1
-            if (other.gameObject.tag == "Rope")
+            if (other.gameObject.tag == "NormalRope")
                 ropeCounter -= 1;
 
             Attack = false;
@@ -328,19 +356,27 @@ namespace Gaken
 
                 Debug.Log(ropeCounter);
 
-            AnimatorStateInfo Info = m_Animator.GetCurrentAnimatorStateInfo(0);
-            if (other.gameObject.tag == "Player" && Info.IsName("BaseLayer.idle"))
-            {
-                //agent.speed = 0;
-                //Attack = true;
-                time += Time.deltaTime;
-                time2 += Time.deltaTime;
-            }
+            //AnimatorStateInfo Info = m_Animator.GetCurrentAnimatorStateInfo(0);
+            //if (other.gameObject.tag == "Player" && Info.IsName("BaseLayer.idle"))
+            //{
+            //    //agent.speed = 0;
+            //    //Attack = true;
+            //    time += Time.deltaTime;
+            //    time2 += Time.deltaTime;
+            //}
         }
 
         public void OnAnimatorIK(int layerIndex)
         {
-           float x = 0, y = 0;
+
+            if (m_Animator.enabled == false)
+            {
+                Vector3 vec = PlayerTarget.position - spine.position;
+                m_Animator.SetBoneLocalRotation(HumanBodyBones.Spine, Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(vec.x, vec.y, vec.z)), 30));
+            }
+
+
+            float x = 0, y = 0;
 
             if(Input.GetKey(KeyCode.K))
             {
