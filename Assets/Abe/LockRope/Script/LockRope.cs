@@ -11,6 +11,9 @@ public class LockRope : MonoBehaviour
     [SerializeField]
     Transform ropePoint2;
     
+    [SerializeField]
+    float ignoreDistance;
+
     ListLineDraw lineDraw;
 
     void Awake()
@@ -46,5 +49,25 @@ public class LockRope : MonoBehaviour
         }
 
         lineDraw.DrawStart();
-    } 
+    }
+
+    void Update()
+    {
+        Ray ray = new Ray()
+        {
+            origin    = ropePoint1.position,
+            direction = ropePoint2.position - ropePoint1.position
+        };
+
+        float distance = Vector3.Distance(ropePoint1.position, ropePoint2.position);
+        distance -= ignoreDistance;
+        RaycastHit hitInfo;
+        
+        bool isHit = Physics.Raycast(ray, out hitInfo, distance);
+
+        if(isHit && hitInfo.collider.tag == "Enemy")
+        {
+            
+        }
+    }
 }

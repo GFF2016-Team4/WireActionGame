@@ -51,6 +51,9 @@ public class RopeController : MonoBehaviour
     private float bulletSpeed;
 
     [SerializeField]
+    private RectTransform reticle;
+
+    [SerializeField]
     NormalRope left;
 
     [SerializeField]
@@ -225,10 +228,11 @@ public class RopeController : MonoBehaviour
     Vector3? IsPlayerBeforePoint(Vector3 shootPosition, float maxDistance)
     {
         //当たった場所を検証
-        Ray ray = new Ray(cameraInfo.position, cameraInfo.forward);
-
+        Ray ray = Camera.main.ScreenPointToRay(reticle.position);
+        
         //Playerは判定しない
         int ignoreLayer =  -1 - (1 << gameObject.layer |
+                                 1 << LayerMask.NameToLayer("Bullet") |
                                  1 << LayerMask.NameToLayer("Rope/Normal") |
                                  1 << LayerMask.NameToLayer("Rope/Lock"));
         RaycastHit[] raycasthit = Physics.RaycastAll(ray, maxDistance, ignoreLayer);
