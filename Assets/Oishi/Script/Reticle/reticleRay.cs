@@ -30,7 +30,7 @@ public class reticleRay : MonoBehaviour
 
     public bool isShpereHit()
     {
-        Debug.Log(position);
+        //Debug.Log(position);
 
         Ray ray = Camera.main.ScreenPointToRay(Center);
         //radius = transform.lossyScale.x;

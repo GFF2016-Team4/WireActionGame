@@ -80,7 +80,7 @@ namespace Gaken
                                         仮初期化 
             ************************************************************************/
             //右腕の取得（使えるかどうか確定できていない）
-            child = transform.Find("R_HAND").GetComponent<Transform>();
+            child = transform.GetComponent<Transform>();
             PlayerTarget = transform.Find("Player").GetComponent<Transform>();
 
 
@@ -215,18 +215,18 @@ namespace Gaken
                 m_Animator.SetBool("IsAttackReady", true);
 
 
-                spine.transform.Rotate(new Vector3(30, 30, 0));
+                //spine.transform.Rotate(new Vector3(30, 30, 0));
 
 
-                if (m_Animator.enabled == false)
-                {
-                    Vector3 vec = PlayerTarget.position - spine.position;
-                    spine.transform.Rotate(vec);
+                //if (m_Animator.enabled == false)
+                //{
+                //    Vector3 vec = PlayerTarget.position - spine.position;
+                //    spine.transform.Rotate(vec);
 
-                    spine.transform.Rotate(new Vector3(30, 30, 0));
+                //    spine.transform.Rotate(new Vector3(30, 30, 0));
 
-                    transform.FindChild("SPINE_BASE").transform.Rotate(new Vector3(30, 30, 0));
-                }
+                //    transform.FindChild("SPINE_BASE").transform.Rotate(new Vector3(30, 30, 0));
+                //}
 
                 //if(m_Animator.GetTime() == m_Animator.recorderStopTime)
                 //{
@@ -327,10 +327,10 @@ namespace Gaken
         public void OnTriggerEnter(Collider other)
         {
             //ロープカウンタ数を+1
-            if (other.gameObject.tag == "NormalRope")
-                ropeCounter += 1;
+            //if (other.gameObject.tag == "NormalRope")
+            //    ropeCounter += 1;
 
-            Debug.Log("入ったぜ!");
+            //Debug.Log("入ったぜ!");
 
         }
 
@@ -338,12 +338,12 @@ namespace Gaken
         public void OnTriggerExit(Collider other)
         {
             //ロープカウンタ数を-1
-            if (other.gameObject.tag == "NormalRope")
-                ropeCounter -= 1;
+            //if (other.gameObject.tag == "NormalRope")
+            //ropeCounter -= 1;
 
-            Attack = false;
+            //Attack = false;
 
-            Debug.Log("出たぜ!");
+            //Debug.Log("出たぜ!");
 
         }
 
@@ -351,10 +351,10 @@ namespace Gaken
         public void OnTriggerStay(Collider other)
         {
             //同時に4点がロープとぶつかっているなら死ぬ
-            if (ropeCounter >= 4)
+            //if (ropeCounter >= 4)
                 //deadReplace = true;
 
-                Debug.Log(ropeCounter);
+                //Debug.Log(ropeCounter);
 
             //AnimatorStateInfo Info = m_Animator.GetCurrentAnimatorStateInfo(0);
             //if (other.gameObject.tag == "Player" && Info.IsName("BaseLayer.idle"))

@@ -74,7 +74,7 @@ namespace Enemy
             if (Physics.Raycast(ray, out hit))
             {
                 laser.SetPosition(1, hit.point);
-                Debug.Log(hit.transform.gameObject.name);
+                //Debug.Log(hit.transform.gameObject.name);
             }
             else
             {
