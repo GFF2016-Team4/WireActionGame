@@ -105,7 +105,6 @@ public class NormalRopeSimulate : MonoBehaviour
 
     void CreateRigOrigin(Vector3 createPoint)
     {
-#warning 捕獲用ロープと通常のロープの挙動を分ける
         Transform newOrigin = rope.AddRigOrigin(createPoint, isCalcDistance);
         newOrigin.parent = transform;
         listLineDraw.Insert(listLineDraw.count-1, newOrigin);

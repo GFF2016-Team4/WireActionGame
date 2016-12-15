@@ -42,7 +42,7 @@ GameObject:
   - 135: {fileID: 135000010032148302}
   m_Layer: 10
   m_Name: ropetail
-  m_TagString: Untagged
+  m_TagString: Rope/Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +61,7 @@ GameObject:
   - 114: {fileID: 114000014211422896}
   m_Layer: 10
   m_Name: ropeOrigin
-  m_TagString: Untagged
+  m_TagString: Rope/Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,7 +242,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!145 &145000010555160884
 SpringJoint:

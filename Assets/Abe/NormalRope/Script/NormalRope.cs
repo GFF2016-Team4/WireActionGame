@@ -64,11 +64,14 @@ public struct NormalRope
         Rigidbody connectBody   = newOrigin.GetComponent<Rigidbody>();
         tailJoint.connectedBody = connectBody;
 
-        Collider collider  = newOrigin.GetComponent<Collider>();
+        SphereCollider collider  = newOrigin.GetComponent<SphereCollider>();
         collider.isTrigger = true;
+        collider.radius = 0.5f;
 
-        newOrigin.gameObject.AddComponent<SyncObject>();
-
+        if(newOrigin.GetComponent<SyncObject>() == null)
+        {
+            newOrigin.gameObject.AddComponent<SyncObject>();
+        }
         rigOrigin      = newOrigin;
         rigOriginJoint = rigOrigin.GetComponent<SpringJoint>();
         rigOriginRig   = connectBody;
@@ -88,7 +91,7 @@ public struct NormalRope
         //新しいオブジェクトの設定
         newRigOriginRig.isKinematic = true;
         newRigOrigin.position       = createPoint;
-
+        
         SetRigOrigin(newRigOrigin);
 
         if(isCalcMinDistance)

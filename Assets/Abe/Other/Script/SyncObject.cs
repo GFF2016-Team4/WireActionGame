@@ -18,13 +18,17 @@ public class SyncObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(sync != null) return;
         sync = other.transform;
+
         offset = sync.position - transform.position;
+
+        transform.GetComponent<Collider>().isTrigger = true;
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.transform != sync) return;
-        sync = null;
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if(other.transform != sync) return;
+    //    sync = null;
+    //}
 }

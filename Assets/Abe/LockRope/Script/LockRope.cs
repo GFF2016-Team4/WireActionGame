@@ -67,7 +67,7 @@ public class LockRope : MonoBehaviour
 
         if(isHit && hitInfo.collider.tag == "Enemy")
         {
-            
+            Destroy(gameObject);
         }
     }
 }
