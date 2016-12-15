@@ -145,6 +145,27 @@ ModelImporter:
     100274: SPINE_03
     100276: SPINE_04
     100278: SPINE_BASE
+    100280: FACE_end_end_end
+    100282: L_FINGER01_Tip_end_end_end
+    100284: L_FINGER02_Tip_end_end_end
+    100286: L_FINGER03_Tip_end_end_end
+    100288: L_FINGER04_Tip_end_end_end
+    100290: L_FINGER05_Tip_end_end_end
+    100292: L_TOE01_Tip_end_end_end
+    100294: L_TOE02_Tip_end_end_end
+    100296: L_TOE03_Tip_end_end_end
+    100298: L_TOE04_Tip_end_end_end
+    100300: L_TOE05_Tip_end_end_end
+    100302: R_FINGER01_Tip_end_end_end
+    100304: R_FINGER02_Tip_end_end_end
+    100306: R_FINGER03_Tip_end_end_end
+    100308: R_FINGER04_Tip_end_end_end
+    100310: R_FINGER05_Tip_end_end_end
+    100312: R_TOE01_Tip_end_end_end
+    100314: R_TOE02_Tip_end_end_end
+    100316: R_TOE03_Tip_end_end_end
+    100318: R_TOE04_Tip_end_end_end
+    100320: R_TOE05_Tip_end_end_end
     400000: Armature
     400002: Body
     400004: Camera
@@ -285,10 +306,32 @@ ModelImporter:
     400274: SPINE_03
     400276: SPINE_04
     400278: SPINE_BASE
+    400280: FACE_end_end_end
+    400282: L_FINGER01_Tip_end_end_end
+    400284: L_FINGER02_Tip_end_end_end
+    400286: L_FINGER03_Tip_end_end_end
+    400288: L_FINGER04_Tip_end_end_end
+    400290: L_FINGER05_Tip_end_end_end
+    400292: L_TOE01_Tip_end_end_end
+    400294: L_TOE02_Tip_end_end_end
+    400296: L_TOE03_Tip_end_end_end
+    400298: L_TOE04_Tip_end_end_end
+    400300: L_TOE05_Tip_end_end_end
+    400302: R_FINGER01_Tip_end_end_end
+    400304: R_FINGER02_Tip_end_end_end
+    400306: R_FINGER03_Tip_end_end_end
+    400308: R_FINGER04_Tip_end_end_end
+    400310: R_FINGER05_Tip_end_end_end
+    400312: R_TOE01_Tip_end_end_end
+    400314: R_TOE02_Tip_end_end_end
+    400316: R_TOE03_Tip_end_end_end
+    400318: R_TOE04_Tip_end_end_end
+    400320: R_TOE05_Tip_end_end_end
     4300000: LeftArm
     4300002: Body
     4300004: RightArm
     7400000: Armature|Armature|mixamo.com|Layer0
+    7400002: Armature|Armature|Armature|Armature|mixamo.com|Layer0|Armature|Armature|
     9500000: //RootNode
     13700000: Body
     13700002: LeftArm
