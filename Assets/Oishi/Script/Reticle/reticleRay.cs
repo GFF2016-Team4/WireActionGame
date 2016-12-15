@@ -9,6 +9,8 @@ public class reticleRay : MonoBehaviour
     public Transform target;
     public RaycastHit hit;
 
+    private float distance = -10.0f;
+    private Vector3 position;
     Vector3 Center;
     LayerMask layerMask = ~(1 << 9 | 1 << 10 | 1 << 11 | 1 << 12);
 
@@ -17,14 +19,18 @@ public class reticleRay : MonoBehaviour
     void Start()
     {
         Center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+
     }
 
     void Update()
     {
+        position = transform.forward * distance;
+
     }
 
     public bool isShpereHit()
     {
+        Debug.Log(position);
 
         Ray ray = Camera.main.ScreenPointToRay(Center);
         //radius = transform.lossyScale.x;
@@ -33,7 +39,7 @@ public class reticleRay : MonoBehaviour
         //Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
 
 
-        if (Physics.SphereCast(transform.position, radius, transform.forward, out hit, direction, layerMask))
+        if (Physics.SphereCast(transform.position + position, radius, transform.forward, out hit, direction, layerMask))
         {
             target.position = hit.point;
             //target = hit.transform;
@@ -54,3 +60,4 @@ public class reticleRay : MonoBehaviour
         //Gizmos.DrawWireSphere(transform.position + transform.forward * direction, radius);
     }
 }
+;
