@@ -81,7 +81,7 @@ namespace Gaken
             ************************************************************************/
             //右腕の取得（使えるかどうか確定できていない）
             child = transform.GetComponent<Transform>();
-            PlayerTarget = transform.Find("Player").GetComponent<Transform>();
+            PlayerTarget = transform.GetComponent<Transform>();
 
 
         }
@@ -266,7 +266,7 @@ namespace Gaken
                 //this.transform.forward = target.transform.position;
                 //this.transform.TransformDirection(new Vector3(x, -z, y) * 7);
                 // ターゲット方向のベクトルを求める
-                Vector3 vec = PlayerTarget.position - child.position;
+                //Vector3 vec = PlayerTarget.position - child.position;
 
                 // ターゲットの方向を向く
                 //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(vec.x, 0, vec.z)), m_RotateSpeed);
