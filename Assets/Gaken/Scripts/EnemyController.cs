@@ -269,8 +269,8 @@ namespace Gaken
                 Vector3 vec = PlayerTarget.position - child.position;
 
                 // ターゲットの方向を向く
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(vec.x, 0, vec.z)), m_RotateSpeed);
-                child.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, vec.y, 0)), m_RotateSpeed);
+                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(vec.x, 0, vec.z)), m_RotateSpeed);
+                //child.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(0, vec.y, 0)), m_RotateSpeed);
 
                 //m_Animator.GetBoneTransform(HumanBodyBones.Hips).Rotate(vec.x, vec.y, vec.z);
 

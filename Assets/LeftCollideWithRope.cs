@@ -3,9 +3,9 @@ using System.Collections;
 
 namespace Enemy
 {
-    public class CollideWithRope : MonoBehaviour
+    public class LeftCollideWithRope : MonoBehaviour
     {
-
+        public Transform enemy;
         // Use this for initialization
         void Start()
         {
@@ -20,21 +20,11 @@ namespace Enemy
 
         public void OnTriggerStay(Collider other)
         {
-            int count = 0;
-
-            if (count < 2)
+            if (other.gameObject.tag == "Rope/Normal")
             {
-                if (other.gameObject.tag == "NormalRope")
-                {
-                    count++;
-                    Debug.Log(count);
-                }
+                enemy.GetComponent<Animator>().SetBool("IsLeftKnee", true);
+                Debug.Log("Left");
             }
-            else
-            {
-                Debug.Log("...");
-            }
-
         }
 
     }
