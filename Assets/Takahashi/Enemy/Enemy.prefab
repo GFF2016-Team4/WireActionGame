@@ -372,11 +372,10 @@ GameObject:
   - 54: {fileID: 54000011136057092}
   - 136: {fileID: 136000010856613352}
   - 114: {fileID: 114000012761660776}
-  - 114: {fileID: 114000012561943964}
   - 195: {fileID: 195000011905823456}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4738,11 +4737,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010066604962}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6969412, y: 0.26440427, z: 0.24761687}
-  m_Center: {x: -0.2614912, y: 0.004666456, z: -0.037328072}
+  m_Size: {x: 0.98093015, y: 0.2644043, z: 0.24761687}
+  m_Center: {x: -0.4035013, y: 0.0046689315, z: -0.037324306}
 --- !u!65 &65000010427937354
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4930,11 +4929,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014196602496}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6024957, y: 0.26017562, z: 0.24761687}
-  m_Center: {x: -0.3472288, y: -0.020121468, z: -0.037333857}
+  m_Size: {x: 0.795433, y: 0.26017562, z: 0.24761686}
+  m_Center: {x: -0.44370133, y: -0.020120656, z: -0.03733432}
 --- !u!95 &95000011694697764
 Animator:
   serializedVersion: 3
@@ -4969,17 +4968,6 @@ MonoBehaviour:
   PointLaserTime: 3
   AttackLaserTime: 3
   speed: 1
---- !u!114 &114000012561943964
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010724687962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b19717d03f0504a98f1ba89cfedb62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000012761660776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5003,10 +4991,12 @@ MonoBehaviour:
   m_JumpPower: 0
   ikActive: 0
   child: {fileID: 0}
+  spine: {fileID: 0}
   attackCount: 0
   deadReplacement: {fileID: 0}
   xLimit: 0
   yLimit: 0
+  rightArm: {fileID: 1000014055951340}
 --- !u!114 &114000013016881650
 MonoBehaviour:
   m_ObjectHideFlags: 1

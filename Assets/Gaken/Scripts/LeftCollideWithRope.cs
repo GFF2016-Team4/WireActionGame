@@ -27,6 +27,13 @@ namespace Enemy
             }
         }
 
+        public void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.tag == "Rope/Normal")
+            {
+                enemy.GetComponent<Animator>().SetBool("IsLeftKnee", false);
+            }
+        }
     }
 
 }

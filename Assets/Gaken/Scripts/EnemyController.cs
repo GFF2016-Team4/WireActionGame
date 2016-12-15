@@ -104,7 +104,7 @@ namespace Gaken
             }
 
             // 上下キーで加速
-            //m_Speed += m_AccelPower * axisVertical * Time.deltaTime;
+            m_Speed += m_AccelPower * axisVertical * Time.deltaTime;
 
             // 速度制限
             m_Speed = Mathf.Clamp(m_Speed, m_MinSpeed, m_MaxSpeed);
@@ -134,7 +134,7 @@ namespace Gaken
             // CharacterControllerに命令して移動する
 
             //アニメターに数値を知らせる
-            //m_Animator.SetFloat("Speed", m_Speed);
+            m_Animator.SetFloat("Speed", m_Speed);
 
             //エネミーを即死させる
             if (Input.GetKey(KeyCode.Z))
@@ -161,10 +161,10 @@ namespace Gaken
             else
             {
                 // 左右キーで回転
-                //transform.Rotate(0, Input.GetAxis("Horizontal") * m_RotateSpeed * Time.deltaTime, 0);
+                transform.Rotate(0, Input.GetAxis("Horizontal") * m_RotateSpeed * Time.deltaTime, 0);
 
                 //移動させる
-                //m_Controller.Move(velocity * Time.deltaTime);
+                m_Controller.Move(velocity * Time.deltaTime);
             }
 
             /****************************************************************
@@ -179,32 +179,10 @@ namespace Gaken
             //    rightHand.Rotate(0, 0, 90);
             //}
 
-
-            float x = 0, y = 0;
-
-            if (Input.GetKey(KeyCode.K))
-            {
-                child.transform.Rotate(30, 0, 0);
-                x += 1;
-            }
-            if (Input.GetKey(KeyCode.I))
-            {
-                x -= 1;
-            }
-
             //使い方わかんないっす
             //m_Animator.GetBoneTransform(HumanBodyBones.Hips).Rotate(x * Time.deltaTime, 0, 0);
 
-            AnimatorStateInfo state = transform.Find("EnemyRobot").GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
-            if (state.IsName("UpperBody.Ready"))
-            {
-                spine.transform.localScale = new Vector3(30f, 30f, 0.5f);
-            }
-            else {
-                transform.localScale = new Vector3(1f, 1f, 1f);
-            }
-
-            if(Input.GetKey(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 rightArm.GetComponent<SkinnedMeshRenderer>().enabled = false;
             }
@@ -214,26 +192,6 @@ namespace Gaken
                 m_Animator.SetLayerWeight(1, 1);
                 m_Animator.SetBool("IsAttackReady", true);
 
-
-                //spine.transform.Rotate(new Vector3(30, 30, 0));
-
-
-                //if (m_Animator.enabled == false)
-                //{
-                //    Vector3 vec = PlayerTarget.position - spine.position;
-                //    spine.transform.Rotate(vec);
-
-                //    spine.transform.Rotate(new Vector3(30, 30, 0));
-
-                //    transform.FindChild("SPINE_BASE").transform.Rotate(new Vector3(30, 30, 0));
-                //}
-
-                //if(m_Animator.GetTime() == m_Animator.recorderStopTime)
-                //{
-                //    m_Animator.enabled = false;
-                //}
-
-                //m_Animator.GetBoneTransform(HumanBodyBones.Hips).Rotate(x * Time.deltaTime, 0, 0);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
@@ -251,9 +209,12 @@ namespace Gaken
                 m_Animator.SetBool("IsAttackReady", false);
                 m_Animator.SetBool("IsAttack", false);
 
-                m_Animator.SetLayerWeight(1, 0);
+                m_Animator.CrossFade("Finish", 10);
 
+                if (m_Animator.GetAnimatorTransitionInfo(0).anyState)
+                    m_Animator.SetLayerWeight(1, 0);
             }
+
             //攻撃です！
             if (Input.GetButtonDown("Fire1"))
             {
@@ -352,9 +313,9 @@ namespace Gaken
         {
             //同時に4点がロープとぶつかっているなら死ぬ
             //if (ropeCounter >= 4)
-                //deadReplace = true;
+            //deadReplace = true;
 
-                //Debug.Log(ropeCounter);
+            //Debug.Log(ropeCounter);
 
             //AnimatorStateInfo Info = m_Animator.GetCurrentAnimatorStateInfo(0);
             //if (other.gameObject.tag == "Player" && Info.IsName("BaseLayer.idle"))
@@ -378,11 +339,11 @@ namespace Gaken
 
             float x = 0, y = 0;
 
-            if(Input.GetKey(KeyCode.K))
+            if (Input.GetKey(KeyCode.K))
             {
                 x += 1 * Time.deltaTime;
             }
-            if(Input.GetKey(KeyCode.I))
+            if (Input.GetKey(KeyCode.I))
             {
                 x -= 1 * Time.deltaTime;
             }
