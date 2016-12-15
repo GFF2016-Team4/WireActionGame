@@ -81,12 +81,12 @@ namespace Enemy
                 laser.SetPosition(1, transform.forward * 100);
             }
         }
-        void FiringBeam(GameObject[] obj)
-        {
-            var lineRenderer = GetComponent<LineRenderer>();
-            lineRenderer.SetPosition(0, obj[0].transform.position);
-            lineRenderer.SetPosition(1, obj[1].transform.position);
-        }
+        //void FiringBeam(GameObject[] obj)
+        //{
+        //    var lineRenderer = GetComponent<LineRenderer>();
+        //    lineRenderer.SetPosition(0, obj[0].transform.position);
+        //    lineRenderer.SetPosition(1, obj[1].transform.position);
+        //}
     }
 
 }

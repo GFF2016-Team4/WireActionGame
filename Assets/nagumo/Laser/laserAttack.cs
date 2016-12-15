@@ -17,7 +17,8 @@ namespace Enemy
         LineRenderer laserBlue;
         RaycastHit hit;
 
-        public float laserRadius = 1;
+        [System.NonSerialized]
+        public float laserRadius;
         public float laserAttackTime;
         // Use this for initialization
         void Start()
