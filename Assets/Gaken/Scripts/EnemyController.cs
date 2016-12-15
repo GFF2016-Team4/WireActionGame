@@ -25,7 +25,7 @@ namespace Gaken
         public float m_JumpPower = 0.0f;        // ジャンプ力（初速(メートル/秒)）
 
         float m_VelocityY = 0f;                 // y軸方向の移動量
-        float m_Speed = 0f;                     // 前進速度（前進はプラス、後退はマイナス）
+        public float m_Speed = 0f;                     // 前進速度（前進はプラス、後退はマイナス）
 
         bool m_IsAttack = false;                         //攻撃パターンフラグ
         bool m_IsAttackReady = false;
@@ -167,6 +167,56 @@ namespace Gaken
                 m_Controller.Move(velocity * Time.deltaTime);
             }
 
+            agent.speed = m_Speed;
+            agent.destination = Destination.position;
+            AnimatorStateInfo Info = m_Animator.GetCurrentAnimatorStateInfo(0);
+            //Ray ray = new Ray(transform.position, transform.forward);
+            //RaycastHit hit;
+
+            //Debug.DrawRay(ray.origin, ray.direction, Color.blue, 2f);
+
+            //if (Physics.Raycast(ray, out hit, 1.5f))
+            //{
+            //    if (hit.collider.gameObject.name == "kabe" && Info.IsName("BaseLayer.idle"))
+            //    {
+            //        agent.speed = 0;
+            //        Debug.Log(hit.collider.gameObject.name + "発見");
+            //        Attack = true;
+            //        time += Time.deltaTime;
+            //    }
+            //}
+
+            if (time2 >= NextAttackTime)
+            {
+                time2 = 0;
+                Attack = true;
+
+                //PlayerTargetに指定したObjectを見続ける
+                Vector3 eye = PlayerTarget.position;
+                eye.y = transform.position.y;
+                transform.LookAt(eye);
+            }
+
+            if (Attack == true)
+            {
+                if (time >= 0.3f)
+                {
+                    m_Animator.SetTrigger("Attack");
+                    Attack = false;
+                    time = 0;
+                }
+            }
+            //モーションのAttack中の処理
+            if (Info.IsName("UpperBody.Attack"))
+            {
+                agent.speed = 0;
+
+                Debug.Log("攻撃now");
+            }
+
+            m_Animator.SetFloat("Speed", m_Speed);
+
+
             /****************************************************************
                                         仮更新
             ****************************************************************/
@@ -209,7 +259,7 @@ namespace Gaken
                 m_Animator.SetBool("IsAttackReady", false);
                 m_Animator.SetBool("IsAttack", false);
 
-                m_Animator.CrossFade("Finish", 10);
+                m_Animator.CrossFade("Base Layer.Finish", 10);
 
                 if (m_Animator.GetAnimatorTransitionInfo(0).anyState)
                     m_Animator.SetLayerWeight(1, 0);
@@ -298,6 +348,10 @@ namespace Gaken
         //トリガーに出ると同時に
         public void OnTriggerExit(Collider other)
         {
+            Attack = false;
+
+
+
             //ロープカウンタ数を-1
             //if (other.gameObject.tag == "NormalRope")
             //ropeCounter -= 1;
@@ -311,6 +365,15 @@ namespace Gaken
         //トリガに入っているときに
         public void OnTriggerStay(Collider other)
         {
+            AnimatorStateInfo Info = m_Animator.GetCurrentAnimatorStateInfo(0);
+            if (other.gameObject.tag == "Player" && Info.IsName("UpperBody.MoveTree"))
+            {
+                //agent.speed = 0;
+                //Attack = true;
+                time += Time.deltaTime;
+                time2 += Time.deltaTime;
+            }
+
             //同時に4点がロープとぶつかっているなら死ぬ
             //if (ropeCounter >= 4)
             //deadReplace = true;
