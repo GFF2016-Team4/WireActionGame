@@ -3,47 +3,47 @@ using System.Collections;
 
 public class reticleRay : MonoBehaviour
 {
-    public float radius = 10.0f;
+    public float radius;
     public float direction;
 
     public Transform target;
     public RaycastHit hit;
 
-    private float distance = -10.0f;
     private Vector3 position;
-    Vector3 Center;
-    LayerMask layerMask = ~(1 << 9 | 1 << 10 | 1 << 11 | 1 << 12);
+    private float distance = -30.0f;
 
+    Vector3 Center;
+    int layerMask;
 
 
     void Start()
     {
         Center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        layerMask = LayerMask.GetMask("Player", "Rope/Normal", "Rope/Lock", "Bullet");
+        layerMask = ~layerMask;
 
     }
 
     void Update()
     {
         position = transform.forward * distance;
-
     }
 
     public bool isShpereHit()
     {
-        //Debug.Log(position);
 
         Ray ray = Camera.main.ScreenPointToRay(Center);
         //radius = transform.lossyScale.x;
 
-        //var sphereHit = Physics.SphereCast(transform.position, radius, transform.forward, out hit, direction, test.value);
-        //Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
+        var sphereHit = (Physics.SphereCast(transform.position + position, radius, transform.forward, out hit, direction, layerMask));
+        Vector3 hitScreenPoint = Camera.main.WorldToScreenPoint(hit.point);
 
-
-        if (Physics.SphereCast(transform.position + position, radius, transform.forward, out hit, direction, layerMask))
+        if (sphereHit && isScreen(hitScreenPoint))
         {
             target.position = hit.point;
-            //target = hit.transform;
+            Debug.Log(hitScreenPoint);
 
+            //target = hit.transform;
             return true;
         }
         else
@@ -58,6 +58,17 @@ public class reticleRay : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position + transform.forward * (hit.distance), radius);
 
         //Gizmos.DrawWireSphere(transform.position + transform.forward * direction, radius);
+    }//640  580
+    bool isScreen(Vector3 position)
+    {
+        if ((position.x >= 0 && position.x <= Screen.width) &&
+            (position.y >= 0 && position.y <= Screen.height))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
-;

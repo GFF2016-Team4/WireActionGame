@@ -8,7 +8,10 @@ public class reticlemove : MonoBehaviour
 
     public GameObject img;
     [Header("Rayを飛ばすカメラ")]
-    public GameObject rayobj;
+    public GameObject rayCamera;
+
+    public float radius;
+    public float direction;
 
     RectTransform m_rectTransform;
     changeColor m_changeColor;
@@ -23,7 +26,11 @@ public class reticlemove : MonoBehaviour
     void Start()
     {
         m_changeColor = GetComponent<changeColor>();
-        m_reticleRay = rayobj.GetComponent<reticleRay>();
+        m_reticleRay = rayCamera.GetComponent<reticleRay>();
+        m_reticleRay = rayCamera.AddComponent<reticleRay>();
+        m_reticleRay.target = gameObject.GetComponent<RectTransform>();
+        m_reticleRay.radius = radius;
+        m_reticleRay.direction = direction;
     }
 
     void Update()
