@@ -39,21 +39,28 @@ public class PlayerCamera : MonoBehaviour
 
         FixedAngle();
 
-        Vector3 position = target.position;       //初期化
-        position -= transform.forward * distance; //ターゲットの後ろに下がって見やすいように
-        position += offset;                       //オフセット値
-
-        //座標の変更
-        transform.position = position;
-
         Ray ray = new Ray()
         {
             origin    =  target.position + offset,
             direction = -transform.forward
         };
 
-        //RaycastHit hitInfo;
-        // bool isHit = Physics.Raycast(ray, out hitInfo, distance);
+        RaycastHit hitInfo;
+        bool isHit = Physics.Raycast(ray, out hitInfo, distance);
+
+        if(isHit)
+        {
+            transform.position = hitInfo.point;
+        }
+        else
+        {
+            Vector3 position = target.position;       //初期化
+            position -= transform.forward * distance; //ターゲットの後ろに下がって見やすいように
+            position += offset;                       //オフセット値
+
+            //座標の変更
+            transform.position = position;
+        }
     }
 
     void ChangeCursorState()
