@@ -68,10 +68,7 @@ public struct NormalRope
         collider.isTrigger = true;
         collider.radius = 0.5f;
 
-        if(newOrigin.GetComponent<SyncObject>() == null)
-        {
-            newOrigin.gameObject.AddComponent<SyncObject>();
-        }
+        AddSyncObjectComponent(newOrigin.gameObject);
         rigOrigin      = newOrigin;
         rigOriginJoint = rigOrigin.GetComponent<SpringJoint>();
         rigOriginRig   = connectBody;
@@ -201,5 +198,24 @@ public struct NormalRope
         }
 
         return rigOriginJoint.GetComponent<T>();
+    }
+
+    private void AddSyncObjectComponent(GameObject add)
+    {
+        if(add.GetComponent<SyncObject>() != null) return;
+        SyncObject sync = add.gameObject.AddComponent<SyncObject>();
+            
+        //Ray ray = new Ray()
+        //{
+        //    origin    = rigOrigin.position,
+        //    direction = rigOrigin.position - add.transform.position
+        //};
+
+        //RaycastHit hitInfo;
+        //int layerMask = LayerMask.GetMask("Player", "Bullet", "Rope/Normal", "Rope/Lock");
+
+        //Physics.Raycast(ray, out hitInfo, layerMask);
+
+        //sync.SetSyncTransform(hitInfo.transform, hitInfo.point);
     }
 }

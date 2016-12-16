@@ -34,7 +34,7 @@ public class PlayerCamera : MonoBehaviour
         rotate.y = Input.GetAxis("Vertical2")   * rotationSpeed.y * Time.deltaTime;
 
         //回転
-        transform.RotateAround(target.position, Vector3.up, rotate.x);
+        transform.RotateAround(target.position, Vector3.up,      rotate.x);
         transform.RotateAround(target.position, transform.right, rotate.y);
 
         FixedAngle();
@@ -45,6 +45,15 @@ public class PlayerCamera : MonoBehaviour
 
         //座標の変更
         transform.position = position;
+
+        Ray ray = new Ray()
+        {
+            origin    =  target.position + offset,
+            direction = -transform.forward
+        };
+
+        //RaycastHit hitInfo;
+        // bool isHit = Physics.Raycast(ray, out hitInfo, distance);
     }
 
     void ChangeCursorState()
@@ -81,18 +90,13 @@ public class PlayerCamera : MonoBehaviour
         {
             angle.x = 0;
         }
-        else
+        else if(angle.x >= 180)
         {
             //angleは取得時に0～360の値になるため
-            if(angle.x >= 180)
-            {
-                angle.x -= 360;
-            }
-
-            //上限値・下限値を設定してカメラが変な挙動をしないように
-            angle.x = Mathf.Clamp(angle.x, cameraLimitDown, cameraLimitUp);
+            angle.x -= 360;
         }
-        
+        //上限値・下限値を設定してカメラが変な挙動をしないように
+        angle.x = Mathf.Clamp(angle.x, cameraLimitDown, cameraLimitUp);
         angle.z = 0;
         transform.eulerAngles = angle;
     }

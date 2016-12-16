@@ -117,7 +117,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
         bool isUpVelocity = playerVelocity.y > 0.25f;
 
-        return (controller.isGrounded || (isBoxHit) && !isUpVelocity);
+        return ((controller.isGrounded || isBoxHit) && !isUpVelocity);
     }
 
     public void NormalMove()
@@ -231,6 +231,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
     /// </summary>
     public void SyncPlayerToRope()
     {
+        playerVelocity = Vector3.zero;
         transform.up = ropeController.Direction;
 
         ropeController.SimulateStart();

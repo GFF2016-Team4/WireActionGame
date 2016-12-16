@@ -22,8 +22,12 @@ public class SyncObject : MonoBehaviour
         sync = other.transform;
 
         offset = sync.position - transform.position;
+    }
 
-        transform.GetComponent<Collider>().isTrigger = true;
+    public void SetSyncTransform(Transform syncTrans, Vector3 offsetPosition)
+    {
+        sync   = syncTrans;
+        offset = offsetPosition;
     }
 
     //private void OnTriggerExit(Collider other)
