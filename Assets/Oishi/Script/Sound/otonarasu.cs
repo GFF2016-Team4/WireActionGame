@@ -9,13 +9,12 @@ public class otonarasu : MonoBehaviour
         SoundManager.Instance.PlayBGM(AUDIO.BGM_TITLE);
     }
 
-	void Update () 
-	{
-        if(Input.GetKeyDown(KeyCode.Space))
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             //SEの再生
             SoundManager.Instance.PlaySE(AUDIO.SE_WALK);
         }
-	}
-
+    }
 }

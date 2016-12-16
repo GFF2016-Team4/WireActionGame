@@ -58,7 +58,7 @@ public class reticleRay : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position + transform.forward * (hit.distance), radius);
 
         //Gizmos.DrawWireSphere(transform.position + transform.forward * direction, radius);
-    }//640  580
+    }
     bool isScreen(Vector3 position)
     {
         if ((position.x >= 0 && position.x <= Screen.width) &&

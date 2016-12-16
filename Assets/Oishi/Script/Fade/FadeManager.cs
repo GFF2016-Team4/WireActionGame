@@ -13,10 +13,12 @@ public class FadeManager : MonoBehaviour
     public float fadeOutSpeed = 0.01f;
 
     [Header("画面切り替え時、時間停止の長さ")]
-    public float alfaTemp = 0.0f;           //画面切り替え時、時間停止の長さ
+    float alfaTemp = 0.0f;           //画面切り替え時、時間停止の長さ
 
-    float alfaIn = 1.0f;
-    float alfaOut = 0.0f;
+    [System.NonSerialized]
+    public float alfaIn = 1.0f;
+    [System.NonSerialized]
+    public float alfaOut = 0.0f;
 
     //float alfaMainIn = 1.0f;
     //float alfaMainOut = 0.0f;
@@ -25,28 +27,28 @@ public class FadeManager : MonoBehaviour
 
     //public Color c;
     // Update is called once per frame
-    public void FadeIn()
+    public void FadeIn(float timeScale = 0)
     {
-
         //フェードインの色変更
         //c.a = alfaIn;
         //GetComponent<Image>().color = c;
 
         GetComponent<Image>().color = new Color(red, green, blue, alfaIn);
         alfaIn -= fadeInSpeed;
-        Time.timeScale = 0;
+        Time.timeScale = timeScale;
 
         if (alfaIn <= alfaTemp) Time.timeScale = 1;
-
     }
-    public void FadeOut(string sceneName)
+    public void FadeOut(string sceneName, float timeScale = 0)
     {
         GetComponent<Image>().color = new Color(red, green, blue, alfaOut);
 
-        if (alfaOut <= 1.0f) alfaOut += fadeOutSpeed;
+        if (alfaOut <= 1.0f)
+            alfaOut += fadeOutSpeed;
         else SceneManager.LoadScene(sceneName);
 
         if (alfaOut <= alfaTemp) Time.timeScale = 0;
+
     }
     //public void FadeMainIn()
     //{

@@ -26,7 +26,6 @@ public class reticlemove : MonoBehaviour
     void Start()
     {
         m_changeColor = GetComponent<changeColor>();
-        m_reticleRay = rayCamera.GetComponent<reticleRay>();
         m_reticleRay = rayCamera.AddComponent<reticleRay>();
         m_reticleRay.target = gameObject.GetComponent<RectTransform>();
         m_reticleRay.radius = radius;
