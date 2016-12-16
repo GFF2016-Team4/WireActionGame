@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d345888266062ed45b8511f1772e9128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
+  radius: 30
   direction: 100
   target: {fileID: 1530906815}
 --- !u!1 &339112681
