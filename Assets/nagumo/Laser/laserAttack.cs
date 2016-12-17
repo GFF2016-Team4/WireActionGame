@@ -63,7 +63,7 @@ namespace Enemy
             }
             else
             {
-                laserBlue.SetPosition(1, transform.forward * 100);
+                laserBlue.SetPosition(1, transform.forward * 400);
             }
         }
 

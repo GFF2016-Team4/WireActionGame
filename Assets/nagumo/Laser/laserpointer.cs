@@ -9,14 +9,17 @@ namespace Enemy
         public GameObject Laser;
         public GameObject Shooter;
         public GameObject laserBlue;
+        private GameObject m_LaserAttack;
+
         public float PointLaserTime;
         public float AttackLaserTime;
         private float pointTime;
         private float AttackTime;
-        private bool AttackLaser;
+
+        [System.NonSerialized]
+        public bool AttackLaser;
         LineRenderer laser;
         laserAttack m_laserBlue;
-
 
         public float speed = 1.0f;
         void Start()
@@ -25,7 +28,7 @@ namespace Enemy
             m_laserBlue = laserBlue.GetComponent<laserAttack>();
         }
 
-        void Update()
+        public void Update()
         {
             RaycastHit hit;
             Ray ray = new Ray(transform.position, Shooter.transform.forward);
@@ -33,9 +36,11 @@ namespace Enemy
 
             transform.Rotate(0, Input.GetAxis("Horizontal") * speed, 0);
 
+            m_LaserAttack = transform.root.gameObject;
+
             //レーザーポイントの発動処理
             var lineRenderer = GetComponent<LineRenderer>();
-            if (Input.GetKeyDown(KeyCode.Space) && lineRenderer.enabled == false && AttackLaser == false)
+            if (m_LaserAttack.GetComponent<EnemyPattern>().Laser == true && lineRenderer.enabled == false && AttackLaser == false)
             {
                 lineRenderer.enabled = true;
             }
@@ -67,6 +72,7 @@ namespace Enemy
                 AttackTime = 0.0f;
                 AttackLaser = false;
                 Laser.SetActive(false);
+                m_LaserAttack.GetComponent<EnemyPattern>().Laser = false;
             }
 
             //レーザーポイントの処理
@@ -78,7 +84,7 @@ namespace Enemy
             }
             else
             {
-                laser.SetPosition(1, transform.forward * 100);
+                laser.SetPosition(1, transform.forward * 400);
             }
         }
         //void FiringBeam(GameObject[] obj)
