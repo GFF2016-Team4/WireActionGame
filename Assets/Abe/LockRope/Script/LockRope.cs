@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 [RequireComponent(typeof(ListLineDraw))]
 public class LockRope : MonoBehaviour
@@ -14,7 +12,12 @@ public class LockRope : MonoBehaviour
     [SerializeField]
     float ignoreDistance;
 
+    [SerializeField]
+    float destroyDistance;
+
     ListLineDraw lineDraw;
+
+    float nowDistance;
 
     void Awake()
     {
@@ -27,6 +30,7 @@ public class LockRope : MonoBehaviour
     {
         Initialize(point1, ropePoint1);
         Initialize(point2, ropePoint2);
+        nowDistance = Vector3.Distance(point1, point2);
     }
 
     void Initialize(Vector3 point, Transform ropePoint)
@@ -66,6 +70,11 @@ public class LockRope : MonoBehaviour
         bool isHit = Physics.Raycast(ray, out hitInfo, distance);
 
         if(isHit && hitInfo.collider.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
+
+        if(distance > nowDistance + destroyDistance)
         {
             Destroy(gameObject);
         }

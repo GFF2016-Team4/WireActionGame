@@ -75,9 +75,6 @@ public class NormalRopeSimulate : MonoBehaviour
 
     IEnumerator Start()
     {
-        listLineDraw.DrawStart();
-        yield return null;
-
         if(isEnd == true) yield break;
 
         //main loop

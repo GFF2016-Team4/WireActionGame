@@ -281,7 +281,7 @@ public class RopeController : MonoBehaviour
         Vector3 centerPos = Vector3.Lerp(right.ropeInst.originPosition,
                                          left .ropeInst.originPosition, 0.5f);
 
-        GameObject   rope     = Instantiate(normalRopePrefab) as GameObject;
+        GameObject         rope     = Instantiate(normalRopePrefab) as GameObject;
         NormalRopeSimulate simulate = rope.GetComponent<NormalRopeSimulate>();
 
         simulate.Initialize(centerPos, center.sync.position);
@@ -298,6 +298,9 @@ public class RopeController : MonoBehaviour
 
         left .ropeInst.SimulationStop();
         right.ropeInst.SimulationStop();
+
+        ListLineDraw lineDraw = center.ropeInst.GetComponent<ListLineDraw>();
+        lineDraw.DrawEnd();
     }
 
     public void CreateNormalRope(NormalRope rope, Collision hitInfo, UnityAction<NormalRopeSimulate> callback)
@@ -306,6 +309,9 @@ public class RopeController : MonoBehaviour
         NormalRopeSimulate simulate = ropeInst.GetComponent<NormalRopeSimulate>();
 
         simulate.Initialize(hitInfo.contacts[0].point, rope.sync.position);
+
+        ListLineDraw lineDraw = ropeInst.GetComponent<ListLineDraw>();
+        lineDraw.DrawStart();
 
         bool canRopeHook = hitInfo.transform.tag != "NoRopeHit";
 

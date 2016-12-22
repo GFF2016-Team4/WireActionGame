@@ -159,6 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ropePoint1: {fileID: 4000013415088052}
   ropePoint2: {fileID: 4000014070353964}
+  ignoreDistance: 0.05
+  destroyDistance: 1
 --- !u!120 &120000011829836376
 LineRenderer:
   m_ObjectHideFlags: 1
