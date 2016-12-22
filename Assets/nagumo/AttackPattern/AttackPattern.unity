@@ -139,6 +139,16 @@ Prefab:
       propertyPath: LaserAttackTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011433009998, guid: 7237a851da06c7d43b693868be72df76,
+        type: 2}
+      propertyPath: Punch
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011433009998, guid: 7237a851da06c7d43b693868be72df76,
+        type: 2}
+      propertyPath: m_Laser
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7237a851da06c7d43b693868be72df76, type: 2}
   m_IsPrefabParent: 0

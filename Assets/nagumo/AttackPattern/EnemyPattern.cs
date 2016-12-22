@@ -4,12 +4,18 @@ using System.Collections;
 public class EnemyPattern : MonoBehaviour {
     public GameObject m_player;
     public float LaserAttackTime;
+
+    //パンチの範囲
+    public float Punch;
+
+    //レーザーの範囲
+    public float m_Laser;
+
     private float timer;
 
     [System.NonSerialized]
     public bool Laser;
 
-    private GameObject LaserSwith;
     // Use this for initialization
     void Start () {
         
@@ -22,13 +28,11 @@ public class EnemyPattern : MonoBehaviour {
         //Debug.Log(zDeistance);
         //Debug.Log(xDeistance);
 
-        LaserSwith = transform.FindChild("Sphere").gameObject;
-
-        if (xDeistance <= 40 && xDeistance >= -40 && zDeistance <= 40 && zDeistance >= -40)
+        if (xDeistance <= Punch && xDeistance >= -Punch && zDeistance <= Punch && zDeistance >= -Punch)
         {
             Debug.Log("パンチ範囲");
         }
-        else if (xDeistance <= 100 && xDeistance >= -100 && zDeistance <= 100 && zDeistance >= -100)
+        else if (xDeistance <= m_Laser && xDeistance >= -m_Laser && zDeistance <= m_Laser && zDeistance >= -m_Laser)
         {
             LaserAttack();
             Debug.Log("レーザー範囲");
