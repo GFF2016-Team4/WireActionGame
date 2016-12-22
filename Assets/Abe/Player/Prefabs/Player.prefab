@@ -886,6 +886,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1000013608364856, guid: a1a5ec346aa78594e9dfe170dcc53fb0,
     type: 2}
   bulletSpeed: 300
+  reticle: {fileID: 0}
   left:
     sync: {fileID: 4000013875057152}
     ropeInst: {fileID: 0}
@@ -895,7 +896,7 @@ MonoBehaviour:
     ropeInst: {fileID: 0}
     shootButton: []
   center:
-    sync: {fileID: 4000013820409982}
+    sync: {fileID: 4000011173865140}
     ropeInst: {fileID: 0}
     shootButton: []
 --- !u!114 &114000014254225510

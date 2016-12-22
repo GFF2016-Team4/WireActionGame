@@ -17,7 +17,7 @@ public class NormalRopeSimulate : MonoBehaviour
     public  bool            isCalcDistance  = false;
 
     private ListLineDraw    listLineDraw;
-    private const float     ignoreDistance  = 0.1f;
+    private const float     ignoreDistance  = 0.2f;
     private int             ignoreLayer;
 
     bool isEnd = false;

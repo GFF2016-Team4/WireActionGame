@@ -130,20 +130,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114000014254225510, guid: 16313cba1e1ca584ca7912f32dda7017,
-        type: 2}
-      propertyPath: playerCamera
-      value: 
-      objectReference: {fileID: 1247949527}
-    - target: {fileID: 1000012030882852, guid: 16313cba1e1ca584ca7912f32dda7017, type: 2}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 114000013572030750, guid: 16313cba1e1ca584ca7912f32dda7017,
         type: 2}
       propertyPath: reticle
       value: 
       objectReference: {fileID: 577557623}
+    - target: {fileID: 114000014254225510, guid: 16313cba1e1ca584ca7912f32dda7017,
+        type: 2}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1247949527}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16313cba1e1ca584ca7912f32dda7017, type: 2}
   m_IsPrefabParent: 0
@@ -599,6 +595,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   movingDistance: 5
+  rotateAxis: {x: 1, y: 0, z: 0}
+  rotateSpeed: 1
 --- !u!23 &1938265030
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -43,7 +43,7 @@ GameObject:
   m_Layer: 10
   m_Name: ropetail
   m_TagString: Rope/Normal
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -6042967201622091453, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -62,7 +62,7 @@ GameObject:
   m_Layer: 10
   m_Name: ropeOrigin
   m_TagString: Rope/Normal
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5430335037324417643, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

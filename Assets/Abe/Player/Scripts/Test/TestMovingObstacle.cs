@@ -10,6 +10,12 @@ public class TestMovingObstacle : MonoBehaviour
     [SerializeField]
     float movingDistance;
 
+    [SerializeField, Tooltip("説明文")]
+    Vector3 rotateAxis;
+
+    [SerializeField, Tooltip("説明文")]
+    float   rotateSpeed;
+
     float deg;
     Vector3 origin;
     
@@ -27,6 +33,7 @@ public class TestMovingObstacle : MonoBehaviour
     void Update()
     {
         deg += Time.deltaTime * speed;
-        transform.position = transform.right * Mathf.Sin(deg * Mathf.Deg2Rad) * movingDistance + origin;
+        transform.position = Vector3.right * Mathf.Sin(deg * Mathf.Deg2Rad) * movingDistance + origin;
+        transform.Rotate(rotateAxis, rotateSpeed);
     }
 }
