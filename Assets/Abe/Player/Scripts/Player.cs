@@ -92,7 +92,9 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
     void Update()
     {
-        bool keyDown = RopeInput.isLeftRopeButton || RopeInput.isRightRopeButton;
+        bool keyDown = RopeInput.isLeftRopeButton  || 
+                       RopeInput.isRightRopeButton ||
+                       RopeInput.isCatchRopeButton;
         playerMove.enabled     = !keyDown;
         playerRopeMove.enabled =  keyDown;
     }
@@ -109,9 +111,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
             z = controller.radius * transform.localScale.z
         };
 
-        int  layerMask = -1 - (1 << gameObject.layer |
-                               1 << LayerMask.NameToLayer("Rope/Normal") |
-                               1 << LayerMask.NameToLayer("Rope/Lock"));
+        int  layerMask = -1 - (PlayersLayerMask.PlayerAndRopes);
 
         bool isBoxHit  = Physics.CheckBox(position, size, Quaternion.identity, layerMask);
 
@@ -232,8 +232,10 @@ public class Player : MonoBehaviour, RopeEventHandlar
     public void SyncPlayerToRope()
     {
         playerVelocity = Vector3.zero;
-        transform.up = ropeController.Direction;
-
+        if(ropeController.IsRopeExist)
+        {
+            transform.up = ropeController.Direction;
+        }
         ropeController.SimulateStart();
         ropeController.SyncTransformToRope(transform);
     }

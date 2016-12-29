@@ -6,6 +6,7 @@ public class RopeInput
     public const string rightButton         = "Fire2";
     public const string ropeTakeUpButton    = "RopeTakeUp";
     public const string ropeTakeDownButton  = "RopeTakeDown";
+    public const string ropeCatchButton     = "CatchRope";
 
     //ロープの上下
     public static bool isTakeUpButton
@@ -49,5 +50,10 @@ public class RopeInput
     public static bool isRightRopeButtonDown
     {
         get { return Input.GetButtonDown(rightButton); }
+    }
+
+    public static bool isCatchRopeButton
+    {
+        get { return Input.GetButton(ropeCatchButton); }
     }
 }

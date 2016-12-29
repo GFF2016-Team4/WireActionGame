@@ -31,11 +31,6 @@ public class RopeController : MonoBehaviour
                 return true;
             }
         }
-
-        public bool IsCatchRope
-        {
-            get { return !ropeInst.isCalcDistance; }
-        }
     }
 
     [SerializeField, Tooltip("ロープのプレハブ")]
@@ -43,6 +38,9 @@ public class RopeController : MonoBehaviour
 
     [SerializeField]
     private GameObject lockRopePrefab;
+
+    [SerializeField]
+    private GameObject catchRopePrefab;
 
     [SerializeField, Tooltip("射出弾インスタンス")]
     private GameObject bulletPrefab;
@@ -62,6 +60,9 @@ public class RopeController : MonoBehaviour
     [SerializeField]
     NormalRope center;
 
+    [SerializeField]
+    NormalRope catchRope;
+
     [System.NonSerialized]
     public float normalRopeDistance;
 
@@ -71,9 +72,9 @@ public class RopeController : MonoBehaviour
     {
         get
         {
-            return left  .RopeExist ||
-                   right .RopeExist ||
-                   center.RopeExist;
+            return left     .RopeExist ||
+                   right    .RopeExist ||
+                   center   .RopeExist;
         }
     }
 
@@ -82,21 +83,9 @@ public class RopeController : MonoBehaviour
         get
         {
             if(center.IsCanControl) return center.ropeInst.direction;
-            if(left.IsCanControl  && 
-               (!left.IsCatchRope ||
-               (left.IsCatchRope && !right.RopeExist)))
-            {
-                return left  .ropeInst.direction;
-            }
+            if(left  .IsCanControl) return left  .ropeInst.direction;
+            if(right .IsCanControl) return right .ropeInst.direction;
 
-            if(right .IsCanControl &&
-               (!right.IsCatchRope ||
-               (right.IsCatchRope && !left.RopeExist)))
-            {
-                return right .ropeInst.direction;
-            }
-
-            Debug.Assert(false, "ロープは生成されていません");
             throw null;
         }
     }
@@ -108,14 +97,16 @@ public class RopeController : MonoBehaviour
 
     void Start()
     {
-        left  .shootButton = new string[1];
-        right .shootButton = new string[1];
-        center.shootButton = new string[2];
+        left     .shootButton    = new string[1];
+        right    .shootButton    = new string[1];
+        center   .shootButton    = new string[2];
+        catchRope.shootButton    = new string[1];
 
-        left .shootButton[0]  = "Fire1";
-        right.shootButton[0]  = "Fire2";
-        center.shootButton[0] = "Fire1";
-        center.shootButton[1] = "Fire2"; 
+        left     .shootButton[0] = RopeInput.leftButton;
+        right    .shootButton[0] = RopeInput.rightButton;
+        center   .shootButton[0] = RopeInput.leftButton;
+        center   .shootButton[1] = RopeInput.rightButton; 
+        catchRope.shootButton[0] = RopeInput.ropeCatchButton;
     }
 
     void Update()
@@ -139,6 +130,11 @@ public class RopeController : MonoBehaviour
                 right.ropeInst = result
             ));
         }
+
+        if(Input.GetButtonDown(catchRope.shootButton[0]))
+        {
+            StartCoroutine(ShootCatchRope());
+        }
     }
 
     void CheckSimulationEnd()
@@ -146,15 +142,25 @@ public class RopeController : MonoBehaviour
         CheckSimulationEnd(ref center);
         CheckSimulationEnd(ref left  );
         CheckSimulationEnd(ref right );
+
+        CheckSimulationEnd(ref catchRope);
     }
 
     void CheckSimulationEnd(ref NormalRope rope)
     {
         if(!rope.RopeExist) return;
         if(!InputExtension.GetButtonAnyUp(rope.shootButton)) return;
-        SendNormalRopeReleaseEvent(rope.ropeInst);
-        TakeOverVelocity(left,  rope);
-        TakeOverVelocity(right, rope);
+        //ロープのボタンを離した
+
+        //捕獲用ロープでは無い場合
+        if(rope.ropeInst.isCalcDistance == false)
+        {
+            SendNormalRopeReleaseEvent(rope.ropeInst);
+
+            TakeOverVelocity(left,  rope);
+            TakeOverVelocity(right, rope);
+        }
+
         rope.ropeInst.SimulationEnd();
         rope.ropeInst = null;
     }
@@ -162,7 +168,6 @@ public class RopeController : MonoBehaviour
     void TakeOverVelocity(NormalRope takeOverRope, NormalRope takenOverRope)
     {
         if(!takeOverRope.IsCanControl) return;
-
         takeOverRope.ropeInst.SimulationStart();
         Vector3 takenOverVelocity = takenOverRope.ropeInst.velocity;
         takeOverRope.ropeInst.AddForce(takenOverVelocity, ForceMode.VelocityChange);
@@ -170,29 +175,50 @@ public class RopeController : MonoBehaviour
 
     IEnumerator ShootNormalRope(NormalRope rope, UnityAction<NormalRopeSimulate> callback)
     {
-        //射出弾の生成
-        GameObject bulletInst = Instantiate(bulletPrefab);
-        bulletInst.transform.position = rope.sync.position;
-
-        //弾丸を飛ばす
-        Shoot(bulletInst);
+        //アップデートが終わるまで待機
+        GameObject bulletInst = null;
+        var wait = StartCoroutine(WaitForBullet(rope.sync.position, rope.sync, rope.shootButton[0],
+            (inst) => 
+            {
+                bulletInst = inst;
+            }));
+        yield return wait;
 
         RopeBullet ropeBullet = bulletInst.GetComponent<RopeBullet>();
-        ropeBullet.target = rope.sync;
-
-        //アップデートが終わるまで待機
-        var wait = StartCoroutine(WaitForBulletUpdate(rope, ropeBullet));
-        yield return wait;
 
         //ボタンを離した場合
         if(!ropeBullet.IsHit)
         {
-            CreateNormalRopeFailed(rope, bulletInst);
+            CreateRopeFailed(normalRopePrefab, rope, bulletInst);
             Destroy(bulletInst);
             yield break;
         }
         
         CreateNormalRope(rope, ropeBullet.HitInfo, callback);
+        Destroy(bulletInst);
+    }
+
+    IEnumerator ShootCatchRope()
+    {
+        //アップデートが終わるまで待機
+        GameObject bulletInst = null;
+        var wait = StartCoroutine(WaitForBullet(catchRope.sync.position, catchRope.sync, catchRope.shootButton[0],
+            (inst) => 
+            {
+                bulletInst = inst;
+            }));
+        yield return wait;
+        
+        RopeBullet ropeBullet = bulletInst.GetComponent<RopeBullet>();
+
+        if(!ropeBullet.IsHit)
+        {
+            CreateRopeFailed(catchRopePrefab, catchRope, bulletInst);
+            Destroy(bulletInst);
+            yield break;
+        }
+
+        CreateCatchRope(ropeBullet.HitInfo);
         Destroy(bulletInst);
     }
 
@@ -206,6 +232,7 @@ public class RopeController : MonoBehaviour
 
     Vector3 GetShootDirection(Vector3 shootPosition)
     {
+        //nullを入れたいので
         Vector3? position = IsPlayerBeforePoint(shootPosition, 50.0f);
         if(position.HasValue)
         {
@@ -231,10 +258,8 @@ public class RopeController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(reticle.position);
         
         //Playerは判定しない
-        int ignoreLayer =  -1 - (1 << gameObject.layer |
-                                 1 << LayerMask.NameToLayer("Bullet") |
-                                 1 << LayerMask.NameToLayer("Rope/Normal") |
-                                 1 << LayerMask.NameToLayer("Rope/Lock"));
+        int ignoreLayer =  PlayersLayerMask.PlayerAndRopes;
+
         RaycastHit[] raycasthit = Physics.RaycastAll(ray, maxDistance, ignoreLayer);
 
         if(raycasthit.Length == 0) return null;
@@ -249,12 +274,24 @@ public class RopeController : MonoBehaviour
         return null;
     }
 
-    IEnumerator WaitForBulletUpdate(NormalRope rope, RopeBullet ropeBullet)
+    IEnumerator WaitForBullet(Vector3 shootPosition, Transform target,string shootButton, UnityAction<GameObject> callback)
     {
+        //射出弾の生成
+        GameObject bulletInst = Instantiate(bulletPrefab);
+        bulletInst.transform.position = shootPosition;
+
+        //弾丸を飛ばす
+        Shoot(bulletInst);
+
+        RopeBullet ropeBullet = bulletInst.GetComponent<RopeBullet>();
+        ropeBullet.target = target;
+
+        callback(bulletInst);
+        
         //何かに当たるか、ボタンを離したら終了
         while(true)
         {
-            if(Input.GetButtonUp(rope.shootButton[0]))    yield break;
+            if(Input.GetButtonUp(shootButton))            yield break;
             if(ropeBullet.IsHit)                          yield break;
             if(ropeBullet.Distance >= normalRopeDistance) yield break;
 
@@ -267,9 +304,9 @@ public class RopeController : MonoBehaviour
         return InputExtension.GetButtonAll(center.shootButton);
     }
 
-    void CreateNormalRopeFailed(NormalRope rope, GameObject bullet)
+    void CreateRopeFailed(GameObject prefab, NormalRope rope, GameObject bullet)
     {
-        GameObject   ropeInst     = Instantiate(normalRopePrefab) as GameObject;
+        GameObject         ropeInst     = Instantiate(prefab) as GameObject;
         NormalRopeSimulate ropeSimulate = ropeInst.GetComponent<NormalRopeSimulate>();
 
         ropeSimulate.Initialize(bullet.transform.position, rope.sync.position);
@@ -303,6 +340,31 @@ public class RopeController : MonoBehaviour
         lineDraw.DrawEnd();
     }
 
+    public void CreateCatchRope(Collision hitInfo)
+    {
+        GameObject         ropeInst = Instantiate(catchRopePrefab) as GameObject;
+        NormalRopeSimulate simulate = ropeInst.GetComponent<NormalRopeSimulate>();
+
+        simulate.Initialize(hitInfo.contacts[0].point, catchRope.sync.position);
+
+        ListLineDraw lineDraw = ropeInst.GetComponent<ListLineDraw>();
+        lineDraw.DrawStart();
+
+        bool canRopeHook = hitInfo.transform.tag != "NoRopeHit";
+
+        if(Input.GetButton(catchRope.shootButton[0]) && canRopeHook)
+        {
+            //引っかかった
+            catchRope.ropeInst = simulate;
+            SendCreateNormalRopeEvent(simulate);
+        }
+        else
+        {
+            //引っかからなかった キャンセル
+            simulate.SimulationEnd();
+        }
+    }
+
     public void CreateNormalRope(NormalRope rope, Collision hitInfo, UnityAction<NormalRopeSimulate> callback)
     {
         GameObject         ropeInst = Instantiate(normalRopePrefab) as GameObject;
@@ -321,9 +383,6 @@ public class RopeController : MonoBehaviour
             callback(simulate);
             SendCreateNormalRopeEvent(simulate);
 
-            simulate.isCalcDistance = hitInfo.transform.tag != "Enemy";
-            CheckFreezeNormalRope(simulate);
-
             if(IsCenterRopeCreate())
             {
                 CreateCenterNormalRope();
@@ -338,28 +397,8 @@ public class RopeController : MonoBehaviour
 
     bool IsCenterRopeCreate()
     {
-        //両方とも捕獲用ロープか両方とも移動用ロープの場合true
-        return left .IsCanControl &&
-               right.IsCanControl &&
-               !(left.IsCatchRope ^ right.IsCatchRope);
-    }
-
-    void CheckFreezeNormalRope(NormalRopeSimulate rope)
-    {
-        //捕獲用ロープか true->捕獲用ロープではない
-        if(rope.isCalcDistance) return;
-
-        if(left.IsCanControl && left.IsCatchRope)
-        {
-            left.ropeInst.SimulationStop();
-            return;
-        }
-
-        if(right.IsCanControl && right.IsCatchRope)
-        {
-            right.ropeInst.SimulationStop();
-            return;
-        }
+        //どちらも存在している場合はtrue
+        return left .IsCanControl && right.IsCanControl;
     }
 
     public bool CreateLockRope(Vector3 shootPosition, float ropeDistance)
@@ -370,6 +409,15 @@ public class RopeController : MonoBehaviour
         GameObject lockRopeInst = Instantiate(lockRopePrefab);
         LockRope   lockRope     = lockRopeInst.GetComponent<LockRope>();
         lockRope.Initialize(shootPosition, result.Value);
+        return true;
+    }
+
+    public bool CreateCatchRope(Vector3 shootPosition, float ropeDistance)
+    {
+        Vector3? result = IsPlayerBeforePoint(Vector3.zero, ropeDistance);
+        if(!result.HasValue) return false;
+
+        GameObject catchRopeInst = Instantiate(catchRopePrefab);
         return true;
     }
 
@@ -411,6 +459,10 @@ public class RopeController : MonoBehaviour
     public void SimulateStop()
     {
         RopeSendEvent((rope) => { rope.ropeInst.SimulationStop(); });
+        if(catchRope.RopeExist)
+        {
+            catchRope.ropeInst.SimulationStop();
+        }
     }
 
     /// <summary>
@@ -419,6 +471,7 @@ public class RopeController : MonoBehaviour
     /// <param name="syncTransform">同期させるトランスフォーム</param>
     public void SyncTransformToRope(Transform syncTransform)
     {
+        SyncRopeToTransform_(catchRope);
         if(center.RopeExist)
         {
             SyncTransformToRope_(center, syncTransform);
@@ -427,31 +480,8 @@ public class RopeController : MonoBehaviour
             return;
         }
 
-        if(left.IsCanControl && right.IsCanControl)
-        {
-            //捕獲用ロープか
-            if(left.IsCatchRope)
-            {
-                SyncCatchRopeToTransform( left, right, syncTransform);
-                return;
-            }
-
-            if(right.IsCatchRope)
-            {
-                SyncCatchRopeToTransform(right,  left, syncTransform);
-                return;
-            }
-        }
-
         if(left .RopeExist) SyncTransformToRope_(left , syncTransform);
         if(right.RopeExist) SyncTransformToRope_(right, syncTransform);
-    }
-
-    private void SyncCatchRopeToTransform(NormalRope catchRope, NormalRope normalRope, Transform syncTransform)
-    {
-        catchRope.ropeInst.SimulationStop();
-        SyncRopeToTransform_(catchRope);
-        SyncTransformToRope_(normalRope, syncTransform);
     }
 
     private void SyncTransformToRope_(NormalRope rope, Transform syncTransform)
@@ -470,6 +500,7 @@ public class RopeController : MonoBehaviour
         SyncRopeToTransform_(center);
         SyncRopeToTransform_(left);
         SyncRopeToTransform_(right);
+        SyncRopeToTransform_(catchRope);
     }
 
     private void SyncRopeToTransform_(NormalRope rope)
