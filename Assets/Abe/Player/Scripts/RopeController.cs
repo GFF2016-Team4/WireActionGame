@@ -78,6 +78,21 @@ public class RopeController : MonoBehaviour
         }
     }
 
+    public bool IsCenterRopeExist
+    {
+        get { return center.RopeExist; }
+    }
+
+    public Vector3 LeftOrigin
+    {
+        get { return left. ropeInst.originPosition; }
+    }
+
+    public Vector3 rightOrigin
+    {
+        get { return right.ropeInst.originPosition; }
+    }
+
     public Vector3 Direction
     {
         get
@@ -87,6 +102,26 @@ public class RopeController : MonoBehaviour
             if(right .IsCanControl) return right .ropeInst.direction;
 
             throw null;
+        }
+    }
+
+    public Vector3? LeftDirection
+    {
+        get
+        {
+            if(left.RopeExist) return null;
+
+            return left.ropeInst.direction;
+        }
+    }
+
+    public Vector3? RightDirection
+    {
+        get
+        {
+            if(right.RopeExist) return null;
+
+            return right.ropeInst.direction;
         }
     }
 
@@ -153,7 +188,7 @@ public class RopeController : MonoBehaviour
         //ロープのボタンを離した
 
         //捕獲用ロープでは無い場合
-        if(rope.ropeInst.isCalcDistance == false)
+        if(rope.ropeInst.isCalcDistance == true)
         {
             SendNormalRopeReleaseEvent(rope.ropeInst);
 

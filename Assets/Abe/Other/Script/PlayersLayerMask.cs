@@ -31,4 +31,19 @@ public class PlayersLayerMask
             return LayerMask.GetMask(normalRope, lockRope, catchRope, bullet);
         }
     }
+
+    public static int IgnorePlayerAndRopes
+    {
+        get { return -1 - (PlayerAndRopes); }
+    }
+
+    public static int IgnorePlayer
+    {
+        get { return -1 - (Player); }
+    }
+
+    public static int IgnoreRopes
+    {
+        get { return -1 - (Ropes); }
+    }
 }

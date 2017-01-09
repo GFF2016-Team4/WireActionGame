@@ -46,7 +46,7 @@ public class PlayerCamera : MonoBehaviour
         };
 
         RaycastHit hitInfo;
-        bool isHit = Physics.Raycast(ray, out hitInfo, distance);
+        bool isHit = Physics.Raycast(ray, out hitInfo, distance, PlayersLayerMask.IgnorePlayerAndRopes);
 
         if(isHit)
         {
