@@ -245,6 +245,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
         {
             transform.up = ropeController.Direction;
 
+            animator.SetBool("CenterRopeExist",ropeController.IsCenterRopeExist);
             if(ropeController.IsCenterRopeExist)
             {
                 Vector3 fixedDir = ropeController.LeftOrigin - leftForeArm.position;
