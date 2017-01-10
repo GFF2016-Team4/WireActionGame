@@ -88,7 +88,7 @@ public class RopeController : MonoBehaviour
         get { return left. ropeInst.originPosition; }
     }
 
-    public Vector3 rightOrigin
+    public Vector3 RightOrigin
     {
         get { return right.ropeInst.originPosition; }
     }
@@ -220,7 +220,7 @@ public class RopeController : MonoBehaviour
         yield return wait;
 
         RopeBullet ropeBullet = bulletInst.GetComponent<RopeBullet>();
-
+        
         //ボタンを離した場合
         if(!ropeBullet.IsHit)
         {
@@ -293,7 +293,7 @@ public class RopeController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(reticle.position);
         
         //Playerは判定しない
-        int ignoreLayer =  PlayersLayerMask.PlayerAndRopes;
+        int ignoreLayer =  PlayersLayerMask.IgnorePlayerAndRopes;
 
         RaycastHit[] raycasthit = Physics.RaycastAll(ray, maxDistance, ignoreLayer);
 
@@ -322,7 +322,6 @@ public class RopeController : MonoBehaviour
         ropeBullet.target = target;
 
         callback(bulletInst);
-        
         //何かに当たるか、ボタンを離したら終了
         while(true)
         {

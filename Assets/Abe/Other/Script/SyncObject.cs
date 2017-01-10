@@ -8,16 +8,10 @@ public class SyncObject : MonoBehaviour
     private Transform sync;
 
     GameObject point;
-
-    readonly List<string> ignore = new List<string>(new string[] 
-    {
-        "Player", "Rope/Normal", "Rope/Lock", "Bullet"
-    });
-
     void Awake()
     {
-        int layerMask = LayerMask.GetMask(ignore.ToArray());
-        float radius = GetComponent<SphereCollider>().radius;
+        int   layerMask = PlayersLayerMask.IgnorePlayerAndRopes;
+        float radius    = GetComponent<SphereCollider>().radius;
         Collider[] cols = Physics.OverlapSphere(transform.position, radius, layerMask);
 
         foreach(Collider col in cols)
@@ -46,8 +40,10 @@ public class SyncObject : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(sync != null) return;
-        string otherLayer = LayerMask.LayerToName(other.gameObject.layer);
-        bool exist = ignore.Contains(otherLayer);
+        //string otherLayer = LayerMask.LayerToName(other.gameObject.layer);
+        //bool exist = ignore.Contains(otherLayer);
+
+        bool exist = (PlayersLayerMask.PlayerAndRopes & other.gameObject.layer) != 0;
         if(exist) return;
 
         sync = other.transform;

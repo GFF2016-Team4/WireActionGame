@@ -222,7 +222,11 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
     public void ResetUpTrans()
     {
-        transform.up = Vector3.up;
+        Vector3 rot = transform.rotation.eulerAngles;
+        rot.x = 0;
+        rot.z = 0;
+
+        transform.rotation = Quaternion.Euler(rot);
     }
 
     public void StartRopeSimulate()
@@ -243,35 +247,41 @@ public class Player : MonoBehaviour, RopeEventHandlar
         playerVelocity = Vector3.zero;
         if(ropeController.IsRopeExist)
         {
-            transform.up = ropeController.Direction;
+            //float   dir        = Vector3.Angle(transform.up, ropeController.Direction);
+            //Vector3 axisRot    = Vector3.Cross(transform.up, ropeController.Direction);
+
+            //transform.Rotate(axisRot, dir);
+            //transform.rotation = Quaternion.AngleAxis();
+
+            //Quaternion rot = Quaternion.FromToRotation(ropeController.Direction, transform.up);
+            Vector3 tempForward = transform.forward;
+            transform.up        = ropeController.Direction;
+
+            Quaternion rot = Quaternion.FromToRotation(transform.forward, tempForward);
+            transform.rotation = Quaternion.Slerp(rot, transform.rotation, 0.75f);
+
+            //transform.forward = rot * tempForward;
 
             animator.SetBool("CenterRopeExist",ropeController.IsCenterRopeExist);
             if(ropeController.IsCenterRopeExist)
             {
-                Vector3 fixedDir = ropeController.LeftOrigin - leftForeArm.position;
-                fixedDir.Normalize();
-                //内積で向きを計算
-                float vertical = Vector3.Dot(transform.up, fixedDir);
-                animator.SetFloat("LeftVertical", vertical);
-                float horizontal = Vector3.Dot(transform.forward, fixedDir);
-                animator.SetFloat("LeftHorizontal", horizontal);
-
-                fixedDir = ropeController.rightOrigin - rightForeArm.position;
-                fixedDir.Normalize();
-                //内積で向きを計算
-                vertical = Vector3.Dot(transform.up, fixedDir);
-                animator.SetFloat("RightVertical", vertical);
-                horizontal = Vector3.Dot(transform.forward, fixedDir);
-                animator.SetFloat("RightHorizontal", horizontal);
-            }
-            else
-            {
-                animator.SetFloat("LeftVertical", 1.0f);
-                animator.SetFloat("RightVertical", 1.0f);
+                CalcArm(ropeController.LeftOrigin , leftForeArm , "Left" );
+                CalcArm(ropeController.RightOrigin, rightForeArm, "Right");
             }
         }
         ropeController.SimulateStart();
         ropeController.SyncTransformToRope(transform);
+    }
+
+    public void CalcArm(Vector3 origin, Transform arm, string dir)
+    {
+        Vector3 fixedDir = origin - arm.position;
+        fixedDir.Normalize();
+        //内積で向きを計算
+        float vertical = Vector3.Dot(transform.up, fixedDir);
+        animator.SetFloat(dir + "Vertical", vertical);
+        float horizontal = Vector3.Dot(transform.forward, fixedDir);
+        animator.SetFloat(dir + "Horizontal", horizontal);
     }
 
     /// <summary>
