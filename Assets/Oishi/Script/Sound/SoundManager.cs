@@ -172,4 +172,9 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         PlayerPrefs.SetFloat(BgmVolumeKey, BGMVolume);
         PlayerPrefs.SetFloat(SeVolumeKey, SEVolume);
     }
+
+    public void StopSE()
+    {
+        AttachSESource.Stop();
+    }
 }
