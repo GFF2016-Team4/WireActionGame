@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/Oishi/Scene/GameOver.unity
   - enabled: 1
     path: Assets/Oishi/Scene/GameClear.unity
+  - enabled: 1
+    path: Assets/Gaken/EnemyMotion.unity

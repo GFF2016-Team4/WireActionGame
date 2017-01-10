@@ -65,7 +65,6 @@ namespace Enemy
             if (AttackLaser == true)
             {
                 AttackTime += Time.deltaTime;
-
             }
             if (AttackTime >= AttackLaserTime)
             {

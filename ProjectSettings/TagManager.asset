@@ -13,6 +13,9 @@ TagManager:
   - Rope/Normal
   - Enemy
   - Rope/Lock
+  - Rope
+  - Destination
+  - Floor
   layers:
   - Default
   - TransparentFX
