@@ -78,6 +78,21 @@ public class RopeController : MonoBehaviour
         }
     }
 
+    public bool IsCenterRopeExist
+    {
+        get { return center.RopeExist; }
+    }
+
+    public Vector3 LeftOrigin
+    {
+        get { return left. ropeInst.originPosition; }
+    }
+
+    public Vector3 RightOrigin
+    {
+        get { return right.ropeInst.originPosition; }
+    }
+
     public Vector3 Direction
     {
         get
@@ -87,6 +102,26 @@ public class RopeController : MonoBehaviour
             if(right .IsCanControl) return right .ropeInst.direction;
 
             throw null;
+        }
+    }
+
+    public Vector3? LeftDirection
+    {
+        get
+        {
+            if(left.RopeExist) return null;
+
+            return left.ropeInst.direction;
+        }
+    }
+
+    public Vector3? RightDirection
+    {
+        get
+        {
+            if(right.RopeExist) return null;
+
+            return right.ropeInst.direction;
         }
     }
 
@@ -153,7 +188,7 @@ public class RopeController : MonoBehaviour
         //ロープのボタンを離した
 
         //捕獲用ロープでは無い場合
-        if(rope.ropeInst.isCalcDistance == false)
+        if(rope.ropeInst.isCalcDistance == true)
         {
             SendNormalRopeReleaseEvent(rope.ropeInst);
 
@@ -185,7 +220,7 @@ public class RopeController : MonoBehaviour
         yield return wait;
 
         RopeBullet ropeBullet = bulletInst.GetComponent<RopeBullet>();
-
+        
         //ボタンを離した場合
         if(!ropeBullet.IsHit)
         {
@@ -258,7 +293,7 @@ public class RopeController : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(reticle.position);
         
         //Playerは判定しない
-        int ignoreLayer =  PlayersLayerMask.PlayerAndRopes;
+        int ignoreLayer =  PlayersLayerMask.IgnorePlayerAndRopes;
 
         RaycastHit[] raycasthit = Physics.RaycastAll(ray, maxDistance, ignoreLayer);
 
@@ -287,7 +322,6 @@ public class RopeController : MonoBehaviour
         ropeBullet.target = target;
 
         callback(bulletInst);
-        
         //何かに当たるか、ボタンを離したら終了
         while(true)
         {

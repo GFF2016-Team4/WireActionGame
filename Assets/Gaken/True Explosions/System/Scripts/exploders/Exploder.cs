@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Exploder : MonoBehaviour {
 
-	public float explosionTime = 0;
+	public float explosionTime = 10000;
 	public float randomizeExplosionTime = 0;
 	public float radius = 15;
 	public float power = 1;
@@ -64,7 +64,7 @@ public class Exploder : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if (Time.time > explosionTime && !exploded) {
+		if (/*Time.time > explosionTime && */!exploded) {
 			exploded = true;
 			StartCoroutine("explode");
 		}

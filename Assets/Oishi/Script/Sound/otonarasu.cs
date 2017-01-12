@@ -6,7 +6,7 @@ public class otonarasu : MonoBehaviour
 	void Start ()
 	{
         //BGMの再生
-        SoundManager.Instance.PlayBGM(AUDIO.BGM_TITLE);
+        //SoundManager.Instance.PlayBGM(AUDIO.BGM_TITLE);
     }
 
     void Update()
@@ -14,7 +14,7 @@ public class otonarasu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //SEの再生
-            SoundManager.Instance.PlaySE(AUDIO.SE_WALK);
+            //SoundManager.Instance.PlaySE(AUDIO.SE_WALK);
         }
     }
 }

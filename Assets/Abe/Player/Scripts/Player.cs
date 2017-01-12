@@ -40,6 +40,12 @@ public class Player : MonoBehaviour, RopeEventHandlar
     [SerializeField]
     private Transform footOrigin;
 
+    [SerializeField]
+    private Transform leftForeArm;
+
+    [SerializeField]
+    private Transform rightForeArm;
+
     bool isJump = false;
     float jumpTime = 0.0f;
     Vector3 gravity;
@@ -111,7 +117,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
             z = controller.radius * transform.localScale.z
         };
 
-        int  layerMask = -1 - (PlayersLayerMask.PlayerAndRopes);
+        int  layerMask = PlayersLayerMask.IgnorePlayerAndRopes;
 
         bool isBoxHit  = Physics.CheckBox(position, size, Quaternion.identity, layerMask);
 
@@ -156,12 +162,14 @@ public class Player : MonoBehaviour, RopeEventHandlar
     {
         ropeController.AddLength(ropeTakeSpeed * -Input.GetAxisRaw("RopeTake") * Time.deltaTime);
     }
+
     public void Jump()
     {
         if(!IsGround())                  return;
         if(!Input.GetButtonDown("Jump")) return;
 
         playerVelocity += Vector3.up * jumpPower;
+        playerVelocity += cameraInfo.GetInputVelocity()*2.0f;
         controller.Move(playerVelocity * Time.deltaTime);
         isJump = true;
         jumpTime = Time.time;
@@ -180,6 +188,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
     void CheckJumpState()
     {
+        if(!isJump) return;
         //重力加速度をみて初速度より速くなればjump状態解除
         if(jumpPower + gravity.y * (Time.time - jumpTime) < -jumpPower * Time.deltaTime)
         {
@@ -213,7 +222,11 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
     public void ResetUpTrans()
     {
-        transform.up = Vector3.up;
+        Vector3 rot = transform.rotation.eulerAngles;
+        rot.x = 0;
+        rot.z = 0;
+
+        transform.rotation = Quaternion.Euler(rot);
     }
 
     public void StartRopeSimulate()
@@ -234,10 +247,41 @@ public class Player : MonoBehaviour, RopeEventHandlar
         playerVelocity = Vector3.zero;
         if(ropeController.IsRopeExist)
         {
-            transform.up = ropeController.Direction;
+            //float   dir        = Vector3.Angle(transform.up, ropeController.Direction);
+            //Vector3 axisRot    = Vector3.Cross(transform.up, ropeController.Direction);
+
+            //transform.Rotate(axisRot, dir);
+            //transform.rotation = Quaternion.AngleAxis();
+
+            //Quaternion rot = Quaternion.FromToRotation(ropeController.Direction, transform.up);
+            Vector3 tempForward = transform.forward;
+            transform.up        = ropeController.Direction;
+
+            Quaternion rot = Quaternion.FromToRotation(transform.forward, tempForward);
+            transform.rotation = Quaternion.Slerp(rot, transform.rotation, 0.75f);
+
+            //transform.forward = rot * tempForward;
+
+            animator.SetBool("CenterRopeExist",ropeController.IsCenterRopeExist);
+            if(ropeController.IsCenterRopeExist)
+            {
+                CalcArm(ropeController.LeftOrigin , leftForeArm , "Left" );
+                CalcArm(ropeController.RightOrigin, rightForeArm, "Right");
+            }
         }
         ropeController.SimulateStart();
         ropeController.SyncTransformToRope(transform);
+    }
+
+    public void CalcArm(Vector3 origin, Transform arm, string dir)
+    {
+        Vector3 fixedDir = origin - arm.position;
+        fixedDir.Normalize();
+        //内積で向きを計算
+        float vertical = Vector3.Dot(transform.up, fixedDir);
+        animator.SetFloat(dir + "Vertical", vertical);
+        float horizontal = Vector3.Dot(transform.forward, fixedDir);
+        animator.SetFloat(dir + "Horizontal", horizontal);
     }
 
     /// <summary>

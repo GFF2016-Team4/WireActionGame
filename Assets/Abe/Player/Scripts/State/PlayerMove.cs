@@ -22,10 +22,12 @@ public class PlayerMove : MonoBehaviour
     {
         player.ApplyGravity();
         
+        
         if(player.IsGround())
         {
             player.animator.SetBool("IsGround", true);
             player.ResetGravity();
+
             player.NormalMove();
             player.Jump();
             player.ShootLockRope();

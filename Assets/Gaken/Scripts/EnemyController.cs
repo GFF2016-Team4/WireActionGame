@@ -242,6 +242,8 @@ namespace Gaken
                 EnemyExplosion();
             }
 
+            //Mathf.Atan2();
+
             //Debug.Log(this.transform.position);
             //Debug.Log(player.transform.position);
 
