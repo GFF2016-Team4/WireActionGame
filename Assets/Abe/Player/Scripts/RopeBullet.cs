@@ -54,6 +54,8 @@ public class RopeBullet : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.SetVertexCount(2);
+
+        SoundManager.Instance.PlaySE(AUDIO.SE_ropeFire);
     }
 
     public void LateUpdate()
@@ -68,6 +70,8 @@ public class RopeBullet : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         collisionInfo = collision;
+
+        SoundManager.Instance.PlaySE(AUDIO.SE_ropeHit);
     }
 
     void OnCollisionExit(Collision collision)
