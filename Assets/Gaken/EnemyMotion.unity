@@ -176,6 +176,45 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013572030750, guid: 16313cba1e1ca584ca7912f32dda7017,
+        type: 2}
+      propertyPath: normalRopePrefab
+      value: 
+      objectReference: {fileID: 1000011439032750, guid: d2ee03d9b246e9047a5702b0d489b167,
+        type: 2}
+    - target: {fileID: 114000013572030750, guid: 16313cba1e1ca584ca7912f32dda7017,
+        type: 2}
+      propertyPath: lockRopePrefab
+      value: 
+      objectReference: {fileID: 1000011576660098, guid: 260fe34886aec8e49bbd7ab639273e0e,
+        type: 2}
+    - target: {fileID: 114000013572030750, guid: 16313cba1e1ca584ca7912f32dda7017,
+        type: 2}
+      propertyPath: catchRopePrefab
+      value: 
+      objectReference: {fileID: 1000010309568244, guid: 6510c6ba1f780ca45b0a5a0ad1c8c6dd,
+        type: 2}
+    - target: {fileID: 114000013572030750, guid: 16313cba1e1ca584ca7912f32dda7017,
+        type: 2}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 1000013608364856, guid: a1a5ec346aa78594e9dfe170dcc53fb0,
+        type: 2}
+    - target: {fileID: 114000011192500678, guid: 16313cba1e1ca584ca7912f32dda7017,
+        type: 2}
+      propertyPath: footOrigin
+      value: 
+      objectReference: {fileID: 1150206703}
+    - target: {fileID: 114000011192500678, guid: 16313cba1e1ca584ca7912f32dda7017,
+        type: 2}
+      propertyPath: leftForeArm
+      value: 
+      objectReference: {fileID: 272804654}
+    - target: {fileID: 114000011192500678, guid: 16313cba1e1ca584ca7912f32dda7017,
+        type: 2}
+      propertyPath: rightForeArm
+      value: 
+      objectReference: {fileID: 781725624}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16313cba1e1ca584ca7912f32dda7017, type: 2}
   m_IsPrefabParent: 0
@@ -263,6 +302,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4000012452018894, guid: 8fbb10e4c9d8dac4881ab49905e8bf59,
     type: 2}
   m_PrefabInternal: {fileID: 2129465461}
+--- !u!4 &272804654 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000012692597450, guid: 16313cba1e1ca584ca7912f32dda7017,
+    type: 2}
+  m_PrefabInternal: {fileID: 141287920}
 --- !u!1 &300851656
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7740d738e4f35004399d949b69b0f4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 967989802}
+  parent: {fileID: 0}
 --- !u!135 &330077212
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -911,9 +955,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d345888266062ed45b8511f1772e9128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
-  direction: 50
-  target: {fileID: 577557623}
+  radius: 0
+  direction: 0
+  target: {fileID: 0}
 --- !u!1 &722428360
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +1020,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!4 &781725624 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000012037107218, guid: 16313cba1e1ca584ca7912f32dda7017,
+    type: 2}
+  m_PrefabInternal: {fileID: 141287920}
 --- !u!1 &793993492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,7 +1134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ec49ed2e3d6244e81346e21aa9f243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 967989802}
+  enemy: {fileID: 0}
 --- !u!1001 &896009001
 Prefab:
   m_ObjectHideFlags: 0
@@ -1191,14 +1240,9 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1906bbed62dd2cd4e90b063fefd16758, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &967989802 stripped
+--- !u!4 &1150206703 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 4000013656881200, guid: 8fbb10e4c9d8dac4881ab49905e8bf59,
-    type: 2}
-  m_PrefabInternal: {fileID: 2129465461}
---- !u!4 &1121237246 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4000011173865140, guid: 16313cba1e1ca584ca7912f32dda7017,
+  m_PrefabParentObject: {fileID: 4000012191370460, guid: 16313cba1e1ca584ca7912f32dda7017,
     type: 2}
   m_PrefabInternal: {fileID: 141287920}
 --- !u!1 &1223730164
@@ -1453,7 +1497,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1121237246}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4276d41f44605a74698bb020091d79a8, type: 2}
   m_IsPrefabParent: 0
@@ -1547,7 +1591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c278beab32d714da6c34a23ce02ffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 967989802}
+  enemy: {fileID: 0}
 --- !u!4 &2021262874 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012399250048, guid: 8fbb10e4c9d8dac4881ab49905e8bf59,
@@ -1596,7 +1640,7 @@ Prefab:
         type: 2}
       propertyPath: PlayerTarget
       value: 
-      objectReference: {fileID: 1121237246}
+      objectReference: {fileID: 0}
     - target: {fileID: 114000012761660776, guid: 8fbb10e4c9d8dac4881ab49905e8bf59,
         type: 2}
       propertyPath: spine
@@ -3018,7 +3062,7 @@ Prefab:
         type: 2}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1121237246}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8fbb10e4c9d8dac4881ab49905e8bf59, type: 2}
   m_IsPrefabParent: 0

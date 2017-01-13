@@ -19,7 +19,7 @@ public class move : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        SoundManager.Instance.PlaySE(AUDIO.SE_WALK);
+        //SoundManager.Instance.PlaySE(AUDIO.SE_WALK);
         Debug.Log("当たった");
     }
 }

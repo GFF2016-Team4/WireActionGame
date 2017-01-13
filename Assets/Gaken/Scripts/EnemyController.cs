@@ -58,6 +58,22 @@ namespace Gaken
 
         private bool setWaitshotFlag = false; //　構え終わった時に値をセットしたらOn
 
+        bool EnemyForward = false, EnemyLeft = false, EnemyRight = false, EnemyBack = false;
+        int c = 0;
+
+        int enemyDirection;
+        enum EnemyDirection
+        {
+            CW_Front,       //時計回り前
+            CW_Right,       //時計回り右
+            CW_Back,        //時計回り後
+            CW_Left,        //時計回り左
+            ACW_Front,      //反時計回り前
+            ACW_Left,       //反時計回り左
+            ACW_Back,       //反時計回り後
+            ACW_Right,      //反時計回り右
+        }
+
         void Start()
         {
             //初期化
@@ -241,15 +257,9 @@ namespace Gaken
             {
                 EnemyExplosion();
             }
+            c += CircleCount();
 
-            //Mathf.Atan2();
-
-            //Debug.Log(this.transform.position);
-            //Debug.Log(player.transform.position);
-
-            //Debug.Log((Vector3.Angle(this.transform.position, player.transform.position) / Mathf.Deg2Rad));
-            Debug.Log((Vector2.Angle(new Vector2(this.transform.position.x, this.transform.position.z), new Vector2(player.transform.position.x, player.transform.position.z)) / Mathf.Deg2Rad));
-
+            Debug.Log(c);
         }
 
         //Transformの循環コピー
@@ -340,7 +350,7 @@ namespace Gaken
 
         void EnemyNormal()
         {
-            agent.enabled = true;
+            //agent.enabled = true;
             m_Animator.SetBool("IsAttack", false);
             agent.speed = m_Speed;
 
@@ -349,6 +359,160 @@ namespace Gaken
         void EnemyExplosion()
         {
             transform.Find("DYNAMITE").transform.gameObject.SetActive(true);
+        }
+
+        int CircleCount()
+        {
+            Vector3 relative = transform.InverseTransformPoint(player.position);
+            float angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
+
+            if (angle < 45 && angle > -45)
+            {
+                EnemyForward = true;
+                if (EnemyLeft)
+                    enemyDirection = (int)EnemyDirection.ACW_Front;
+                if (EnemyRight)
+                    enemyDirection = (int)EnemyDirection.CW_Front;
+
+                EnemyForward = false;
+            }
+            if (angle > 45 && angle < 135)
+            {
+                EnemyRight = true;
+                if (EnemyForward)
+                    enemyDirection = (int)EnemyDirection.ACW_Right;
+                if (EnemyBack)
+                    enemyDirection = (int)EnemyDirection.CW_Right;
+
+                EnemyRight = false;
+            }
+            if (angle > 135 && angle < -135)
+            {
+                EnemyBack = true;
+                if (EnemyRight)
+                    enemyDirection = (int)EnemyDirection.ACW_Back;
+                if (EnemyLeft)
+                    enemyDirection = (int)EnemyDirection.CW_Back;
+
+                EnemyBack = false;
+            }
+            if (angle > 45 && angle < 135)
+            {
+                EnemyLeft = true;
+                if (EnemyBack)
+                    enemyDirection = (int)EnemyDirection.ACW_Left;
+                if (EnemyForward)
+                    enemyDirection = (int)EnemyDirection.CW_Left;
+
+                EnemyLeft = false;
+            }
+            int cnt = 0;
+
+            Debug.Log(angle);
+
+
+            switch (enemyDirection)
+            {
+                //時計回り
+                //前から
+                case (int)EnemyDirection.CW_Front:
+                    {
+                        if (angle < 45 && angle > -45) EnemyForward = true;
+                        if (EnemyForward && angle > 45 && angle < 135) EnemyRight = true;
+                        if (EnemyForward && EnemyRight && angle > 135 && angle < -135) EnemyBack = true;
+                        if (EnemyForward && EnemyRight && EnemyBack && angle > -135 && angle < -45) EnemyLeft = true;
+                    }
+                    break;
+
+                //右から
+                case (int)EnemyDirection.CW_Right:
+                    {
+                        if (angle > 45 && angle < 135) EnemyRight = true;
+                        if (EnemyRight && angle > 135 && angle < -135) EnemyBack = true;
+                        if (EnemyRight && EnemyBack && angle > -135 && angle < -45) EnemyLeft = true;
+                        if (EnemyRight && EnemyBack && EnemyLeft && angle > -45 && angle < 45) EnemyForward = true;
+                    }
+                    break;
+
+                //後ろから
+                case (int)EnemyDirection.CW_Back:
+                    {
+                        if (angle > 135 && angle < -135) EnemyBack = true;
+                        if (EnemyBack && angle > -135 && angle < -45) EnemyLeft = true;
+                        if (EnemyBack && EnemyLeft && angle > -45 && angle < 45) EnemyForward = true;
+                        if (EnemyBack && EnemyLeft && EnemyForward && angle > 45 && angle < 135) EnemyRight = true;
+                    }
+                    break;
+
+                //左から
+                case (int)EnemyDirection.CW_Left:
+                    {
+                        if (angle > 45 && angle < 135) EnemyLeft = true;
+                        if (EnemyLeft && angle > 135 && angle < -135) EnemyForward = true;
+                        if (EnemyLeft && EnemyForward && angle > -135 && angle < -45) EnemyRight = true;
+                        if (EnemyLeft && EnemyForward && EnemyRight && angle > -45 && angle < 45) EnemyBack = true;
+                    }
+                    break;
+
+
+                //反時計回り
+                //前から
+                case (int)EnemyDirection.ACW_Front:
+                    {
+                        if (angle > -45 && angle < 45) EnemyForward = true;
+                        if (EnemyForward && angle > -135 && angle < -45) EnemyLeft = true;
+                        if (EnemyForward && EnemyLeft && angle > 135 && angle < -135) EnemyBack = true;
+                        if (EnemyForward && EnemyLeft && EnemyBack && angle > 45 && angle < 135) EnemyRight = true;
+                    }
+                    break;
+
+                //右から
+                case (int)EnemyDirection.ACW_Right:
+                    {
+                        if (angle > 45 && angle < 135) EnemyRight = true;
+                        if (EnemyRight && angle > 135 && angle < -135) EnemyBack = true;
+                        if (EnemyRight && EnemyBack && angle > -135 && angle < -45) EnemyLeft = true;
+                        if (EnemyRight && EnemyBack && EnemyLeft && angle > -45 && angle < 45) EnemyForward = true;
+                    }
+                    break;
+
+                //後ろから
+                case (int)EnemyDirection.ACW_Back:
+                    {
+                        if (angle > 135 && angle < -135) EnemyBack = true;
+                        if (EnemyBack && angle > 45 && angle < 135) EnemyRight = true;
+                        if (EnemyBack && EnemyRight && angle > -45 && angle < 45) EnemyForward = true;
+                        if (EnemyBack && EnemyRight && EnemyForward && angle > -135 && angle < -45) EnemyLeft = true;
+                    }
+                    break;
+
+                //左から
+                case (int)EnemyDirection.ACW_Left:
+                    {
+                        if (angle > -135 && angle < -45) EnemyLeft = true;
+                        if (EnemyLeft && angle > 135 && angle < -135) EnemyBack = true;
+                        if (EnemyLeft && EnemyBack && angle > 45 && angle < 135) EnemyRight = true;
+                        if (EnemyLeft && EnemyBack && EnemyRight && angle > -45 && angle < 45) EnemyForward = true;
+                    }
+                    break;
+            }
+
+            Debug.Log(EnemyForward);
+            Debug.Log(EnemyBack);
+            Debug.Log(EnemyLeft);
+            Debug.Log(EnemyRight);
+
+            if (EnemyForward && EnemyLeft && EnemyRight && EnemyBack)
+            {
+                cnt++;
+                Debug.Log(cnt);
+                EnemyForward = false;
+                EnemyLeft = false;
+                EnemyRight = false;
+                EnemyBack = false;
+            }
+
+            return cnt;
         }
     }
 }
