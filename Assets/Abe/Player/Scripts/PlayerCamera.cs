@@ -20,6 +20,8 @@ public class PlayerCamera : MonoBehaviour
     [Tooltip("カメラの上下回転の限界")]
     public float cameraLimitDown = -30f;
 
+    CursorLockMode mode = CursorLockMode.None;
+
     public void Start()
     {
         LockCursor();
@@ -75,18 +77,20 @@ public class PlayerCamera : MonoBehaviour
         {
             UnLockCursor();
         }
+
+        Cursor.lockState = mode;
     }
 
     void LockCursor()
     {
+        mode = CursorLockMode.Locked;
         Cursor.visible   = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void UnLockCursor()
     {
+        mode = CursorLockMode.None;
         Cursor.visible   = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 
     void FixedAngle()

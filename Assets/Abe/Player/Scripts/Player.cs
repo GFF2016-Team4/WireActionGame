@@ -254,11 +254,11 @@ public class Player : MonoBehaviour, RopeEventHandlar
             //transform.rotation = Quaternion.AngleAxis();
 
             //Quaternion rot = Quaternion.FromToRotation(ropeController.Direction, transform.up);
-            Vector3 tempForward = transform.forward;
+            //Vector3 tempForward = transform.forward;
             transform.up        = ropeController.Direction;
 
-            Quaternion rot = Quaternion.FromToRotation(transform.forward, tempForward);
-            transform.rotation = Quaternion.Slerp(rot, transform.rotation, 0.75f);
+            //Quaternion rot = Quaternion.FromToRotation(transform.forward, tempForward);
+            //transform.rotation = Quaternion.Slerp(rot, transform.rotation, 0.75f);
 
             //transform.forward = rot * tempForward;
 
