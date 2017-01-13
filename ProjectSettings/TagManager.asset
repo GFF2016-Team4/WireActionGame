@@ -13,13 +13,7 @@ TagManager:
   - Rope/Normal
   - Enemy
   - Rope/Lock
-<<<<<<< HEAD
-  - Rope
-  - Destination
-  - Floor
-=======
   - Rope/Catch
->>>>>>> 58a83a0977cf87c71c9b1c910f0f1540673a3016
   layers:
   - Default
   - TransparentFX
