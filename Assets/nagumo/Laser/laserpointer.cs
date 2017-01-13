@@ -10,6 +10,8 @@ namespace Enemy
         public GameObject Shooter;
         public GameObject laserBlue;
         private GameObject m_LaserAttack;
+        public GameObject Charge_P;
+        public GameObject Charge_L;
 
         public float PointLaserTime;
         public float AttackLaserTime;
@@ -43,6 +45,8 @@ namespace Enemy
             if (m_LaserAttack.GetComponent<EnemyPattern>().Laser == true && lineRenderer.enabled == false && AttackLaser == false)
             {
                 lineRenderer.enabled = true;
+                Charge_P.SetActive(true);
+                SoundManager.Instance.PlaySE(AUDIO.SE_charge);
             }
             if (lineRenderer.enabled == true)
             {
@@ -50,11 +54,17 @@ namespace Enemy
             }
             if (pointTime >= PointLaserTime)
             {
+                //ポイントレーザー
                 pointTime = 0.0f;
                 lineRenderer.enabled = false;
+                Charge_P.SetActive(false);
+                SoundManager.Instance.StopSE();
 
+                //レーザーアタック
                 Laser.SetActive(true);
                 AttackLaser = true;
+                Charge_L.SetActive(true);
+                SoundManager.Instance.PlaySE(AUDIO.SE_beamFire);
 
                 m_laserBlue.laserRadius = 10;
                 m_laserBlue.radius = 1.0f;
@@ -72,6 +82,9 @@ namespace Enemy
                 AttackLaser = false;
                 Laser.SetActive(false);
                 m_LaserAttack.GetComponent<EnemyPattern>().Laser = false;
+                SoundManager.Instance.StopSE();
+
+                Charge_L.SetActive(false);
             }
 
             //レーザーポイントの処理

@@ -11,7 +11,7 @@ public class EnemyPattern : MonoBehaviour {
     //レーザーの範囲
     public float m_Laser;
 
-    public float timer;
+    private float timer;
 
     [System.NonSerialized]
     public bool Laser;

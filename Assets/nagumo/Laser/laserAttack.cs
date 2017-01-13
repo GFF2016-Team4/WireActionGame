@@ -41,7 +41,8 @@ namespace Enemy
             }
 
             Ray ray = new Ray(transform.position, Shooter.transform.forward);
-            var laserhitPoint = Physics.SphereCast(transform.position, radius, transform.forward, out hit, 100);
+            var laserhitPoint = Physics.SphereCast(
+                transform.position, radius, transform.forward, out hit, 100);
             if (radius >= 0)
             {
                 radius -= radiusDecision;
@@ -51,6 +52,7 @@ namespace Enemy
             {
                 laserBlue.SetPosition(1, hit.point);
 
+                //レーザーの体力
                 if (hit.collider.tag == "kabe")
                 {
                     Debug.Log("hit");

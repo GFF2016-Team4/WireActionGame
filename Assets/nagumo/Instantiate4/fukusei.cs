@@ -6,6 +6,8 @@ public class fukusei : MonoBehaviour {
 	//複製元のオブジェクト
 	public GameObject orgObj;
 
+    private GameObject m_H;
+
     //public Transform parent;
 
     //複製オブジェクト
@@ -23,6 +25,9 @@ public class fukusei : MonoBehaviour {
     public float d_timer;
     float destroyTimer;
 
+    [System.NonSerialized]
+    public bool H_s;
+
     //テスト用
     //Vector3 testposition;
 
@@ -39,8 +44,9 @@ public class fukusei : MonoBehaviour {
 	
 	void Update ()
 	{
-        if (Input.GetKeyDown (KeyCode.Space)) 
+        if (H_s == true) 
 		{
+            Debug.Log("aaa");
 			fksObj = Instantiate (orgObj, orgObj.transform.position /*+ testposition*/, 
                 orgObj.transform.rotation)as GameObject;
             fksObj.transform.localScale = new Vector3(20, 20, 20);
