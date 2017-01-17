@@ -78,7 +78,7 @@ namespace Gaken
             isDead = false;
             m_Controller = GetComponent<CharacterController>();
             agent = GetComponent<NavMeshAgent>();
-            agent.speed = m_Speed;
+            agent.speed = m_Speed = 1f;
 
             time2 += 1;
 
@@ -231,7 +231,6 @@ namespace Gaken
             if (Input.GetKey(KeyCode.Space))
             {
                 leftShoulder.GetComponent<SkinnedMeshRenderer>().enabled = false;
-                m_Animator.speed = 0;
             }
 
             m_LazerCoolDown -= 1f * Time.deltaTime;
@@ -249,7 +248,6 @@ namespace Gaken
             else if(m_Animator.GetBool("IsKnee"))
             {
                 c += CircleCount();
-
                 if(c >= 4)
                 {
                     isDead = true;
@@ -322,6 +320,12 @@ namespace Gaken
             if (other.gameObject.tag == "Rope/Normal")
             {
                 m_Animator.SetBool("IsKnee", true);
+            }
+
+
+            if(other.gameObject.tag == "Floor")
+            {
+                m_Animator.speed = 0;
             }
 
             //同時に4点がロープとぶつかっているなら死ぬ
