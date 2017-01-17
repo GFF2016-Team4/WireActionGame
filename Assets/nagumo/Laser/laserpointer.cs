@@ -12,6 +12,7 @@ namespace Enemy
         private GameObject m_LaserAttack;
         public GameObject Charge_P;
         public GameObject Charge_L;
+        public GameObject Charge_C;
 
         public float PointLaserTime;
         public float AttackLaserTime;
@@ -45,19 +46,26 @@ namespace Enemy
             if (m_LaserAttack.GetComponent<EnemyPattern>().Laser == true && lineRenderer.enabled == false && AttackLaser == false)
             {
                 lineRenderer.enabled = true;
+
+                //チャージ
                 Charge_P.SetActive(true);
+                //Charge_C.SetActive(true);
                 SoundManager.Instance.PlaySE(AUDIO.SE_charge);
             }
             if (lineRenderer.enabled == true)
             {
                 pointTime += Time.deltaTime;
             }
+
+            //ポイントレーザーからレーザーアタック
             if (pointTime >= PointLaserTime)
             {
                 //ポイントレーザー
                 pointTime = 0.0f;
                 lineRenderer.enabled = false;
-                Charge_P.SetActive(false);
+
+                //チャージ
+                Charge_C.SetActive(false);
                 SoundManager.Instance.StopSE();
 
                 //レーザーアタック
@@ -85,6 +93,12 @@ namespace Enemy
                 SoundManager.Instance.StopSE();
 
                 Charge_L.SetActive(false);
+                
+            }
+            if(AttackTime >= AttackLaserTime - 0.5)
+            {
+                Charge_C.SetActive(true);
+                Charge_P.SetActive(false);
             }
 
             //レーザーポイントの処理

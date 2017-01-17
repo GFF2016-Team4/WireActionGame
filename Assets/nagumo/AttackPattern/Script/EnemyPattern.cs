@@ -11,7 +11,7 @@ public class EnemyPattern : MonoBehaviour {
     //レーザーの範囲
     public float m_Laser;
 
-    private float timer;
+    public float timer;
 
     [System.NonSerialized]
     public bool Laser;
@@ -34,12 +34,14 @@ public class EnemyPattern : MonoBehaviour {
         //パンチの範囲内処理
         if (xDeistance <= Punch && xDeistance >= -Punch && zDeistance <= Punch && zDeistance >= -Punch)
         {
+            Debug.Log("パンチ範囲");
+
             //テスト用
             timer += Time.deltaTime;
             if (timer >= 10)
             {
                 m_changeTag = true;
-                Debug.Log("パンチ範囲");
+                //Debug.Log("パンチ範囲");
             }
             if (timer >= 15)
             {

@@ -32,7 +32,7 @@ public class ArmInstantiate : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Rope/Lock" && Inst==true)
+        if (col.gameObject.tag == "Rope/Lock" && Inst == true)
         {
             H -= 1;
             Debug.Log(H);
@@ -44,9 +44,13 @@ public class ArmInstantiate : MonoBehaviour
             Inst = true;
             Debug.Log(Inst);
         }
+
+        //攻撃虫に地面に当たったら
+        if (H_s2.GetComponent<EnemyPattern>().m_changeTag == true)
+            SoundManager.Instance.PlaySE(AUDIO.SE_Enemy_Punch);
     }
 
-    void OnTriggerExit(Collider col)
+        void OnTriggerExit(Collider col)
     {
         if (col.gameObject.tag == "Rope/Lock")
         {
