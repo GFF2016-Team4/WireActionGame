@@ -5,6 +5,7 @@ public class fukusei : MonoBehaviour {
 
 	//複製元のオブジェクト
 	public GameObject orgObj;
+    public GameObject orgObj2;
 
     private GameObject m_H;
 
@@ -59,6 +60,7 @@ public class fukusei : MonoBehaviour {
             m_colorManager.plusResetAlpha(fks_renderer);
 
             orgObj.GetComponent<BoxCollider> ().enabled = false;
+            orgObj2.GetComponent<BoxCollider>().enabled = false;
 		}
 
 		if (fksObj != null) 
@@ -84,6 +86,7 @@ public class fukusei : MonoBehaviour {
 			if (isDestroy == true)
 			{
                 orgObj.GetComponent<BoxCollider>().enabled = true;
+                orgObj2.GetComponent<BoxCollider>().enabled = true;
                 fksObj.GetComponent<BoxCollider> ().enabled = false;
 
                 //複製オブジェクトのアルファを徐々に減らす
