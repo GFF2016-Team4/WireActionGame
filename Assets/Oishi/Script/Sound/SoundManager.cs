@@ -92,6 +92,12 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         AttachSESource.PlayOneShot(seDic[_nextSEName] as AudioClip);
     }
 
+        public void StopSE()
+    {
+        AttachSESource.Stop();
+    }
+
+
     //=================================================================================
     //BGM
     //=================================================================================
@@ -171,10 +177,5 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
 
         PlayerPrefs.SetFloat(BgmVolumeKey, BGMVolume);
         PlayerPrefs.SetFloat(SeVolumeKey, SEVolume);
-    }
-
-    public void StopSE()
-    {
-        AttachSESource.Stop();
     }
 }
