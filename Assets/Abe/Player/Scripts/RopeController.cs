@@ -68,6 +68,8 @@ public class RopeController : MonoBehaviour
 
     PlayerCameraInfo cameraInfo;
 
+    public bool isControl = true;
+
     public bool IsRopeExist
     {
         get
@@ -158,7 +160,10 @@ public class RopeController : MonoBehaviour
 
     void Update()
     {
-        ShootRopes();
+        if(isControl)
+        {
+            ShootRopes();
+        }
         CheckSimulationEnd();
     }
 

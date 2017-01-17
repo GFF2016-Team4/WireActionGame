@@ -325,14 +325,19 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        if(!isControll) return;
         if(hit.gameObject.tag == "Enemy")
         {
             animator.SetTrigger("Damage");
+            isControll = false;
+            ropeController.isControl = false;
         }
     }
 
+    //ダメージアニメーション終了時の処理
     void DamageEnd()
     {
-        
+        isControll = true;
+        ropeController.isControl = true;
     }
 }
