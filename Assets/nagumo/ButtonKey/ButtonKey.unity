@@ -1187,6 +1187,16 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!82 &1769880469 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000013676099616, guid: 93e302d239dc145429fdee8c8172499e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1999349167}
+--- !u!82 &1769880470 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000010919345954, guid: 93e302d239dc145429fdee8c8172499e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1999349167}
 --- !u!1001 &1999349167
 Prefab:
   m_ObjectHideFlags: 0
@@ -1226,6 +1236,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012040907070, guid: 93e302d239dc145429fdee8c8172499e,
+        type: 2}
+      propertyPath: AttachBGMSource
+      value: 
+      objectReference: {fileID: 1769880470}
+    - target: {fileID: 114000012040907070, guid: 93e302d239dc145429fdee8c8172499e,
+        type: 2}
+      propertyPath: AttachSESource
+      value: 
+      objectReference: {fileID: 1769880469}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93e302d239dc145429fdee8c8172499e, type: 2}
   m_IsPrefabParent: 0
