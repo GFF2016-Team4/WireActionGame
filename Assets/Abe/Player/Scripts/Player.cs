@@ -51,6 +51,8 @@ public class Player : MonoBehaviour, RopeEventHandlar
     Vector3 gravity;
     Vector3 playerVelocity;
 
+    bool isControll = true;
+
     RopeController ropeController;
 
     PlayerMove     playerMove;
@@ -98,11 +100,19 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
     void Update()
     {
-        bool keyDown = RopeInput.isLeftRopeButton  || 
-                       RopeInput.isRightRopeButton ||
-                       RopeInput.isCatchRopeButton;
-        playerMove.enabled     = !keyDown;
-        playerRopeMove.enabled =  keyDown;
+        if(isControll)
+        {
+            bool keyDown = RopeInput.isLeftRopeButton  || 
+                           RopeInput.isRightRopeButton ||
+                           RopeInput.isCatchRopeButton;
+            playerMove.enabled     = !keyDown;
+            playerRopeMove.enabled =  keyDown;
+        }
+        else
+        {
+            playerMove.enabled     = false;
+            playerRopeMove.enabled = false;
+        }
     }
 
     public bool IsGround()
@@ -247,20 +257,16 @@ public class Player : MonoBehaviour, RopeEventHandlar
         playerVelocity = Vector3.zero;
         if(ropeController.IsRopeExist)
         {
-            //float   dir        = Vector3.Angle(transform.up, ropeController.Direction);
-            //Vector3 axisRot    = Vector3.Cross(transform.up, ropeController.Direction);
+            //角度と軸の算出
+            float   dir     = Vector3.Angle(ropeController.Direction, transform.forward);
+            Vector3 axisRot = Vector3.Cross(ropeController.Direction, transform.forward);
 
-            //transform.Rotate(axisRot, dir);
-            //transform.rotation = Quaternion.AngleAxis();
+            Quaternion rot  = Quaternion.AngleAxis((90-dir), axisRot);
 
-            //Quaternion rot = Quaternion.FromToRotation(ropeController.Direction, transform.up);
-            //Vector3 tempForward = transform.forward;
-            transform.up        = ropeController.Direction;
+            Vector3 forward = rot * transform.forward;
+            Vector3 up      = ropeController.Direction;
 
-            //Quaternion rot = Quaternion.FromToRotation(transform.forward, tempForward);
-            //transform.rotation = Quaternion.Slerp(rot, transform.rotation, 0.75f);
-
-            //transform.forward = rot * tempForward;
+            transform.rotation = Quaternion.LookRotation(forward, up);
 
             animator.SetBool("CenterRopeExist",ropeController.IsCenterRopeExist);
             if(ropeController.IsCenterRopeExist)
@@ -315,5 +321,18 @@ public class Player : MonoBehaviour, RopeEventHandlar
         {
             animator.SetTrigger("ShootLockRope");
         }
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.gameObject.tag == "Enemy")
+        {
+            animator.SetTrigger("Damage");
+        }
+    }
+
+    void DamageEnd()
+    {
+        
     }
 }

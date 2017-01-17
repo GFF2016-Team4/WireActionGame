@@ -868,6 +868,8 @@ MonoBehaviour:
   normalRopeDistance: Infinity
   lockRopeDistance: 50
   footOrigin: {fileID: 4000012191370460}
+  leftForeArm: {fileID: 4000012395916498}
+  rightForeArm: {fileID: 4000011604025788}
 --- !u!114 &114000013572030750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -883,6 +885,8 @@ MonoBehaviour:
     type: 2}
   lockRopePrefab: {fileID: 1000011576660098, guid: 260fe34886aec8e49bbd7ab639273e0e,
     type: 2}
+  catchRopePrefab: {fileID: 1000010309568244, guid: 6510c6ba1f780ca45b0a5a0ad1c8c6dd,
+    type: 2}
   bulletPrefab: {fileID: 1000013608364856, guid: a1a5ec346aa78594e9dfe170dcc53fb0,
     type: 2}
   bulletSpeed: 300
@@ -897,6 +901,10 @@ MonoBehaviour:
     shootButton: []
   center:
     sync: {fileID: 4000011173865140}
+    ropeInst: {fileID: 0}
+    shootButton: []
+  catchRope:
+    sync: {fileID: 0}
     ropeInst: {fileID: 0}
     shootButton: []
 --- !u!114 &114000014254225510

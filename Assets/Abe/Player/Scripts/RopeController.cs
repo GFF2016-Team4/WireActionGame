@@ -46,7 +46,7 @@ public class RopeController : MonoBehaviour
     private GameObject bulletPrefab;
 
     [SerializeField, Tooltip("射出弾のスピード")]
-    private float bulletSpeed;
+    private float      bulletSpeed;
 
     [SerializeField]
     private RectTransform reticle;
@@ -81,6 +81,18 @@ public class RopeController : MonoBehaviour
     public bool IsCenterRopeExist
     {
         get { return center.RopeExist; }
+    }
+
+    public Vector3 Origin
+    {
+        get
+        {
+            if(center.IsCanControl) return center.ropeInst.originPosition;
+            if(left  .IsCanControl) return left  .ropeInst.originPosition;
+            if(right .IsCanControl) return right .ropeInst.originPosition;
+
+            throw null;
+        }
     }
 
     public Vector3 LeftOrigin

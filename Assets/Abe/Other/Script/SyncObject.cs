@@ -10,7 +10,7 @@ public class SyncObject : MonoBehaviour
     GameObject point;
     void Awake()
     {
-        int   layerMask = PlayersLayerMask.IgnorePlayerAndRopes;
+        int   layerMask = PlayersLayerMask.PlayerAndRopes;
         float radius    = GetComponent<SphereCollider>().radius;
         Collider[] cols = Physics.OverlapSphere(transform.position, radius, layerMask);
 
@@ -53,6 +53,11 @@ public class SyncObject : MonoBehaviour
         obj.transform.rotation = transform.rotation;
         obj.transform.parent   = sync.transform;
         point = obj;
+    }
+
+    void OnDestroy()
+    {
+        Destroy(point);
     }
 
     //public void SetSyncTransform(Transform syncTrans, Vector3 offsetPosition)

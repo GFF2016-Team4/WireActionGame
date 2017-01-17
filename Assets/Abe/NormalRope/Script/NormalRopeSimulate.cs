@@ -22,6 +22,8 @@ public class NormalRopeSimulate : MonoBehaviour
 
     bool isEnd = false;
 
+    public bool isContorll = true;
+
     public Vector3 originPosition
     {
         get { return rope.rigOriginPosition; }
