@@ -5,6 +5,7 @@ public class EnemyPattern : MonoBehaviour
 {
     public GameObject m_player;
     public float LaserAttackTime;
+    Animator m_Animator;
 
     //パンチの範囲
     public float Punch;
@@ -25,6 +26,7 @@ public class EnemyPattern : MonoBehaviour
 
 
     // Use this for initialization
+<<<<<<< HEAD
     void Start()
     {
         m_Animator = transform.Find("EnemyRobot").GetComponent<Animator>();
@@ -36,6 +38,14 @@ public class EnemyPattern : MonoBehaviour
         m_LazerCoolDown -= 1f * Time.deltaTime;
 
 
+=======
+    void Start () {
+        m_Animator = transform.Find("EnemyRobot").GetComponent<Animator>();
+    }
+	
+	// Update is called once per frame
+	void Update () {
+>>>>>>> origin/master
         int xDeistance = Mathf.RoundToInt(this.transform.position.x - m_player.transform.position.x);
         int zDeistance = Mathf.RoundToInt(this.transform.position.z - m_player.transform.position.z);
         //Debug.Log(zDeistance);
@@ -45,10 +55,14 @@ public class EnemyPattern : MonoBehaviour
         if (xDeistance <= Punch && xDeistance >= -Punch && zDeistance <= Punch && zDeistance >= -Punch)
         {
             Debug.Log("パンチ範囲");
+<<<<<<< HEAD
 
             m_Animator.SetBool("IsAttack", true);
             m_Animator.SetBool("IsLazer", false);
 
+=======
+            m_Animator.SetBool("IsAttack", true);
+>>>>>>> origin/master
             //テスト用
             timer += Time.deltaTime;
             if (timer >= 10)
@@ -74,13 +88,19 @@ public class EnemyPattern : MonoBehaviour
             }
             LaserAttack();
             Debug.Log("レーザー範囲");
+            m_Animator.SetBool("IsLazer", true);
         }
         else
         {
             Debug.Log("移動");
+<<<<<<< HEAD
             m_Animator.SetBool("IsAttack", false);
             m_Animator.SetBool("IsLazer", false);
 
+=======
+            m_Animator.SetBool("IsLazer", false);
+            m_Animator.SetBool("IsAttack", false);
+>>>>>>> origin/master
         }
     }
     void LaserAttack()

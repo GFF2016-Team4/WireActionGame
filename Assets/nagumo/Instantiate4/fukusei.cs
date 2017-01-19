@@ -6,6 +6,7 @@ public class fukusei : MonoBehaviour {
 	//複製元のオブジェクト
 	public GameObject orgObj;
     public GameObject orgObj2;
+    public GameObject orgObj3;
 
     private GameObject m_H;
 
@@ -45,8 +46,9 @@ public class fukusei : MonoBehaviour {
 	
 	void Update ()
 	{
-        if (H_s == true) 
+        if (/*H_s == true*/Input.GetKeyDown(KeyCode.Space)) 
 		{
+            H_s = true;
             Debug.Log("aaa");
 			fksObj = Instantiate (orgObj, orgObj.transform.position /*+ testposition*/, 
                 orgObj.transform.rotation)as GameObject;
@@ -61,7 +63,8 @@ public class fukusei : MonoBehaviour {
 
             orgObj.GetComponent<BoxCollider> ().enabled = false;
             orgObj2.GetComponent<BoxCollider>().enabled = false;
-		}
+            orgObj3.GetComponent<SphereCollider>().enabled = false;
+        }
 
 		if (fksObj != null) 
 		{
@@ -87,6 +90,7 @@ public class fukusei : MonoBehaviour {
 			{
                 orgObj.GetComponent<BoxCollider>().enabled = true;
                 orgObj2.GetComponent<BoxCollider>().enabled = true;
+                orgObj3.GetComponent<SphereCollider>().enabled = true;
                 fksObj.GetComponent<BoxCollider> ().enabled = false;
 
                 //複製オブジェクトのアルファを徐々に減らす

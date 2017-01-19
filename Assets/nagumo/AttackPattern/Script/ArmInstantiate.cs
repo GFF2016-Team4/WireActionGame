@@ -45,7 +45,7 @@ public class ArmInstantiate : MonoBehaviour
             Debug.Log(Inst);
         }
 
-        //攻撃虫に地面に当たったら
+        //攻撃中に地面に当たったら
         if (H_s2.GetComponent<EnemyPattern>().m_changeTag == true)
             SoundManager.Instance.PlaySE(AUDIO.SE_Enemy_Punch);
     }

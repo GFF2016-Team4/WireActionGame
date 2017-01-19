@@ -178,6 +178,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
         if(!IsGround())                  return;
         if(!Input.GetButtonDown("Jump")) return;
 
+        //SoundManager.Instance.PlaySE
         playerVelocity += Vector3.up * jumpPower;
         playerVelocity += cameraInfo.GetInputVelocity()*2.0f;
         controller.Move(playerVelocity * Time.deltaTime);
@@ -254,6 +255,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
     /// </summary>
     public void SyncPlayerToRope()
     {
+        isJump = false;
         playerVelocity = Vector3.zero;
         if(ropeController.IsRopeExist)
         {

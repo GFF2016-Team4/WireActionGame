@@ -213,7 +213,7 @@ public class RopeController : MonoBehaviour
             TakeOverVelocity(right, rope);
         }
 
-        rope.ropeInst.SimulationEnd();
+        rope.ropeInst.SimulationEnd(rope.sync);
         rope.ropeInst = null;
     }
 
@@ -270,7 +270,7 @@ public class RopeController : MonoBehaviour
             yield break;
         }
 
-        CreateCatchRope(ropeBullet.HitInfo);
+        CreateCatchRope(ropeBullet.HitInfo, catchRope);
         Destroy(bulletInst);
     }
 
@@ -291,7 +291,8 @@ public class RopeController : MonoBehaviour
             return position.Value;
         }
 
-        Vector3 point = cameraInfo.position + (cameraInfo.forward * 50);
+        Ray ray = Camera.main.ScreenPointToRay(reticle.position);
+        Vector3 point = cameraInfo.position + (ray.direction * 50);
         return  point - shootPosition;
     }
 
@@ -361,7 +362,7 @@ public class RopeController : MonoBehaviour
         NormalRopeSimulate ropeSimulate = ropeInst.GetComponent<NormalRopeSimulate>();
 
         ropeSimulate.Initialize(bullet.transform.position, rope.sync.position);
-        ropeSimulate.SimulationEnd();
+        ropeSimulate.SimulationEnd(rope.sync);
     }
 
     void CreateCenterNormalRope()
@@ -391,7 +392,7 @@ public class RopeController : MonoBehaviour
         lineDraw.DrawEnd();
     }
 
-    public void CreateCatchRope(Collision hitInfo)
+    public void CreateCatchRope(Collision hitInfo, NormalRope rope)
     {
         GameObject         ropeInst = Instantiate(catchRopePrefab) as GameObject;
         NormalRopeSimulate simulate = ropeInst.GetComponent<NormalRopeSimulate>();
@@ -412,7 +413,7 @@ public class RopeController : MonoBehaviour
         else
         {
             //引っかからなかった キャンセル
-            simulate.SimulationEnd();
+            simulate.SimulationEnd(rope.sync);
         }
     }
 
@@ -442,7 +443,7 @@ public class RopeController : MonoBehaviour
         else
         {
             //引っかからなかった キャンセル
-            simulate.SimulationEnd();
+            simulate.SimulationEnd(rope.sync);
         }
     }
 
