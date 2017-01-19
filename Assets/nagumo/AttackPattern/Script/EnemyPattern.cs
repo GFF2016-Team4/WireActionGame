@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyPattern : MonoBehaviour {
     public GameObject m_player;
     public float LaserAttackTime;
+    Animator m_Animator;
 
     //パンチの範囲
     public float Punch;
@@ -21,8 +22,8 @@ public class EnemyPattern : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
-	}
+        m_Animator = transform.Find("EnemyRobot").GetComponent<Animator>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -35,7 +36,7 @@ public class EnemyPattern : MonoBehaviour {
         if (xDeistance <= Punch && xDeistance >= -Punch && zDeistance <= Punch && zDeistance >= -Punch)
         {
             Debug.Log("パンチ範囲");
-
+            m_Animator.SetBool("IsAttack", true);
             //テスト用
             timer += Time.deltaTime;
             if (timer >= 10)
@@ -54,10 +55,13 @@ public class EnemyPattern : MonoBehaviour {
         {
             LaserAttack();
             Debug.Log("レーザー範囲");
+            m_Animator.SetBool("IsLazer", true);
         }
         else
         {
             Debug.Log("移動");
+            m_Animator.SetBool("IsLazer", false);
+            m_Animator.SetBool("IsAttack", false);
         }
     }
     void LaserAttack()

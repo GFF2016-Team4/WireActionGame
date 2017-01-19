@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Spark : MonoBehaviour {
     public GameObject m_Spark;
+    public GameObject m_Spark2;
 
     private GameObject m_Sp;
     private GameObject exp;
@@ -23,6 +24,7 @@ public class Spark : MonoBehaviour {
             exp = (GameObject)Instantiate(m_Spark.gameObject, transform.position,
                 Quaternion.identity);
             Spk = true;
+            m_Spark2.SetActive(true);
         }
         if (Spk == true)
             timer += Time.deltaTime;
@@ -31,6 +33,7 @@ public class Spark : MonoBehaviour {
             timer = 0;
             Destroy(exp);
             Spk = false;
+            m_Spark2.SetActive(false);
         }
     }
 }
