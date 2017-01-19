@@ -254,6 +254,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
     /// </summary>
     public void SyncPlayerToRope()
     {
+        isJump = false;
         playerVelocity = Vector3.zero;
         if(ropeController.IsRopeExist)
         {

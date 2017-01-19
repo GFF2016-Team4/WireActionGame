@@ -159,7 +159,7 @@ public class NormalRopeSimulate : MonoBehaviour
     public void SimulationStart() { rope.isKinematic = false; }
     public void SimulationStop()  { rope.isKinematic = true;  }
 
-    public void SimulationEnd()
+    public void SimulationEnd(Transform sync)
     {
         if(isEnd) return;
         isEnd = true;
@@ -184,23 +184,26 @@ public class NormalRopeSimulate : MonoBehaviour
         Destroy(rope.rigOriginJoint);
         Destroy(rope.rigOriginJoint.GetComponent<SyncObject>());
 
-        StartCoroutine(TakeUp());
+        StartCoroutine(TakeUp(sync));
     }
 
-    private IEnumerator TakeUp()
+    private IEnumerator TakeUp(Transform sync)
     {
         //巻き取りの開始
         Vector3 startPos = rope.rigOriginPosition;
 
+        SoundManager.Instance.PlaySE(AUDIO.SE_ropeRoll);
         for(float time = takeupTime; time > 0.0f; time -= Time.deltaTime)
         {
+            rope.tailPosition = sync.position;
+
             Vector3 tail = rope.tailPosition;
             float   t    = 1 - (time / takeupTime);
             rope.rigOriginPosition = Vector3.Lerp(startPos, tail, t);
 
             yield return null;
         }
-
+        SoundManager.Instance.StopSE();
         Destroy(gameObject);
     }
 
