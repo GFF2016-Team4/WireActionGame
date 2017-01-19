@@ -8,35 +8,38 @@ namespace Gaken
     {
         private NavMeshAgent agent;
 
-        private float time;
-        private float time2;
+        //private float time;
+        //private float time2;
 
-        public bool Attack;
-        private float NextAttackTime = 2;
+        //public bool Attack;
+        //private float NextAttackTime = 2;
+
         public Transform Destination;
         public Transform player;
 
-        public float m_MaxSpeed = 4.0f;         // 最高速度（メートル/秒）
-        public float m_MinSpeed = -2.0f;        // 最低速度（最大バック速度）
-        public float m_AccelPower = 2.0f;       // 加速度（メートル/秒/秒）
-        public float m_BrakePower = 6.0f;       // ブレーキ速度（メートル/秒/秒）
-        public float m_RotateSpeed = 45.0f;    // 回転速度（度/秒）
-        public float m_Gravity = 18.0f;         // 重力加速度（メートル/秒/秒）
-        public float m_JumpPower = 0.0f;        // ジャンプ力（初速(メートル/秒)）
-        public float m_LazerCoolDown = 20.0f;
+        //public float m_MaxSpeed = 4.0f;         // 最高速度（メートル/秒）
+        //public float m_MinSpeed = -2.0f;        // 最低速度（最大バック速度）
+        //public float m_AccelPower = 2.0f;       // 加速度（メートル/秒/秒）
+        //public float m_BrakePower = 6.0f;       // ブレーキ速度（メートル/秒/秒）
+        //public float m_RotateSpeed = 45.0f;    // 回転速度（度/秒）
+        //public float m_Gravity = 18.0f;         // 重力加速度（メートル/秒/秒）
+        //public float m_JumpPower = 0.0f;        // ジャンプ力（初速(メートル/秒)）
 
         float m_VelocityY = 0f;                 // y軸方向の移動量
-        public float m_Speed = 0f;                     // 前進速度（前進はプラス、後退はマイナス）
+        public float m_Speed = 10f;                     // 前進速度（前進はプラス、後退はマイナス）
 
-        bool m_IsAttack = false;                         //攻撃パターンフラグ
-        bool m_IsAttackReady = false;
-        bool m_IsAttackFinish = false;
+        //bool m_IsAttack = false;                         //攻撃パターンフラグ
+        //bool m_IsAttackReady = false;
+        //bool m_IsAttackFinish = false;
 
-        public bool ikActive = false;
-        public Transform leftShoulder;
-        public Transform leftHand;      //左腕Transform
+        //public bool ikActive = false;
 
-        public int attackCount = 0;
+        //public Transform leftShoulder;
+        //public Transform leftHand;      //左腕Transform
+
+        public float m_LazerCoolDown = 10f;
+        public float countDown = 10.0f;
+
 
         /************************************************************************
                                       仮宣言 
@@ -45,32 +48,20 @@ namespace Gaken
         Animator m_Animator;                 //アニメター
 
         private bool isDead;            //死亡切替を行うか?
-        private int ropeCounter;             //ロープとエネミーの接触点数
+        //private int ropeCounter;             //ロープとエネミーの接触点数
 
-        private float x = 0; // 水平方向
-        public float xLimit; // 水平方向の限度値
-        private float initX = 30;
-        private float y = 0; // 垂直方向
-        public float yLimit = 30; //垂直方向の限度値
-        private float initY;
+        //private float x = 0; // 水平方向
+        //public float xLimit; // 水平方向の限度値
+        //private float initX = 30;
+        //private float y = 0; // 垂直方向
+        //public float yLimit = 30; //垂直方向の限度値
+        //private float initY;
 
-        private bool setWaitshotFlag = false; //　構え終わった時に値をセットしたらOn
+        //private bool setWaitshotFlag = false; //　構え終わった時に値をセットしたらOn
 
         bool EnemyForward = false, EnemyLeft = false, EnemyRight = false, EnemyBack = false;
-        int c = 0;
+        int deathCount = 0;
 
-        int enemyDirection;
-        enum EnemyDirection
-        {
-            CW_Front,       //時計回り前
-            CW_Right,       //時計回り右
-            CW_Back,        //時計回り後
-            CW_Left,        //時計回り左
-            ACW_Front,      //反時計回り前
-            ACW_Left,       //反時計回り左
-            ACW_Back,       //反時計回り後
-            ACW_Right,      //反時計回り右
-        }
 
         void Start()
         {
@@ -78,11 +69,11 @@ namespace Gaken
             isDead = false;
             m_Controller = GetComponent<CharacterController>();
             agent = GetComponent<NavMeshAgent>();
-            agent.speed = m_Speed = 1f;
+            agent.speed = m_Speed = 10f;
 
-            time2 += 1;
+            //time2 += 1;
 
-            ropeCounter = 0;
+            //ropeCounter = 0;
 
             //アニメターは子のアニメターを取得
             m_Animator = transform.Find("EnemyRobot").GetComponent<Animator>();             //こっちはfbx形式
@@ -91,7 +82,7 @@ namespace Gaken
                                         仮初期化 
             ************************************************************************/
             //右腕の取得（使えるかどうか確定できていない）
-            leftHand = transform.GetComponent<Transform>();
+            //leftHand = transform.GetComponent<Transform>();
             //player = transform.Find("Player").GetComponent<Transform>();
 
         }
@@ -163,56 +154,57 @@ namespace Gaken
             }
 
             agent.speed = m_Speed;
-            //agent.destination = Destination.position;
-            AnimatorStateInfo Info = m_Animator.GetCurrentAnimatorStateInfo(0);
-            Ray ray = new Ray(transform.position, transform.forward);
-            RaycastHit hit;
+            agent.destination = Destination.position;
 
-            Debug.DrawRay(ray.origin, ray.direction, Color.blue, 2f);
 
-            if (Physics.Raycast(ray, out hit, 1.5f))
-            {
-                if (hit.collider.gameObject.name == "kabe" && Info.IsName("BaseLayer.idle"))
-                {
-                    agent.speed = 0;
-                    Debug.Log(hit.collider.gameObject.name + "発見");
-                    Attack = true;
-                    time += Time.deltaTime;
-                }
-            }
+            //AnimatorStateInfo Info = m_Animator.GetCurrentAnimatorStateInfo(0);
+            //Ray ray = new Ray(transform.position, transform.forward);
+            //RaycastHit hit;
 
-            if (time2 >= NextAttackTime)
-            {
-                time2 = 0;
-                Attack = true;
+            //Debug.DrawRay(ray.origin, ray.direction, Color.blue, 2f);
 
-                //PlayerTargetに指定したObjectを見続ける
-                Vector3 eye = player.position;
-                eye.y = transform.position.y;
-                transform.LookAt(eye);
-            }
+            //if (Physics.Raycast(ray, out hit, 1.5f))
+            //{
+            //    if (hit.collider.gameObject.name == "kabe" && Info.IsName("BaseLayer.idle"))
+            //    {
+            //        agent.speed = 0;
+            //        Debug.Log(hit.collider.gameObject.name + "発見");
+            //        Attack = true;
+            //        time += Time.deltaTime;
+            //    }
+            //}
 
-            if (Attack == true)
-            {
-                if (time >= 0.3f)
-                {
-                    m_Animator.SetTrigger("Attack");
-                    Attack = false;
-                    time = 0;
-                }
-            }
+            //if (time2 >= NextAttackTime)
+            //{
+            //    time2 = 0;
+            //    Attack = true;
+
+            //    //PlayerTargetに指定したObjectを見続ける
+            //    Vector3 eye = player.position;
+            //    eye.y = transform.position.y;
+            //    transform.LookAt(eye);
+            //}
+
+            //if (Attack == true)
+            //{
+            //    if (time >= 0.3f)
+            //    {
+            //        m_Animator.SetTrigger("Attack");
+            //        Attack = false;
+            //        time = 0;
+            //    }
+            //}
             //モーションのAttack中の処理
-            if (Info.IsName("UpperBody.Attack"))
-            {
-                agent.speed = 0;
+            //if (Info.IsName("UpperBody.Attack"))
+            //{
+            //    agent.speed = 0;
 
-                m_Animator.SetBool("IsAttack", true);
+            //    m_Animator.SetBool("IsAttack", true);
 
-                Debug.Log("攻撃now");
-            }
+            //    Debug.Log("攻撃now");
+            //}
 
             m_Animator.SetFloat("Speed", agent.speed);
-
 
             /****************************************************************
                                         仮更新
@@ -228,27 +220,41 @@ namespace Gaken
             }
 
             //右腕のちぎれ
-            if (Input.GetKey(KeyCode.Space))
-            {
-                leftShoulder.GetComponent<SkinnedMeshRenderer>().enabled = false;
-            }
+            //if (Input.GetKey(KeyCode.Space))
+            //{
+            //    leftShoulder.GetComponent<SkinnedMeshRenderer>().enabled = false;
+            //}
 
             m_LazerCoolDown -= 1f * Time.deltaTime;
+            //Debug.Log(m_LazerCoolDown);
 
             //攻撃
-            if (Input.GetKey(KeyCode.Alpha1))
+            if (m_Animator.GetBool("IsAttack"))
             {
                 EnemyAttack();
             }
-            else if (Input.GetKey(KeyCode.Alpha2) && m_LazerCoolDown <= 0)
+            else if (m_Animator.GetBool("IsLazer") && m_LazerCoolDown <= 0)
             {
+                agent.speed = 0;
+
+                GameObject target = GameObject.FindGameObjectWithTag("Player");
+                int rotateSpeed = 1;
+                Transform myTransform = this.transform;
+
+                Debug.DrawLine(target.transform.position, this.transform.position, Color.yellow);
+
+                myTransform.rotation = Quaternion.Slerp(
+                    myTransform.rotation,
+                    Quaternion.LookRotation(target.transform.position - myTransform.transform.position),
+                    rotateSpeed * Time.deltaTime);
+
+
                 EnemyLazer();
-                m_LazerCoolDown = 20.0f;
             }
             else if(m_Animator.GetBool("IsKnee"))
             {
-                c += CircleCount();
-                if(c >= 4)
+                deathCount += CircleCount();
+                if(deathCount >= 4)
                 {
                     isDead = true;
                 }
@@ -261,26 +267,13 @@ namespace Gaken
             //自爆
             if (m_Animator.GetBool("IsExplosion"))
             {
-                EnemyExplosion();
+                countDown -= 1 * Time.deltaTime;
+                Debug.Log(countDown);
+
+                if (countDown <= 0)
+                    EnemyExplosion();
             }
-
-            //Debug.Log(c);
         }
-
-        //Transformの循環コピー
-        //static void CopyTransformsRecurse(Transform src, Transform dst)
-        //{
-        //    dst.position = src.position;
-        //    dst.rotation = src.rotation;
-
-        //    foreach (Transform child in dst)
-        //    {
-        //        // 同じ名前でTransformをマッチする = Match the transform with the same name
-        //        Transform curSrc = src.Find(child.name);
-        //        if (curSrc)
-        //            CopyTransformsRecurse(curSrc, child);
-        //    }
-        //}
 
         //死んでいますか?
         public bool IsDead()
@@ -291,7 +284,7 @@ namespace Gaken
         //トリガーに入ると同時に
         public void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag == "Destination")
+            if (other.gameObject.tag == "Destination" && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("MoveTree"))
             {
                 m_Animator.SetBool("IsExplosion", true);
             }
@@ -300,39 +293,24 @@ namespace Gaken
         //トリガーに出ると同時に
         public void OnTriggerExit(Collider other)
         {
-            Attack = false;
-            m_Animator.SetBool("IsKnee", false);
-
+            if (other.gameObject.tag == "Rope/Normal")
+            {
+                m_Animator.SetBool("IsKnee", false);
+            }
         }
 
         //トリガに入っているときに
         public void OnTriggerStay(Collider other)
         {
-            AnimatorStateInfo Info = m_Animator.GetCurrentAnimatorStateInfo(0);
-            if (other.gameObject.tag == "Player" && Info.IsName("UpperBody.MoveTree"))
-            {
-                //agent.speed = 0;
-                //Attack = true;
-                time += Time.deltaTime;
-                time2 += Time.deltaTime;
-            }
-
             if (other.gameObject.tag == "Rope/Normal")
             {
                 m_Animator.SetBool("IsKnee", true);
             }
 
-
             if(other.gameObject.tag == "Floor")
             {
                 m_Animator.speed = 0;
             }
-
-            //同時に4点がロープとぶつかっているなら死ぬ
-            //if (ropeCounter >= 4)
-            //deadReplace = true;
-
-            //Debug.Log(ropeCounter);
         }
 
         void FiringBeam(GameObject[] obj)
@@ -344,9 +322,7 @@ namespace Gaken
 
         void EnemyAttack()
         {
-
-            agent.enabled = false;
-            m_Animator.SetBool("IsAttack", true);
+            agent.speed = 0;
 
             GameObject target = GameObject.FindGameObjectWithTag("Player");
             int rotateSpeed = 1;
@@ -356,22 +332,30 @@ namespace Gaken
 
             myTransform.rotation = Quaternion.Slerp(
                 myTransform.rotation,
-                Quaternion.LookRotation(target.transform.position - myTransform.transform.position),
+                Quaternion.LookRotation(target.transform.position - myTransform.transform.position) * Quaternion.AngleAxis(-25, Vector3.up),
                 rotateSpeed * Time.deltaTime);
-
         }
 
         void EnemyLazer()
         {
-
+            m_LazerCoolDown = 10.0f;
         }
 
         void EnemyNormal()
         {
-            //agent.enabled = true;
-            m_Animator.SetBool("IsAttack", false);
-            agent.speed = m_Speed;
-
+            //m_Animator.SetBool("IsAttack", false);
+            if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                agent.speed = 0;
+            }
+            else if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Lazer")|| m_Animator.GetCurrentAnimatorStateInfo(0).IsName("LazerOver"))
+            {
+                agent.speed = 0;
+            }
+            else
+            {
+                agent.speed = m_Speed;
+            }
         }
 
         void EnemyExplosion()
