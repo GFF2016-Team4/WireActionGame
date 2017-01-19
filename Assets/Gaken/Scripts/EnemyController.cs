@@ -46,6 +46,9 @@ namespace Gaken
         ************************************************************************/
         CharacterController m_Controller;    //キャラクタコントローラ
         Animator m_Animator;                 //アニメター
+        Camera m_Camera;
+        public GameObject m_Lazer;
+
 
         private bool isDead;            //死亡切替を行うか?
         //private int ropeCounter;             //ロープとエネミーの接触点数
@@ -69,7 +72,11 @@ namespace Gaken
             isDead = false;
             m_Controller = GetComponent<CharacterController>();
             agent = GetComponent<NavMeshAgent>();
+            m_Camera =transform.FindChild("Camera").GetComponent<Camera>();
             agent.speed = m_Speed = 10f;
+
+            //m_Lazer = transform.GetComponent<GameObject>();
+
 
             //time2 += 1;
 
@@ -233,7 +240,7 @@ namespace Gaken
             {
                 EnemyAttack();
             }
-            else if (m_Animator.GetBool("IsLazer") && m_LazerCoolDown <= 0)
+            else if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && m_Animator.GetBool("IsLazer") && m_LazerCoolDown <= 0)
             {
                 agent.speed = 0;
 
@@ -247,7 +254,6 @@ namespace Gaken
                     myTransform.rotation,
                     Quaternion.LookRotation(target.transform.position - myTransform.transform.position),
                     rotateSpeed * Time.deltaTime);
-
 
                 EnemyLazer();
             }
@@ -267,8 +273,10 @@ namespace Gaken
             //自爆
             if (m_Animator.GetBool("IsExplosion"))
             {
+                agent.speed = 0;
+                m_Camera.depth = 2;
+
                 countDown -= 1 * Time.deltaTime;
-                Debug.Log(countDown);
 
                 if (countDown <= 0)
                     EnemyExplosion();
@@ -338,6 +346,7 @@ namespace Gaken
 
         void EnemyLazer()
         {
+            m_Lazer.SetActive(true);
             m_LazerCoolDown = 10.0f;
         }
 
@@ -354,6 +363,7 @@ namespace Gaken
             }
             else
             {
+                m_Lazer.SetActive(false);
                 agent.speed = m_Speed;
             }
         }

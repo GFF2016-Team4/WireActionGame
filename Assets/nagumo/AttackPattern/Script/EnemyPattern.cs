@@ -35,7 +35,6 @@ public class EnemyPattern : MonoBehaviour
     {
         m_LazerCoolDown -= 1f * Time.deltaTime;
 
-
         int xDeistance = Mathf.RoundToInt(this.transform.position.x - m_player.transform.position.x);
         int zDeistance = Mathf.RoundToInt(this.transform.position.z - m_player.transform.position.z);
         //Debug.Log(zDeistance);
@@ -80,7 +79,6 @@ public class EnemyPattern : MonoBehaviour
             Debug.Log("移動");
             m_Animator.SetBool("IsAttack", false);
             m_Animator.SetBool("IsLazer", false);
-
         }
     }
     void LaserAttack()
