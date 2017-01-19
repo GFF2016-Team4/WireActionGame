@@ -583,7 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d630a61e353984e92e6e671735ff46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Enemy: {fileID: 1055594333}
+  m_Enemy: {fileID: 979101221}
 --- !u!4 &509223213
 Transform:
   m_ObjectHideFlags: 0
@@ -1662,6 +1662,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1906bbed62dd2cd4e90b063fefd16758, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &979101221 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000013656881200, guid: 8fbb10e4c9d8dac4881ab49905e8bf59,
+    type: 2}
+  m_PrefabInternal: {fileID: 712485930}
 --- !u!1 &1055594333 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000010724687962, guid: 8fbb10e4c9d8dac4881ab49905e8bf59,

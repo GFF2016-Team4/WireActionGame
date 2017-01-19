@@ -14,11 +14,8 @@ public class CameraManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m_Camera = transform.GetChild(0).GetComponent<Camera>();
-        m_Enemy = transform.GetComponent<GameObject>();
-        //m_Animator = m_Enemy.transform.Find("EnemyRobot").GetComponent<Animator>();
-
-        m_Animator = transform.Find("EnemyRobot").GetComponent<Animator>();             //こっちはfbx形式
-
+        m_Enemy.GetComponent<GameObject>();
+        m_Animator = m_Enemy.transform.Find("EnemyRobot").GetComponent<Animator>();
 
         IsChange = false;
 
