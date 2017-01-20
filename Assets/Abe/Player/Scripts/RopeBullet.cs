@@ -9,6 +9,7 @@ public class RopeBullet : MonoBehaviour
     private LineRenderer lineRenderer;
     public  Transform target;
     private Vector3[] positions = new Vector3[2];
+    List<GameObject> firstCollisions = new List<GameObject>();
 
     public bool IsHit
     {
@@ -50,17 +51,21 @@ public class RopeBullet : MonoBehaviour
         }
     }
 
-    public void Start()
+    void Awake()
+    {
+        SphereCollider collider = GetComponent<SphereCollider>();
+        Collider[]     cols     = Physics.OverlapSphere(transform.position, collider.radius);
+    }
+
+    void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.SetVertexCount(2);
-
         SoundManager.Instance.PlaySE(AUDIO.SE_ropeFire);
     }
 
-    public void LateUpdate()
+    void LateUpdate()
     {
-        
         positions[0] = transform.position;
         positions[1] = target.position;
 

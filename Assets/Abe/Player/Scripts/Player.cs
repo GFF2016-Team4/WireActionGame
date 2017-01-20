@@ -46,8 +46,8 @@ public class Player : MonoBehaviour, RopeEventHandlar
     [SerializeField]
     private Transform rightForeArm;
 
-    bool isJump = false;
-    float jumpTime = 0.0f;
+    bool    isJump = false;
+    float   jumpTime = 0.0f;
     Vector3 gravity;
     Vector3 playerVelocity;
 
@@ -122,9 +122,9 @@ public class Player : MonoBehaviour, RopeEventHandlar
         position.y += transform.localScale.y * 0.2f; //始点を上げないと
         Vector3 size = new Vector3()
         {
-            x = controller.radius * transform.localScale.x,
-            y = transform.localScale.y,
-            z = controller.radius * transform.localScale.z
+            x = controller.radius * transform.localScale.x*0.8f,
+            y = transform.localScale.y*0.8f,
+            z = controller.radius * transform.localScale.z*0.8f
         };
 
         int  layerMask = PlayersLayerMask.IgnorePlayerAndRopes;
@@ -333,6 +333,8 @@ public class Player : MonoBehaviour, RopeEventHandlar
             animator.SetTrigger("Damage");
             isControll = false;
             ropeController.isControl = false;
+
+            GetComponent<FadeRespawn>().Respawn();
         }
     }
 
