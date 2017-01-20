@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class FadeRespawn : MonoBehaviour
@@ -10,31 +11,70 @@ public class FadeRespawn : MonoBehaviour
     public GameObject respawnJudge;
     public GameObject respawnPosition;
 
-    public float animationTImer;
+    public float animationTimer;
     private float animationTimerTemp;
 
+    public string sceneName;
     private bool fadeIn = false;
-    private bool fadeOut = false;
+    private bool fadeOut = true;
 
     CharacterController m_characterController;
     FadeManager m_fadeManager;
 
     void Start()
     {
-        animationTimerTemp = animationTImer;
+        animationTimerTemp = animationTimer;
         m_characterController = GetComponent<CharacterController>();
         m_fadeManager = panel.GetComponent<FadeManager>();
-
     }
 
     void Update()
     {
-        if (fadeIn == false && fadeOut == false)
-            m_characterController.Move(new Vector3(0, -0.1f, 0));
+        //if (fadeIn == false && fadeOut == false)
+        //    m_characterController.Move(new Vector3(0, -0.1f, 0));
 
+        //if (fadeOut == true)
+        //{
+        //    m_fadeManager.FadeOut(sceneName, 1);
+        //    if (m_fadeManager.alfaOut >= 1.0f)
+        //    {
+        //        gameObject.transform.position = respawnPosition.transform.position;
+        //        fadeOut = false;
+        //        fadeIn = true;
+        //        m_fadeManager.alfaOut = 0.0f;
+        //    }
+        //}
+        //if (fadeIn == true)
+        //{
+        //    m_fadeManager.FadeIn(1);
+        //    if (m_fadeManager.alfaIn <= 0)
+        //    {
+        //        fadeIn = false;
+        //        respawnJudge.SetActive(true);
+        //        m_fadeManager.alfaIn = 1.0f;
+        //        animationTimer = animationTimerTemp;
+        //    }
+        //}
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        //animationTimer -= Time.deltaTime;
+        //if (respawnJudge != null)
+        //{
+        //    if (animationTimer <= 0)
+        //        fadeOut = true;
+        //}
+        //respawnJudge.SetActive(false);
+    }
+
+    public void Respawn()
+    {
+        //if (fadeIn == false && fadeOut == false)
+        //m_characterController.Move(new Vector3(0, -0.1f, 0));
         if (fadeOut == true)
         {
-            m_fadeManager.FadeOut("", 1);
+            m_fadeManager.FadeOut(sceneName, 1);
             if (m_fadeManager.alfaOut >= 1.0f)
             {
                 gameObject.transform.position = respawnPosition.transform.position;
@@ -51,19 +91,9 @@ public class FadeRespawn : MonoBehaviour
                 fadeIn = false;
                 respawnJudge.SetActive(true);
                 m_fadeManager.alfaIn = 1.0f;
-                animationTImer = animationTimerTemp;
+                animationTimer = animationTimerTemp;
             }
         }
-    }
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        //animationTImer -= Time.deltaTime;
-        //if (respawnJudge != null)
-        //{
-        //    if (animationTImer <= 0)
-        //        fadeOut = true;
-        //}
-        //respawnJudge.SetActive(false);
     }
 }

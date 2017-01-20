@@ -20,52 +20,68 @@ public class FadeManager : MonoBehaviour
     [System.NonSerialized]
     public float alfaOut = 0.0f;
 
-    //float alfaMainIn = 1.0f;
-    //float alfaMainOut = 0.0f;
+    Object[] objs;  /**/
 
     float red, green, blue;         //RGB変数
 
-    //public Color c;
-    // Update is called once per frame
+    void Update()
+    {
+        Debug.Log("シーンの名前は" + SceneManager.GetActiveScene().name);
+
+
+        if (SceneManager.GetSceneByName("LoadScene").isLoaded)
+        {
+            Debug.Log("ロードシーン中");
+        }
+    }
+
     public void FadeIn(float timeScale = 0)
     {
         //フェードインの色変更
         //c.a = alfaIn;
         //GetComponent<Image>().color = c;
+        //SceneManager.UnloadScene("LoadScene");
+
+        Time.timeScale = timeScale;
 
         GetComponent<Image>().color = new Color(red, green, blue, alfaIn);
         alfaIn -= fadeInSpeed;
-        Time.timeScale = timeScale;
 
-        if (alfaIn <= alfaTemp) Time.timeScale = 1;
+        if (alfaIn <= 0) Time.timeScale = 1;
     }
     public void FadeOut(string sceneName, float timeScale = 0)
     {
         GetComponent<Image>().color = new Color(red, green, blue, alfaOut);
-
         if (alfaOut <= 1.0f)
+        {
             alfaOut += fadeOutSpeed;
-        else SceneManager.LoadScene(sceneName);
+            if (alfaOut >= 1.0f)
+            {
+                SceneManager.LoadSceneAsync("LoadScene", LoadSceneMode.Additive);
+                StartCoroutine("Load", sceneName);
 
+                Resources.UnloadUnusedAssets();/**/
+            }
+        }
         if (alfaOut <= alfaTemp) Time.timeScale = 0;
-
     }
-    //public void FadeMainIn()
+
+    IEnumerator Load(string sceneName)
+    {
+        //StartCoroutine("resourceLoad");
+
+        AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
+        async.allowSceneActivation = false;
+
+        while (async.progress < 0.9f && async.isDone == false)
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        async.allowSceneActivation = true;
+    }
+    //IEnumerator resourceLoad()
     //{
-    //    GetComponent<Image>().color = new Color(red, green, blue, alfaMainIn);
-    //    alfaMainIn -= fadeInSpeed;
-    //    Time.timeScale = 0;
-
-    //    if (alfaMainIn <= alfaTemp) Time.timeScale = 1;
-
+    //    yield return objs = Resources.LoadAll("Takahashi", typeof(GameObject));
     //}
-    //public void FadeMainOut(string sceneName)
-    //{
-    //    GetComponent<Image>().color = new Color(red, green, blue, alfaMainOut);
-    //    Time.timeScale = 0;
-
-    //    if (alfaMainOut <= 1.0f) alfaMainOut += fadeOutSpeed;
-    //    else SceneManager.LoadScene(sceneName);
-    //}
-
 }

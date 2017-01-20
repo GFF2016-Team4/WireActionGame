@@ -372,6 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeInSpeed: 0.01
   fadeOutSpeed: 0.01
+  loadTimer: 2
 --- !u!1 &1317056137
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,4 +791,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 625903343}
   respawnJudge: {fileID: 17199551}
-  animationTImer: 0
+  respawnPosition: {fileID: 2135540784}
+  animationTimer: 0
