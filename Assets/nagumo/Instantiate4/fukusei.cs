@@ -46,9 +46,9 @@ public class fukusei : MonoBehaviour {
 	
 	void Update ()
 	{
-        if (/*H_s == true*/Input.GetKeyDown(KeyCode.Space)) 
+        if (H_s == true/*Input.GetKeyDown(KeyCode.Space)*/) 
 		{
-            H_s = true;
+            //H_s = true;
             Debug.Log("aaa");
 			fksObj = Instantiate (orgObj, orgObj.transform.position /*+ testposition*/, 
                 orgObj.transform.rotation)as GameObject;
