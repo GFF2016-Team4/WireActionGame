@@ -91,9 +91,8 @@ namespace Enemy
                 Laser.SetActive(false);
                 m_LaserAttack.GetComponent<EnemyPattern>().Laser = false;
                 SoundManager.Instance.StopSE();
-
-                Charge_L.SetActive(false);
                 
+                Charge_L.SetActive(false);
             }
             if(AttackTime >= AttackLaserTime - 0.5)
             {
