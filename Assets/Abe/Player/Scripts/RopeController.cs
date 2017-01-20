@@ -298,8 +298,9 @@ public class RopeController : MonoBehaviour
 
     bool IsPlayerBeforePoint_(Vector3 point)
     {
-        Vector3 player2HitPoint = point - transform.position;
-        float dot = Vector3.Dot(cameraInfo.forward, player2HitPoint);
+        Vector3 trans2HitPoint = point - transform.position;
+        Vector3 trans2Camera   = transform.position - cameraInfo.position;
+        float dot = Vector3.Dot(trans2Camera, trans2HitPoint);
         
         //ドット積が正 -> 前方向にある
         return dot > 0;
