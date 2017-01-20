@@ -25,6 +25,7 @@ public class Spark : MonoBehaviour {
                 Quaternion.identity);
             Spk = true;
             m_Spark2.SetActive(true);
+            SoundManager.Instance.PlaySE(AUDIO.SE_Enemy_breakArm);
         }
         if (Spk == true)
             timer += Time.deltaTime;

@@ -32,4 +32,6 @@ public static class AUDIO
     public const string SE_Clear          = "Clear_BGM";
     public const string SE_Enemy_Punch    = "Enemy_Punch";
     public const string SE_Enemy_Walk     = "Enemy_Walk";
+    public const string SE_Enemy_Destroy  = "EnemyDestroy";
+    public const string SE_Enemy_breakArm = "breakArm";
 }
