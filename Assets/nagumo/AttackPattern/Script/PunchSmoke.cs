@@ -18,7 +18,7 @@ public class PunchSmoke : MonoBehaviour {
         //exp = Instantiate(m_Somke);
         if (Smo == true)
             timer += Time.deltaTime;
-        if (timer >= 1.5f)
+        if (timer >= 5.0f)
         {
             timer = 0;
             Destroy(exp);
@@ -29,8 +29,8 @@ public class PunchSmoke : MonoBehaviour {
     {
         if (col.tag == "Field")
         {
-            exp = (GameObject)Instantiate(m_Somke.gameObject, transform.position,
-                Quaternion.identity);
+            exp = (GameObject)Instantiate(m_Somke.gameObject, transform.position - new Vector3(0, 5, 0),
+                Quaternion.identity * Quaternion.AngleAxis(90, Vector3.left));
             Smo = true;
         }
     }
