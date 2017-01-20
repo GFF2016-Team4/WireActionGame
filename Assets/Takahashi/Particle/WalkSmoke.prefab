@@ -9,19 +9,19 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000012907851018}
+  m_RootGameObject: {fileID: 1000013514930996}
   m_IsPrefabParent: 1
---- !u!1 &1000012907851018
+--- !u!1 &1000013514930996
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000013064973334}
-  - 198: {fileID: 198000010724807878}
-  - 199: {fileID: 199000013924648826}
-  - 114: {fileID: 114000012114975148}
+  - 4: {fileID: 4000012338953188}
+  - 198: {fileID: 198000012775281516}
+  - 199: {fileID: 199000012763134668}
+  - 114: {fileID: 114000010343772606}
   m_Layer: 0
   m_Name: WalkSmoke
   m_TagString: Untagged
@@ -29,36 +29,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000013064973334
+--- !u!4 &4000012338953188
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012907851018}
+  m_GameObject: {fileID: 1000013514930996}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.1716595, y: 16.32, z: -17.77}
+  m_LocalPosition: {x: -4.14386, y: 23.463234, z: 62.694996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000012114975148
+--- !u!114 &114000010343772606
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012907851018}
+  m_GameObject: {fileID: 1000013514930996}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 402610a0ecabff14b80b2942569899ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!198 &198000010724807878
+--- !u!198 &198000012775281516
 ParticleSystem:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012907851018}
+  m_GameObject: {fileID: 1000013514930996}
   serializedVersion: 4
   lengthInSec: 2
   startDelay:
@@ -103,7 +103,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -578320697
+  randomSeed: 1382220762
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -1747,12 +1747,12 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
---- !u!199 &199000013924648826
+--- !u!199 &199000012763134668
 ParticleSystemRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012907851018}
+  m_GameObject: {fileID: 1000013514930996}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
