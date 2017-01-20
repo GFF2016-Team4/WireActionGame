@@ -106,9 +106,9 @@ public class GE_ELF_Demo : MonoBehaviour
 	{
 		if (enabled)
 		{
-			// Set GUIAnimSystemFREE.Instance.m_AutoAnimation to false in Awake() will let you control all GUI Animator elements in the scene via scripts.
-			GUIAnimSystemFREE.Instance.m_AutoAnimation = false;
-		}
+            // Set GUIAnimSystemFREE.Instance.m_AutoAnimation to false in Awake() will let you control all GUI Animator elements in the scene via scripts.
+            //GUIAnimSystemFREE.Instance.m_AutoAnimation = false;
+        }
 	}
 
 	// Start is called on the frame when a script is enabled just before any of the Update methods is called the first time.

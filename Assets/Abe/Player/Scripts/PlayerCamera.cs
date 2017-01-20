@@ -39,8 +39,6 @@ public class PlayerCamera : MonoBehaviour
         transform.RotateAround(target.position, Vector3.up,      rotate.x);
         transform.RotateAround(target.position, transform.right, rotate.y);
 
-        if(target.transform)
-
         FixedAngle();
 
         Ray ray = new Ray()
@@ -52,7 +50,7 @@ public class PlayerCamera : MonoBehaviour
         RaycastHit hitInfo;
         bool isHit = Physics.Raycast(ray, out hitInfo, distance, PlayersLayerMask.IgnorePlayerAndRopes);
 
-        if(isHit)
+        if (isHit)
         {
             transform.position = hitInfo.point;
         }
