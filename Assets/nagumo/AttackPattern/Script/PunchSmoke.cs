@@ -18,7 +18,7 @@ public class PunchSmoke : MonoBehaviour {
         //exp = Instantiate(m_Somke);
         if (Smo == true)
             timer += Time.deltaTime;
-        if (timer >= 3.0f)
+        if (timer >= 1.5f)
         {
             timer = 0;
             Destroy(exp);
