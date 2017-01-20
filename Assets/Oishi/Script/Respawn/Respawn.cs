@@ -4,9 +4,6 @@ using System.Collections;
 public class Respawn : MonoBehaviour
 {
 
-    //private Transform respawnPosition;
-    public GameObject resObj;
-    bool respawn = false;
 
     void Start()
     {
@@ -17,9 +14,8 @@ public class Respawn : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            respawn = true;
+            GetComponent<FadeRespawn>().Respawn();
         }
-        if (respawn == true) resObj.GetComponent<FadeRespawn>().Respawn();
     }
 
 }

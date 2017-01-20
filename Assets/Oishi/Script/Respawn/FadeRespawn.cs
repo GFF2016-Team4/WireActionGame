@@ -72,9 +72,15 @@ public class FadeRespawn : MonoBehaviour
     {
         //if (fadeIn == false && fadeOut == false)
         //m_characterController.Move(new Vector3(0, -0.1f, 0));
-        if (fadeOut == true)
+        StartCoroutine("respawn");
+    }
+
+    IEnumerator respawn()
+    {
+        while (fadeOut == true)
         {
             m_fadeManager.FadeOut(sceneName, 1);
+            yield return new WaitForEndOfFrame();
             if (m_fadeManager.alfaOut >= 1.0f)
             {
                 gameObject.transform.position = respawnPosition.transform.position;
@@ -83,9 +89,10 @@ public class FadeRespawn : MonoBehaviour
                 m_fadeManager.alfaOut = 0.0f;
             }
         }
-        if (fadeIn == true)
+        while (fadeIn == true)
         {
             m_fadeManager.FadeIn(1);
+            yield return new WaitForEndOfFrame();
             if (m_fadeManager.alfaIn <= 0)
             {
                 fadeIn = false;
@@ -94,6 +101,6 @@ public class FadeRespawn : MonoBehaviour
                 animationTimer = animationTimerTemp;
             }
         }
-
+        yield return null;
     }
 }
