@@ -42,7 +42,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 7
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -71,7 +71,8 @@ LightmapSettings:
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000001, guid: 83a3ab971c566bd468150257b0165f00,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -205,7 +206,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 17199551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: 5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -372,7 +373,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeInSpeed: 0.01
   fadeOutSpeed: 0.01
-  loadTimer: 2
 --- !u!1 &1317056137
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +693,7 @@ GameObject:
   - 23: {fileID: 2135540786}
   - 143: {fileID: 2135540785}
   - 114: {fileID: 2135540790}
+  - 114: {fileID: 2135540791}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -791,5 +792,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 625903343}
   respawnJudge: {fileID: 17199551}
-  respawnPosition: {fileID: 2135540784}
+  respawnPosition: {fileID: 17199551}
   animationTimer: 0
+  sceneName: Respawn
+--- !u!114 &2135540791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2135540784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5caf5d8785140845b9fec63a53cc419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

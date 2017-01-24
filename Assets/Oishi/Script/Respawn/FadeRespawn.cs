@@ -14,10 +14,6 @@ public class FadeRespawn : MonoBehaviour
     public float animationTimer;
     private float animationTimerTemp;
 
-    public string sceneName;
-    private bool fadeIn = false;
-    private bool fadeOut = true;
-
     CharacterController m_characterController;
     FadeManager m_fadeManager;
 
@@ -77,30 +73,46 @@ public class FadeRespawn : MonoBehaviour
 
     IEnumerator respawn()
     {
-        while (fadeOut == true)
+        while (m_fadeManager.alfaOut <= 1.0f)
         {
-            m_fadeManager.FadeOut(sceneName, 1);
+            m_fadeManager.RespawnFadeIn();
+
             yield return new WaitForEndOfFrame();
-            if (m_fadeManager.alfaOut >= 1.0f)
-            {
-                gameObject.transform.position = respawnPosition.transform.position;
-                fadeOut = false;
-                fadeIn = true;
-                m_fadeManager.alfaOut = 0.0f;
-            }
+            Debug.Log("フェードアウト");
         }
-        while (fadeIn == true)
+        gameObject.transform.position = respawnPosition.transform.position;
+
+
+        while (m_fadeManager.alfaOut >= 1.0f && m_fadeManager.alfaIn >= 0)
         {
-            m_fadeManager.FadeIn(1);
+            m_fadeManager.RespawnFadeOut();
+
             yield return new WaitForEndOfFrame();
-            if (m_fadeManager.alfaIn <= 0)
-            {
-                fadeIn = false;
-                respawnJudge.SetActive(true);
-                m_fadeManager.alfaIn = 1.0f;
-                animationTimer = animationTimerTemp;
-            }
+            Debug.Log("フェードイン");
         }
+        m_fadeManager.alfaOut = 0.0f;
+        m_fadeManager.alfaIn = 1.0f;
         yield return null;
+
+        //    if (m_fadeManager.alfaOut >= 1.0f)
+        //    {
+        //        gameObject.transform.position = respawnPosition.transform.position;
+        //        fadeOut = false;
+        //        fadeIn = true;
+        //        m_fadeManager.alfaOut = 0.0f;
+        //    }
+        //}
+        //while (fadeIn == true)
+        //{
+        //    m_fadeManager.FadeIn(1);
+        //    yield return new WaitForEndOfFrame();
+        //    if (m_fadeManager.alfaIn <= 0)
+        //    {
+        //        fadeIn = false;
+        //        respawnJudge.SetActive(true);
+        //        m_fadeManager.alfaIn = 1.0f;
+        //        animationTimer = animationTimerTemp;
+        //    }
+        //}
     }
 }
