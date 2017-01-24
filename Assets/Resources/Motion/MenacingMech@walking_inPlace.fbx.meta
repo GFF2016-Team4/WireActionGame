@@ -1,0 +1,476 @@
+fileFormatVersion: 2
+guid: 5f7bbfa6cc3f3884084bf25a3942509b
+timeCreated: 1481246741
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: FACE
+    100002: HEAD
+    100004: L_ELBOW
+    100006: L_FINGER01_Base
+    100008: L_FINGER01_Mid
+    100010: L_FINGER01_Tip
+    100012: L_FINGER02_Base
+    100014: L_FINGER02_Mid
+    100016: L_FINGER02_Tip
+    100018: L_FINGER03_Base
+    100020: L_FINGER03_Mid
+    100022: L_FINGER03_Tip
+    100024: L_FINGER04_Base
+    100026: L_FINGER04_Mid
+    100028: L_FINGER04_Tip
+    100030: L_FINGER05_Base
+    100032: L_FINGER05_Mid
+    100034: L_FINGER05_Tip
+    100036: L_FOOT
+    100038: L_HAND
+    100040: L_KNEE
+    100042: L_SHOULDER
+    100044: L_SHOULDER_GUN
+    100046: L_SHOULDER_SECOND
+    100048: L_TOE01_Base
+    100050: L_TOE01_Mid
+    100052: L_TOE01_Tip
+    100054: L_TOE02_Base
+    100056: L_TOE02_Mid
+    100058: L_TOE02_Tip
+    100060: L_TOE03_Base
+    100062: L_TOE03_Mid
+    100064: L_TOE03_Tip
+    100066: L_TOE04_Base
+    100068: L_TOE04_Mid
+    100070: L_TOE04_Tip
+    100072: L_TOE05_Base
+    100074: L_TOE05_Mid
+    100076: L_TOE05_Tip
+    100078: L_TOP_ARM
+    100080: L_TOP_LEG
+    100082: L_TOP_TOE
+    100084: //RootNode
+    100086: MenacingMech_MESH
+    100088: NECK_BASE
+    100090: R_ELBOW
+    100092: R_FINGER01_Base
+    100094: R_FINGER01_Mid
+    100096: R_FINGER01_Tip
+    100098: R_FINGER02_Base
+    100100: R_FINGER02_Mid
+    100102: R_FINGER02_Tip
+    100104: R_FINGER03_Base
+    100106: R_FINGER03_Mid
+    100108: R_FINGER03_Tip
+    100110: R_FINGER04_Base
+    100112: R_FINGER04_Mid
+    100114: R_FINGER04_Tip
+    100116: R_FINGER05_Base
+    100118: R_FINGER05_Mid
+    100120: R_FINGER05_Tip
+    100122: R_FOOT
+    100124: R_HAND
+    100126: R_KNEE
+    100128: R_SHOULDER
+    100130: R_SHOULDER_GUN
+    100132: R_SHOULDER_SECOND
+    100134: R_TOE01_Base
+    100136: R_TOE01_Mid
+    100138: R_TOE01_Tip
+    100140: R_TOE02_Base
+    100142: R_TOE02_Mid
+    100144: R_TOE02_Tip
+    100146: R_TOE03_Base
+    100148: R_TOE03_Mid
+    100150: R_TOE03_Tip
+    100152: R_TOE04_Base
+    100154: R_TOE04_Mid
+    100156: R_TOE04_Tip
+    100158: R_TOE05_Base
+    100160: R_TOE05_Mid
+    100162: R_TOE05_Tip
+    100164: R_TOP_ARM
+    100166: R_TOP_LEG
+    100168: R_TOP_TOE
+    100170: ROOT
+    100172: SPINE_01
+    100174: SPINE_02
+    100176: SPINE_03
+    100178: SPINE_04
+    100180: SPINE_BASE
+    400000: FACE
+    400002: HEAD
+    400004: L_ELBOW
+    400006: L_FINGER01_Base
+    400008: L_FINGER01_Mid
+    400010: L_FINGER01_Tip
+    400012: L_FINGER02_Base
+    400014: L_FINGER02_Mid
+    400016: L_FINGER02_Tip
+    400018: L_FINGER03_Base
+    400020: L_FINGER03_Mid
+    400022: L_FINGER03_Tip
+    400024: L_FINGER04_Base
+    400026: L_FINGER04_Mid
+    400028: L_FINGER04_Tip
+    400030: L_FINGER05_Base
+    400032: L_FINGER05_Mid
+    400034: L_FINGER05_Tip
+    400036: L_FOOT
+    400038: L_HAND
+    400040: L_KNEE
+    400042: L_SHOULDER
+    400044: L_SHOULDER_GUN
+    400046: L_SHOULDER_SECOND
+    400048: L_TOE01_Base
+    400050: L_TOE01_Mid
+    400052: L_TOE01_Tip
+    400054: L_TOE02_Base
+    400056: L_TOE02_Mid
+    400058: L_TOE02_Tip
+    400060: L_TOE03_Base
+    400062: L_TOE03_Mid
+    400064: L_TOE03_Tip
+    400066: L_TOE04_Base
+    400068: L_TOE04_Mid
+    400070: L_TOE04_Tip
+    400072: L_TOE05_Base
+    400074: L_TOE05_Mid
+    400076: L_TOE05_Tip
+    400078: L_TOP_ARM
+    400080: L_TOP_LEG
+    400082: L_TOP_TOE
+    400084: //RootNode
+    400086: MenacingMech_MESH
+    400088: NECK_BASE
+    400090: R_ELBOW
+    400092: R_FINGER01_Base
+    400094: R_FINGER01_Mid
+    400096: R_FINGER01_Tip
+    400098: R_FINGER02_Base
+    400100: R_FINGER02_Mid
+    400102: R_FINGER02_Tip
+    400104: R_FINGER03_Base
+    400106: R_FINGER03_Mid
+    400108: R_FINGER03_Tip
+    400110: R_FINGER04_Base
+    400112: R_FINGER04_Mid
+    400114: R_FINGER04_Tip
+    400116: R_FINGER05_Base
+    400118: R_FINGER05_Mid
+    400120: R_FINGER05_Tip
+    400122: R_FOOT
+    400124: R_HAND
+    400126: R_KNEE
+    400128: R_SHOULDER
+    400130: R_SHOULDER_GUN
+    400132: R_SHOULDER_SECOND
+    400134: R_TOE01_Base
+    400136: R_TOE01_Mid
+    400138: R_TOE01_Tip
+    400140: R_TOE02_Base
+    400142: R_TOE02_Mid
+    400144: R_TOE02_Tip
+    400146: R_TOE03_Base
+    400148: R_TOE03_Mid
+    400150: R_TOE03_Tip
+    400152: R_TOE04_Base
+    400154: R_TOE04_Mid
+    400156: R_TOE04_Tip
+    400158: R_TOE05_Base
+    400160: R_TOE05_Mid
+    400162: R_TOE05_Tip
+    400164: R_TOP_ARM
+    400166: R_TOP_LEG
+    400168: R_TOP_TOE
+    400170: ROOT
+    400172: SPINE_01
+    400174: SPINE_02
+    400176: SPINE_03
+    400178: SPINE_04
+    400180: SPINE_BASE
+    4300000: MenacingMech_MESH
+    7400000: walking_inPlace
+    9500000: //RootNode
+    13700000: MenacingMech_MESH
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: "\nInbetween bone default rotation found in this file
+      is different from the one found in the source avatar:\n\t'SPINE_01' : rotation
+      error = 18.639791 deg\n\t'L_TOP_ARM' : rotation error = 23.055346 deg\n\t'L_FINGER05_Base'
+      : rotation error = 116.709892 deg\n\t'R_TOP_ARM' : rotation error = 23.170502
+      deg\n\t'R_FINGER05_Base' : rotation error = 94.236893 deg\n\nClip 'mixamo.com'
+      has import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'SPINE_01' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'L_TOP_ARM'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'R_TOP_ARM'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: walking_inPlace
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 84
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MenacingMech_MESH
+        weight: 1
+      - path: ROOT
+        weight: 1
+      - path: ROOT/L_TOP_LEG
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE01_Base
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE01_Base/L_TOE01_Mid
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE01_Base/L_TOE01_Mid/L_TOE01_Tip
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE02_Base
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE02_Base/L_TOE02_Mid
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE02_Base/L_TOE02_Mid/L_TOE02_Tip
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE03_Base
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE03_Base/L_TOE03_Mid
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE03_Base/L_TOE03_Mid/L_TOE03_Tip
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE04_Base
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE04_Base/L_TOE04_Mid
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE04_Base/L_TOE04_Mid/L_TOE04_Tip
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE05_Base
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE05_Base/L_TOE05_Mid
+        weight: 1
+      - path: ROOT/L_TOP_LEG/L_KNEE/L_FOOT/L_TOP_TOE/L_TOE05_Base/L_TOE05_Mid/L_TOE05_Tip
+        weight: 1
+      - path: ROOT/R_TOP_LEG
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE01_Base
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE01_Base/R_TOE01_Mid
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE01_Base/R_TOE01_Mid/R_TOE01_Tip
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE02_Base
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE02_Base/R_TOE02_Mid
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE02_Base/R_TOE02_Mid/R_TOE02_Tip
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE03_Base
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE03_Base/R_TOE03_Mid
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE03_Base/R_TOE03_Mid/R_TOE03_Tip
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE04_Base
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE04_Base/R_TOE04_Mid
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE04_Base/R_TOE04_Mid/R_TOE04_Tip
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE05_Base
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE05_Base/R_TOE05_Mid
+        weight: 1
+      - path: ROOT/R_TOP_LEG/R_KNEE/R_FOOT/R_TOP_TOE/R_TOE05_Base/R_TOE05_Mid/R_TOE05_Tip
+        weight: 1
+      - path: ROOT/SPINE_BASE
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER01_Base
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER01_Base/L_FINGER01_Mid
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER01_Base/L_FINGER01_Mid/L_FINGER01_Tip
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER02_Base
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER02_Base/L_FINGER02_Mid
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER02_Base/L_FINGER02_Mid/L_FINGER02_Tip
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER03_Base
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER03_Base/L_FINGER03_Mid
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER03_Base/L_FINGER03_Mid/L_FINGER03_Tip
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER04_Base
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER04_Base/L_FINGER04_Mid
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER04_Base/L_FINGER04_Mid/L_FINGER04_Tip
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER05_Base
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER05_Base/L_FINGER05_Mid
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/L_TOP_ARM/L_SHOULDER/L_SHOULDER_GUN/L_SHOULDER_SECOND/L_ELBOW/L_HAND/L_FINGER05_Base/L_FINGER05_Mid/L_FINGER05_Tip
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER01_Base
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER01_Base/R_FINGER01_Mid
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER01_Base/R_FINGER01_Mid/R_FINGER01_Tip
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER02_Base
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER02_Base/R_FINGER02_Mid
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER02_Base/R_FINGER02_Mid/R_FINGER02_Tip
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER03_Base
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER03_Base/R_FINGER03_Mid
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER03_Base/R_FINGER03_Mid/R_FINGER03_Tip
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER04_Base
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER04_Base/R_FINGER04_Mid
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER04_Base/R_FINGER04_Mid/R_FINGER04_Tip
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER05_Base
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER05_Base/R_FINGER05_Mid
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/R_TOP_ARM/R_SHOULDER/R_SHOULDER_GUN/R_SHOULDER_SECOND/R_ELBOW/R_HAND/R_FINGER05_Base/R_FINGER05_Mid/R_FINGER05_Tip
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/SPINE_04
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/SPINE_04/NECK_BASE
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/SPINE_04/NECK_BASE/HEAD
+        weight: 1
+      - path: ROOT/SPINE_BASE/SPINE_01/SPINE_02/SPINE_03/SPINE_04/NECK_BASE/HEAD/FACE
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
