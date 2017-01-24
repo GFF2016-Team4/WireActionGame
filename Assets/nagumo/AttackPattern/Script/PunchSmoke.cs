@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class PunchSmoke : MonoBehaviour {
 
     public GameObject m_Somke;
+    public GameObject aa;
 
     private GameObject exp;
     private float timer;
@@ -32,6 +34,11 @@ public class PunchSmoke : MonoBehaviour {
             exp = (GameObject)Instantiate(m_Somke.gameObject, transform.position - new Vector3(0, 5, 0),
                 Quaternion.identity * Quaternion.AngleAxis(90, Vector3.left));
             Smo = true;
+
+            ExecuteEvents.Execute<RecieveMessage>(
+            target: aa,
+            eventData: null,
+            functor: (sendTest, y) => sendTest.OnRecieve1());
         }
     }
 }
