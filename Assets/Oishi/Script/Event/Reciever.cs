@@ -6,7 +6,7 @@ public class Reciever : MonoBehaviour, RecieveMessage
 
     public void OnRecieve1()
     {
-        transform.position = new Vector3(0, 4, 0);
+        //transform.position = new Vector3(0, 4, 0);
         Debug.Log("OnRecieve1");
     }
 
