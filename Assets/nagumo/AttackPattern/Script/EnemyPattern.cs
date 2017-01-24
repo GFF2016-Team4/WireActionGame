@@ -45,8 +45,11 @@ public class EnemyPattern : MonoBehaviour
         {
             Debug.Log("パンチ範囲");
 
-            m_Animator.SetBool("IsAttack", true);
-            m_Animator.SetBool("IsLazer", false);
+            if(!m_Animator.GetBool("IsAttack"))
+            {
+                m_Animator.SetBool("IsAttack", true);
+                m_Animator.SetBool("IsLazer", false);
+            }
 
             //テスト用
             timer += Time.deltaTime;
@@ -72,6 +75,7 @@ public class EnemyPattern : MonoBehaviour
                 m_LazerCoolDown = 10f;
             }
             LaserAttack();
+
             Debug.Log("レーザー範囲");
         }
         else

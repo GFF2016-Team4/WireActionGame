@@ -5,7 +5,7 @@ namespace Enemy
 {
     public class laserpointer : MonoBehaviour
     {
-
+        
         public GameObject Laser;
         public GameObject Shooter;
         public GameObject laserBlue;
@@ -37,7 +37,7 @@ namespace Enemy
             Ray ray = new Ray(transform.position, Shooter.transform.forward);
             //Debug.DrawRay(ray.origin, ray.direction, Color.blue, 1f);
 
-            transform.Rotate(0, Input.GetAxis("Horizontal") * speed, 0);
+            //transform.Rotate(0, Input.GetAxis("Horizontal") * speed, 0);
 
             m_LaserAttack = transform.root.gameObject;
 

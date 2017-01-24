@@ -18,11 +18,11 @@ public class GameManager : MonoBehaviour
     {
         if (!isClear)
         {
-            if (GameObject.FindGameObjectWithTag("Point").transform.position.y <= clearHeight)
-            {
-                isClear = true;
-                Debug.Log("GameClear");
-            }
+            //    if (GameObject.FindGameObjectWithTag("Point").transform.position.y <= clearHeight)
+            //    {
+            //        isClear = true;
+            //        Debug.Log("GameClear");
+            //    }
         }
 
     }

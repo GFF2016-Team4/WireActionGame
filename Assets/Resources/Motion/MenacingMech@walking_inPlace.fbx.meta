@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5f7bbfa6cc3f3884084bf25a3942509b
+guid: a804fd9bb1d569b498202203539eb263
 timeCreated: 1481246741
 licenseType: Free
 ModelImporter:
@@ -202,16 +202,7 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "\nInbetween bone default rotation found in this file
-      is different from the one found in the source avatar:\n\t'SPINE_01' : rotation
-      error = 18.639791 deg\n\t'L_TOP_ARM' : rotation error = 23.055346 deg\n\t'L_FINGER05_Base'
-      : rotation error = 116.709892 deg\n\t'R_TOP_ARM' : rotation error = 23.170502
-      deg\n\t'R_FINGER05_Base' : rotation error = 94.236893 deg\n\nClip 'mixamo.com'
-      has import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'SPINE_01' is inbetween
-      humanoid transforms and has rotation animation that will be discarded.\n\t'L_TOP_ARM'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'R_TOP_ARM'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
