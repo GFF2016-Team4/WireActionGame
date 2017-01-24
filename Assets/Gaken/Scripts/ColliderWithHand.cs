@@ -3,27 +3,49 @@ using System.Collections;
 
 public class ColliderWithHand : MonoBehaviour
 {
-    public Transform parent;
+    Animator m_Animator;
+    bool m_IsEnter;
+    float m_WaitCounter;
 
     // Use this for initialization
     void Start()
     {
-        parent = GetComponent<Transform>();
+        m_Animator = transform.root.Find("EnemyRobot").GetComponent<Animator>();
+        m_IsEnter = false;
+        m_WaitCounter = 2f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (m_WaitCounter <= 0)
+            m_WaitCounter = 0;
+        //Debug.Log(m_WaitCounter);
+
+        if (m_IsEnter)
+        {
+            m_WaitCounter -= 1f * Time.deltaTime;
+
+            m_Animator.speed -= 1f * Time.deltaTime;
+
+            if (m_WaitCounter <= 0 && m_Animator.speed <= 0.01f)
+                m_IsEnter = false;
+        }
+
+        if (!m_IsEnter && m_WaitCounter <= 0)
+        {
+            m_Animator.speed = 1;
+            m_WaitCounter = 2f;
+        }
 
     }
 
-    public void OnCollisionExit(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-        if(collision.transform.tag == "Floor")
+        if (other.transform.tag == "Field")
         {
             Debug.Log("ok");
-            parent.GetComponent<Animator>().speed = 0;
-
+            m_IsEnter = true;
             //parent.SendMessage();
         }
     }

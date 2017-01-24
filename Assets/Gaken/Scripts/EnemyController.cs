@@ -38,9 +38,8 @@ namespace Gaken
         //public Transform leftHand;      //左腕Transform
 
         public float m_LazerCoolDown = 10f;
-        public float countDown = 10.0f;
-
-
+        public float m_CountDown = 10.0f;
+        public float m_WaitTime = 2.0f;
         /************************************************************************
                                       仮宣言 
         ************************************************************************/
@@ -48,7 +47,6 @@ namespace Gaken
         Animator m_Animator;                 //アニメター
         Camera m_Camera;
         public GameObject m_Lazer;
-
 
         private bool isDead;            //死亡切替を行うか?
         //private int ropeCounter;             //ロープとエネミーの接触点数
@@ -72,11 +70,10 @@ namespace Gaken
             isDead = false;
             m_Controller = GetComponent<CharacterController>();
             agent = GetComponent<NavMeshAgent>();
-            m_Camera =transform.FindChild("Camera").GetComponent<Camera>();
+            m_Camera = transform.FindChild("Camera").GetComponent<Camera>();
             agent.speed = m_Speed = 10f;
 
             //m_Lazer = transform.GetComponent<GameObject>();
-
 
             //time2 += 1;
 
@@ -163,7 +160,6 @@ namespace Gaken
             agent.speed = m_Speed;
             agent.destination = Destination.position;
 
-
             //AnimatorStateInfo Info = m_Animator.GetCurrentAnimatorStateInfo(0);
             //Ray ray = new Ray(transform.position, transform.forward);
             //RaycastHit hit;
@@ -217,14 +213,14 @@ namespace Gaken
                                         仮更新
             ****************************************************************/
             //アニメーション一時停止
-            if (Input.GetKey(KeyCode.Alpha3))
-            {
-                m_Animator.speed = 0;
-            }
-            else
-            {
-                m_Animator.speed = 1;
-            }
+            //if (Input.GetKey(KeyCode.Alpha3))
+            //{
+            //    m_Animator.speed = 0;
+            //}
+            //else
+            //{
+            //    m_Animator.speed = 1;
+            //}
 
             //右腕のちぎれ
             //if (Input.GetKey(KeyCode.Space))
@@ -233,7 +229,7 @@ namespace Gaken
             //}
 
             m_LazerCoolDown -= 1f * Time.deltaTime;
-            //Debug.Log(m_LazerCoolDown);
+            m_WaitTime -= 2f * Time.deltaTime;
 
             //攻撃
             if (m_Animator.GetBool("IsAttack"))
@@ -242,32 +238,21 @@ namespace Gaken
             }
             else if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && m_Animator.GetBool("IsLazer") && m_LazerCoolDown <= 0)
             {
-                agent.speed = 0;
-
-                GameObject target = GameObject.FindGameObjectWithTag("Player");
-                int rotateSpeed = 1;
-                Transform myTransform = this.transform;
-
-                Debug.DrawLine(target.transform.position, this.transform.position, Color.yellow);
-
-                myTransform.rotation = Quaternion.Slerp(
-                    myTransform.rotation,
-                    Quaternion.LookRotation(target.transform.position - myTransform.transform.position),
-                    rotateSpeed * Time.deltaTime);
-
                 EnemyLazer();
-            }
-            else if(m_Animator.GetBool("IsKnee"))
-            {
-                deathCount += CircleCount();
-                if(deathCount >= 4)
-                {
-                    isDead = true;
-                }
+                m_LazerCoolDown = 10.0f;
             }
             else
             {
                 EnemyNormal();
+            }
+
+            if (m_Animator.GetBool("IsKnee"))
+            {
+                deathCount += CircleCount();
+                if (deathCount >= 4)
+                {
+                    isDead = true;
+                }
             }
 
             //自爆
@@ -275,10 +260,11 @@ namespace Gaken
             {
                 agent.speed = 0;
                 m_Camera.depth = 2;
+                m_Animator.SetBool("IsAttack", false);
 
-                countDown -= 1 * Time.deltaTime;
+                m_CountDown -= 1 * Time.deltaTime;
 
-                if (countDown <= 0)
+                if (m_CountDown <= 0)
                     EnemyExplosion();
             }
         }
@@ -314,56 +300,54 @@ namespace Gaken
             {
                 m_Animator.SetBool("IsKnee", true);
             }
-
-            if(other.gameObject.tag == "Floor")
-            {
-                m_Animator.speed = 0;
-            }
         }
 
-        void FiringBeam(GameObject[] obj)
+        //void FiringBeam(GameObject[] obj)
+        //{
+        //    var lineRenderer = GetComponent<LineRenderer>();
+        //    lineRenderer.SetPosition(0, obj[0].transform.position);
+        //    lineRenderer.SetPosition(1, obj[1].transform.position);
+        //}
+
+        void RotateToPlayer(Quaternion offset)
         {
-            var lineRenderer = GetComponent<LineRenderer>();
-            lineRenderer.SetPosition(0, obj[0].transform.position);
-            lineRenderer.SetPosition(1, obj[1].transform.position);
+            GameObject target = GameObject.FindGameObjectWithTag("Player");
+            float rotateSpeed = 0.8f;
+            Transform myTransform = this.transform;
+
+            //Debug.DrawLine(target.transform.position, this.transform.position, Color.yellow);
+
+            myTransform.rotation = Quaternion.Slerp(
+                myTransform.rotation,
+                Quaternion.LookRotation(target.transform.position - myTransform.transform.position) * offset,
+                rotateSpeed * Time.deltaTime);
         }
 
         void EnemyAttack()
         {
             agent.speed = 0;
-
-            GameObject target = GameObject.FindGameObjectWithTag("Player");
-            int rotateSpeed = 1;
-            Transform myTransform = this.transform;
-
-            Debug.DrawLine(target.transform.position, this.transform.position, Color.yellow);
-
-            myTransform.rotation = Quaternion.Slerp(
-                myTransform.rotation,
-                Quaternion.LookRotation(target.transform.position - myTransform.transform.position) * Quaternion.AngleAxis(-25, Vector3.up),
-                rotateSpeed * Time.deltaTime);
+            RotateToPlayer(Quaternion.AngleAxis(-25, Vector3.up));
         }
 
         void EnemyLazer()
         {
-            m_Lazer.SetActive(true);
-            m_LazerCoolDown = 10.0f;
+            agent.speed = 0;
+            RotateToPlayer(Quaternion.identity);
         }
 
         void EnemyNormal()
         {
             //m_Animator.SetBool("IsAttack", false);
-            if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
                 agent.speed = 0;
             }
-            else if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Lazer")|| m_Animator.GetCurrentAnimatorStateInfo(0).IsName("LazerOver"))
+            else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Lazer") || m_Animator.GetCurrentAnimatorStateInfo(0).IsName("LazerOver"))
             {
                 agent.speed = 0;
             }
             else
             {
-                m_Lazer.SetActive(false);
                 agent.speed = m_Speed;
             }
         }
@@ -371,6 +355,7 @@ namespace Gaken
         void EnemyExplosion()
         {
             transform.Find("DYNAMITE").transform.gameObject.SetActive(true);
+            transform.GetComponent<EnemyController>().enabled = false;
         }
 
         int CircleCount()
@@ -509,10 +494,10 @@ namespace Gaken
             //        break;
             //}
 
-            //Debug.Log(EnemyForward);
-            //Debug.Log(EnemyBack);
-            //Debug.Log(EnemyLeft);
-            //Debug.Log(EnemyRight);
+            Debug.Log(EnemyForward);
+            Debug.Log(EnemyBack);
+            Debug.Log(EnemyLeft);
+            Debug.Log(EnemyRight);
 
             if (EnemyForward && EnemyLeft && EnemyRight && EnemyBack)
             {

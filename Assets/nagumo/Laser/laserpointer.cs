@@ -20,7 +20,7 @@ namespace Enemy
         private float AttackTime;
 
         [System.NonSerialized]
-        public bool AttackLaser;
+        public bool AttackLaser = false;
         LineRenderer laser;
         laserAttack m_laserBlue;
 
