@@ -80,6 +80,25 @@ public class FadeManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         async.allowSceneActivation = true;
     }
+    public void RespawnFadeIn()
+    {
+        GetComponent<Image>().color = new Color(red, green, blue, alfaOut);
+        if (alfaOut <= 1.0f)
+        {
+            alfaOut += fadeOutSpeed;
+        }
+        if (alfaOut <= alfaTemp) Time.timeScale = 0;
+    }
+    public void RespawnFadeOut()
+    {
+        if (alfaOut >= 1.0f)
+        {
+            GetComponent<Image>().color = new Color(red, green, blue, alfaIn);
+            alfaIn -= fadeInSpeed;
+        }
+        if (alfaIn <= 0) Time.timeScale = 1;
+    }
+
     //IEnumerator resourceLoad()
     //{
     //    yield return objs = Resources.LoadAll("Takahashi", typeof(GameObject));
