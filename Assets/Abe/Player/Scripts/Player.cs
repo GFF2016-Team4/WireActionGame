@@ -200,7 +200,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
     void CheckJumpState()
     {
         if(!isJump) return;
-        //重力加速度をみて初速度より速くなればjump状態解除
+        //重力加速度をみて初速度より速くなればjump状態解除 
         if(jumpPower + gravity.y * (Time.time - jumpTime) < -jumpPower * Time.deltaTime)
         {
             isJump = false;
