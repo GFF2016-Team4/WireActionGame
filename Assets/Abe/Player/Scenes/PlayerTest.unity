@@ -233,6 +233,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!4 &166276558 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000011173865140, guid: 16313cba1e1ca584ca7912f32dda7017,
+    type: 2}
+  m_PrefabInternal: {fileID: 804168972}
 --- !u!1 &269214494
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,9 +356,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010387666288, guid: 4276d41f44605a74698bb020091d79a8,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 166276558}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4276d41f44605a74698bb020091d79a8, type: 2}
   m_IsPrefabParent: 0
+--- !u!20 &293148449 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20000013778126110, guid: 4276d41f44605a74698bb020091d79a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 293148448}
 --- !u!1 &415132581
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,6 +896,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000014254225510, guid: 16313cba1e1ca584ca7912f32dda7017,
+        type: 2}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 293148449}
+    - target: {fileID: 114000013572030750, guid: 16313cba1e1ca584ca7912f32dda7017,
+        type: 2}
+      propertyPath: reticle
+      value: 
+      objectReference: {fileID: 1457905785}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16313cba1e1ca584ca7912f32dda7017, type: 2}
   m_IsPrefabParent: 0
@@ -1318,6 +1343,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 82000010127709496, guid: ee1e2a8e2de65d3418fd91bf9fa68540,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee1e2a8e2de65d3418fd91bf9fa68540, type: 2}
   m_IsPrefabParent: 0
@@ -1590,7 +1620,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 3, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1457905786
