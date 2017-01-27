@@ -52,7 +52,7 @@ public class EnemyPattern : MonoBehaviour
                 m_Animator.SetBool("IsLazer", false);
             }
 
-            if(anim.nameHash == Animator.StringToHash("Base Layer.Attack"))
+            if(anim.fullPathHash == Animator.StringToHash("Base Layer.Attack"))
             {
                 m_changeTag = true;
             }
@@ -84,7 +84,9 @@ public class EnemyPattern : MonoBehaviour
                 m_Animator.SetBool("IsLazer", true);
                 m_LazerCoolDown = 10f;
             }
-            LaserAttack();
+
+            if (anim.fullPathHash == Animator.StringToHash("Base Layer.Lazer"))
+                LaserAttack();
 
             Debug.Log("レーザー範囲");
         }
