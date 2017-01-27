@@ -49,6 +49,10 @@ public class PlayerRopeMove : MonoBehaviour
             }
             else
             {
+                if(!SoundManager.Instance.AttachSESource.isPlaying)
+                {
+                    SoundManager.Instance.PlaySE(AUDIO.SE_playerRopeMove);
+                }
                 player.animator.SetBool("IsGrab", true);
                 player.SyncPlayerToRope();
                 player.RopeControl();

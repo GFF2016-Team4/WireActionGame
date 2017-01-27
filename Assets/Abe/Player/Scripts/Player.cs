@@ -334,7 +334,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
             isControll = false;
             ropeController.isControl = false;
 
-            GetComponent<FadeRespawn>().Respawn();
+            //GetComponent<FadeRespawn>().Respawn();
         }
     }
 
