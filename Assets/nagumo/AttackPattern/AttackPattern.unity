@@ -8589,6 +8589,25 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4000013691439038, guid: 50cb02bfb0cd4d34d934b931a28e8f3c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 15.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 199000013951794572, guid: 50cb02bfb0cd4d34d934b931a28e8f3c,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 818dc578bd7304343b4d57fef60a68c2, type: 2}
+    - target: {fileID: 199000011734781974, guid: 50cb02bfb0cd4d34d934b931a28e8f3c,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c91ba1d1494094ae0aa8fdd96e171933, type: 2}
+    - target: {fileID: 199000010000441138, guid: 50cb02bfb0cd4d34d934b931a28e8f3c,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 818dc578bd7304343b4d57fef60a68c2, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50cb02bfb0cd4d34d934b931a28e8f3c, type: 2}
   m_IsPrefabParent: 0

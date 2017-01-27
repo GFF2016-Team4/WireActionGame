@@ -42,7 +42,6 @@ public class ArmInstantiate : MonoBehaviour
         if (col.gameObject.tag == "Field")
         {
             Inst = true;
-            Debug.Log(Inst);
         }
 
         //攻撃中に地面に当たったら
@@ -62,7 +61,6 @@ public class ArmInstantiate : MonoBehaviour
         if (col.gameObject.tag == "Field")
         {
             Inst = false;
-            Debug.Log(Inst);
         }
     }
 }
