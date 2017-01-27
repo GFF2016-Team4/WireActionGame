@@ -23,7 +23,6 @@ public class EnemyPattern : MonoBehaviour
     Animator m_Animator;
     public float m_LazerCoolDown = 10f;
 
-
     // Use this for initialization
     void Start()
     {
@@ -40,6 +39,8 @@ public class EnemyPattern : MonoBehaviour
         //Debug.Log(zDeistance);
         //Debug.Log(xDeistance);
 
+        AnimatorStateInfo anim = this.m_Animator.GetCurrentAnimatorStateInfo(0);
+
         //パンチの範囲内処理
         if (xDeistance <= Punch && xDeistance >= -Punch && zDeistance <= Punch && zDeistance >= -Punch)
         {
@@ -51,17 +52,26 @@ public class EnemyPattern : MonoBehaviour
                 m_Animator.SetBool("IsLazer", false);
             }
 
+            if(anim.nameHash == Animator.StringToHash("Base Layer.Attack"))
+            {
+                m_changeTag = true;
+            }
+            else
+            {
+                m_changeTag = false;
+            }
+
             //テスト用
             timer += Time.deltaTime;
             if (timer >= 10)
             {
-                m_changeTag = true;
+                //m_changeTag = true;
                 //Debug.Log("パンチ範囲");
             }
             if (timer >= 15)
             {
                 timer = 0;
-                m_changeTag = false;
+                //m_changeTag = false;
             }
         }
         //レーザーの範囲内処理
