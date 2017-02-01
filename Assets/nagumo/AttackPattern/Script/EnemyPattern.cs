@@ -46,7 +46,7 @@ public class EnemyPattern : MonoBehaviour
         {
             Debug.Log("パンチ範囲");
 
-            if(!m_Animator.GetBool("IsAttack"))
+            if(!m_Animator.GetBool("IsAttack") && !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"))
             {
                 m_Animator.SetBool("IsAttack", true);
                 m_Animator.SetBool("IsLazer", false);
