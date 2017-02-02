@@ -5,6 +5,7 @@
 Obj/
 UnityGenerated/
 /Library/
+/a_Data/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
@@ -40,49 +41,3 @@ Thumbs.db
 *.pyc #python bytecode cache, for some plugins.
 sysinfo.txt #Unity3D Generated File On Crash Reports
 a.exe
-a_Data/Managed/Assembly-CSharp-firstpass.dll
-a_Data/Managed/Assembly-CSharp.dll
-a_Data/Managed/Assembly-UnityScript.dll
-a_Data/Managed/Boo.Lang.dll
-a_Data/Managed/GETween.dll
-a_Data/Managed/GUIAnimatorFREE.dll
-a_Data/Managed/Mono.Security.dll
-a_Data/Managed/System.Core.dll
-a_Data/Managed/System.dll
-a_Data/Managed/UnityEngine.Networking.dll
-a_Data/Managed/UnityEngine.UI.dll
-a_Data/Managed/UnityEngine.dll
-a_Data/Managed/UnityEngine.dll.mdb
-a_Data/Managed/UnityEngine.xml
-a_Data/Managed/mscorlib.dll
-a_Data/Mono/etc/mono/1.0/DefaultWsdlHelpGenerator.aspx
-a_Data/Mono/etc/mono/1.0/machine.config
-a_Data/Mono/etc/mono/2.0/Browsers/Compat.browser
-a_Data/Mono/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx
-a_Data/Mono/etc/mono/2.0/machine.config
-a_Data/Mono/etc/mono/2.0/settings.map
-a_Data/Mono/etc/mono/2.0/web.config
-a_Data/Mono/etc/mono/browscap.ini
-a_Data/Mono/etc/mono/config
-a_Data/Mono/etc/mono/mconfig/config.xml
-a_Data/Mono/mono.dll
-a_Data/Resources/unity default resources
-a_Data/Resources/unity_builtin_extra
-a_Data/app.info
-a_Data/globalgamemanagers
-a_Data/globalgamemanagers.assets
-a_Data/level0
-a_Data/level1
-a_Data/level2
-a_Data/level3
-a_Data/resources.assets
-a_Data/resources.assets.resS
-a_Data/resources.resource
-a_Data/sharedassets0.assets
-a_Data/sharedassets0.assets.resS
-a_Data/sharedassets1.assets
-a_Data/sharedassets1.assets.resS
-a_Data/sharedassets2.assets
-a_Data/sharedassets2.assets.resS
-a_Data/sharedassets3.assets
-a_Data/sharedassets3.assets.resS
