@@ -41,7 +41,7 @@ namespace Gaken
             isDead = false;
             m_Controller = GetComponent<CharacterController>();
             agent = GetComponent<NavMeshAgent>();
-            m_Camera = transform.Find("EnemyCamera").GetComponent<Camera>();
+            m_Camera = GameObject.Find("EnemyCamera").GetComponent<Camera>();
             m_Rigidbody = transform.GetComponent<Rigidbody>();
             m_Transform = transform.GetComponent<Transform>();
 
