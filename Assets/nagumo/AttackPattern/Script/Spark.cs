@@ -21,6 +21,7 @@ public class Spark : MonoBehaviour {
         //切れた腕のバチバチ
         if (m_Sp.GetComponent<fukusei>().H_s == true)
         {
+            Debug.Log(m_Sp.GetComponent<fukusei>().H_s);
             exp = (GameObject)Instantiate(m_Spark.gameObject, transform.position,
                 Quaternion.identity);
             Spk = true;
@@ -29,7 +30,7 @@ public class Spark : MonoBehaviour {
         }
         if (Spk == true)
             timer += Time.deltaTime;
-        if (timer >= 5.0f)
+        if (timer >= 10.0f)
         {
             timer = 0;
             Destroy(exp);

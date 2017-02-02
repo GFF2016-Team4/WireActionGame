@@ -49,7 +49,7 @@ public class ArmInstantiate : MonoBehaviour
             SoundManager.Instance.PlaySE(AUDIO.SE_Enemy_Punch);
     }
 
-        void OnTriggerExit(Collider col)
+    void OnTriggerExit(Collider col)
     {
         if (col.gameObject.tag == "Rope/Lock")
         {
