@@ -88,6 +88,12 @@ public struct NormalRope
         //新しいオブジェクトの設定
         newRigOriginRig.isKinematic = true;
         newRigOrigin.position       = createPoint;
+
+        //余計なコンポーネント削除
+        AudioSource source = newRigOrigin.GetComponent<AudioSource>();
+        SoundSpeedToVolume sound = newRigOrigin.GetComponent<SoundSpeedToVolume>();
+        GameObject.Destroy(source);
+        GameObject.Destroy(sound);
         
         SetRigOrigin(newRigOrigin);
 

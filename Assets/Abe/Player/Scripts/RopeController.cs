@@ -17,9 +17,17 @@ public class RopeController : MonoBehaviour
         [SerializeField]
         public string[] shootButton;
 
+        [SerializeField]
+        public GameObject ropeBullet;
+
         public bool RopeExist
         {
             get { return ropeInst != null; }
+        }
+
+        public bool BulletExist
+        {
+            get { return ropeBullet != null; }
         }
 
         public bool IsCanControl
@@ -169,14 +177,16 @@ public class RopeController : MonoBehaviour
 
     void ShootRopes()
     {
-        if(Input.GetButtonDown(left.shootButton[0]))
+        if(Input.GetButtonDown(left.shootButton[0]) &&
+           !left .RopeExist && !left .BulletExist)
         {
             StartCoroutine(ShootNormalRope(left,  (result) =>
                 left.ropeInst  = result
             ));
         }
 
-        if(Input.GetButtonDown(right.shootButton[0]))
+        if(Input.GetButtonDown(right.shootButton[0]) &&
+           !right.RopeExist && !right.BulletExist)
         {
             StartCoroutine(ShootNormalRope(right, (result) =>
                 right.ropeInst = result
@@ -228,26 +238,25 @@ public class RopeController : MonoBehaviour
     IEnumerator ShootNormalRope(NormalRope rope, UnityAction<NormalRopeSimulate> callback)
     {
         //アップデートが終わるまで待機
-        GameObject bulletInst = null;
         var wait = StartCoroutine(WaitForBullet(rope.sync.position, rope.sync, rope.shootButton[0],
             (inst) => 
             {
-                bulletInst = inst;
+                rope.ropeBullet = inst;
             }));
         yield return wait;
 
-        RopeBullet ropeBullet = bulletInst.GetComponent<RopeBullet>();
+        RopeBullet ropeBullet = rope.ropeBullet.GetComponent<RopeBullet>();
         
         //ボタンを離した場合
         if(!ropeBullet.IsHit)
         {
-            CreateRopeFailed(normalRopePrefab, rope, bulletInst);
-            Destroy(bulletInst);
+            CreateRopeFailed(normalRopePrefab, rope, rope.ropeBullet);
+            Destroy(rope.ropeBullet);
             yield break;
         }
         
         CreateNormalRope(rope, ropeBullet.HitInfo, callback);
-        Destroy(bulletInst);
+        Destroy(rope.ropeBullet);
     }
 
     IEnumerator ShootCatchRope()
@@ -303,7 +312,7 @@ public class RopeController : MonoBehaviour
         float dot = Vector3.Dot(trans2Camera, trans2HitPoint);
         
         //ドット積が正 -> 前方向にある
-        return dot > 0;
+        return dot > 0.0f;
     }
 
     Vector3? IsPlayerBeforePoint(Vector3 shootPosition, float maxDistance)

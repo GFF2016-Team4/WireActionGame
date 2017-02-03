@@ -26,6 +26,6 @@ public class SoundSpeedToVolume : MonoBehaviour
         float vel = rig.velocity.magnitude;
 
         float volume = vel / maxSpeed;
-        source.volume = Mathf.Lerp(source.volume, volume, 0.2f);
+        source.volume = Mathf.Lerp(source.volume, volume, 0.25f);
     }
 }
