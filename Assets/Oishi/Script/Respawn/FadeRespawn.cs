@@ -73,25 +73,23 @@ public class FadeRespawn : MonoBehaviour
 
     IEnumerator respawn()
     {
+        m_fadeManager.alfaOut = 0.0f;
+        m_fadeManager.alfaIn = 1.0f;
+
         while (m_fadeManager.alfaOut <= 1.0f)
         {
             m_fadeManager.RespawnFadeIn();
-
             yield return new WaitForEndOfFrame();
-            Debug.Log("フェードアウト");
         }
+
         gameObject.transform.position = respawnPosition.transform.position;
 
 
         while (m_fadeManager.alfaOut >= 1.0f && m_fadeManager.alfaIn >= 0)
         {
             m_fadeManager.RespawnFadeOut();
-
             yield return new WaitForEndOfFrame();
-            Debug.Log("フェードイン");
         }
-        m_fadeManager.alfaOut = 0.0f;
-        m_fadeManager.alfaIn = 1.0f;
         yield return null;
 
         //    if (m_fadeManager.alfaOut >= 1.0f)

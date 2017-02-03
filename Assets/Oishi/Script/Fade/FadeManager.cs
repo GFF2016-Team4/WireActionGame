@@ -12,6 +12,12 @@ public class FadeManager : MonoBehaviour
     [Header("フェードアウトの長さ")]
     public float fadeOutSpeed = 0.01f;
 
+    [Header("リスポーンフェードインの速さ")]
+    public float RespawnfadeInSpeed = 0.01f;
+
+    [Header("リスポーンフェードアウトの長さ")]
+    public float RespawnfadeOutSpeed = 0.01f;
+
     [Header("画面切り替え時、時間停止の長さ")]
     float alfaTemp = 0.0f;           //画面切り替え時、時間停止の長さ
 
@@ -85,7 +91,7 @@ public class FadeManager : MonoBehaviour
         GetComponent<Image>().color = new Color(red, green, blue, alfaOut);
         if (alfaOut <= 1.0f)
         {
-            alfaOut += fadeOutSpeed;
+            alfaOut += RespawnfadeOutSpeed;
         }
         if (alfaOut <= alfaTemp) Time.timeScale = 0;
     }
@@ -94,7 +100,7 @@ public class FadeManager : MonoBehaviour
         if (alfaOut >= 1.0f)
         {
             GetComponent<Image>().color = new Color(red, green, blue, alfaIn);
-            alfaIn -= fadeInSpeed;
+            alfaIn -= RespawnfadeInSpeed;
         }
         if (alfaIn <= 0) Time.timeScale = 1;
     }
