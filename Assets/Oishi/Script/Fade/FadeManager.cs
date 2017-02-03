@@ -65,8 +65,6 @@ public class FadeManager : MonoBehaviour
             {
                 SceneManager.LoadSceneAsync("LoadScene", LoadSceneMode.Additive);
                 StartCoroutine("Load", sceneName);
-
-                Resources.UnloadUnusedAssets();/**/
             }
         }
         if (alfaOut <= alfaTemp) Time.timeScale = 0;
@@ -74,7 +72,7 @@ public class FadeManager : MonoBehaviour
 
     IEnumerator Load(string sceneName)
     {
-        //StartCoroutine("resourceLoad");
+        StartCoroutine("resourceLoad");
 
         AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
         async.allowSceneActivation = false;
@@ -105,8 +103,15 @@ public class FadeManager : MonoBehaviour
         if (alfaIn <= 0) Time.timeScale = 1;
     }
 
-    //IEnumerator resourceLoad()
-    //{
-    //    yield return objs = Resources.LoadAll("Takahashi", typeof(GameObject));
-    //}
+    IEnumerator resourceLoad()
+    {
+        Resources.Load("Resources/Audio");
+        Resources.Load("Resources/Material");
+        Resources.Load("Resources/MedievalTownExteriors",typeof(GameObject));
+        Resources.Load("Resources/Motion");
+        Resources.Load("Resources/Particles");
+        Resources.Load("Resources/Prefab");
+        Resources.Load("Resources/Textures");
+        yield return null;
+    }
 }
