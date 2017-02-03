@@ -40,6 +40,8 @@ GameObject:
   - 54: {fileID: 54000011863402050}
   - 145: {fileID: 145000010555160884}
   - 135: {fileID: 135000010032148302}
+  - 82: {fileID: 82000010291774116}
+  - 114: {fileID: 114000013027788094}
   m_Layer: 10
   m_Name: ropetail
   m_TagString: Rope/Normal
@@ -137,6 +139,80 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!82 &82000010291774116
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012959738922}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1793608e9b48484418bca5cf34903c9c, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114000010200944238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -151,6 +227,20 @@ MonoBehaviour:
   drawList:
   - {fileID: 4000012418786294}
   - {fileID: 4000013854028908}
+--- !u!114 &114000013027788094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012959738922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f8ef2a3030d7f49a2cc3ce15815d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 82000010291774116}
+  rig: {fileID: 54000011863402050}
+  maxSpeed: 100
 --- !u!114 &114000014181534864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,6 +258,7 @@ MonoBehaviour:
   checkDistance: 5
   takeupTime: 0.5
   isCalcDistance: 1
+  isContorll: 1
 --- !u!114 &114000014211422896
 MonoBehaviour:
   m_ObjectHideFlags: 1

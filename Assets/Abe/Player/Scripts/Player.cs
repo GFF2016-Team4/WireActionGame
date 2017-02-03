@@ -180,7 +180,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
         SoundManager.Instance.PlaySE(AUDIO.SE_playerLanding);
         playerVelocity += Vector3.up * jumpPower;
-        playerVelocity += cameraInfo.GetInputVelocity()*2.0f;
+        playerVelocity += cameraInfo.GetInputVelocity()*5.0f;
         controller.Move(playerVelocity * Time.deltaTime);
         isJump = true;
         jumpTime = Time.time;
