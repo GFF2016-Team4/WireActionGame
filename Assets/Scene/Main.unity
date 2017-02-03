@@ -1407,7 +1407,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000013384579472, guid: 23b72124e51632940af5940819c67f67, type: 2}
       propertyPath: m_TagString
-      value: Field
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013384579472, guid: 23b72124e51632940af5940819c67f67, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23b72124e51632940af5940819c67f67, type: 2}
@@ -2155,8 +2159,8 @@ GameObject:
   - 114: {fileID: 95778943}
   - 135: {fileID: 95778942}
   - 114: {fileID: 95778941}
-  - 114: {fileID: 95778940}
   - 114: {fileID: 95778939}
+  - 114: {fileID: 95778940}
   m_Layer: 0
   m_Name: L_HAND
   m_TagString: Untagged
@@ -2181,15 +2185,19 @@ MonoBehaviour:
 --- !u!114 &95778940
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000012441945414, guid: 163e3b8eab5e68e4baf0879c3e6ddec8,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 95778938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0699422307f54ab4392bb21fb05e49c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 38c56420ca2a8ea479bf90a65fbe3463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shakeObject: {fileID: 2040193446}
+  Pcamera: {fileID: 1679910367}
+  x: 2
+  y: 2
+  time: 0.5
 --- !u!114 &95778941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17309,7 +17317,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: -0.03, y: 0.05, z: -0.26}
+  m_Size: {x: 0.3, y: 0.3, z: 0.3}
   m_Center: {x: 0, y: -0.15, z: 0}
 --- !u!54 &618997939
 Rigidbody:
@@ -43648,6 +43656,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000013169379044, guid: 4276d41f44605a74698bb020091d79a8,
     type: 2}
   m_PrefabInternal: {fileID: 1398869146}
+--- !u!4 &1679910371 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000012588242424, guid: 4276d41f44605a74698bb020091d79a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1398869146}
 --- !u!1 &1679963090
 GameObject:
   m_ObjectHideFlags: 0
@@ -55956,6 +55969,34 @@ MonoBehaviour:
     modifyNameEnabled: 0
   modified: 0
   modifiedChildren: 0
+--- !u!1 &2040193446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2040193447}
+  m_Layer: 0
+  m_Name: shake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2040193447
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2040193446}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1679910371}
+  m_RootOrder: 0
 --- !u!1 &2043891182
 GameObject:
   m_ObjectHideFlags: 0
@@ -58741,7 +58782,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: -0.03, y: 0.05, z: 0.26}
+  m_Size: {x: 0.3, y: 0.3, z: 0.3}
   m_Center: {x: 0, y: -0.15, z: 0}
 --- !u!54 &2122810081
 Rigidbody:
