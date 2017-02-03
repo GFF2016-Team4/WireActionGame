@@ -327,9 +327,19 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(!isControll) return;
+        //天井にぶつかったらキャンセル
+        if(isJump)
+        {
+            if(hit.point.y > transform.position.y + 0.65f)
+            {
+                playerVelocity.Set(0.0f, -0.5f, 0.0f);
+            }
+        }
+
         if(hit.gameObject.tag == "Enemy")
         {
+            if(!isControll) return;
+
             animator.SetTrigger("Damage");
             isControll = false;
             ropeController.isControl = false;
