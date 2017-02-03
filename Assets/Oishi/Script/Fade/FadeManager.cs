@@ -105,6 +105,13 @@ public class FadeManager : MonoBehaviour
 
     IEnumerator resourceLoad()
     {
-        yield return objs = Resources.LoadAll("Resources");
+        Resources.Load("Resources/Audio");
+        Resources.Load("Resources/Material");
+        Resources.Load("Resources/MedievalTownExteriors",typeof(GameObject));
+        Resources.Load("Resources/Motion");
+        Resources.Load("Resources/Particles");
+        Resources.Load("Resources/Prefab");
+        Resources.Load("Resources/Textures");
+        yield return null;
     }
 }
