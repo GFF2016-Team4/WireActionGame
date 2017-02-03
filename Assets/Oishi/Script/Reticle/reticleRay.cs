@@ -41,7 +41,6 @@ public class reticleRay : MonoBehaviour
         if (sphereHit && isScreen(hitScreenPoint))
         {
             target.position = hit.point;
-            Debug.Log(hitScreenPoint);
 
             //target = hit.transform;
             return true;
