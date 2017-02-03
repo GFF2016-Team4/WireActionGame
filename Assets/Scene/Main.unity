@@ -55978,7 +55978,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2040193447}
   m_Layer: 0
-  m_Name: shake
+  m_Name: shakeCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
