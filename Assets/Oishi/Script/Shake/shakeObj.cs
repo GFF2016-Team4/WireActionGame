@@ -23,7 +23,10 @@ public class shakeObj : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        tempPos = shakeObject.transform.parent.GetComponent<PlayerCamera>().offset;
-        iTween.PunchPosition(shakeObject, iTween.Hash("x", x, "y", y, "time", time));
+        if (other.tag == "Field")
+        {
+            tempPos = shakeObject.transform.parent.GetComponent<PlayerCamera>().offset;
+            iTween.PunchPosition(shakeObject, iTween.Hash("x", x, "y", y, "time", time));
+        }
     }
 }
