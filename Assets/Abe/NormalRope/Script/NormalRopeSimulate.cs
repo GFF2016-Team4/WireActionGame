@@ -59,6 +59,11 @@ public class NormalRopeSimulate : MonoBehaviour
         get { return rope.direction; }
     }
 
+    public MeshRenderer hookRenderer
+    {
+        get { return rope.GetRootRigOrigin<MeshRenderer>(); }
+    }
+
     void Awake()
     {
         listLineDraw = GetComponent<ListLineDraw>();
@@ -73,6 +78,7 @@ public class NormalRopeSimulate : MonoBehaviour
         rope.rigOriginPosition = origin;
         rope.tailPosition      = tail;
         rope.CalcMinDistance();
+        rope.rigOrigin.transform.rotation = Quaternion.LookRotation(-direction);
     }
 
     IEnumerator Start()
@@ -183,6 +189,8 @@ public class NormalRopeSimulate : MonoBehaviour
         rope.rigOriginRig.isKinematic = false;
         Destroy(rope.rigOriginJoint);
         Destroy(rope.rigOriginJoint.GetComponent<SyncObject>());
+
+        rope.rigOrigin.transform.rotation = Quaternion.LookRotation(-direction);
 
         StartCoroutine(TakeUp(sync));
     }
