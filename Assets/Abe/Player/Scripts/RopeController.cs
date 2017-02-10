@@ -192,10 +192,12 @@ public class RopeController : MonoBehaviour
 
     void Update()
     {
-        if(isControl)
+        ShootRopes();
+        if(catchRope.RopeExist)
         {
-            ShootRopes();
+            catchRope.ropeInst.tailPosition = catchRope.sync.position;
         }
+        SyncRopeToTransform_(catchRope);
         CheckSimulationEnd();
     }
 
@@ -203,7 +205,14 @@ public class RopeController : MonoBehaviour
     {
         if(Input.GetButtonDown(catchRope.shootButton[0]))
         {
-            StartCoroutine(ShootCatchRope());
+            if(catchRope.RopeExist)
+            {
+                catchRope.ropeInst.SimulationEnd(catchRope.sync);
+            }
+            else
+            {
+                StartCoroutine(ShootCatchRope());
+            }
         }
     }
 
@@ -212,8 +221,6 @@ public class RopeController : MonoBehaviour
         CheckSimulationEnd(ref center);
         CheckSimulationEnd(ref left  );
         CheckSimulationEnd(ref right );
-
-        CheckSimulationEnd(ref catchRope);
     }
 
     void CheckSimulationEnd(ref NormalRope rope)
@@ -222,14 +229,10 @@ public class RopeController : MonoBehaviour
         if(!InputExtension.GetButtonAnyUp(rope.shootButton)) return;
         //ロープのボタンを離した
 
-        //捕獲用ロープでは無い場合
-        if(rope.ropeInst.isCalcDistance == true)
-        {
-            SendNormalRopeReleaseEvent(rope.ropeInst);
+        SendNormalRopeReleaseEvent(rope.ropeInst);
 
-            TakeOverVelocity(left,  rope);
-            TakeOverVelocity(right, rope);
-        }
+        TakeOverVelocity(left,  rope);
+        TakeOverVelocity(right, rope);
 
         rope.ropeInst.SimulationEnd(rope.sync);
         rope.ropeInst = null;
@@ -276,7 +279,8 @@ public class RopeController : MonoBehaviour
             (inst) => 
             {
                 bulletInst = inst;
-            }));
+            }, 
+            false));
         yield return wait;
         
         RopeBullet ropeBullet = bulletInst.GetComponent<RopeBullet>();
@@ -346,7 +350,7 @@ public class RopeController : MonoBehaviour
         return null;
     }
 
-    IEnumerator WaitForBullet(Vector3 shootPosition, Transform target,string shootButton, UnityAction<GameObject> callback)
+    IEnumerator WaitForBullet(Vector3 shootPosition, Transform target,string shootButton, UnityAction<GameObject> callback, bool isButton = true)
     {
         //射出弾の生成
         GameObject bulletInst = Instantiate(bulletPrefab);
@@ -362,9 +366,9 @@ public class RopeController : MonoBehaviour
         //何かに当たるか、ボタンを離したら終了
         while(true)
         {
-            if(Input.GetButtonUp(shootButton))            yield break;
-            if(ropeBullet.IsHit)                          yield break;
-            if(ropeBullet.Distance >= normalRopeDistance) yield break;
+            if(Input.GetButtonUp(shootButton) && isButton) yield break;
+            if(ropeBullet.IsHit)                           yield break;
+            if(ropeBullet.Distance >= normalRopeDistance)  yield break;
 
             yield return null;
         }
@@ -423,13 +427,14 @@ public class RopeController : MonoBehaviour
         NormalRopeSimulate simulate = ropeInst.GetComponent<NormalRopeSimulate>();
 
         simulate.Initialize(hitInfo.contacts[0].point, catchRope.sync.position);
+        simulate.SimulationStop();
 
         ListLineDraw lineDraw = ropeInst.GetComponent<ListLineDraw>();
         lineDraw.DrawStart();
 
         bool canRopeHook = hitInfo.transform.tag != "NoRopeHit";
 
-        if(Input.GetButton(catchRope.shootButton[0]) && canRopeHook)
+        if(canRopeHook)
         {
             //引っかかった
             catchRope.ropeInst = simulate;
@@ -552,7 +557,6 @@ public class RopeController : MonoBehaviour
     /// <param name="syncTransform">同期させるトランスフォーム</param>
     public void SyncTransformToRope(Transform syncTransform)
     {
-        SyncRopeToTransform_(catchRope);
         if(center.RopeExist)
         {
             SyncTransformToRope_(center, syncTransform);
@@ -581,7 +585,6 @@ public class RopeController : MonoBehaviour
         SyncRopeToTransform_(center);
         SyncRopeToTransform_(left);
         SyncRopeToTransform_(right);
-        SyncRopeToTransform_(catchRope);
     }
 
     private void SyncRopeToTransform_(NormalRope rope)
