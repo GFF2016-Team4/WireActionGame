@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000012785632894}
   - 198: {fileID: 198000014162309202}
   - 199: {fileID: 199000012764778472}
+  - 114: {fileID: 114000013313765320}
   m_Layer: 0
   m_Name: PunchSmoke
   m_TagString: Untagged
@@ -41,6 +42,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &114000013313765320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013847295348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 402610a0ecabff14b80b2942569899ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198000014162309202
 ParticleSystem:
   m_ObjectHideFlags: 1

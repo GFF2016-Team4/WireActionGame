@@ -43,7 +43,7 @@ GameObject:
   - 33: {fileID: 33000011484817064}
   m_Layer: 12
   m_Name: ropePoint2
-  m_TagString: Untagged
+  m_TagString: Rope/Lock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,7 +62,7 @@ GameObject:
   - 33: {fileID: 33000012090275006}
   m_Layer: 12
   m_Name: ropePoint1
-  m_TagString: Untagged
+  m_TagString: Rope/Lock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

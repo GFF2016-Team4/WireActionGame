@@ -13,7 +13,7 @@ public class ArmInstantiate : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        fuku = true;
     }
 
     // Update is called once per frame
