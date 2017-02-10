@@ -29,6 +29,11 @@ public class NormalRopeSimulate : MonoBehaviour
         get { return rope.rigOriginPosition; }
     }
 
+    public Transform nowOrigin
+    {
+        get { return rope.rigOrigin;}
+    }
+
     public Vector3 tailPosition
     {
         get { return rope.tailPosition; }
@@ -42,6 +47,11 @@ public class NormalRopeSimulate : MonoBehaviour
             }
             rope.tailPosition = value;
         }
+    }
+
+    public Transform tail
+    {
+        get { return rope.tail; }
     }
 
     public float ropeLength

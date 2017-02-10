@@ -432,6 +432,9 @@ public class RopeController : MonoBehaviour
         ListLineDraw lineDraw = ropeInst.GetComponent<ListLineDraw>();
         lineDraw.DrawStart();
 
+        CatchRope inst = ropeInst.GetComponent<CatchRope>();
+        inst.sync = rope.sync;
+
         bool canRopeHook = hitInfo.transform.tag != "NoRopeHit";
 
         if(canRopeHook)

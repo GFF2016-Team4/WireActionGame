@@ -22,6 +22,7 @@ GameObject:
   - 114: {fileID: 114000010600233498}
   - 120: {fileID: 120000010786038184}
   - 114: {fileID: 114000013155469770}
+  - 114: {fileID: 114000010805905722}
   m_Layer: 10
   m_Name: CatchRopes
   m_TagString: Rope/Catch
@@ -193,6 +194,18 @@ MonoBehaviour:
   takeupTime: 0.5
   isCalcDistance: 0
   isContorll: 1
+--- !u!114 &114000010805905722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010309568244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb915ab07df6734097d6e4567e321f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyDistance: 20
 --- !u!114 &114000011769371030
 MonoBehaviour:
   m_ObjectHideFlags: 1
