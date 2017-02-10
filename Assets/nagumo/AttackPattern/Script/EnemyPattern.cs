@@ -26,7 +26,7 @@ public class EnemyPattern : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        m_Animator = transform.Find("EnemyRobot").GetComponent<Animator>();
+        m_Animator = transform.Find("Enemy3").GetComponent<Animator>();
     }
 
     // Update is called once per frame
