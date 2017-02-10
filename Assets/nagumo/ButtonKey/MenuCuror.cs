@@ -37,11 +37,11 @@ public class MenuCuror : MonoBehaviour {
             return;
         }
 
-        if (m_Curor != selectedObject.GetComponent<RectTransform>().anchoredPosition)
-            PlaySE_move();
-
         m_RectTransform.anchoredPosition =
             selectedObject.GetComponent<RectTransform>().anchoredPosition;
+
+        if (m_Curor != selectedObject.GetComponent<RectTransform>().anchoredPosition)
+            PlaySE_move();
     }
 
     //決定音
