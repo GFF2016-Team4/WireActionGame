@@ -79,8 +79,12 @@ public class fukusei : MonoBehaviour {
 				isDestroy = true;
                 //orgObj.GetComponent<SkinnedMeshRenderer>().enabled = true;
             }
+            if (destroyTimer >= d_timer + 13)
+            {
+                orgObj2.GetComponent<BoxCollider>().enabled = true;
+            }
 
-			if (isDestroy == false && org_renderer.material.color.a > 0) 
+                if (isDestroy == false && org_renderer.material.color.a > 0) 
 			{
                 //複製オブジェクトのアルファを徐々に増やす
                 //m_colorManager.plusAlpha(fks_renderer);
@@ -91,7 +95,7 @@ public class fukusei : MonoBehaviour {
 			if (isDestroy == true)
 			{
                 //orgObj.GetComponent<BoxCollider>().enabled = true;
-                orgObj2.GetComponent<BoxCollider>().enabled = true;
+                
                 orgObj3.GetComponent<SphereCollider>().enabled = true;
                 //fksObj.GetComponent<BoxCollider> ().enabled = false;
 
@@ -106,11 +110,12 @@ public class fukusei : MonoBehaviour {
 				{
 					Destroy (fksObj);
 
-					destroyTimer = 0;
-
 					isDestroy = false;
-				}
-			}
+                }
+
+                if (orgObj2.GetComponent<BoxCollider>().enabled == true)
+                    destroyTimer = 0;
+            }
 		}
 	}
 }
