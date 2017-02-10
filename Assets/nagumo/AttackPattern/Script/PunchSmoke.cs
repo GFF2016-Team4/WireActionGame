@@ -10,6 +10,7 @@ public class PunchSmoke : MonoBehaviour {
     private GameObject En_p;
     private float timer;
     private bool Smo;
+    private bool m_nul;
 	// Use this for initialization
 	void Start () {
 	
@@ -27,6 +28,15 @@ public class PunchSmoke : MonoBehaviour {
             Destroy(exp);
             Smo = false;
         }
+
+        if (En_p.GetComponent<EnemyPattern>() == null)
+        {
+            m_nul = false;
+        }
+        else
+        {
+            m_nul = true;
+        }
     }
     void OnTriggerEnter(Collider col)
     {
@@ -36,12 +46,9 @@ public class PunchSmoke : MonoBehaviour {
                 Quaternion.identity * Quaternion.AngleAxis(90, Vector3.left));
             Smo = true;
         }
-        if(En_p.GetComponent<EnemyPattern>() == null)
-        {
-
-        }
+       
         //攻撃中に地面に当たったら
-        else if (En_p.GetComponent<EnemyPattern>().m_changeTag == true)
+        if (m_nul == true)
             SoundManager.Instance.PlaySE(AUDIO.SE_Enemy_Punch);
     }
 }
