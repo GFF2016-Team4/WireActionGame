@@ -9,6 +9,7 @@ public class ArmInstantiate : MonoBehaviour
 
     private GameObject H_s2;
     private bool Inst;
+    private bool fuku;
     // Use this for initialization
     void Start()
     {
@@ -20,33 +21,41 @@ public class ArmInstantiate : MonoBehaviour
     {
         H_s2 = transform.root.gameObject;
 
-        if (H <= 0)
+        if(H_s2.GetComponent<fukusei>() == null)
         {
-            H = 3;
-            H_s2.GetComponent<fukusei>().H_s = true;
-
-            Inst = false;
+            fuku = false;
         }
-        else H_s2.GetComponent<fukusei>().H_s = false;
+        else
+        {
+            fuku = true;
+
+            if (H <= 0)
+            {
+                H = 3;
+                H_s2.GetComponent<fukusei>().H_s = true;
+
+                Inst = false;
+            }
+            else H_s2.GetComponent<fukusei>().H_s = false;
+        }  
     }
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Rope/Lock" && Inst == true)
+        if (fuku == true)
         {
-            H -= 1;
-            Debug.Log(H);
-        }
+            if (col.gameObject.tag == "Rope/Lock" && Inst == true)
+            {
+                H -= 1;
+                Debug.Log(H);
+            }
 
-        //地面と当たったら
-        if (col.gameObject.tag == "Field")
-        {
-            Inst = true;
+            //地面と当たったら
+            if (col.gameObject.tag == "Field")
+            {
+                Inst = true;
+            }
         }
-
-        //攻撃中に地面に当たったら
-        if (H_s2.GetComponent<EnemyPattern>().m_changeTag == true)
-            SoundManager.Instance.PlaySE(AUDIO.SE_Enemy_Punch);
     }
 
     void OnTriggerExit(Collider col)

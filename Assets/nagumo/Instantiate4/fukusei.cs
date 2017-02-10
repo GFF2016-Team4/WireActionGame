@@ -47,9 +47,9 @@ public class fukusei : MonoBehaviour {
 	
 	void Update ()
 	{
-        if (/*H_s == true*/Input.GetKeyDown(KeyCode.Space)) 
+        if (H_s == true/*Input.GetKeyDown(KeyCode.Space)*/) 
 		{
-            H_s = true;
+            //H_s = true;
             fksObj = Instantiate(orgObj, orgObj.transform.position /*+ testposition*/,
                 orgObj.transform.rotation) as GameObject;
             fksObj.transform.localScale = new Vector3(20, 20, 20);
@@ -101,7 +101,6 @@ public class fukusei : MonoBehaviour {
                 if(org_renderer.material.color.a <= 1)
 				m_colorManager.plusAlpha (org_renderer);
 
-                Debug.Log("aaaaa");
 				//複製オブジェクトのアルファ値が0になったら削除
 				if (fks_renderer.material.color.a <= 0)
 				{

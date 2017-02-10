@@ -16,13 +16,20 @@ public class ChangeTag : MonoBehaviour {
 	void Update () {
         m_Tag = transform.root.gameObject;
 
+        if(m_Tag.GetComponent<EnemyPattern>() == null)
+        {
+            
+        }
+        else
+        {
+            if (m_Tag.GetComponent<EnemyPattern>().m_changeTag == true)
+                m_change.tag = "Enemy";
+            if (m_Tag.GetComponent<EnemyPattern>().m_changeTag == false)
+                m_change.tag = "Untagged";
+        }
+
         //テスト用
         //if(Input.GetKeyDown(KeyCode.Space)) m_change.tag = "Enemy";
         //if (Input.GetKeyDown(KeyCode.LeftShift)) m_change.tag = "Untagged";
-
-        if (m_Tag.GetComponent<EnemyPattern>().m_changeTag == true)
-            m_change.tag = "Enemy";
-        if (m_Tag.GetComponent<EnemyPattern>().m_changeTag == false)
-            m_change.tag = "Untagged";
     }
 }
