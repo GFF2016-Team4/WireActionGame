@@ -166,6 +166,27 @@ ModelImporter:
     100316: R_TOE03_Tip_end_end_end
     100318: R_TOE04_Tip_end_end_end
     100320: R_TOE05_Tip_end_end_end
+    100322: FACE_end_end_end_end
+    100324: L_FINGER01_Tip_end_end_end_end
+    100326: L_FINGER02_Tip_end_end_end_end
+    100328: L_FINGER03_Tip_end_end_end_end
+    100330: L_FINGER04_Tip_end_end_end_end
+    100332: L_FINGER05_Tip_end_end_end_end
+    100334: L_TOE01_Tip_end_end_end_end
+    100336: L_TOE02_Tip_end_end_end_end
+    100338: L_TOE03_Tip_end_end_end_end
+    100340: L_TOE04_Tip_end_end_end_end
+    100342: L_TOE05_Tip_end_end_end_end
+    100344: R_FINGER01_Tip_end_end_end_end
+    100346: R_FINGER02_Tip_end_end_end_end
+    100348: R_FINGER03_Tip_end_end_end_end
+    100350: R_FINGER04_Tip_end_end_end_end
+    100352: R_FINGER05_Tip_end_end_end_end
+    100354: R_TOE01_Tip_end_end_end_end
+    100356: R_TOE02_Tip_end_end_end_end
+    100358: R_TOE03_Tip_end_end_end_end
+    100360: R_TOE04_Tip_end_end_end_end
+    100362: R_TOE05_Tip_end_end_end_end
     400000: Armature
     400002: Body
     400004: Camera
@@ -327,11 +348,33 @@ ModelImporter:
     400316: R_TOE03_Tip_end_end_end
     400318: R_TOE04_Tip_end_end_end
     400320: R_TOE05_Tip_end_end_end
+    400322: FACE_end_end_end_end
+    400324: L_FINGER01_Tip_end_end_end_end
+    400326: L_FINGER02_Tip_end_end_end_end
+    400328: L_FINGER03_Tip_end_end_end_end
+    400330: L_FINGER04_Tip_end_end_end_end
+    400332: L_FINGER05_Tip_end_end_end_end
+    400334: L_TOE01_Tip_end_end_end_end
+    400336: L_TOE02_Tip_end_end_end_end
+    400338: L_TOE03_Tip_end_end_end_end
+    400340: L_TOE04_Tip_end_end_end_end
+    400342: L_TOE05_Tip_end_end_end_end
+    400344: R_FINGER01_Tip_end_end_end_end
+    400346: R_FINGER02_Tip_end_end_end_end
+    400348: R_FINGER03_Tip_end_end_end_end
+    400350: R_FINGER04_Tip_end_end_end_end
+    400352: R_FINGER05_Tip_end_end_end_end
+    400354: R_TOE01_Tip_end_end_end_end
+    400356: R_TOE02_Tip_end_end_end_end
+    400358: R_TOE03_Tip_end_end_end_end
+    400360: R_TOE04_Tip_end_end_end_end
+    400362: R_TOE05_Tip_end_end_end_end
     4300000: LeftArm
     4300002: Body
     4300004: RightArm
     7400000: Armature|Armature|mixamo.com|Layer0
     7400002: Armature|Armature|Armature|Armature|mixamo.com|Layer0|Armature|Armature|
+    7400004: Armature|Armature|Armature|Armature|Armature|Armature|mixamo.com|Layer0|
     9500000: //RootNode
     13700000: Body
     13700002: LeftArm

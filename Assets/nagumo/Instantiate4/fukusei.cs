@@ -5,6 +5,7 @@ public class fukusei : MonoBehaviour {
 
 	//複製元のオブジェクト
 	public GameObject orgObj;
+    public GameObject orgObj1;
     public GameObject orgObj2;
     public GameObject orgObj3;
 
@@ -37,7 +38,7 @@ public class fukusei : MonoBehaviour {
 	void Start ()
 	{
 		m_colorManager = GetComponent<colorManager> ();
-		org_renderer = orgObj.GetComponent<Renderer> ();
+		org_renderer = orgObj1.GetComponent<Renderer> ();
 		destroyTimer = 0;
 
 		//テスト用
@@ -49,18 +50,20 @@ public class fukusei : MonoBehaviour {
         if (/*H_s == true*/Input.GetKeyDown(KeyCode.Space)) 
 		{
             H_s = true;
-            fksObj = Instantiate (orgObj, orgObj.transform.position /*+ testposition*/, 
-                orgObj.transform.rotation)as GameObject;
+            fksObj = Instantiate(orgObj, orgObj.transform.position /*+ testposition*/,
+                orgObj.transform.rotation) as GameObject;
             fksObj.transform.localScale = new Vector3(20, 20, 20);
             //Instantiate(orgObj, parent, false);
 
             //複製オブジェクトのRendererを取得
-            fks_renderer = fksObj.GetComponent<Renderer> ();
+            fks_renderer = fksObj.transform.FindChild("LeftArm").GetComponent<Renderer>();
+            //fks_renderer = fksObj.GetComponent<Renderer> ();
+
             //アルファ初期値を0に設定
             //m_colorManager.minusResetAlpha(fks_renderer);
             m_colorManager.plusResetAlpha(fks_renderer);
 
-            orgObj.GetComponent<BoxCollider> ().enabled = false;
+            //orgObj.GetComponent<BoxCollider> ().enabled = false;
             orgObj2.GetComponent<BoxCollider>().enabled = false;
             orgObj3.GetComponent<SphereCollider>().enabled = false;
         }
@@ -87,10 +90,10 @@ public class fukusei : MonoBehaviour {
             }
 			if (isDestroy == true)
 			{
-                orgObj.GetComponent<BoxCollider>().enabled = true;
+                //orgObj.GetComponent<BoxCollider>().enabled = true;
                 orgObj2.GetComponent<BoxCollider>().enabled = true;
                 orgObj3.GetComponent<SphereCollider>().enabled = true;
-                fksObj.GetComponent<BoxCollider> ().enabled = false;
+                //fksObj.GetComponent<BoxCollider> ().enabled = false;
 
                 //複製オブジェクトのアルファを徐々に減らす
                 m_colorManager.minusAlpha (fks_renderer);
@@ -98,6 +101,7 @@ public class fukusei : MonoBehaviour {
                 if(org_renderer.material.color.a <= 1)
 				m_colorManager.plusAlpha (org_renderer);
 
+                Debug.Log("aaaaa");
 				//複製オブジェクトのアルファ値が0になったら削除
 				if (fks_renderer.material.color.a <= 0)
 				{

@@ -5223,6 +5223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orgObj: {fileID: 0}
+  orgObj1: {fileID: 0}
   orgObj2: {fileID: 0}
   orgObj3: {fileID: 0}
   d_timer: 0
@@ -14891,6 +14892,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 137000011517288424, guid: 50cb02bfb0cd4d34d934b931a28e8f3c,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50cb02bfb0cd4d34d934b931a28e8f3c, type: 2}
   m_IsPrefabParent: 0

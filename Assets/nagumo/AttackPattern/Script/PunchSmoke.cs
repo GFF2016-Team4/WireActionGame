@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 public class PunchSmoke : MonoBehaviour {
 
     public GameObject m_Somke;
-    public GameObject aa;
 
     private GameObject exp;
     private float timer;
