@@ -53,7 +53,7 @@ namespace Gaken
             //ropeCounter = 0;
 
             //アニメターは子のアニメターを取得
-            m_Animator = transform.Find("EnemyRobot").GetComponent<Animator>();             //こっちはfbx形式
+            m_Animator = transform.Find("Enemy3").GetComponent<Animator>();             //こっちはfbx形式
 
             /************************************************************************
                                         仮初期化 
