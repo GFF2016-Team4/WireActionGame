@@ -250,7 +250,7 @@ GameObject:
   - 136: {fileID: 2627923}
   m_Layer: 0
   m_Name: Coll.L_TOE05_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -423,7 +423,7 @@ GameObject:
   - 114: {fileID: 7831257}
   m_Layer: 0
   m_Name: L_TOE05_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -434,10 +434,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400160, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 7831255}
-  m_LocalRotation: {x: -0.21514836, y: -0.48420152, z: 0.32442465, w: 0.7835871}
+  m_LocalRotation: {x: -0.21514818, y: -0.48420158, z: 0.32442448, w: 0.78358716}
   m_LocalPosition: {x: -0.07785626, y: -0.16354042, z: -0.041604467}
   m_LocalScale: {x: 0.9999999, y: 0.99999976, z: 0.99999946}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.3179772, y: -63.983097, z: 45.804844}
   m_Children:
   - {fileID: 1864466324}
   - {fileID: 2627922}
@@ -956,7 +956,7 @@ GameObject:
   - 136: {fileID: 16646493}
   m_Layer: 0
   m_Name: Coll.R_TOE01_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1024,7 +1024,7 @@ GameObject:
   - 114: {fileID: 19106972}
   m_Layer: 0
   m_Name: R_FINGER02_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1035,10 +1035,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400204, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 19106970}
-  m_LocalRotation: {x: -0.014193196, y: -0.0033452078, z: 0.43676817, w: 0.8994559}
+  m_LocalRotation: {x: -0.026077487, y: 0.047620602, z: 0.5615054, w: 0.82569003}
   m_LocalPosition: {x: -0.062572084, y: -0.051055357, z: -0.0000006409222}
   m_LocalScale: {x: 0.9999995, y: 0.99999994, z: 0.99999976}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -11.159785, y: 5.4772997, z: 85.98741}
   m_Children:
   - {fileID: 400372197}
   - {fileID: 1065350971}
@@ -3072,7 +3072,7 @@ GameObject:
   - 136: {fileID: 27043668}
   m_Layer: 0
   m_Name: Coll.L_TOP_TOE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3190,7 +3190,7 @@ GameObject:
   - 137: {fileID: 58864517}
   m_Layer: 0
   m_Name: RightArm
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3585,7 +3585,7 @@ GameObject:
   - 114: {fileID: 72234053}
   m_Layer: 0
   m_Name: L_TOE02_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3596,10 +3596,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400120, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 72234051}
-  m_LocalRotation: {x: 0.08108035, y: -0.14447287, z: 0.2851356, w: 0.94406104}
+  m_LocalRotation: {x: 0.08108057, y: -0.14447299, z: 0.28513527, w: 0.9440611}
   m_LocalPosition: {x: -0.10510662, y: -0.000000019073486, z: -0.000000036308627}
   m_LocalScale: {x: 0.9999997, y: 0.99999964, z: 0.9999997}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 13.6198435, y: -13.4796295, z: 31.994762}
   m_Children:
   - {fileID: 1326901371}
   - {fileID: 1773242027}
@@ -3893,7 +3893,7 @@ GameObject:
   - 114: {fileID: 74494047}
   m_Layer: 0
   m_Name: R_FINGER04_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3904,10 +3904,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400232, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 74494045}
-  m_LocalRotation: {x: -0.040621635, y: 0.01671564, z: -0.041843794, w: 0.9981581}
+  m_LocalRotation: {x: -0.035823792, y: 0.027024029, z: 0.10923758, w: 0.9930023}
   m_LocalPosition: {x: -0.06992499, y: 0.032339424, z: -0.0000026922673}
   m_LocalScale: {x: 0.9999998, y: 0.9999997, z: 0.99999917}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.401292, y: 2.766807, z: 16.685738}
   m_Children:
   - {fileID: 1293880095}
   - {fileID: 1589946941}
@@ -4030,7 +4030,7 @@ GameObject:
   - 114: {fileID: 78077119}
   m_Layer: 0
   m_Name: R_HAND
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4041,10 +4041,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400260, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 78077117}
-  m_LocalRotation: {x: 0.9441081, y: 0.29056075, z: 0.010274312, w: 0.15533465}
+  m_LocalRotation: {x: 0.9612712, y: 0.2496309, z: 0.11159325, w: 0.034482345}
   m_LocalPosition: {x: -0.49895677, y: 0.006654974, z: -0.0000016837992}
   m_LocalScale: {x: 0.99999964, y: 1.0000001, z: 1.0000005}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 42.962124, y: -170.10832, z: 136.73949}
   m_Children:
   - {fileID: 776582559}
   - {fileID: 453408687}
@@ -4386,7 +4386,7 @@ GameObject:
   - 114: {fileID: 98644719}
   m_Layer: 0
   m_Name: R_FINGER01_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4397,10 +4397,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400192, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 98644717}
-  m_LocalRotation: {x: 0.20488814, y: -0.22254218, z: -0.7012186, w: 0.64559144}
+  m_LocalRotation: {x: 0.20290253, y: -0.14780547, z: -0.6099464, w: 0.75163126}
   m_LocalPosition: {x: -0.10535, y: 0.017554617, z: -0.0000008405884}
   m_LocalScale: {x: 0.99999994, y: 0.9999998, z: 0.99999964}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.7255974, y: -35.123142, z: -93.867455}
   m_Children:
   - {fileID: 1519393378}
   m_Father: {fileID: 2024461066}
@@ -4524,7 +4524,7 @@ GameObject:
   - 136: {fileID: 128039878}
   m_Layer: 0
   m_Name: Coll.L_TOE02_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4866,7 +4866,7 @@ GameObject:
   - 65: {fileID: 135147969}
   m_Layer: 0
   m_Name: walkR
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4922,7 +4922,7 @@ GameObject:
   - 136: {fileID: 140609535}
   m_Layer: 0
   m_Name: Coll.HEAD
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5260,7 +5260,7 @@ GameObject:
   - 114: {fileID: 150569184}
   m_Layer: 0
   m_Name: R_FINGER05_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5271,10 +5271,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400244, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 150569182}
-  m_LocalRotation: {x: -0.32984897, y: -0.21204121, z: 0.8428694, w: 0.36852336}
+  m_LocalRotation: {x: -0.35115737, y: -0.21910152, z: 0.8216695, w: 0.3918446}
   m_LocalPosition: {x: -0.09292187, y: 0.100666255, z: 0.009551019}
   m_LocalScale: {x: 1.0000005, y: 1.0000001, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.467203, y: -47.452164, z: 121.881134}
   m_Children:
   - {fileID: 2014189424}
   - {fileID: 157531540}
@@ -5534,7 +5534,7 @@ GameObject:
   - 114: {fileID: 153278236}
   m_Layer: 0
   m_Name: R_TOE01_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5545,10 +5545,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400274, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 153278234}
-  m_LocalRotation: {x: 0.08694781, y: -0.087358125, z: -0.7033656, w: 0.700061}
+  m_LocalRotation: {x: 0.08694784, y: -0.087358214, z: -0.7033655, w: 0.70006114}
   m_LocalPosition: {x: -0.17093849, y: 0.0016100468, z: 0.0000006667446}
   m_LocalScale: {x: 0.9999998, y: 0.99999964, z: 0.9999997}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.06599928, y: -14.159647, z: -90.2616}
   m_Children:
   - {fileID: 21356934}
   m_Father: {fileID: 773428437}
@@ -5672,7 +5672,7 @@ GameObject:
   - 136: {fileID: 157531541}
   m_Layer: 0
   m_Name: Coll.R_FINGER05_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5812,7 +5812,7 @@ GameObject:
   - 136: {fileID: 167945216}
   m_Layer: 0
   m_Name: Coll.SPINE_03
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5880,7 +5880,7 @@ GameObject:
   - 114: {fileID: 174299746}
   m_Layer: 0
   m_Name: L_TOE01_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5891,10 +5891,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400108, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 174299744}
-  m_LocalRotation: {x: 0.086947694, y: -0.08735832, z: -0.70336616, w: 0.7000605}
+  m_LocalRotation: {x: 0.08694777, y: -0.0873583, z: -0.7033661, w: 0.70006055}
   m_LocalPosition: {x: -0.1709462, y: -0.00000005052294, z: 0.00000013220837}
   m_LocalScale: {x: 1, y: 0.9999996, z: 0.9999997}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.066024035, y: -14.159648, z: -90.261696}
   m_Children:
   - {fileID: 2091341049}
   m_Father: {fileID: 805198480}
@@ -6018,7 +6018,7 @@ GameObject:
   - 136: {fileID: 175021988}
   m_Layer: 0
   m_Name: Coll.R_FINGER03_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6088,7 +6088,7 @@ GameObject:
   - 136: {fileID: 199906957}
   m_Layer: 0
   m_Name: Coll.L_TOP_LEG
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8056,10 +8056,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400080, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 255478442}
-  m_LocalRotation: {x: 0.010518455, y: 0.0000004750008, z: 0.00000014156886, w: 0.9999447}
+  m_LocalRotation: {x: 0.13739748, y: 0.25091556, z: 0.00017748427, w: 0.9582084}
   m_LocalPosition: {x: -0.0708091, y: -0.0000003480911, z: -0.00000029563904}
   m_LocalScale: {x: 0.9999999, y: 1.0000001, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.3664944, y: 3.4320936, z: -3.4473274}
   m_Children:
   - {fileID: 1202465459}
   - {fileID: 1989870384}
@@ -8184,7 +8184,7 @@ GameObject:
   - 136: {fileID: 273017066}
   m_Layer: 0
   m_Name: Coll.R_TOE04_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8564,7 +8564,7 @@ GameObject:
   - 114: {fileID: 305507376}
   m_Layer: 0
   m_Name: SPINE_01
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8575,10 +8575,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400350, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 305507374}
-  m_LocalRotation: {x: 0.000000018368281, y: -0.044178233, z: 0.00000002736682, w: 0.9990237}
-  m_LocalPosition: {x: -0.12277635, y: -0.000000019073521, z: -0.00000017166137}
+  m_LocalRotation: {x: -0.0013895504, y: -0.08442966, z: 0.03525292, w: 0.99580467}
+  m_LocalPosition: {x: -0.122776285, y: 0.000000032964593, z: 0.000000021929393}
   m_LocalScale: {x: 1.0000001, y: 1, z: 0.99999976}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.34894007, y: -10.832134, z: -1.6894932}
   m_Children:
   - {fileID: 777488531}
   - {fileID: 1414399978}
@@ -8803,7 +8803,7 @@ GameObject:
   - 114: {fileID: 309769802}
   m_Layer: 0
   m_Name: R_SHOULDER_SECOND
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8814,10 +8814,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400268, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 309769800}
-  m_LocalRotation: {x: 0.09709577, y: -0.07409739, z: 0.21489625, w: 0.96896935}
+  m_LocalRotation: {x: 0.09709574, y: -0.07409732, z: 0.21489598, w: 0.96896946}
   m_LocalPosition: {x: 0.054784127, y: -0.06457228, z: 0.00000063896175}
   m_LocalScale: {x: 0.99999976, y: 0.9999995, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 12.709738, y: -5.9939694, z: 24.34093}
   m_Children:
   - {fileID: 1497880097}
   - {fileID: 738874817}
@@ -9056,10 +9056,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400024, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 323048629}
-  m_LocalRotation: {x: -0.058457773, y: -0.00000029335672, z: 0.00000047552774, w: 0.9982899}
+  m_LocalRotation: {x: -0.0574631, y: 0.057679806, z: -0.17434347, w: 0.98131317}
   m_LocalPosition: {x: -0.09775851, y: 0.00000022718376, z: -0.00000006471469}
   m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000004}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -6.166387, y: 4.8315077, z: -12.737776}
   m_Children:
   - {fileID: 519051264}
   - {fileID: 1940417095}
@@ -9355,7 +9355,7 @@ GameObject:
   - 136: {fileID: 346196939}
   m_Layer: 0
   m_Name: Coll.R_TOE02_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9429,7 +9429,7 @@ GameObject:
   - 136: {fileID: 357502686}
   m_Layer: 0
   m_Name: Coll.L_TOE03_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9881,7 +9881,7 @@ GameObject:
   - 136: {fileID: 394423963}
   m_Layer: 0
   m_Name: Coll.R_FINGER01_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9949,7 +9949,7 @@ GameObject:
   - 114: {fileID: 400372198}
   m_Layer: 0
   m_Name: R_FINGER02_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9960,10 +9960,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400206, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 400372196}
-  m_LocalRotation: {x: 0.27635846, y: -0.30851808, z: -0.67796516, w: 0.6072939}
+  m_LocalRotation: {x: 0.29067376, y: -0.231833, z: -0.6030968, w: 0.705717}
   m_LocalPosition: {x: -0.100054584, y: 0.02234489, z: -0.0000036969082}
   m_LocalScale: {x: 0.9999995, y: 0.9999996, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.7418585, y: -48.76562, z: -94.1442}
   m_Children:
   - {fileID: 1826689434}
   m_Father: {fileID: 19106971}
@@ -10115,7 +10115,7 @@ GameObject:
   - 136: {fileID: 402848100}
   m_Layer: 0
   m_Name: Coll.R_TOE03_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10205,7 +10205,7 @@ GameObject:
   - 136: {fileID: 409126068}
   m_Layer: 0
   m_Name: Coll.SPINE_BASE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10526,10 +10526,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400066, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 432363618}
-  m_LocalRotation: {x: 0.04392711, y: -0.00000002574496, z: -0.00000019642535, w: 0.99903476}
+  m_LocalRotation: {x: 0.043421894, y: 0.014499248, z: -0.15050834, w: 0.9875483}
   m_LocalPosition: {x: -0.07703625, y: -0.00000017182202, z: -0.000000015264668}
   m_LocalScale: {x: 1.0000002, y: 0.99999964, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.046522, y: 0.20889209, z: -3.9807596}
   m_Children:
   - {fileID: 1348120697}
   - {fileID: 527211501}
@@ -10793,7 +10793,7 @@ GameObject:
   - 114: {fileID: 450337672}
   m_Layer: 0
   m_Name: R_TOP_TOE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10804,10 +10804,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400344, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 450337670}
-  m_LocalRotation: {x: -0.005854645, y: 0.66014767, z: 0.025880676, w: 0.7506671}
+  m_LocalRotation: {x: -0.006270438, y: 0.706895, z: 0.024373466, w: 0.7068706}
   m_LocalPosition: {x: -0.056710485, y: 0.010852728, z: 0.08499627}
   m_LocalScale: {x: 0.9999997, y: 1, z: 0.99999994}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.477809, y: 86.4849, z: 1.6186205}
   m_Children:
   - {fileID: 528194650}
   - {fileID: 702026576}
@@ -10935,7 +10935,7 @@ GameObject:
   - 114: {fileID: 451505511}
   m_Layer: 0
   m_Name: L_TOE04_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10946,10 +10946,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400148, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 451505509}
-  m_LocalRotation: {x: 0.063315175, y: 0.20988293, z: -0.15250817, w: 0.9636813}
+  m_LocalRotation: {x: 0.06331541, y: 0.20988293, z: -0.152508, w: 0.9636813}
   m_LocalPosition: {x: -0.10198631, y: 0.000000028610229, z: 0.00000004779072}
   m_LocalScale: {x: 1.0000001, y: 0.9999999, z: 0.9999999}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10.722321, y: 23.082325, z: -15.789952}
   m_Children:
   - {fileID: 1232442096}
   - {fileID: 622547776}
@@ -11100,7 +11100,7 @@ GameObject:
   - 114: {fileID: 453408688}
   m_Layer: 0
   m_Name: R_FINGER02_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11111,10 +11111,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400202, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 453408686}
-  m_LocalRotation: {x: 0.08918993, y: -0.0043551107, z: -0.041207094, w: 0.99515235}
+  m_LocalRotation: {x: 0.024242273, y: 0.060985565, z: 0.17101918, w: 0.9830796}
   m_LocalPosition: {x: -0.10843126, y: -0.07164025, z: 0.10085881}
   m_LocalScale: {x: 1.0000002, y: 1.0000004, z: 1.0000004}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -5.637892, y: 23.749989, z: 2.859282}
   m_Children:
   - {fileID: 19106971}
   - {fileID: 1697265919}
@@ -11239,7 +11239,7 @@ GameObject:
   - 136: {fileID: 455031860}
   m_Layer: 0
   m_Name: Coll.R_TOE05_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11307,7 +11307,7 @@ GameObject:
   - 114: {fileID: 460269249}
   m_Layer: 0
   m_Name: R_TOE02_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11318,10 +11318,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400288, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 460269247}
-  m_LocalRotation: {x: 0.04406583, y: -0.035369344, z: -0.624952, w: 0.77861553}
+  m_LocalRotation: {x: 0.044065762, y: -0.03536917, z: -0.62495196, w: 0.77861565}
   m_LocalPosition: {x: -0.14145721, y: -0.0659379, z: -0.00000009867794}
   m_LocalScale: {x: 1.0000004, y: 1.0000008, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.3988732, y: -6.3261976, z: -77.5815}
   m_Children:
   - {fileID: 1390327982}
   m_Father: {fileID: 1826375845}
@@ -11888,7 +11888,7 @@ GameObject:
   - 114: {fileID: 497281453}
   m_Layer: 0
   m_Name: R_SHOULDER
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11899,10 +11899,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400264, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 497281451}
-  m_LocalRotation: {x: -0.6335033, y: 0.2140021, z: -0.13512963, w: 0.7311748}
+  m_LocalRotation: {x: -0.63350344, y: 0.21400194, z: -0.13512942, w: 0.7311748}
   m_LocalPosition: {x: 0.04542794, y: -0.07348193, z: 0.0000010156631}
   m_LocalScale: {x: 1, y: 0.9999996, z: 0.9999998}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -60.29261, y: 77.67853, z: -71.06299}
   m_Children:
   - {fileID: 1142568268}
   - {fileID: 977329246}
@@ -12025,7 +12025,7 @@ GameObject:
   - 114: {fileID: 498958295}
   m_Layer: 0
   m_Name: R_FINGER03_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12036,10 +12036,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400216, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 498958293}
-  m_LocalRotation: {x: 0.029417163, y: -0.04874245, z: -0.009981422, w: 0.9983282}
+  m_LocalRotation: {x: 0.007944719, y: -0.017058404, z: 0.11199215, w: 0.9935309}
   m_LocalPosition: {x: -0.14073174, y: -0.094989166, z: -0.019394245}
   m_LocalScale: {x: 1.0000002, y: 0.99999994, z: 1.0000001}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.16121358, y: -1.574966, z: 11.5813875}
   m_Children:
   - {fileID: 1934237899}
   - {fileID: 175021987}
@@ -12164,7 +12164,7 @@ GameObject:
   - 136: {fileID: 502328599}
   m_Layer: 0
   m_Name: Coll.R_TOE04_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12508,10 +12508,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400026, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519051263}
-  m_LocalRotation: {x: 0.2048877, y: -0.22254194, z: -0.7012186, w: 0.6455917}
+  m_LocalRotation: {x: 0.12908502, y: -0.21224312, z: -0.79877746, w: 0.5479457}
   m_LocalPosition: {x: -0.10679954, y: 0.00000020275823, z: 0.00000020003266}
   m_LocalScale: {x: 1.0000002, y: 1.0000001, z: 0.99999976}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.2975154, y: -37.200733, z: -89.79555}
   m_Children:
   - {fileID: 10593480}
   m_Father: {fileID: 323048630}
@@ -12633,7 +12633,7 @@ GameObject:
   - 114: {fileID: 522251967}
   m_Layer: 0
   m_Name: L_TOE03_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12644,10 +12644,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400134, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 522251965}
-  m_LocalRotation: {x: -0.046468742, y: 0.23341042, z: 0.08445027, w: 0.96758896}
+  m_LocalRotation: {x: -0.046468772, y: 0.2334106, z: 0.08445013, w: 0.96758896}
   m_LocalPosition: {x: -0.10290995, y: -0.000000038146972, z: -0.000000006412283}
   m_LocalScale: {x: 0.99999964, y: 0.9999995, z: 0.9999996}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -7.431942, y: 26.589973, z: 8.2176695}
   m_Children:
   - {fileID: 1200958028}
   - {fileID: 357502685}
@@ -12840,7 +12840,7 @@ GameObject:
   - 114: {fileID: 528194651}
   m_Layer: 0
   m_Name: R_TOE01_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12851,10 +12851,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400270, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 528194649}
-  m_LocalRotation: {x: -0.004161275, y: -0.19979784, z: -0.00467315, w: 0.97981715}
+  m_LocalRotation: {x: -0.0041613327, y: -0.19979787, z: -0.004673216, w: 0.97981715}
   m_LocalPosition: {x: -0.15156385, y: 0.007765386, z: 0.0000008426986}
   m_LocalScale: {x: 0.99999994, y: 1.0000002, z: 1.0000001}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.57423276, y: -23.04858, z: -0.42945412}
   m_Children:
   - {fileID: 773428437}
   - {fileID: 16646492}
@@ -13082,7 +13082,7 @@ GameObject:
   - 114: {fileID: 540524553}
   m_Layer: 0
   m_Name: L_FINGER03_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13093,10 +13093,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400050, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 540524551}
-  m_LocalRotation: {x: -0.013704049, y: -0.05527577, z: -0.29821533, w: 0.9527982}
+  m_LocalRotation: {x: -0.0027156556, y: -0.015830917, z: -0.41815296, w: 0.9082346}
   m_LocalPosition: {x: -0.13945575, y: 0.09685847, z: -0.019398078}
   m_LocalScale: {x: 0.9999999, y: 1.0000001, z: 0.99999994}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.3414962, y: -2.9174576, z: -38.60405}
   m_Children:
   - {fileID: 1768655604}
   - {fileID: 1993855122}
@@ -13219,7 +13219,7 @@ GameObject:
   - 114: {fileID: 540714852}
   m_Layer: 0
   m_Name: R_TOE04_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13230,10 +13230,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400314, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 540714850}
-  m_LocalRotation: {x: 0.06331541, y: 0.20988296, z: -0.15250792, w: 0.96368134}
+  m_LocalRotation: {x: 0.06331541, y: 0.20988293, z: -0.152508, w: 0.9636813}
   m_LocalPosition: {x: -0.063404694, y: 0.07988092, z: 0.000000843537}
   m_LocalScale: {x: 0.99999976, y: 1.0000002, z: 0.9999998}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10.722321, y: 23.082325, z: -15.789952}
   m_Children:
   - {fileID: 541669062}
   - {fileID: 502328598}
@@ -13356,7 +13356,7 @@ GameObject:
   - 114: {fileID: 541669063}
   m_Layer: 0
   m_Name: R_TOE04_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13367,10 +13367,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400316, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 541669061}
-  m_LocalRotation: {x: -0.072173744, y: 0.08272602, z: -0.74897546, w: 0.65343946}
+  m_LocalRotation: {x: -0.072173886, y: 0.08272602, z: -0.7489754, w: 0.6534396}
   m_LocalPosition: {x: -0.15062973, y: 0.042023934, z: -0.00000027281038}
   m_LocalScale: {x: 0.99999934, y: 0.9999998, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.6960282, y: 12.493013, z: -97.60854}
   m_Children:
   - {fileID: 1856756890}
   m_Father: {fileID: 540714851}
@@ -13492,7 +13492,7 @@ GameObject:
   - 114: {fileID: 544670872}
   m_Layer: 0
   m_Name: R_FOOT
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13503,10 +13503,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400258, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 544670870}
-  m_LocalRotation: {x: 0.0119274855, y: 0.010451328, z: 0.058965903, w: 0.9981341}
+  m_LocalRotation: {x: 0.023703804, y: 0.068047106, z: 0.030460361, w: 0.99693525}
   m_LocalPosition: {x: -0.6576329, y: -0.057137083, z: 0.0000008410215}
   m_LocalScale: {x: 0.9999994, y: 1.0000004, z: 0.9999997}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30.888853, y: -21.04378, z: 27.33979}
   m_Children:
   - {fileID: 450337671}
   - {fileID: 1502430674}
@@ -13845,7 +13845,7 @@ GameObject:
   - 114: {fileID: 568335924}
   m_Layer: 0
   m_Name: SPINE_03
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13856,10 +13856,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400354, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 568335922}
-  m_LocalRotation: {x: 7.696127e-10, y: -0.05117164, z: -0.0000000032313994, w: 0.9986899}
+  m_LocalRotation: {x: 0, y: -0.05117164, z: 0, w: 0.9986899}
   m_LocalPosition: {x: -0.1690979, y: -0.000000019073466, z: 0.000000038146972}
   m_LocalScale: {x: 0.9999992, y: 1, z: 0.9999992}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -5.8664, z: 0}
   m_Children:
   - {fileID: 1420704483}
   - {fileID: 1571284113}
@@ -13989,7 +13989,7 @@ GameObject:
   - 114: {fileID: 570538932}
   m_Layer: 0
   m_Name: DYNAMITE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14002,7 +14002,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 570538930}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3, y: 4.8, z: 3.1}
+  m_LocalPosition: {x: -2.3, y: 7.8, z: 3.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -14118,7 +14118,7 @@ GameObject:
   - 136: {fileID: 573807985}
   m_Layer: 0
   m_Name: Coll.R_FINGER01_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15960,7 +15960,7 @@ GameObject:
   - 136: {fileID: 587460144}
   m_Layer: 0
   m_Name: Coll.L_TOE03_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16030,7 +16030,7 @@ GameObject:
   - 136: {fileID: 587928030}
   m_Layer: 0
   m_Name: Coll.R_SHOULDER_GUN
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16100,7 +16100,7 @@ GameObject:
   - 136: {fileID: 590675402}
   m_Layer: 0
   m_Name: Coll.R_TOE03_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16316,7 +16316,7 @@ GameObject:
   - 114: {fileID: 621138993}
   m_Layer: 0
   m_Name: R_TOE03_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16327,10 +16327,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400302, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 621138991}
-  m_LocalRotation: {x: -0.096489534, y: 0.086466216, z: -0.6617424, w: 0.73845136}
+  m_LocalRotation: {x: -0.09648939, y: 0.08646622, z: -0.66174227, w: 0.7384515}
   m_LocalPosition: {x: -0.14097026, y: -0.031363446, z: 0.00000043174276}
   m_LocalScale: {x: 1.0000001, y: 1, z: 0.9999998}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.6084334, y: 14.803517, z: -83.937355}
   m_Children:
   - {fileID: 1215530914}
   m_Father: {fileID: 2007900692}
@@ -16454,7 +16454,7 @@ GameObject:
   - 136: {fileID: 622547777}
   m_Layer: 0
   m_Name: Coll.L_TOE04_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16664,7 +16664,7 @@ GameObject:
   - 136: {fileID: 639886763}
   m_Layer: 0
   m_Name: Coll.L_FOOT
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17012,7 +17012,7 @@ GameObject:
   - 114: {fileID: 669687229}
   m_Layer: 0
   m_Name: L_FOOT
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17023,10 +17023,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400092, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 669687227}
-  m_LocalRotation: {x: -0.012787066, y: 0.009378369, z: -0.05896527, w: 0.99813414}
+  m_LocalRotation: {x: -0.0029027588, y: -0.016055476, z: 0.011582981, w: 0.9997998}
   m_LocalPosition: {x: -0.6601084, y: 0.0000004370138, z: -0.00000004053116}
   m_LocalScale: {x: 0.99999994, y: 0.99999976, z: 0.9999996}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -17.53059, y: -1.970622, z: -23.088968}
   m_Children:
   - {fileID: 785611847}
   - {fileID: 639886762}
@@ -17149,7 +17149,7 @@ GameObject:
   - 114: {fileID: 672919855}
   m_Layer: 0
   m_Name: R_TOE03_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17160,10 +17160,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400298, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 672919853}
-  m_LocalRotation: {x: 0.1074189, y: -0.82814306, z: -0.08470404, w: 0.54356736}
+  m_LocalRotation: {x: 0.10741883, y: -0.82814306, z: -0.08470405, w: 0.54356736}
   m_LocalPosition: {x: 0.11373675, y: -0.08286898, z: -0.121721}
   m_LocalScale: {x: 0.99999976, y: 0.9999997, z: 0.99999994}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.3474575, y: -113.25528, z: -15.668771}
   m_Children:
   - {fileID: 2007900692}
   - {fileID: 590675401}
@@ -17704,7 +17704,7 @@ MonoBehaviour:
   player: {fileID: 679293928}
   m_Speed: 12
   m_LazerCoolDown: 5
-  m_CountDown: 10
+  m_CountDown: 5
   m_WaitTime: 2
   m_WaitTimeCount: 2
   m_Lazer: {fileID: 0}
@@ -17769,7 +17769,7 @@ GameObject:
   - 114: {fileID: 698681304}
   m_Layer: 0
   m_Name: R_FINGER05_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17780,10 +17780,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400248, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 698681302}
-  m_LocalRotation: {x: 0.21314262, y: -0.25922155, z: -0.7276229, w: 0.5982803}
+  m_LocalRotation: {x: 0.20701116, y: -0.17973047, z: -0.8390403, w: 0.46995193}
   m_LocalPosition: {x: -0.095532246, y: 0.039154, z: 0.00000079154967}
   m_LocalScale: {x: 0.9999998, y: 0.9999994, z: 0.99999994}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -10.751789, y: -27.16293, z: -111.6951}
   m_Children:
   - {fileID: 1632770501}
   m_Father: {fileID: 2014189424}
@@ -18042,7 +18042,7 @@ GameObject:
   - 114: {fileID: 700734748}
   m_Layer: 0
   m_Name: L_TOE04_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18053,10 +18053,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400146, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 700734746}
-  m_LocalRotation: {x: -0.19146095, y: -0.790011, z: 0.12265151, w: 0.5693698}
+  m_LocalRotation: {x: -0.19146098, y: -0.790011, z: 0.122651175, w: 0.5693699}
   m_LocalPosition: {x: 0.08680763, y: -0.108649716, z: -0.09991316}
   m_LocalScale: {x: 0.9999997, y: 0.9999996, z: 0.99999976}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.3885665, y: -108.762344, z: 26.25137}
   m_Children:
   - {fileID: 451505510}
   - {fileID: 1279478936}
@@ -18179,7 +18179,7 @@ GameObject:
   - 114: {fileID: 702026577}
   m_Layer: 0
   m_Name: R_TOE02_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18190,10 +18190,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400284, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 702026575}
-  m_LocalRotation: {x: 0.14617513, y: -0.3560466, z: -0.37226787, w: 0.84455925}
+  m_LocalRotation: {x: 0.14617485, y: -0.3560465, z: -0.3722678, w: 0.8445594}
   m_LocalPosition: {x: -0.05291122, y: -0.15417041, z: -0.058617324}
   m_LocalScale: {x: 0.9999996, y: 1.0000001, z: 0.99999976}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.0418447, y: -45.263767, z: -47.13981}
   m_Children:
   - {fileID: 1826375845}
   - {fileID: 1264623171}
@@ -18525,7 +18525,7 @@ GameObject:
   - 136: {fileID: 708567146}
   m_Layer: 0
   m_Name: Coll.R_HAND
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18699,7 +18699,7 @@ GameObject:
   - 114: {fileID: 718678289}
   m_Layer: 0
   m_Name: Enemy3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18808,7 +18808,7 @@ GameObject:
   - 136: {fileID: 738874818}
   m_Layer: 0
   m_Name: Coll.R_SHOULDER_SECOND
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19047,7 +19047,7 @@ GameObject:
   - 114: {fileID: 768043220}
   m_Layer: 0
   m_Name: L_TOP_LEG
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19058,10 +19058,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400176, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 768043218}
-  m_LocalRotation: {x: -0.09582521, y: 0.06698513, z: 0.66605294, w: 0.73668444}
+  m_LocalRotation: {x: -0.25135836, y: 0.036510907, z: 0.5748404, w: 0.77784604}
   m_LocalPosition: {x: -0.20227481, y: -0.07294585, z: -0.0058525824}
   m_LocalScale: {x: 1.0000001, y: 0.9999999, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -26.506422, y: -11.75176, z: 55.164482}
   m_Children:
   - {fileID: 1991011677}
   - {fileID: 199906956}
@@ -19254,7 +19254,7 @@ GameObject:
   - 114: {fileID: 773428438}
   m_Layer: 0
   m_Name: R_TOE01_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19265,10 +19265,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400272, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 773428436}
-  m_LocalRotation: {x: -0.0030016238, y: -0.28908917, z: -0.0054314686, w: 0.95728207}
+  m_LocalRotation: {x: -0.0030014832, y: -0.28908908, z: -0.0054313056, w: 0.9572821}
   m_LocalPosition: {x: -0.10857332, y: 0.0034877607, z: -0.00000092214435}
   m_LocalScale: {x: 0.99999994, y: 0.99999964, z: 0.99999976}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.50918245, y: -33.605316, z: -0.4963901}
   m_Children:
   - {fileID: 153278235}
   - {fileID: 809821382}
@@ -19391,7 +19391,7 @@ GameObject:
   - 114: {fileID: 776582560}
   m_Layer: 0
   m_Name: R_FINGER01_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19402,10 +19402,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400188, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 776582558}
-  m_LocalRotation: {x: 0.0076373667, y: -0.056940578, z: 0.5663985, w: 0.8221266}
+  m_LocalRotation: {x: 0.00523643, y: -0.0022616473, z: 0.6986911, w: 0.71540076}
   m_LocalPosition: {x: -0.08162815, y: 0.03071712, z: 0.12570703}
   m_LocalScale: {x: 1.0000002, y: 0.9999996, z: 1.0000006}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -11.32959, y: 11.296931, z: 78.28796}
   m_Children:
   - {fileID: 2024461066}
   - {fileID: 573807984}
@@ -19528,7 +19528,7 @@ GameObject:
   - 114: {fileID: 777488532}
   m_Layer: 0
   m_Name: SPINE_02
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19539,11 +19539,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400352, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 777488530}
-  m_LocalRotation: {x: 0.0000000021290734, y: -0.083456896, z: -0.0000000055128013,
-    w: 0.9965114}
+  m_LocalRotation: {x: 0, y: -0.08345696, z: 0, w: 0.9965114}
   m_LocalPosition: {x: -0.13623485, y: 6.707523e-14, z: -0.00000029563904}
   m_LocalScale: {x: 0.9999998, y: 1, z: 0.9999999}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -9.574599, z: 0}
   m_Children:
   - {fileID: 568335923}
   - {fileID: 1758572338}
@@ -19666,7 +19665,7 @@ GameObject:
   - 114: {fileID: 783874409}
   m_Layer: 0
   m_Name: L_FINGER01_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19677,10 +19676,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400022, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 783874407}
-  m_LocalRotation: {x: -0.02474818, y: -0.051815312, z: -0.29883584, w: 0.9525754}
+  m_LocalRotation: {x: -0.0047507323, y: 0.003923734, z: -0.460175, w: 0.88780683}
   m_LocalPosition: {x: -0.08203207, y: -0.029625336, z: 0.12570514}
   m_LocalScale: {x: 0.99999964, y: 0.9999999, z: 0.9999992}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 4.504304, y: 7.300847, z: -34.69041}
   m_Children:
   - {fileID: 323048630}
   - {fileID: 814817419}
@@ -19803,7 +19802,7 @@ GameObject:
   - 114: {fileID: 785611848}
   m_Layer: 0
   m_Name: L_TOP_TOE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19814,10 +19813,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400178, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 785611846}
-  m_LocalRotation: {x: -0.005854483, y: 0.66014767, z: 0.025880871, w: 0.75066704}
+  m_LocalRotation: {x: -0.0061510163, y: 0.6930658, z: 0.024841903, w: 0.7204199}
   m_LocalPosition: {x: -0.055557787, y: -0.015720027, z: 0.084995955}
   m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.9999999}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.4821045, y: 88.75515, z: 1.5205307}
   m_Children:
   - {fileID: 2141125826}
   - {fileID: 2131547763}
@@ -20082,7 +20081,7 @@ GameObject:
   - 114: {fileID: 805198481}
   m_Layer: 0
   m_Name: L_TOE01_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20093,10 +20092,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400106, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 805198479}
-  m_LocalRotation: {x: -0.0030012766, y: -0.2890893, z: -0.0054305103, w: 0.95728207}
+  m_LocalRotation: {x: -0.0030012317, y: -0.28908908, z: -0.005430471, w: 0.9572821}
   m_LocalPosition: {x: -0.10862937, y: 0.000000016987324, z: 0.0000000042856483}
   m_LocalScale: {x: 0.9999998, y: 0.9999994, z: 0.99999976}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.50912714, y: -33.605316, z: -0.49630687}
   m_Children:
   - {fileID: 174299745}
   - {fileID: 1193052498}
@@ -20322,7 +20321,7 @@ GameObject:
   - 136: {fileID: 809821383}
   m_Layer: 0
   m_Name: Coll.R_TOE01_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20392,7 +20391,7 @@ GameObject:
   - 136: {fileID: 812810630}
   m_Layer: 0
   m_Name: Coll.L_ELBOW
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21456,7 +21455,7 @@ GameObject:
   - 136: {fileID: 896088654}
   m_Layer: 0
   m_Name: Coll.SPINE_04
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21526,7 +21525,7 @@ GameObject:
   - 136: {fileID: 902684552}
   m_Layer: 0
   m_Name: Coll.R_FINGER03_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21974,7 +21973,7 @@ GameObject:
   - 136: {fileID: 977329247}
   m_Layer: 0
   m_Name: Coll.R_SHOULDER
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22042,7 +22041,7 @@ GameObject:
   - 114: {fileID: 980548655}
   m_Layer: 0
   m_Name: FACE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22053,10 +22052,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400008, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 980548653}
-  m_LocalRotation: {x: 0.4321985, y: -0.43219844, z: -0.5596468, w: 0.5596467}
+  m_LocalRotation: {x: 0.43219867, y: -0.43219864, z: -0.55964667, w: 0.5596466}
   m_LocalPosition: {x: -0.3320735, y: 0.000000076293325, z: 0.000000102519984}
   m_LocalScale: {x: 0.9999997, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -75.3557, z: -90}
   m_Children:
   - {fileID: 699224068}
   - {fileID: 1833865182}
@@ -22181,7 +22180,7 @@ GameObject:
   - 136: {fileID: 985751973}
   m_Layer: 0
   m_Name: Coll.R_ELBOW
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24036,7 +24035,7 @@ GameObject:
   - 4: {fileID: 1004051297}
   m_Layer: 0
   m_Name: Armature
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24047,7 +24046,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1004051296}
-  m_LocalRotation: {x: 0.000000081460335, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24068,7 +24067,7 @@ GameObject:
   - 136: {fileID: 1006070886}
   m_Layer: 0
   m_Name: Coll.L_SHOULDER
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24135,7 +24134,7 @@ GameObject:
   - 4: {fileID: 1022331777}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24267,7 +24266,7 @@ GameObject:
   - 136: {fileID: 1065350972}
   m_Layer: 0
   m_Name: Coll.R_FINGER02_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24335,7 +24334,7 @@ GameObject:
   - 137: {fileID: 1065706800}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26450,7 +26449,7 @@ GameObject:
   - 114: {fileID: 1097176893}
   m_Layer: 0
   m_Name: SPINE_BASE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26461,10 +26460,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400358, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1097176891}
-  m_LocalRotation: {x: -0.6814418, y: 0.68144196, z: -0.1887776, w: -0.18877761}
+  m_LocalRotation: {x: 0.67574656, y: -0.6941632, z: 0.17833875, w: 0.17233491}
   m_LocalPosition: {x: 1.2727597e-14, y: 0.14759871, z: -0.046310477}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 28.027979, y: 179.61394, z: -91.52932}
   m_Children:
   - {fileID: 305507375}
   - {fileID: 409126067}
@@ -26589,7 +26588,7 @@ GameObject:
   - 136: {fileID: 1109762683}
   m_Layer: 0
   m_Name: Coll.R_TOP_ARM
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27108,7 +27107,7 @@ GameObject:
   - 136: {fileID: 1135085605}
   m_Layer: 0
   m_Name: Coll.L_KNEE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27180,7 +27179,7 @@ GameObject:
   - 114: {fileID: 1142568269}
   m_Layer: 0
   m_Name: R_SHOULDER_GUN
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27191,10 +27190,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400266, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1142568267}
-  m_LocalRotation: {x: 0.33718318, y: -0.10000147, z: 0.13553469, w: 0.9262492}
+  m_LocalRotation: {x: 0.33718356, y: -0.10000127, z: 0.13553458, w: 0.9262491}
   m_LocalPosition: {x: 0.08767207, y: -0.02578349, z: 0.0000041007993}
   m_LocalScale: {x: 1.0000004, y: 1, z: 1.0000002}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40.672855, y: -7.108176, z: 14.012142}
   m_Children:
   - {fileID: 309769801}
   - {fileID: 587928029}
@@ -27352,7 +27351,7 @@ GameObject:
   - 136: {fileID: 1181149992}
   m_Layer: 0
   m_Name: Coll.R_FINGER04_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27557,7 +27556,7 @@ GameObject:
   - 137: {fileID: 1190762490}
   m_Layer: 0
   m_Name: LeftArm
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27782,7 +27781,7 @@ GameObject:
   - 136: {fileID: 1193052499}
   m_Layer: 0
   m_Name: Coll.L_TOE01_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27987,7 +27986,7 @@ GameObject:
   - 114: {fileID: 1200958029}
   m_Layer: 0
   m_Name: L_TOE03_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27998,10 +27997,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400136, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1200958027}
-  m_LocalRotation: {x: -0.09648941, y: 0.08646623, z: -0.6617423, w: 0.7384514}
+  m_LocalRotation: {x: -0.09648939, y: 0.08646622, z: -0.66174227, w: 0.7384515}
   m_LocalPosition: {x: -0.14441729, y: -0.00000007047783, z: -0.000000052376016}
   m_LocalScale: {x: 1.0000001, y: 0.9999998, z: 0.99999994}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.6084334, y: 14.803517, z: -83.937355}
   m_Children:
   - {fileID: 1522324604}
   m_Father: {fileID: 522251966}
@@ -28134,10 +28133,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400082, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1202465458}
-  m_LocalRotation: {x: 0.21314321, y: -0.25922206, z: -0.72762245, w: 0.59828055}
+  m_LocalRotation: {x: 0.15744929, y: -0.25183165, z: -0.6463631, w: 0.7028551}
   m_LocalPosition: {x: -0.10324557, y: 0.000000014305114, z: 0.000000038146972}
   m_LocalScale: {x: 0.9999998, y: 0.99999994, z: 0.9999998}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.7579246, y: -35.23224, z: -87.060326}
   m_Children:
   - {fileID: 1300922688}
   m_Father: {fileID: 255478443}
@@ -28578,7 +28577,7 @@ GameObject:
   - 114: {fileID: 1232442097}
   m_Layer: 0
   m_Name: L_TOE04_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28589,10 +28588,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400150, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1232442095}
-  m_LocalRotation: {x: -0.072174, y: 0.082726024, z: -0.74897516, w: 0.65343976}
+  m_LocalRotation: {x: -0.072173886, y: 0.08272602, z: -0.7489754, w: 0.6534396}
   m_LocalPosition: {x: -0.15638223, y: -0.0000000760518, z: 0.000000058296944}
   m_LocalScale: {x: 0.9999991, y: 0.99999887, z: 0.99999946}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.6960282, y: 12.493013, z: -97.60854}
   m_Children:
   - {fileID: 147576562}
   m_Father: {fileID: 451505510}
@@ -28954,7 +28953,7 @@ GameObject:
   - 136: {fileID: 1264623172}
   m_Layer: 0
   m_Name: Coll.R_TOE02_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29022,7 +29021,7 @@ GameObject:
   - 114: {fileID: 1267721148}
   m_Layer: 0
   m_Name: HEAD
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29033,10 +29032,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400018, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1267721146}
-  m_LocalRotation: {x: -0.00000009338643, y: -0.74466765, z: -0.00000005935827, w: 0.66743547}
+  m_LocalRotation: {x: 0.026677994, y: -0.7257525, z: 0.011996457, w: 0.68733376}
   m_LocalPosition: {x: -0.15503423, y: -0.000000019073427, z: -0.00000013351439}
   m_LocalScale: {x: 0.9999995, y: 0.9999999, z: 0.99999964}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.13559702, y: -55.452255, z: -1.0305443}
   m_Children:
   - {fileID: 980548654}
   - {fileID: 140609534}
@@ -29161,7 +29160,7 @@ GameObject:
   - 136: {fileID: 1274571487}
   m_Layer: 0
   m_Name: Coll.R_TOE05_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29231,7 +29230,7 @@ GameObject:
   - 136: {fileID: 1279478937}
   m_Layer: 0
   m_Name: Coll.L_TOE04_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29339,7 +29338,7 @@ GameObject:
   - 114: {fileID: 1293880096}
   m_Layer: 0
   m_Name: R_FINGER04_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29350,10 +29349,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400234, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1293880094}
-  m_LocalRotation: {x: 0.2921464, y: -0.3482234, z: -0.6823809, w: 0.5724921}
+  m_LocalRotation: {x: 0.31477323, y: -0.32530957, z: -0.6416334, w: 0.6191915}
   m_LocalPosition: {x: -0.09266869, y: 0.0337631, z: 0.000003722743}
   m_LocalScale: {x: 1.0000001, y: 0.99999964, z: 0.9999999}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -8.090573, y: -53.65257, z: -95.912575}
   m_Children:
   - {fileID: 942628731}
   m_Father: {fileID: 74494046}
@@ -29612,7 +29611,7 @@ GameObject:
   - 114: {fileID: 1303007097}
   m_Layer: 0
   m_Name: L_TOE03_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29623,10 +29622,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400132, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1303007095}
-  m_LocalRotation: {x: 0.10741891, y: -0.8281431, z: -0.08470405, w: 0.5435673}
+  m_LocalRotation: {x: 0.10741883, y: -0.82814306, z: -0.08470405, w: 0.54356736}
   m_LocalPosition: {x: 0.11782772, y: 0.076940805, z: -0.12172162}
   m_LocalScale: {x: 0.9999996, y: 1.0000001, z: 0.9999998}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.3474575, y: -113.25528, z: -15.668771}
   m_Children:
   - {fileID: 522251966}
   - {fileID: 587460143}
@@ -29754,7 +29753,7 @@ GameObject:
   - 114: {fileID: 1326901372}
   m_Layer: 0
   m_Name: L_TOE02_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29765,10 +29764,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400122, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1326901370}
-  m_LocalRotation: {x: 0.044065848, y: -0.03536932, z: -0.6249522, w: 0.7786154}
+  m_LocalRotation: {x: 0.044065762, y: -0.03536917, z: -0.62495196, w: 0.77861565}
   m_LocalPosition: {x: -0.15607, y: 0.00000018607825, z: -0.000000059156953}
   m_LocalScale: {x: 1.0000005, y: 1.0000007, z: 1.0000008}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.3988732, y: -6.3261976, z: -77.5815}
   m_Children:
   - {fileID: 464722942}
   m_Father: {fileID: 72234052}
@@ -30224,7 +30223,7 @@ GameObject:
   - 4: {fileID: 1335611534}
   m_Layer: 0
   m_Name: Lamp
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30474,10 +30473,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400054, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1343111660}
-  m_LocalRotation: {x: 0.23668174, y: -0.29750517, z: -0.723805, w: 0.57582873}
+  m_LocalRotation: {x: 0.15978569, y: -0.30885032, z: -0.81328607, w: 0.46652538}
   m_LocalPosition: {x: -0.09469564, y: -0.00000033567136, z: 0.00000033307964}
   m_LocalScale: {x: 0.99999964, y: 0.9999999, z: 0.9999999}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.9819956, y: -45.87212, z: -95.1725}
   m_Children:
   - {fileID: 478283278}
   m_Father: {fileID: 1768655604}
@@ -30599,7 +30598,7 @@ GameObject:
   - 114: {fileID: 1344578553}
   m_Layer: 0
   m_Name: SPINE_04
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30610,10 +30609,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400356, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1344578551}
-  m_LocalRotation: {x: -2.3822985e-10, y: 0.018647637, z: 0.0000000011676345, w: 0.99982613}
+  m_LocalRotation: {x: 0, y: 0.018647762, z: 0, w: 0.99982613}
   m_LocalPosition: {x: -0.13305306, y: 0.000000009536727, z: 0.000000095367426}
   m_LocalScale: {x: 1.0000004, y: 0.9999999, z: 1.0000004}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 2.1369996, z: 0}
   m_Children:
   - {fileID: 1736680333}
   - {fileID: 896088653}
@@ -30747,10 +30746,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400068, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1348120696}
-  m_LocalRotation: {x: 0.2921472, y: -0.3482236, z: -0.6823803, w: 0.5724924}
+  m_LocalRotation: {x: 0.26466653, y: -0.3656717, z: -0.7217103, w: 0.5247571}
   m_LocalPosition: {x: -0.098630704, y: 0.0000002959973, z: -2.5320333e-11}
   m_LocalScale: {x: 1.0000001, y: 1.0000004, z: 1.0000005}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -11.8628845, y: -52.80012, z: -98.85175}
   m_Children:
   - {fileID: 1130457591}
   m_Father: {fileID: 432363619}
@@ -31064,7 +31063,7 @@ GameObject:
   - 114: {fileID: 1362772718}
   m_Layer: 0
   m_Name: R_TOE05_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31075,10 +31074,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400328, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1362772716}
-  m_LocalRotation: {x: -0.028859137, y: -0.05106005, z: -0.29142505, w: 0.95479393}
+  m_LocalRotation: {x: -0.02885911, y: -0.05106054, z: -0.29142478, w: 0.954794}
   m_LocalPosition: {x: 0.004343288, y: 0.085847855, z: -0.0000008273155}
   m_LocalScale: {x: 0.99999964, y: 0.9999998, z: 0.99999994}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.868527, y: -4.644681, z: -33.74919}
   m_Children:
   - {fileID: 1706152613}
   - {fileID: 1274571486}
@@ -31203,7 +31202,7 @@ GameObject:
   - 136: {fileID: 1378266483}
   m_Layer: 0
   m_Name: Coll.NECK_BASE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31828,7 +31827,7 @@ GameObject:
   - 136: {fileID: 1414399979}
   m_Layer: 0
   m_Name: Coll.SPINE_01
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31896,7 +31895,7 @@ GameObject:
   - 114: {fileID: 1420704484}
   m_Layer: 0
   m_Name: L_TOP_ARM
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31907,10 +31906,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400174, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1420704482}
-  m_LocalRotation: {x: 0.74060804, y: -0.6283751, z: 0.038514733, w: -0.23486389}
+  m_LocalRotation: {x: -0.3105989, y: 0.8670695, z: -0.35865617, w: 0.15193623}
   m_LocalPosition: {x: 0.029799065, y: 0.09227381, z: -0.028851647}
   m_LocalScale: {x: 0.9999998, y: 1.0000001, z: 1.0000007}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -5.2111444, y: -122.70724, z: -98.11613}
   m_Children:
   - {fileID: 1503038703}
   - {fileID: 1569080999}
@@ -32204,7 +32203,7 @@ GameObject:
   - 136: {fileID: 1454908996}
   m_Layer: 0
   m_Name: Coll.L_TOE05_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32515,7 +32514,7 @@ GameObject:
   - 136: {fileID: 1468613263}
   m_Layer: 0
   m_Name: Coll.R_KNEE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34642,7 +34641,7 @@ GameObject:
   - 114: {fileID: 1497880098}
   m_Layer: 0
   m_Name: R_ELBOW
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34653,10 +34652,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400186, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1497880096}
-  m_LocalRotation: {x: 0.079798974, y: 0.07982253, z: 0.7158878, w: 0.6890321}
+  m_LocalRotation: {x: 0.060216382, y: 0.12530157, z: 0.7028371, w: 0.6976342}
   m_LocalPosition: {x: -0.0789738, y: -0.4616975, z: -0.0000009015947}
   m_LocalScale: {x: 1.0000001, y: 0.99999946, z: 0.99999976}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -36.848816, y: 18.577154, z: 72.44627}
   m_Children:
   - {fileID: 78077118}
   - {fileID: 985751972}
@@ -34781,7 +34780,7 @@ GameObject:
   - 136: {fileID: 1502430675}
   m_Layer: 0
   m_Name: Coll.R_FOOT
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34849,7 +34848,7 @@ GameObject:
   - 114: {fileID: 1503038704}
   m_Layer: 0
   m_Name: L_SHOULDER
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34860,10 +34859,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400098, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1503038702}
-  m_LocalRotation: {x: -0.63350487, y: 0.2140024, z: -0.13512903, w: 0.7311735}
+  m_LocalRotation: {x: -0.6335042, y: 0.21400198, z: -0.1351292, w: 0.7311742}
   m_LocalPosition: {x: -0.08638903, y: 0.0000000333786, z: 0.000000014305114}
   m_LocalScale: {x: 0.9999998, y: 0.9999995, z: 0.9999997}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -60.292652, y: 77.67872, z: -71.063156}
   m_Children:
   - {fileID: 1576682685}
   - {fileID: 1006070885}
@@ -35091,7 +35090,7 @@ GameObject:
   - 114: {fileID: 1513201352}
   m_Layer: 0
   m_Name: ROOT
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35102,11 +35101,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400348, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1513201350}
-  m_LocalRotation: {x: 7.7041896e-19, y: -0.0000000013449688, z: 0.000000031052437,
-    w: 1}
-  m_LocalPosition: {x: -0.00000000518183, y: 1.5339967, z: 0.007252941}
+  m_LocalRotation: {x: -0.030765511, y: 0.036605723, z: 0.016407173, w: 0.99872136}
+  m_LocalPosition: {x: 0.026501842, y: 1.499582, z: -0.011123765}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 76.56559, y: 13.027307, z: 14.2011}
   m_Children:
   - {fileID: 768043219}
   - {fileID: 1956036835}
@@ -35246,10 +35244,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400038, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1513590294}
-  m_LocalRotation: {x: 0.014576849, y: -0.0000001610062, z: 0.00000013049855, w: 0.9998938}
+  m_LocalRotation: {x: 0.014405139, y: 0.055100106, z: -0.14270888, w: 0.98812485}
   m_LocalPosition: {x: -0.080757394, y: -0.0000004390953, z: 0.0000000819462}
   m_LocalScale: {x: 0.9999998, y: 1.0000005, z: 0.9999998}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.0285723, y: 3.9012413, z: -10.492245}
   m_Children:
   - {fileID: 2098463129}
   - {fileID: 162066904}
@@ -35510,9 +35508,10 @@ GameObject:
   - 135: {fileID: 1521132509}
   - 114: {fileID: 1521132508}
   - 114: {fileID: 1521132507}
+  - 114: {fileID: 1521132512}
   m_Layer: 0
   m_Name: L_HAND
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35669,10 +35668,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400094, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1521132506}
-  m_LocalRotation: {x: 0.9401482, y: -0.3031206, z: 0.01027861, w: -0.1553501}
+  m_LocalRotation: {x: -0.94516665, y: 0.26536742, z: -0.15699741, w: -0.1076663}
   m_LocalPosition: {x: -0.49899977, y: 0.00000017273123, z: 0.0000003685898}
   m_LocalScale: {x: 1.0000004, y: 0.99999994, z: 1.0000005}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -8.05078, y: 173.94118, z: -124.7608}
   m_Children:
   - {fileID: 783874408}
   - {fileID: 2022323283}
@@ -35682,6 +35681,17 @@ Transform:
   - {fileID: 2019519203}
   m_Father: {fileID: 1870137058}
   m_RootOrder: 0
+--- !u!114 &1521132512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1521132506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740d738e4f35004399d949b69b0f4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1522217840
 GameObject:
   m_ObjectHideFlags: 0
@@ -36241,7 +36251,7 @@ GameObject:
   - 65: {fileID: 1558946916}
   m_Layer: 0
   m_Name: walkL
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36294,7 +36304,7 @@ GameObject:
   - 114: {fileID: 1569081000}
   m_Layer: 0
   m_Name: Spark (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36337,7 +36347,7 @@ GameObject:
   - 114: {fileID: 1571284114}
   m_Layer: 0
   m_Name: R_TOP_ARM
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36348,10 +36358,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400340, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1571284112}
-  m_LocalRotation: {x: -0.18827082, y: 0.9528432, z: -0.18639268, w: 0.14799237}
+  m_LocalRotation: {x: -0.53554195, y: 0.7048629, z: 0.08617366, w: 0.45709652}
   m_LocalPosition: {x: 0.02979767, y: -0.092273824, z: -0.028851809}
   m_LocalScale: {x: 1.0000002, y: 0.9999999, z: 1.0000006}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.569309, y: -111.5523, z: -59.335373}
   m_Children:
   - {fileID: 497281452}
   - {fileID: 1109762682}
@@ -36476,7 +36486,7 @@ GameObject:
   - 136: {fileID: 1575913261}
   m_Layer: 0
   m_Name: Coll.L_SHOULDER_SECOND
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36544,7 +36554,7 @@ GameObject:
   - 114: {fileID: 1576682686}
   m_Layer: 0
   m_Name: L_SHOULDER_GUN
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36555,10 +36565,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400100, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1576682684}
-  m_LocalRotation: {x: 0.33718526, y: -0.100002505, z: 0.13553388, w: 0.92624843}
+  m_LocalRotation: {x: 0.33718434, y: -0.10000229, z: 0.13553414, w: 0.9262488}
   m_LocalPosition: {x: -0.09138456, y: 0.0000003004074, z: 0.0000000667572}
   m_LocalScale: {x: 1, y: 1, z: 1.0000002}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40.67296, y: -7.108332, z: 14.01203}
   m_Children:
   - {fileID: 2136308446}
   - {fileID: 2024147041}
@@ -38623,7 +38633,7 @@ GameObject:
   - 114: {fileID: 1584470262}
   m_Layer: 0
   m_Name: L_FINGER05_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38634,10 +38644,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400078, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1584470260}
-  m_LocalRotation: {x: 0.13421848, y: -0.36845982, z: -0.45853552, w: 0.797476}
+  m_LocalRotation: {x: 0.14900681, y: -0.3780478, z: -0.42127004, w: 0.8108073}
   m_LocalPosition: {x: -0.0942623, y: -0.09941759, z: 0.009544}
   m_LocalScale: {x: 0.9999999, y: 1.0000001, z: 0.9999999}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -23.50494, y: -54.475006, z: -44.242508}
   m_Children:
   - {fileID: 255478443}
   - {fileID: 2005864178}
@@ -38762,7 +38772,7 @@ GameObject:
   - 136: {fileID: 1589946942}
   m_Layer: 0
   m_Name: Coll.R_FINGER04_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39592,7 +39602,7 @@ GameObject:
   - 136: {fileID: 1697265920}
   m_Layer: 0
   m_Name: Coll.R_FINGER02_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39866,7 +39876,7 @@ GameObject:
   - 114: {fileID: 1706152614}
   m_Layer: 0
   m_Name: R_TOE05_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39877,10 +39887,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400330, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1706152612}
-  m_LocalRotation: {x: 0.00059216964, y: -0.00073791976, z: -0.7798917, w: 0.6259137}
+  m_LocalRotation: {x: 0.0005920948, y: -0.00073775323, z: -0.7798917, w: 0.6259137}
   m_LocalPosition: {x: -0.15437256, y: 0.07199387, z: 0.00000021929115}
   m_LocalScale: {x: 1.0000002, y: 1, z: 0.9999999}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.023464624, y: -0.10582992, z: -102.50137}
   m_Children:
   - {fileID: 1244662755}
   m_Father: {fileID: 1362772717}
@@ -40194,7 +40204,7 @@ GameObject:
   - 114: {fileID: 1736680334}
   m_Layer: 0
   m_Name: NECK_BASE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40205,10 +40215,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400184, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1736680332}
-  m_LocalRotation: {x: 4.1851478e-10, y: -0.18209307, z: -0.000000011367866, w: 0.9832813}
+  m_LocalRotation: {x: 0, y: -0.18209308, z: 0, w: 0.9832813}
   m_LocalPosition: {x: -0.14061923, y: -0.000000019073486, z: 0.00000005722046}
   m_LocalScale: {x: 0.9999998, y: 1.0000001, z: 1.0000001}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -20.983398, z: 0}
   m_Children:
   - {fileID: 1267721147}
   - {fileID: 1378266482}
@@ -40778,7 +40788,7 @@ GameObject:
   - 136: {fileID: 1758572339}
   m_Layer: 0
   m_Name: Coll.SPINE_02
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40848,7 +40858,7 @@ GameObject:
   - 136: {fileID: 1765333790}
   m_Layer: 0
   m_Name: Coll.L_TOE01_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40997,10 +41007,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400052, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1768655603}
-  m_LocalRotation: {x: 0.00023464867, y: -0.0000004325914, z: 0.00000007326487, w: 1}
+  m_LocalRotation: {x: 0.0002311265, y: 0.03576848, z: -0.14770359, w: 0.98838466}
   m_LocalPosition: {x: -0.06859186, y: 0.00000002689805, z: -0.00000008049246}
   m_LocalScale: {x: 0.99999994, y: 0.9999997, z: 0.99999976}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.24638689, y: 2.597579, z: -10.792337}
   m_Children:
   - {fileID: 1343111661}
   - {fileID: 2082965860}
@@ -41125,7 +41135,7 @@ GameObject:
   - 136: {fileID: 1773242028}
   m_Layer: 0
   m_Name: Coll.L_TOE02_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41241,7 +41251,7 @@ GameObject:
   - 136: {fileID: 1792260960}
   m_Layer: 0
   m_Name: Coll.R_TOP_TOE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41414,7 +41424,7 @@ GameObject:
   - 114: {fileID: 1826375846}
   m_Layer: 0
   m_Name: R_TOE02_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41425,10 +41435,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400286, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1826375844}
-  m_LocalRotation: {x: 0.081080385, y: -0.1444728, z: 0.28513563, w: 0.94406104}
+  m_LocalRotation: {x: 0.08108057, y: -0.14447299, z: 0.28513527, w: 0.9440611}
   m_LocalPosition: {x: 0.004062972, y: -0.105027445, z: 0.00000030276823}
   m_LocalScale: {x: 1.0000001, y: 0.9999998, z: 0.9999996}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 13.6198435, y: -13.4796295, z: 31.994762}
   m_Children:
   - {fileID: 460269248}
   - {fileID: 346196938}
@@ -41967,7 +41977,7 @@ GameObject:
   - 136: {fileID: 1863516768}
   m_Layer: 0
   m_Name: Coll.R_TOP_LEG
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42035,7 +42045,7 @@ GameObject:
   - 114: {fileID: 1864466325}
   m_Layer: 0
   m_Name: L_TOE05_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42046,10 +42056,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400162, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1864466323}
-  m_LocalRotation: {x: -0.028859332, y: -0.051061463, z: -0.29142472, w: 0.954794}
+  m_LocalRotation: {x: -0.028859362, y: -0.05106137, z: -0.29142478, w: 0.95479393}
   m_LocalPosition: {x: -0.08595788, y: 0.00000002503395, z: -0.000000003321334}
   m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 1.0000004}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.8685827, y: -4.6447644, z: -33.749187}
   m_Children:
   - {fileID: 2002710572}
   - {fileID: 1454908995}
@@ -42253,7 +42263,7 @@ GameObject:
   - 65: {fileID: 1870137059}
   m_Layer: 0
   m_Name: L_ELBOW
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42264,10 +42274,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400020, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1870137057}
-  m_LocalRotation: {x: -0.11240057, y: 0.010313436, z: -0.09637813, w: 0.9889242}
-  m_LocalPosition: {x: -0.46840125, y: 0.00000039339065, z: -0.00000020354986}
+  m_LocalRotation: {x: -0.11814061, y: 0.03062341, z: -0.08973893, w: 0.98845935}
+  m_LocalPosition: {x: -0.46839902, y: 0.0000030151825, z: -0.00000030103027}
   m_LocalScale: {x: 1, y: 1.0000001, z: 0.99999976}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -8.692012, y: 38.21932, z: -1.2760726}
   m_Children:
   - {fileID: 1521132511}
   - {fileID: 812810629}
@@ -42654,7 +42664,7 @@ GameObject:
   - 114: {fileID: 1892739337}
   m_Layer: 0
   m_Name: R_TOE05_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42668,7 +42678,7 @@ Transform:
   m_LocalRotation: {x: -0.21514799, y: -0.4842021, z: 0.3244246, w: 0.7835869}
   m_LocalPosition: {x: -0.06938602, y: 0.16730957, z: -0.04160394}
   m_LocalScale: {x: 0.99999976, y: 0.9999994, z: 0.9999993}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.3179772, y: -63.983097, z: 45.804844}
   m_Children:
   - {fileID: 1362772717}
   - {fileID: 455031859}
@@ -42865,7 +42875,7 @@ GameObject:
   - 114: {fileID: 1906636883}
   m_Layer: 0
   m_Name: R_KNEE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42876,10 +42886,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400262, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906636881}
-  m_LocalRotation: {x: 0.029599315, y: -0.22613525, z: 0.08433686, w: 0.9699866}
+  m_LocalRotation: {x: 0.13151334, y: -0.29364556, z: 0.11727794, w: 0.9395331}
   m_LocalPosition: {x: -0.4283273, y: -0.20052426, z: 0.00000078797336}
   m_LocalScale: {x: 0.9999999, y: 0.99999976, z: 0.9999996}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 23.95098, y: -43.249493, z: 13.740671}
   m_Children:
   - {fileID: 544670871}
   - {fileID: 1468613262}
@@ -43007,7 +43017,7 @@ GameObject:
   - 114: {fileID: 1909912277}
   m_Layer: 0
   m_Name: Sphere (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43291,7 +43301,7 @@ GameObject:
   - 114: {fileID: 1934237900}
   m_Layer: 0
   m_Name: R_FINGER03_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43302,10 +43312,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400218, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1934237898}
-  m_LocalRotation: {x: -0.00023378884, y: -0.000026024993, z: 0.5084712, w: 0.86107904}
+  m_LocalRotation: {x: -0.0027778067, y: 0.031755183, z: 0.6275074, w: 0.77795786}
   m_LocalPosition: {x: -0.05609105, y: -0.03948188, z: -0.00000077744596}
   m_LocalScale: {x: 0.99999976, y: 0.99999976, z: 0.99999964}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -5.706192, y: 4.469287, z: 94.30924}
   m_Children:
   - {fileID: 1974226192}
   - {fileID: 902684551}
@@ -43565,7 +43575,7 @@ GameObject:
   - 114: {fileID: 1939099409}
   m_Layer: 0
   m_Name: R_FINGER04_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43576,10 +43586,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400230, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1939099407}
-  m_LocalRotation: {x: -0.04755151, y: -0.06074592, z: 0.4871332, w: 0.8699138}
+  m_LocalRotation: {x: -0.038279083, y: -0.06530306, z: 0.5332221, w: 0.84258205}
   m_LocalPosition: {x: -0.12644544, y: 0.031286426, z: -0.08045595}
   m_LocalScale: {x: 1.0000002, y: 0.9999996, z: 1.0000004}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 4.3568707, y: -17.858084, z: 78.46252}
   m_Children:
   - {fileID: 74494046}
   - {fileID: 1181149991}
@@ -44073,7 +44083,7 @@ GameObject:
   - 114: {fileID: 1956036836}
   m_Layer: 0
   m_Name: R_TOP_LEG
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44084,10 +44094,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400342, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1956036834}
-  m_LocalRotation: {x: -0.08619803, y: 0.07899037, z: 0.5744478, w: 0.81014824}
+  m_LocalRotation: {x: -0.03745067, y: 0.15889007, z: 0.560751, w: 0.81173253}
   m_LocalPosition: {x: 0.20227502, y: -0.07294633, z: -0.0058526713}
   m_LocalScale: {x: 1, y: 0.9999998, z: 0.9999999}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -28.358438, y: 12.872958, z: 91.70373}
   m_Children:
   - {fileID: 1906636882}
   - {fileID: 1863516767}
@@ -44215,7 +44225,7 @@ GameObject:
   - 114: {fileID: 1974226193}
   m_Layer: 0
   m_Name: R_FINGER03_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44226,10 +44236,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400220, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1974226191}
-  m_LocalRotation: {x: 0.23668255, y: -0.2975044, z: -0.72380584, w: 0.5758278}
+  m_LocalRotation: {x: 0.2659403, y: -0.2293302, z: -0.638061, w: 0.68524563}
   m_LocalPosition: {x: -0.08512459, y: 0.041486423, z: 0.0000002915258}
   m_LocalScale: {x: 1.0000004, y: 1, z: 1.0000002}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -9.814653, y: -44.036514, z: -99.937836}
   m_Children:
   - {fileID: 704255230}
   m_Father: {fileID: 1934237899}
@@ -44554,7 +44564,7 @@ GameObject:
   - 114: {fileID: 1991011678}
   m_Layer: 0
   m_Name: L_KNEE
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44565,10 +44575,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400096, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1991011676}
-  m_LocalRotation: {x: 0.030041212, y: -0.22607537, z: 0.08640832, w: 0.96980464}
+  m_LocalRotation: {x: 0.030212736, y: -0.33131152, z: 0.045722786, w: 0.9419285}
   m_LocalPosition: {x: -0.4729454, y: 0.00000004172325, z: 0.00000011920929}
   m_LocalScale: {x: 0.9999995, y: 0.9999994, z: 0.99999964}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -7.140795, y: -47.96118, z: -0.98927766}
   m_Children:
   - {fileID: 669687228}
   - {fileID: 1135085604}
@@ -44823,7 +44833,7 @@ GameObject:
   - 114: {fileID: 2002710573}
   m_Layer: 0
   m_Name: L_TOE05_Tip
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44834,10 +44844,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400164, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2002710571}
-  m_LocalRotation: {x: 0.0005928237, y: -0.000738572, z: -0.77989197, w: 0.62591344}
+  m_LocalRotation: {x: 0.00059264095, y: -0.00073843374, z: -0.7798917, w: 0.6259137}
   m_LocalPosition: {x: -0.1703349, y: 0.000000035348346, z: -0.00000009378973}
   m_LocalScale: {x: 0.99999964, y: 0.99999976, z: 0.9999996}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.023486268, y: -0.105927534, z: -102.50137}
   m_Children:
   - {fileID: 290440508}
   m_Father: {fileID: 1864466324}
@@ -45029,7 +45039,7 @@ GameObject:
   - 114: {fileID: 2007900693}
   m_Layer: 0
   m_Name: R_TOE03_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45040,10 +45050,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400300, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2007900691}
-  m_LocalRotation: {x: -0.04646874, y: 0.23341057, z: 0.08445009, w: 0.96758896}
+  m_LocalRotation: {x: -0.046468772, y: 0.2334106, z: 0.08445013, w: 0.96758896}
   m_LocalPosition: {x: -0.08679822, y: -0.055287622, z: -0.00000016788977}
   m_LocalScale: {x: 0.99999994, y: 0.9999997, z: 0.99999994}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -7.431942, y: 26.589973, z: 8.2176695}
   m_Children:
   - {fileID: 621138992}
   - {fileID: 402848099}
@@ -45350,7 +45360,7 @@ GameObject:
   - 114: {fileID: 2014189425}
   m_Layer: 0
   m_Name: R_FINGER05_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45361,10 +45371,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400246, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2014189423}
-  m_LocalRotation: {x: -0.007045163, y: 0.0078092115, z: -0.43400815, w: 0.9008476}
+  m_LocalRotation: {x: 0.12235448, y: 0.28847662, z: -0.3928455, w: 0.86457103}
   m_LocalPosition: {x: -0.019834436, y: 0.067976624, z: -0.0000011253356}
   m_LocalScale: {x: 0.9999997, y: 1, z: 0.99999946}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 17.10575, y: 6.700815, z: -47.273342}
   m_Children:
   - {fileID: 698681303}
   - {fileID: 2059557931}
@@ -45489,7 +45499,7 @@ GameObject:
   - 136: {fileID: 2019519204}
   m_Layer: 0
   m_Name: Coll.L_HAND
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45557,7 +45567,7 @@ GameObject:
   - 114: {fileID: 2022323284}
   m_Layer: 0
   m_Name: L_FINGER02_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45568,10 +45578,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400036, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2022323282}
-  m_LocalRotation: {x: -0.08278634, y: -0.03349697, z: -0.30143932, w: 0.9492938}
+  m_LocalRotation: {x: -0.044420727, y: 0.054425538, z: -0.49913776, w: 0.8636702}
   m_LocalPosition: {x: -0.10747055, y: 0.073080964, z: 0.100854464}
   m_LocalScale: {x: 0.99999964, y: 0.99999976, z: 0.99999994}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.5978906, y: 21.291338, z: -31.438042}
   m_Children:
   - {fileID: 1513590295}
   - {fileID: 72923963}
@@ -45696,7 +45706,7 @@ GameObject:
   - 136: {fileID: 2024147042}
   m_Layer: 0
   m_Name: Coll.L_SHOULDER_GUN
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45764,7 +45774,7 @@ GameObject:
   - 114: {fileID: 2024461067}
   m_Layer: 0
   m_Name: R_FINGER01_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45775,10 +45785,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400190, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2024461065}
-  m_LocalRotation: {x: 0.05411499, y: -0.022104854, z: -0.22115283, w: 0.9734857}
+  m_LocalRotation: {x: 0.073751956, y: 0.02850476, z: -0.045486167, w: 0.9958309}
   m_LocalPosition: {x: -0.08002057, y: 0.056150887, z: 0.0000066933126}
   m_LocalScale: {x: 0.9999998, y: 0.99999964, z: 0.9999998}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.069615, y: 5.046982, z: 1.2212229}
   m_Children:
   - {fileID: 98644718}
   - {fileID: 394423962}
@@ -46171,7 +46181,7 @@ GameObject:
   - 114: {fileID: 2035489597}
   m_Layer: 0
   m_Name: R_TOE04_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46182,10 +46192,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400312, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2035489595}
-  m_LocalRotation: {x: -0.19146086, y: -0.790011, z: 0.122651145, w: 0.5693699}
+  m_LocalRotation: {x: -0.19146098, y: -0.790011, z: 0.122651175, w: 0.5693699}
   m_LocalPosition: {x: 0.092253976, y: 0.10406518, z: -0.09991328}
   m_LocalScale: {x: 0.9999999, y: 0.9999997, z: 0.9999997}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.3885665, y: -108.762344, z: 26.25137}
   m_Children:
   - {fileID: 540714851}
   - {fileID: 273017065}
@@ -46336,7 +46346,7 @@ GameObject:
   - 114: {fileID: 2040570324}
   m_Layer: 0
   m_Name: L_FINGER04_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46347,10 +46357,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400064, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2040570322}
-  m_LocalRotation: {x: 0.032907117, y: -0.06979357, z: -0.29515496, w: 0.9523285}
+  m_LocalRotation: {x: 0.024942128, y: -0.067521855, z: -0.35853222, w: 0.9307381}
   m_LocalPosition: {x: -0.12685554, y: -0.029597223, z: -0.0804612}
   m_LocalScale: {x: 0.9999996, y: 0.99999964, z: 0.9999991}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -5.404136, y: -22.293772, z: -41.51155}
   m_Children:
   - {fileID: 432363619}
   - {fileID: 2058083360}
@@ -46549,7 +46559,7 @@ GameObject:
   - 136: {fileID: 2059557932}
   m_Layer: 0
   m_Name: Coll.R_FINGER05_Mid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46755,7 +46765,7 @@ GameObject:
   - 136: {fileID: 2074850322}
   m_Layer: 0
   m_Name: Coll.ROOT
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47480,10 +47490,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400040, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2098463128}
-  m_LocalRotation: {x: 0.2763596, y: -0.30851892, z: -0.67796385, w: 0.6072944}
+  m_LocalRotation: {x: 0.19738941, y: -0.31233212, z: -0.7673091, w: 0.5241401}
   m_LocalPosition: {x: -0.10251633, y: 0.00000038193247, z: 0.000000068081135}
   m_LocalScale: {x: 1, y: 1, z: 0.9999998}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.6689005, y: -49.81699, z: -92.43264}
   m_Children:
   - {fileID: 852737229}
   m_Father: {fileID: 1513590295}
@@ -47796,7 +47806,7 @@ GameObject:
   - 114: {fileID: 2131547764}
   m_Layer: 0
   m_Name: L_TOE02_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47807,10 +47817,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400118, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2131547762}
-  m_LocalRotation: {x: 0.14617504, y: -0.35604665, z: -0.37226763, w: 0.8445593}
+  m_LocalRotation: {x: 0.14617485, y: -0.3560465, z: -0.3722678, w: 0.8445594}
   m_LocalPosition: {x: -0.044954088, y: 0.15667574, z: -0.058617394}
   m_LocalScale: {x: 0.9999999, y: 1, z: 0.99999976}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.0418447, y: -45.263767, z: -47.13981}
   m_Children:
   - {fileID: 72234052}
   - {fileID: 128039877}
@@ -47934,7 +47944,7 @@ GameObject:
   - 114: {fileID: 2136308447}
   m_Layer: 0
   m_Name: L_SHOULDER_SECOND
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47945,10 +47955,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400102, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2136308445}
-  m_LocalRotation: {x: 0.097095676, y: -0.07409712, z: 0.21489534, w: 0.9689696}
+  m_LocalRotation: {x: 0.09709568, y: -0.07409741, z: 0.21489514, w: 0.9689696}
   m_LocalPosition: {x: -0.08468147, y: 0.00000034332274, z: -0.00000012397766}
   m_LocalScale: {x: 0.9999996, y: 0.99999946, z: 0.99999964}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 12.709728, y: -5.993992, z: 24.340832}
   m_Children:
   - {fileID: 1870137058}
   - {fileID: 1575913260}
@@ -48084,7 +48094,7 @@ GameObject:
   - 114: {fileID: 2141125827}
   m_Layer: 0
   m_Name: L_TOE01_Base
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48095,10 +48105,10 @@ Transform:
   m_PrefabParentObject: {fileID: 400104, guid: 86946c4bfa1fd1f43a7db76ec9fd9cf2, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2141125825}
-  m_LocalRotation: {x: -0.0041613514, y: -0.19979784, z: -0.004673072, w: 0.97981715}
+  m_LocalRotation: {x: -0.0041613327, y: -0.19979787, z: -0.004673216, w: 0.97981715}
   m_LocalPosition: {x: -0.15176305, y: 0.000000032186506, z: 0.000000022095445}
   m_LocalScale: {x: 1, y: 1.0000004, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.57423276, y: -23.04858, z: -0.42945412}
   m_Children:
   - {fileID: 805198480}
   - {fileID: 1765333789}

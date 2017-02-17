@@ -11,7 +11,7 @@ public class ColliderWithHand : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        m_Animator = transform.root.Find("EnemyRobot").GetComponent<Animator>();
+        m_Animator = transform.root.Find("Enemy3").GetComponent<Animator>();
         m_Rigidbody = transform.root.GetComponent<Rigidbody>();
         m_IsEnter = false;
         m_WaitTime = transform.root.GetComponent<Gaken.EnemyController>().m_WaitTime;

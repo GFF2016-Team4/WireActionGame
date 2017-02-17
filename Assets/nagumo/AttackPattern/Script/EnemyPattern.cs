@@ -46,13 +46,13 @@ public class EnemyPattern : MonoBehaviour
         {
             Debug.Log("パンチ範囲");
 
-            if(!m_Animator.GetBool("IsAttack") && !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"))
+            if (!m_Animator.GetBool("IsAttack") && !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"))
             {
                 m_Animator.SetBool("IsAttack", true);
                 m_Animator.SetBool("IsLazer", false);
             }
 
-            if(anim.fullPathHash == Animator.StringToHash("Base Layer.Attack"))
+            if (anim.fullPathHash == Animator.StringToHash("Base Layer.Attack"))
             {
                 m_changeTag = true;
             }

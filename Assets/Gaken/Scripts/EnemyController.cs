@@ -13,10 +13,13 @@ namespace Gaken
         public float m_Speed = 12f;                     // 前進速度（前進はプラス、後退はマイナス）
 
         public float m_LazerCoolDown = 10f;
-        public float m_CountDown = 10.0f;
+        public float m_CountDown = 5.0f;
         public float m_WaitTime = 2.0f;
 
         public float m_WaitTimeCount = 2f;
+
+        bool m_IsExplosion;
+        float m_ExplosionDelay;
         /************************************************************************
                                       仮宣言 
         ************************************************************************/
@@ -38,6 +41,9 @@ namespace Gaken
         void Start()
         {
             //初期化
+            m_IsExplosion = false;
+            m_ExplosionDelay = 1.5f;
+
             isDead = false;
             m_Controller = GetComponent<CharacterController>();
             agent = GetComponent<NavMeshAgent>();
@@ -79,6 +85,8 @@ namespace Gaken
                 m_Controller.enabled = false;
                 agent.enabled = false;
                 Debug.Log("Clear");
+                m_Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+
                 //transform.GetComponent<CapsuleCollider>().enabled = false;
             }
 
@@ -92,6 +100,11 @@ namespace Gaken
             ****************************************************************/
             m_LazerCoolDown -= 1f * Time.deltaTime;
             m_WaitTime -= 1f * Time.deltaTime;
+            if(m_IsExplosion)
+            {
+                m_ExplosionDelay -= 1f * Time.deltaTime;
+                //Debug.Log(m_ExplosionDelay);
+            }
 
             //攻撃
             if (m_Animator.GetBool("IsAttack"))
@@ -124,10 +137,12 @@ namespace Gaken
                 if (m_CountDown <= 0)
                     EnemyExplosion();
 
+
                 if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"))
                 {
                     agent.speed = 0;
                     m_Camera.depth = 2;
+                    m_IsExplosion = true;
                 }
                 m_CountDown -= 1 * Time.deltaTime;
 
@@ -189,7 +204,7 @@ namespace Gaken
 
         void EnemyAttack()
         {
-            m_Animator.SetBool("IsAttack", false);
+            //m_Animator.SetBool("IsAttack", false);
             //m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             agent.speed = 0;
             RotateToPlayer(Quaternion.AngleAxis(-25, Vector3.up));
@@ -229,7 +244,10 @@ namespace Gaken
         {
             if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"))
             {
-                transform.Find("DYNAMITE").transform.gameObject.SetActive(true);
+                if(m_ExplosionDelay <= 0)
+                {
+                    transform.Find("DYNAMITE").transform.gameObject.SetActive(true);
+                }
                 transform.GetComponent<EnemyController>().enabled = false;
             }
         }
