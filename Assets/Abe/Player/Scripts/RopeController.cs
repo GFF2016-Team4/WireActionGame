@@ -300,8 +300,9 @@ public class RopeController : MonoBehaviour
     {
         Vector3 dir = GetShootDirection(bulletInst.transform.position);
 
-        Rigidbody bulletRig = bulletInst.GetComponent<Rigidbody>();
-        bulletRig.AddForce(dir.normalized * bulletSpeed, ForceMode.VelocityChange);
+        RopeBullet ropeBullet = bulletInst.GetComponent<RopeBullet>();
+        ropeBullet.direction = dir.normalized;
+        ropeBullet.speed     = bulletSpeed;
     }
 
     Vector3 GetShootDirection(Vector3 shootPosition)
