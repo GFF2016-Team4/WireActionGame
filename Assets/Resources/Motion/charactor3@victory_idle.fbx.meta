@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 40976b12d7511b94197b549847987812
-timeCreated: 1486097367
+guid: cd3e1f78b3c7d8146bf40aff829dd11a
+timeCreated: 1486659768
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -31,6 +31,7 @@ ModelImporter:
     100046: mixamorig:Spine
     100048: mixamorig:Spine1
     100050: mixamorig:Spine2
+    100052: mqo_mesh
     400000: //RootNode
     400002: mixamorig:Head
     400004: mixamorig:HeadTop_End
@@ -57,8 +58,11 @@ ModelImporter:
     400046: mixamorig:Spine
     400048: mixamorig:Spine1
     400050: mixamorig:Spine2
+    400052: mqo_mesh
+    4300000: mqo_mesh
     7400000: mixamo.com
     9500000: //RootNode
+    13700000: mqo_mesh
   materials:
     importMaterials: 1
     materialName: 0
