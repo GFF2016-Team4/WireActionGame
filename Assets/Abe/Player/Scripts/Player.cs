@@ -338,14 +338,19 @@ public class Player : MonoBehaviour, RopeEventHandlar
 
         if(hit.gameObject.tag == "Enemy")
         {
-            if(!isControll) return;
-
-            animator.SetTrigger("Damage");
-            isControll = false;
-            ropeController.isControl = false;
-
-            //GetComponent<FadeRespawn>().Respawn();
+            OnDamage();
         }
+    }
+
+    public void OnDamage()
+    {
+        if(!isControll) return;
+
+        animator.SetTrigger("Damage");
+        isControll = false;
+        ropeController.isControl = false;
+
+        //GetComponent<FadeRespawn>().Respawn();
     }
 
     //ダメージアニメーション終了時の処理
