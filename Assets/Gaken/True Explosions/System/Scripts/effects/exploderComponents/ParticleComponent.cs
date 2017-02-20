@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
+<<<<<<< HEAD
+//using UnityEditor;
+=======
 
+>>>>>>> 4d760dacbfdff6af8302c70d3f5d161d106aae37
 using System.Collections;
 
 public class ParticleComponent : ExploderComponent {

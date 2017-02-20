@@ -48,6 +48,11 @@ public class ColliderWithHand : MonoBehaviour
             m_WaitTime = transform.root.GetComponent<Gaken.EnemyController>().m_WaitTimeCount;
         }
 
+        if(m_Animator.GetBool("IsDead"))
+        {
+            gameObject.SetActive(false);
+        }
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -56,7 +61,6 @@ public class ColliderWithHand : MonoBehaviour
         {
             //Debug.Log("ok");
             m_IsEnter = true;
-            //parent.SendMessage();
         }
     }
 }

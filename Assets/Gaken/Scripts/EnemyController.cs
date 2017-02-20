@@ -10,6 +10,8 @@ namespace Gaken
         public Transform Destination;
         public Transform player;
 
+        public Material material;
+
         public float m_Speed = 12f;                     // 前進速度（前進はプラス、後退はマイナス）
 
         public float m_LazerCoolDown = 10f;
@@ -28,6 +30,10 @@ namespace Gaken
         Camera m_Camera;
         public GameObject m_Lazer;
         Rigidbody m_Rigidbody;
+
+        SkinnedMeshRenderer body;
+        SkinnedMeshRenderer leftArm;
+        SkinnedMeshRenderer rightArm;
 
         private bool isDead;            //死亡切替を行うか?
 
@@ -61,6 +67,10 @@ namespace Gaken
             //アニメターは子のアニメターを取得
             m_Animator = transform.Find("Enemy3").GetComponent<Animator>();             //こっちはfbx形式
 
+            body = transform.Find("Body").GetComponent<SkinnedMeshRenderer>();
+            leftArm = transform.Find("LeftArm").GetComponent<SkinnedMeshRenderer>();
+            rightArm = transform.Find("RightArm").GetComponent<SkinnedMeshRenderer>();
+
             /************************************************************************
                                         仮初期化 
             ************************************************************************/
@@ -82,6 +92,7 @@ namespace Gaken
             {
                 m_Animator.SetBool("IsDead", true);
 
+                body.material.SetColor("_EmissionColor", new Color(0.8f, 0.8f, 0.8f));
                 m_Controller.enabled = false;
                 agent.enabled = false;
                 Debug.Log("Clear");
@@ -89,6 +100,8 @@ namespace Gaken
 
                 //transform.GetComponent<CapsuleCollider>().enabled = false;
             }
+
+            
 
             agent.speed = m_Speed;
             agent.destination = Destination.position;
@@ -146,6 +159,10 @@ namespace Gaken
                 }
                 m_CountDown -= 1 * Time.deltaTime;
 
+                //if (transform.Find("DYNAMITE").transform.gameObject.active)
+                //{
+                //    Destroy(gameObject);
+                //}
             }
         }
 
@@ -181,6 +198,8 @@ namespace Gaken
         {
             if (other.gameObject.tag == "Rope/Normal")
             {
+                Debug.Log(other.ToString());
+
                 m_Animator.SetBool("IsKnee", true);
             }
         }
@@ -225,7 +244,7 @@ namespace Gaken
 
         void EnemyNormal()
         {
-            //m_Animator.SetBool("IsAttack", false);
+            m_Animator.SetBool("IsAttack", false);
             if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
                 agent.speed = 0;
@@ -248,7 +267,6 @@ namespace Gaken
                 {
                     transform.Find("DYNAMITE").transform.gameObject.SetActive(true);
                 }
-                transform.GetComponent<EnemyController>().enabled = false;
             }
         }
 
@@ -260,133 +278,74 @@ namespace Gaken
             if (angle < 45 && angle > -45)
             {
                 EnemyForward = true;
-                //if (angle < 45)
-                //    enemyDirection = (int)EnemyDirection.ACW_Front;
-                //if (angle > -45)
-                //    enemyDirection = (int)EnemyDirection.CW_Front;
-
-                //EnemyForward = false;
             }
             if (angle > 45 && angle < 135)
             {
                 EnemyRight = true;
-                //if (angle < 45)
-                //    enemyDirection = (int)EnemyDirection.ACW_Right;
-                //if (angle > 135)
-                //    enemyDirection = (int)EnemyDirection.CW_Right;
-
-                //EnemyRight = false;
             }
             if ((angle > 135 && angle < 180) || (angle > -180 && angle < -135))
             {
                 EnemyBack = true;
-                //if (angle < 135)
-                //    enemyDirection = (int)EnemyDirection.ACW_Back;
-                //if (angle > -135)
-                //    enemyDirection = (int)EnemyDirection.CW_Back;
-
-                //EnemyBack = false;
             }
             if (angle > -45 && angle < -135)
             {
                 EnemyLeft = true;
-                //if (angle < 45)
-                //    enemyDirection = (int)EnemyDirection.ACW_Left;
-                //if (angle > 135)
-                //    enemyDirection = (int)EnemyDirection.CW_Left;
-
-                //EnemyLeft = false;
             }
             int cnt = 0;
 
             //Debug.Log(angle);
 
 
-            //switch (enemyDirection)
-            //{
             //    //時計回り
             //    //前から
-            //    case (int)EnemyDirection.CW_Front:
-            //        {
             if (angle < 45 && angle > -45) EnemyForward = true;
             if (EnemyForward && angle > 45 && angle < 135) EnemyRight = true;
             if (EnemyForward && EnemyRight && angle > 135 && angle < -135) EnemyBack = true;
             if (EnemyForward && EnemyRight && EnemyBack && angle > -135 && angle < -45) EnemyLeft = true;
-            //        }
-            //        break;
 
             //    //右から
-            //    case (int)EnemyDirection.CW_Right:
-            //        {
             if (angle > 45 && angle < 135) EnemyRight = true;
             if (EnemyRight && angle > 135 && angle < -135) EnemyBack = true;
             if (EnemyRight && EnemyBack && angle > -135 && angle < -45) EnemyLeft = true;
             if (EnemyRight && EnemyBack && EnemyLeft && angle > -45 && angle < 45) EnemyForward = true;
-            //        }
-            //        break;
 
             //    //後ろから
-            //    case (int)EnemyDirection.CW_Back:
-            //        {
             if (angle > 135 && angle < -135) EnemyBack = true;
             if (EnemyBack && angle > -135 && angle < -45) EnemyLeft = true;
             if (EnemyBack && EnemyLeft && angle > -45 && angle < 45) EnemyForward = true;
             if (EnemyBack && EnemyLeft && EnemyForward && angle > 45 && angle < 135) EnemyRight = true;
-            //        }
-            //        break;
 
             //    //左から
-            //    case (int)EnemyDirection.CW_Left:
-            //        {
             if (angle > 45 && angle < 135) EnemyLeft = true;
             if (EnemyLeft && angle > 135 && angle < -135) EnemyForward = true;
             if (EnemyLeft && EnemyForward && angle > -135 && angle < -45) EnemyRight = true;
             if (EnemyLeft && EnemyForward && EnemyRight && angle > -45 && angle < 45) EnemyBack = true;
-            //        }
-            //        break;
 
 
             //    //反時計回り
             //    //前から
-            //    case (int)EnemyDirection.ACW_Front:
-            //        {
             if (angle > -45 && angle < 45) EnemyForward = true;
             if (EnemyForward && angle > -135 && angle < -45) EnemyLeft = true;
             if (EnemyForward && EnemyLeft && angle > 135 && angle < -135) EnemyBack = true;
             if (EnemyForward && EnemyLeft && EnemyBack && angle > 45 && angle < 135) EnemyRight = true;
-            //        }
-            //        break;
 
             //    //右から
-            //    case (int)EnemyDirection.ACW_Right:
-            //        {
             if (angle > 45 && angle < 135) EnemyRight = true;
             if (EnemyRight && angle > 135 && angle < -135) EnemyBack = true;
             if (EnemyRight && EnemyBack && angle > -135 && angle < -45) EnemyLeft = true;
             if (EnemyRight && EnemyBack && EnemyLeft && angle > -45 && angle < 45) EnemyForward = true;
-            //        }
-            //        break;
 
             //    //後ろから
-            //    case (int)EnemyDirection.ACW_Back:
-            //        {
             if (angle > 135 && angle < -135) EnemyBack = true;
             if (EnemyBack && angle > 45 && angle < 135) EnemyRight = true;
             if (EnemyBack && EnemyRight && angle > -45 && angle < 45) EnemyForward = true;
             if (EnemyBack && EnemyRight && EnemyForward && angle > -135 && angle < -45) EnemyLeft = true;
-            //        }
-            //        break;
 
             //    //左から
-            //    case (int)EnemyDirection.ACW_Left:
-            //        {
             if (angle > -135 && angle < -45) EnemyLeft = true;
             if (EnemyLeft && angle > 135 && angle < -135) EnemyBack = true;
             if (EnemyLeft && EnemyBack && angle > 45 && angle < 135) EnemyRight = true;
             if (EnemyLeft && EnemyBack && EnemyRight && angle > -45 && angle < 45) EnemyForward = true;
-            //        }
-            //        break;
-            //}
 
             //Debug.Log(EnemyForward);
             //Debug.Log(EnemyBack);
