@@ -31,9 +31,15 @@ namespace Gaken
         public GameObject m_Lazer;
         Rigidbody m_Rigidbody;
 
-        SkinnedMeshRenderer body;
-        SkinnedMeshRenderer leftArm;
-        SkinnedMeshRenderer rightArm;
+        public GameObject body;
+        public GameObject leftArm;
+        public GameObject rightArm;
+
+        Renderer bodyRender;
+        Renderer leftArmRender;
+        Renderer rightArmRender;
+
+        float emissionPlus;
 
         private bool isDead;            //死亡切替を行うか?
 
@@ -49,6 +55,7 @@ namespace Gaken
             //初期化
             m_IsExplosion = false;
             m_ExplosionDelay = 1.5f;
+            emissionPlus = 0;
 
             isDead = false;
             m_Controller = GetComponent<CharacterController>();
@@ -67,9 +74,9 @@ namespace Gaken
             //アニメターは子のアニメターを取得
             m_Animator = transform.Find("Enemy3").GetComponent<Animator>();             //こっちはfbx形式
 
-            body = transform.Find("Body").GetComponent<SkinnedMeshRenderer>();
-            leftArm = transform.Find("LeftArm").GetComponent<SkinnedMeshRenderer>();
-            rightArm = transform.Find("RightArm").GetComponent<SkinnedMeshRenderer>();
+            bodyRender = body.transform.GetComponent<Renderer>();
+            leftArmRender = leftArm.transform.GetComponent<Renderer>();
+            rightArmRender = rightArm.transform.GetComponent<Renderer>();
 
             /************************************************************************
                                         仮初期化 
@@ -82,6 +89,8 @@ namespace Gaken
 
         void Update()
         {
+            Debug.Log(bodyRender.material);
+
             //エネミーを即死させる
             if (Input.GetKey(KeyCode.Z))
             {
@@ -91,17 +100,17 @@ namespace Gaken
             if (isDead)
             {
                 m_Animator.SetBool("IsDead", true);
-
-                body.material.SetColor("_EmissionColor", new Color(0.8f, 0.8f, 0.8f));
-                m_Controller.enabled = false;
                 agent.enabled = false;
+                emissionPlus += 0.1f * Time.deltaTime;
+
+                bodyRender.material.SetColor("_EmissionColor", new Color(emissionPlus, emissionPlus, emissionPlus));
+                //Debug.Log(body.material.GetColor("_EmissionColor"));
+                m_Controller.enabled = false;
                 Debug.Log("Clear");
                 m_Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
                 //transform.GetComponent<CapsuleCollider>().enabled = false;
             }
-
-            
 
             agent.speed = m_Speed;
             agent.destination = Destination.position;

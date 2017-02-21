@@ -17702,12 +17702,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Destination: {fileID: 875251414}
   player: {fileID: 679293928}
+  material: {fileID: 0}
   m_Speed: 12
   m_LazerCoolDown: 5
   m_CountDown: 5
   m_WaitTime: 2
   m_WaitTimeCount: 2
   m_Lazer: {fileID: 0}
+  body: {fileID: 1065706798}
+  leftArm: {fileID: 1190762488}
+  rightArm: {fileID: 58864515}
 --- !u!54 &694748024
 Rigidbody:
   m_ObjectHideFlags: 0
