@@ -34,6 +34,7 @@ namespace Gaken
         public GameObject body;
         public GameObject leftArm;
         public GameObject rightArm;
+        public GameObject dynamite;
 
         Renderer bodyRender;
         Renderer leftArmRender;
@@ -103,7 +104,17 @@ namespace Gaken
                 agent.enabled = false;
                 emissionPlus += 0.1f * Time.deltaTime;
 
+                Mathf.Clamp(emissionPlus, 0, 0.8f);
+
                 bodyRender.material.SetColor("_EmissionColor", new Color(emissionPlus, emissionPlus, emissionPlus));
+                leftArmRender.material.SetColor("_EmissionColor", new Color(emissionPlus, emissionPlus, emissionPlus));
+                rightArmRender.material.SetColor("_EmissionColor", new Color(emissionPlus, emissionPlus, emissionPlus));
+
+                if(emissionPlus >= 0.8f)
+                {
+                    dynamite.transform.gameObject.SetActive(true);
+                }
+
                 //Debug.Log(body.material.GetColor("_EmissionColor"));
                 m_Controller.enabled = false;
                 Debug.Log("Clear");

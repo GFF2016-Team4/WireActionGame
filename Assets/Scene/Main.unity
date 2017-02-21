@@ -8584,7 +8584,7 @@ Transform:
   - {fileID: 1414399978}
   - {fileID: 1909912276}
   m_Father: {fileID: 1097176892}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &305507376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10222,7 +10222,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1097176892}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!136 &409126068
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14001,12 +14001,12 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 570538930}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3, y: 7.8, z: 3.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.68749803, y: 0.6703934, z: -0.17755833, w: 0.21538852}
+  m_LocalPosition: {x: 0.16634803, y: 0.020676462, z: 0.08261197}
+  m_LocalScale: {x: 0.049999993, y: 0.050000004, z: 0.050000016}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 694748026}
+  m_Father: {fileID: 1097176892}
   m_RootOrder: 0
 --- !u!114 &570538932
 MonoBehaviour:
@@ -17712,6 +17712,7 @@ MonoBehaviour:
   body: {fileID: 1065706798}
   leftArm: {fileID: 1190762488}
   rightArm: {fileID: 58864515}
+  dynamite: {fileID: 570538930}
 --- !u!54 &694748024
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17758,7 +17759,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 570538931}
   - {fileID: 718678288}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -18725,7 +18725,7 @@ Transform:
   - {fileID: 1335611534}
   - {fileID: 58864516}
   m_Father: {fileID: 694748026}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!114 &718678289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26469,6 +26469,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_LocalEulerAnglesHint: {x: 28.027979, y: 179.61394, z: -91.52932}
   m_Children:
+  - {fileID: 570538931}
   - {fileID: 305507375}
   - {fileID: 409126067}
   m_Father: {fileID: 1513201351}
