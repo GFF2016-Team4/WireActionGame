@@ -5,80 +5,71 @@ namespace Gaken
 {
     public class EnemyController : MonoBehaviour
     {
-        private NavMeshAgent agent;
+        private NavMeshAgent m_Agent;
 
-        public Transform Destination;
-        public Transform player;
-
-        public Material material;
+        public Transform m_Destination;
+        public Transform m_Player;
+        public GameObject m_Lazer;
 
         public float m_Speed = 12f;                     // 前進速度（前進はプラス、後退はマイナス）
-
         public float m_LazerCoolDown = 10f;
         public float m_CountDown = 5.0f;
         public float m_WaitTime = 2.0f;
-
         public float m_WaitTimeCount = 2f;
 
-        bool m_IsExplosion;
-        float m_ExplosionDelay;
+        private bool m_IsExplosion = false;
+        private float m_ExplosionDelay = 1.5f;
+        private float m_EmissionPlus = 0;
+        private float m_RotateSpeed = 0.2f;
+
+        private int m_DeathCount = 0;
+
+        private bool m_IsDead = false;            //死亡切替を行うか?
+        private bool 
+            m_EnemyForward = false, 
+            m_EnemyLeft = false, 
+            m_EnemyRight = false, 
+            m_EnemyBack = false;
+
+        private CharacterController m_Controller;    //キャラクタコントローラ
+        private Rigidbody m_Rigidbody;
+        private Transform m_Transform;
+
+        public Animator m_Animator;                 //アニメター
+        public Camera m_Camera;
+        public GameObject m_Body;
+        public GameObject m_LeftArm;
+        public GameObject m_RightArm;
+        public GameObject m_Dynamite;
+
+        private Renderer m_BodyRender;
+        private Renderer m_LeftArmRender;
+        private Renderer m_RightArmRender;
         /************************************************************************
                                       仮宣言 
         ************************************************************************/
-        CharacterController m_Controller;    //キャラクタコントローラ
-        Animator m_Animator;                 //アニメター
-        Camera m_Camera;
-        public GameObject m_Lazer;
-        Rigidbody m_Rigidbody;
-
-        public GameObject body;
-        public GameObject leftArm;
-        public GameObject rightArm;
-        public GameObject dynamite;
-
-        Renderer bodyRender;
-        Renderer leftArmRender;
-        Renderer rightArmRender;
-
-        float emissionPlus;
-
-        private bool isDead;            //死亡切替を行うか?
-
-        bool EnemyForward = false, EnemyLeft = false, EnemyRight = false, EnemyBack = false;
-        int deathCount = 0;
-
-        GameObject target;
-        float rotateSpeed = 0.2f;
-        Transform m_Transform;
+        //GameObject m_Player;
 
         void Start()
         {
             //初期化
-            m_IsExplosion = false;
-            m_ExplosionDelay = 1.5f;
-            emissionPlus = 0;
+            //m_IsExplosion = false;
+            //m_ExplosionDelay = 1.5f;
+            //m_EmissionPlus = 0;
+            //m_IsDead = false;
 
-            isDead = false;
-            m_Controller = GetComponent<CharacterController>();
-            agent = GetComponent<NavMeshAgent>();
-            m_Camera = GameObject.Find("EnemyCamera").GetComponent<Camera>();
+            m_Controller = transform.GetComponent<CharacterController>();
+            m_Agent = transform.GetComponent<NavMeshAgent>();
+            m_Camera = transform.GetComponent<Camera>();
             m_Rigidbody = transform.GetComponent<Rigidbody>();
             m_Transform = transform.GetComponent<Transform>();
+            m_Animator = transform.GetComponent<Animator>();
 
-            target = GameObject.FindGameObjectWithTag("Player");
-            agent.speed = m_Speed = 12f;
+            m_BodyRender = m_Body.transform.GetComponent<Renderer>();
+            m_LeftArmRender = m_LeftArm.transform.GetComponent<Renderer>();
+            m_RightArmRender = m_RightArm.transform.GetComponent<Renderer>();
 
-            //m_Lazer = transform.GetComponent<GameObject>();
-            //time2 += 1;
-            //ropeCounter = 0;
-
-            //アニメターは子のアニメターを取得
-            m_Animator = transform.Find("Enemy3").GetComponent<Animator>();             //こっちはfbx形式
-
-            bodyRender = body.transform.GetComponent<Renderer>();
-            leftArmRender = leftArm.transform.GetComponent<Renderer>();
-            rightArmRender = rightArm.transform.GetComponent<Renderer>();
-
+            m_Agent.speed = m_Speed = 12f;
             /************************************************************************
                                         仮初期化 
             ************************************************************************/
@@ -86,33 +77,36 @@ namespace Gaken
             //leftHand = transform.GetComponent<Transform>();
             //player = transform.Find("Player").GetComponent<Transform>();
 
+            //m_Lazer = transform.GetComponent<GameObject>();
+            //time2 += 1;
+            //ropeCounter = 0;
+
         }
 
         void Update()
         {
-            Debug.Log(bodyRender.material);
-
             //エネミーを即死させる
             if (Input.GetKey(KeyCode.Z))
             {
-                isDead = true;
+                m_IsDead = true;
             }
+
             //死亡交代
-            if (isDead)
+            if (m_IsDead)
             {
                 m_Animator.SetBool("IsDead", true);
-                agent.enabled = false;
-                emissionPlus += 0.1f * Time.deltaTime;
+                m_Agent.enabled = false;
+                m_EmissionPlus += 0.1f * Time.deltaTime;
 
-                Mathf.Clamp(emissionPlus, 0, 0.8f);
+                Mathf.Clamp(m_EmissionPlus, 0, 0.8f);
 
-                bodyRender.material.SetColor("_EmissionColor", new Color(emissionPlus, emissionPlus, emissionPlus));
-                leftArmRender.material.SetColor("_EmissionColor", new Color(emissionPlus, emissionPlus, emissionPlus));
-                rightArmRender.material.SetColor("_EmissionColor", new Color(emissionPlus, emissionPlus, emissionPlus));
+                m_BodyRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
+                m_LeftArmRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
+                m_RightArmRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
 
-                if(emissionPlus >= 0.8f)
+                if(m_EmissionPlus >= 0.8f)
                 {
-                    dynamite.transform.gameObject.SetActive(true);
+                    m_Dynamite.transform.gameObject.SetActive(true);
                 }
 
                 //Debug.Log(body.material.GetColor("_EmissionColor"));
@@ -123,11 +117,10 @@ namespace Gaken
                 //transform.GetComponent<CapsuleCollider>().enabled = false;
             }
 
-            agent.speed = m_Speed;
-            agent.destination = Destination.position;
+            m_Agent.speed = m_Speed;
+            m_Agent.destination = m_Destination.position;
 
-            m_Animator.SetFloat("Speed", agent.speed);
-
+            m_Animator.SetFloat("Speed", m_Agent.speed);
             /****************************************************************
                                         仮更新
             ****************************************************************/
@@ -156,10 +149,10 @@ namespace Gaken
 
             if (m_Animator.GetBool("IsKnee"))
             {
-                deathCount += CircleCount();
-                if (deathCount >= 4)
+                m_DeathCount += CircleCount();
+                if (m_DeathCount >= 4)
                 {
-                    isDead = true;
+                    m_IsDead = true;
                 }
             }
 
@@ -173,23 +166,18 @@ namespace Gaken
 
                 if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"))
                 {
-                    agent.speed = 0;
+                    m_Agent.speed = 0;
                     m_Camera.depth = 2;
                     m_IsExplosion = true;
                 }
                 m_CountDown -= 1 * Time.deltaTime;
-
-                //if (transform.Find("DYNAMITE").transform.gameObject.active)
-                //{
-                //    Destroy(gameObject);
-                //}
             }
         }
 
         //死んでいますか?
         public bool IsDead()
         {
-            return isDead;
+            return m_IsDead;
         }
 
         //トリガーに入ると同時に
@@ -229,29 +217,29 @@ namespace Gaken
             //Debug.DrawLine(target.transform.position, this.transform.position, Color.yellow);
             m_Transform.rotation = Quaternion.Slerp(
                 m_Transform.rotation,
-                Quaternion.LookRotation(target.transform.position - m_Transform.transform.position) * offset,
-                rotateSpeed * Time.deltaTime);
+                Quaternion.LookRotation(m_Player.transform.position - m_Transform.transform.position) * offset,
+                m_RotateSpeed * Time.deltaTime);
         }
         void RotateToPlayer()
         {
             //Debug.DrawLine(target.transform.position, this.transform.position, Color.yellow);
             m_Transform.rotation = Quaternion.Slerp(
                 m_Transform.rotation,
-                Quaternion.LookRotation(target.transform.position - m_Transform.transform.position),
-                rotateSpeed * Time.deltaTime);
+                Quaternion.LookRotation(m_Player.transform.position - m_Transform.transform.position),
+                m_RotateSpeed * Time.deltaTime);
         }
 
         void EnemyAttack()
         {
             //m_Animator.SetBool("IsAttack", false);
             //m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-            agent.speed = 0;
+            m_Agent.speed = 0;
             RotateToPlayer(Quaternion.AngleAxis(-25, Vector3.up));
         }
 
         void EnemyLazer()
         {
-            agent.speed = 0;
+            m_Agent.speed = 0;
             if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Lazer"))
             {
                 RotateToPlayer();
@@ -267,15 +255,15 @@ namespace Gaken
             m_Animator.SetBool("IsAttack", false);
             if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
-                agent.speed = 0;
+                m_Agent.speed = 0;
             }
             else if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Lazer") || m_Animator.GetCurrentAnimatorStateInfo(0).IsName("LazerOver"))
             {
-                agent.speed = 0;
+                m_Agent.speed = 0;
             }
             else
             {
-                agent.speed = m_Speed;
+                m_Agent.speed = m_Speed;
             }
         }
 
@@ -285,101 +273,100 @@ namespace Gaken
             {
                 if(m_ExplosionDelay <= 0)
                 {
-                    transform.Find("DYNAMITE").transform.gameObject.SetActive(true);
+                    m_Dynamite.transform.gameObject.SetActive(true);
                 }
             }
         }
 
         int CircleCount()
         {
-            Vector3 relative = transform.InverseTransformPoint(player.position);
+            Vector3 relative = transform.InverseTransformPoint(m_Player.position);
             float angle = Mathf.Atan2(relative.x, relative.z) * Mathf.Rad2Deg;
 
             if (angle < 45 && angle > -45)
             {
-                EnemyForward = true;
+                m_EnemyForward = true;
             }
             if (angle > 45 && angle < 135)
             {
-                EnemyRight = true;
+                m_EnemyRight = true;
             }
             if ((angle > 135 && angle < 180) || (angle > -180 && angle < -135))
             {
-                EnemyBack = true;
+                m_EnemyBack = true;
             }
             if (angle > -45 && angle < -135)
             {
-                EnemyLeft = true;
+                m_EnemyLeft = true;
             }
             int cnt = 0;
 
             //Debug.Log(angle);
 
-
             //    //時計回り
             //    //前から
-            if (angle < 45 && angle > -45) EnemyForward = true;
-            if (EnemyForward && angle > 45 && angle < 135) EnemyRight = true;
-            if (EnemyForward && EnemyRight && angle > 135 && angle < -135) EnemyBack = true;
-            if (EnemyForward && EnemyRight && EnemyBack && angle > -135 && angle < -45) EnemyLeft = true;
+            if (angle < 45 && angle > -45) m_EnemyForward = true;
+            if (m_EnemyForward && angle > 45 && angle < 135) m_EnemyRight = true;
+            if (m_EnemyForward && m_EnemyRight && angle > 135 && angle < -135) m_EnemyBack = true;
+            if (m_EnemyForward && m_EnemyRight && m_EnemyBack && angle > -135 && angle < -45) m_EnemyLeft = true;
 
             //    //右から
-            if (angle > 45 && angle < 135) EnemyRight = true;
-            if (EnemyRight && angle > 135 && angle < -135) EnemyBack = true;
-            if (EnemyRight && EnemyBack && angle > -135 && angle < -45) EnemyLeft = true;
-            if (EnemyRight && EnemyBack && EnemyLeft && angle > -45 && angle < 45) EnemyForward = true;
+            if (angle > 45 && angle < 135) m_EnemyRight = true;
+            if (m_EnemyRight && angle > 135 && angle < -135) m_EnemyBack = true;
+            if (m_EnemyRight && m_EnemyBack && angle > -135 && angle < -45) m_EnemyLeft = true;
+            if (m_EnemyRight && m_EnemyBack && m_EnemyLeft && angle > -45 && angle < 45) m_EnemyForward = true;
 
             //    //後ろから
-            if (angle > 135 && angle < -135) EnemyBack = true;
-            if (EnemyBack && angle > -135 && angle < -45) EnemyLeft = true;
-            if (EnemyBack && EnemyLeft && angle > -45 && angle < 45) EnemyForward = true;
-            if (EnemyBack && EnemyLeft && EnemyForward && angle > 45 && angle < 135) EnemyRight = true;
+            if (angle > 135 && angle < -135) m_EnemyBack = true;
+            if (m_EnemyBack && angle > -135 && angle < -45) m_EnemyLeft = true;
+            if (m_EnemyBack && m_EnemyLeft && angle > -45 && angle < 45) m_EnemyForward = true;
+            if (m_EnemyBack && m_EnemyLeft && m_EnemyForward && angle > 45 && angle < 135) m_EnemyRight = true;
 
             //    //左から
-            if (angle > 45 && angle < 135) EnemyLeft = true;
-            if (EnemyLeft && angle > 135 && angle < -135) EnemyForward = true;
-            if (EnemyLeft && EnemyForward && angle > -135 && angle < -45) EnemyRight = true;
-            if (EnemyLeft && EnemyForward && EnemyRight && angle > -45 && angle < 45) EnemyBack = true;
+            if (angle > 45 && angle < 135) m_EnemyLeft = true;
+            if (m_EnemyLeft && angle > 135 && angle < -135) m_EnemyForward = true;
+            if (m_EnemyLeft && m_EnemyForward && angle > -135 && angle < -45) m_EnemyRight = true;
+            if (m_EnemyLeft && m_EnemyForward && m_EnemyRight && angle > -45 && angle < 45) m_EnemyBack = true;
 
 
             //    //反時計回り
             //    //前から
-            if (angle > -45 && angle < 45) EnemyForward = true;
-            if (EnemyForward && angle > -135 && angle < -45) EnemyLeft = true;
-            if (EnemyForward && EnemyLeft && angle > 135 && angle < -135) EnemyBack = true;
-            if (EnemyForward && EnemyLeft && EnemyBack && angle > 45 && angle < 135) EnemyRight = true;
+            if (angle > -45 && angle < 45) m_EnemyForward = true;
+            if (m_EnemyForward && angle > -135 && angle < -45) m_EnemyLeft = true;
+            if (m_EnemyForward && m_EnemyLeft && angle > 135 && angle < -135) m_EnemyBack = true;
+            if (m_EnemyForward && m_EnemyLeft && m_EnemyBack && angle > 45 && angle < 135) m_EnemyRight = true;
 
             //    //右から
-            if (angle > 45 && angle < 135) EnemyRight = true;
-            if (EnemyRight && angle > 135 && angle < -135) EnemyBack = true;
-            if (EnemyRight && EnemyBack && angle > -135 && angle < -45) EnemyLeft = true;
-            if (EnemyRight && EnemyBack && EnemyLeft && angle > -45 && angle < 45) EnemyForward = true;
+            if (angle > 45 && angle < 135) m_EnemyRight = true;
+            if (m_EnemyRight && angle > 135 && angle < -135) m_EnemyBack = true;
+            if (m_EnemyRight && m_EnemyBack && angle > -135 && angle < -45) m_EnemyLeft = true;
+            if (m_EnemyRight && m_EnemyBack && m_EnemyLeft && angle > -45 && angle < 45) m_EnemyForward = true;
 
             //    //後ろから
-            if (angle > 135 && angle < -135) EnemyBack = true;
-            if (EnemyBack && angle > 45 && angle < 135) EnemyRight = true;
-            if (EnemyBack && EnemyRight && angle > -45 && angle < 45) EnemyForward = true;
-            if (EnemyBack && EnemyRight && EnemyForward && angle > -135 && angle < -45) EnemyLeft = true;
+            if (angle > 135 && angle < -135) m_EnemyBack = true;
+            if (m_EnemyBack && angle > 45 && angle < 135) m_EnemyRight = true;
+            if (m_EnemyBack && m_EnemyRight && angle > -45 && angle < 45) m_EnemyForward = true;
+            if (m_EnemyBack && m_EnemyRight && m_EnemyForward && angle > -135 && angle < -45) m_EnemyLeft = true;
 
             //    //左から
-            if (angle > -135 && angle < -45) EnemyLeft = true;
-            if (EnemyLeft && angle > 135 && angle < -135) EnemyBack = true;
-            if (EnemyLeft && EnemyBack && angle > 45 && angle < 135) EnemyRight = true;
-            if (EnemyLeft && EnemyBack && EnemyRight && angle > -45 && angle < 45) EnemyForward = true;
+            if (angle > -135 && angle < -45) m_EnemyLeft = true;
+            if (m_EnemyLeft && angle > 135 && angle < -135) m_EnemyBack = true;
+            if (m_EnemyLeft && m_EnemyBack && angle > 45 && angle < 135) m_EnemyRight = true;
+            if (m_EnemyLeft && m_EnemyBack && m_EnemyRight && angle > -45 && angle < 45) m_EnemyForward = true;
 
             //Debug.Log(EnemyForward);
             //Debug.Log(EnemyBack);
             //Debug.Log(EnemyLeft);
             //Debug.Log(EnemyRight);
 
-            if (EnemyForward && EnemyLeft && EnemyRight && EnemyBack)
+            if (m_EnemyForward && m_EnemyLeft && m_EnemyRight && m_EnemyBack)
             {
                 cnt++;
 
-                EnemyForward = false;
-                EnemyLeft = false;
-                EnemyRight = false;
-                EnemyBack = false;
+                m_EnemyForward = false;
+                m_EnemyLeft = false;
+                m_EnemyRight = false;
+                m_EnemyBack = false;
             }
 
             return cnt;
