@@ -15,6 +15,7 @@ namespace Gaken
         public GameObject m_Dynamite;
         public Camera m_Camera;
         public GameObject m_Panel;
+        public GameObject m_Reticle;
         private GameObject child;
 
         public float m_Speed = 12f;                     // 前進速度（前進はプラス、後退はマイナス）
@@ -76,7 +77,10 @@ namespace Gaken
 
             child = transform.FindChild("Enemy3").gameObject;
 
-            m_Agent.speed = m_Speed = 50f;
+            m_Agent.speed = m_Speed = 12f;
+
+            m_isFadeOver = false;
+            m_isFadeClear = false;
             /************************************************************************
                                         仮初期化 
             ************************************************************************/
@@ -172,6 +176,7 @@ namespace Gaken
             {
 
                 m_Camera.transform.root.gameObject.SetActive(true);
+                m_Reticle.SetActive(false);
 
                 if (m_CountDown <= 0)
                     EnemyExplosion();
@@ -208,18 +213,10 @@ namespace Gaken
             if (m_isFadeOver == true)
             {
                 m_Panel.GetComponent<FadeManager>().FadeOut("GameOver");
-                if (m_Panel.GetComponent<FadeManager>().alfaOut >= 1.0f)
-                {
-                    m_isFadeOver = false;
-                }
             }
             if (m_isFadeOver == true)
             {
                 m_Panel.GetComponent<FadeManager>().FadeOut("GameClear");
-                if (m_Panel.GetComponent<FadeManager>().alfaIn <= 1.0f)
-                {
-                    m_isFadeClear = false;
-                }
             }
         }
 
