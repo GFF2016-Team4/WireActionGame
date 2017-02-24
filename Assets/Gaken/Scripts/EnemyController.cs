@@ -10,6 +10,11 @@ namespace Gaken
         public Transform m_Destination;
         public Transform m_Player;
         public GameObject m_Lazer;
+        public Camera m_Camera;
+        public GameObject m_Body;
+        public GameObject m_LeftArm;
+        public GameObject m_RightArm;
+        public GameObject m_Dynamite;
 
         public float m_Speed = 12f;                     // 前進速度（前進はプラス、後退はマイナス）
         public float m_LazerCoolDown = 10f;
@@ -17,13 +22,15 @@ namespace Gaken
         public float m_WaitTime = 2.0f;
         public float m_WaitTimeCount = 2f;
 
-        private bool m_IsExplosion = false;
         private float m_ExplosionDelay = 1.5f;
         private float m_EmissionPlus = 0;
+        private float m_DisappearTime = 1.0f;
         private float m_RotateSpeed = 0.2f;
 
         private int m_DeathCount = 0;
 
+        private bool m_IsDisappear = false;
+        private bool m_IsExplosion = false;
         private bool m_IsDead = false;            //死亡切替を行うか?
         private bool 
             m_EnemyForward = false, 
@@ -34,13 +41,7 @@ namespace Gaken
         private CharacterController m_Controller;    //キャラクタコントローラ
         private Rigidbody m_Rigidbody;
         private Transform m_Transform;
-
-        public Animator m_Animator;                 //アニメター
-        public Camera m_Camera;
-        public GameObject m_Body;
-        public GameObject m_LeftArm;
-        public GameObject m_RightArm;
-        public GameObject m_Dynamite;
+        private Animator m_Animator;                 //アニメター
 
         private Renderer m_BodyRender;
         private Renderer m_LeftArmRender;
@@ -63,7 +64,8 @@ namespace Gaken
             m_Camera = transform.GetComponent<Camera>();
             m_Rigidbody = transform.GetComponent<Rigidbody>();
             m_Transform = transform.GetComponent<Transform>();
-            m_Animator = transform.GetComponent<Animator>();
+
+            m_Animator = transform.Find("Enemy3").GetComponent<Animator>();
 
             m_BodyRender = m_Body.transform.GetComponent<Renderer>();
             m_LeftArmRender = m_LeftArm.transform.GetComponent<Renderer>();
@@ -107,10 +109,11 @@ namespace Gaken
                 if(m_EmissionPlus >= 0.8f)
                 {
                     m_Dynamite.transform.gameObject.SetActive(true);
+                    m_IsDisappear = true;
                 }
 
                 //Debug.Log(body.material.GetColor("_EmissionColor"));
-                m_Controller.enabled = false;
+                //m_Controller.enabled = false;
                 Debug.Log("Clear");
                 m_Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
@@ -172,6 +175,15 @@ namespace Gaken
                 }
                 m_CountDown -= 1 * Time.deltaTime;
             }
+
+            if(m_IsDisappear)
+            {
+                m_DisappearTime -= 1f * Time.deltaTime;
+            }
+            if(m_DisappearTime <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
 
         //死んでいますか?
@@ -206,7 +218,7 @@ namespace Gaken
         {
             if (other.gameObject.tag == "Rope/Normal")
             {
-                Debug.Log(other.ToString());
+                //Debug.Log(other.ToString());
 
                 m_Animator.SetBool("IsKnee", true);
             }
@@ -274,6 +286,7 @@ namespace Gaken
                 if(m_ExplosionDelay <= 0)
                 {
                     m_Dynamite.transform.gameObject.SetActive(true);
+                    m_IsDisappear = true;
                 }
             }
         }
