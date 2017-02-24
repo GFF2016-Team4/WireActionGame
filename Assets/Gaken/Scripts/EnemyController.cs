@@ -9,12 +9,11 @@ namespace Gaken
 
         public Transform m_Destination;
         public Transform m_Player;
-        public GameObject m_Lazer;
-        public Camera m_Camera;
         public GameObject m_Body;
         public GameObject m_LeftArm;
         public GameObject m_RightArm;
         public GameObject m_Dynamite;
+        public Camera m_Camera;
 
         public float m_Speed = 12f;                     // 前進速度（前進はプラス、後退はマイナス）
         public float m_LazerCoolDown = 10f;
@@ -61,7 +60,6 @@ namespace Gaken
 
             m_Controller = transform.GetComponent<CharacterController>();
             m_Agent = transform.GetComponent<NavMeshAgent>();
-            m_Camera = transform.GetComponent<Camera>();
             m_Rigidbody = transform.GetComponent<Rigidbody>();
             m_Transform = transform.GetComponent<Transform>();
 
@@ -163,6 +161,8 @@ namespace Gaken
             if (m_Animator.GetBool("IsExplosion"))
             {
 
+                m_Camera.transform.root.gameObject.SetActive(true);
+
                 if (m_CountDown <= 0)
                     EnemyExplosion();
 
@@ -218,8 +218,6 @@ namespace Gaken
         {
             if (other.gameObject.tag == "Rope/Normal")
             {
-                //Debug.Log(other.ToString());
-
                 m_Animator.SetBool("IsKnee", true);
             }
         }
@@ -264,7 +262,7 @@ namespace Gaken
 
         void EnemyNormal()
         {
-            m_Animator.SetBool("IsAttack", false);
+            //m_Animator.SetBool("IsAttack", false);
             if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
                 m_Agent.speed = 0;
