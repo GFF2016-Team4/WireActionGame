@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 namespace Enemy
 {
@@ -7,11 +8,13 @@ namespace Enemy
     {
 
         public GameObject Shooter;
+        public GameObject SendPlayer;
+
         [System.NonSerialized]
         public float laserHP;
 
         [System.NonSerialized]
-        public float radius = 1;
+        public float radius = 0.8f;
         public float radiusDecision;
 
         LineRenderer laserBlue;
@@ -43,29 +46,38 @@ namespace Enemy
             Ray ray = new Ray(transform.position, Shooter.transform.forward);
             var laserhitPoint = Physics.SphereCast(
                 transform.position, radius, transform.forward, out hit, 100);
+
             if (radius >= 0)
             {
                 radius -= radiusDecision;
             }
 
-            if (laserhitPoint)
+            if (hit.collider.tag != "Enemy")
             {
-                laserBlue.SetPosition(1, hit.point);
-
-                //レーザーの体力
-                if (hit.collider.tag == "kabe")
+                if (laserhitPoint)
                 {
-                    Debug.Log("hit");
-                    if (laserHP == 2)
+                    laserBlue.SetPosition(1, hit.point);
+
+                    //レーザーの体力
+                    if (hit.collider.tag == "kabe")
                     {
-                        Destroy(hit.collider.gameObject);
+                        Debug.Log("hit");
+                        if (laserHP == 2)
+                        {
+                            Destroy(hit.collider.gameObject);
+                        }
+                        laserHP -= 1;
                     }
-                    laserHP -= 1;
                 }
-            }
-            else
-            {
-                laserBlue.SetPosition(1, transform.forward * 400);
+                else
+                {
+                    laserBlue.SetPosition(1, transform.forward * 400);
+                }
+
+                if (hit.collider.tag == "Player")
+                {
+                    SendPlayer.GetComponent<Player>().OnDamage();
+                }
             }
         }
 

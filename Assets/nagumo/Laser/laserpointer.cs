@@ -5,7 +5,7 @@ namespace Enemy
 {
     public class laserpointer : MonoBehaviour
     {
-        
+
         public GameObject Laser;
         public GameObject Shooter;
         public GameObject laserBlue;
@@ -91,18 +91,19 @@ namespace Enemy
                 Laser.SetActive(false);
                 m_LaserAttack.GetComponent<EnemyPattern>().Laser = false;
                 SoundManager.Instance.StopSE();
-                
+
                 Charge_L.SetActive(false);
             }
-            if(AttackTime >= AttackLaserTime - 0.5)
+            if (AttackTime >= AttackLaserTime - 0.5)
             {
                 Charge_C.SetActive(true);
                 Charge_P.SetActive(false);
             }
 
             //レーザーポイントの処理
+            var RayHit = Physics.Raycast(ray, out hit);
             laser.SetPosition(0, transform.position);
-            if (Physics.Raycast(ray, out hit))
+            if (hit.collider.tag != "Enemy")
             {
                 laser.SetPosition(1, hit.point);
                 //Debug.Log(hit.transform.gameObject.name);
@@ -119,5 +120,4 @@ namespace Enemy
         //    lineRenderer.SetPosition(1, obj[1].transform.position);
         //}
     }
-
 }
