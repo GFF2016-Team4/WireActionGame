@@ -186,6 +186,14 @@ namespace Gaken
             if(m_DisappearTime <= 0)
             {
                 Destroy(gameObject);
+                if(m_IsDead)
+                {
+                    //クリア遷移
+                }
+                else if(m_IsExplosion)
+                {
+                    //ゲームオーバー遷移
+                }
             }
         }
 
