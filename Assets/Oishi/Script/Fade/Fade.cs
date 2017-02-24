@@ -10,6 +10,7 @@ public class Fade : MonoBehaviour
 
     private bool fadeIn = false;
     private bool fadeOut = false;
+    private bool fadeQuit = false;
 
     FadeManager m_fademanager;
 
@@ -38,6 +39,10 @@ public class Fade : MonoBehaviour
             m_fademanager.FadeOut(sceneName);
             //m_fademanager.FadeMainOut(sceneName);
         }
+        if(fadeQuit==true)
+        {
+            m_fademanager.QuitFadeOut();
+        }
     }
 
 
@@ -51,5 +56,9 @@ public class Fade : MonoBehaviour
     {
         fadeOut = true;
         sceneName = "Main_Sub";
+    }
+    public void ClickFade3()
+    {
+        fadeQuit = true;
     }
 }

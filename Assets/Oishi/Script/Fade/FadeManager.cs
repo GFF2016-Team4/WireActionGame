@@ -26,8 +26,6 @@ public class FadeManager : MonoBehaviour
     [System.NonSerialized]
     public float alfaOut = 0.0f;
 
-    Object[] objs;  /**/
-
     float red, green, blue;         //RGB変数
 
     void Update()
@@ -70,20 +68,6 @@ public class FadeManager : MonoBehaviour
         if (alfaOut <= alfaTemp) Time.timeScale = 0;
     }
 
-    IEnumerator Load(string sceneName)
-    {
-        StartCoroutine("resourceLoad");
-
-        AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
-        async.allowSceneActivation = false;
-
-        while (async.progress < 0.9f && async.isDone == false)
-        {
-            yield return null;
-        }
-        yield return new WaitForSeconds(1f);
-        async.allowSceneActivation = true;
-    }
     public void RespawnFadeIn()
     {
         GetComponent<Image>().color = new Color(red, green, blue, alfaOut);
@@ -102,16 +86,42 @@ public class FadeManager : MonoBehaviour
         }
         if (alfaIn <= 0) Time.timeScale = 1;
     }
+    public void QuitFadeOut()
+    {
+        GetComponent<Image>().color = new Color(red, green, blue, alfaOut);
+        if (alfaOut <= 1.0f)
+        {
+            alfaOut += fadeOutSpeed;
+        }
+        else Application.Quit();
+
+    }
+
+    IEnumerator Load(string sceneName)
+    {
+        yield return StartCoroutine("resourceLoad");
+
+        AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
+        async.allowSceneActivation = false;
+
+        while (async.progress < 0.9f && async.isDone == false)
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        async.allowSceneActivation = true;
+    }
 
     IEnumerator resourceLoad()
     {
-        Resources.Load("Resources/Audio");
-        Resources.Load("Resources/Material");
-        Resources.Load("Resources/MedievalTownExteriors",typeof(GameObject));
-        Resources.Load("Resources/Motion");
-        Resources.Load("Resources/Particles");
-        Resources.Load("Resources/Prefab");
-        Resources.Load("Resources/Textures");
+        //Resources.Load("Resources/Audio");
+        //Resources.Load("Resources/Material");
+        //Resources.Load("Resources/MedievalTownExteriors", typeof(GameObject));
+        //Resources.Load("Resources/Motion");
+        //Resources.Load("Resources/Particles");
+        //Resources.Load("Resources/Prefab");
+        //Resources.Load("Resources/Textures");
+        Resources.LoadAll("Resources", typeof(GameObject));
         yield return null;
     }
 }
