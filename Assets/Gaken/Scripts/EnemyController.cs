@@ -14,6 +14,8 @@ namespace Gaken
         public GameObject m_RightArm;
         public GameObject m_Dynamite;
         public Camera m_Camera;
+        public GameObject m_Panel;
+        private GameObject child;
 
         public float m_Speed = 12f;                     // 前進速度（前進はプラス、後退はマイナス）
         public float m_LazerCoolDown = 10f;
@@ -31,11 +33,13 @@ namespace Gaken
         private bool m_IsDisappear = false;
         private bool m_IsExplosion = false;
         private bool m_IsDead = false;            //死亡切替を行うか?
-        private bool 
-            m_EnemyForward = false, 
-            m_EnemyLeft = false, 
-            m_EnemyRight = false, 
+        private bool
+            m_EnemyForward = false,
+            m_EnemyLeft = false,
+            m_EnemyRight = false,
             m_EnemyBack = false;
+        private bool m_isFadeOver = false;
+        private bool m_isFadeClear = false;
 
         private CharacterController m_Controller;    //キャラクタコントローラ
         private Rigidbody m_Rigidbody;
@@ -45,6 +49,7 @@ namespace Gaken
         private Renderer m_BodyRender;
         private Renderer m_LeftArmRender;
         private Renderer m_RightArmRender;
+
         /************************************************************************
                                       仮宣言 
         ************************************************************************/
@@ -69,7 +74,9 @@ namespace Gaken
             m_LeftArmRender = m_LeftArm.transform.GetComponent<Renderer>();
             m_RightArmRender = m_RightArm.transform.GetComponent<Renderer>();
 
-            m_Agent.speed = m_Speed = 12f;
+            child = transform.FindChild("Enemy3").gameObject;
+
+            m_Agent.speed = m_Speed = 50f;
             /************************************************************************
                                         仮初期化 
             ************************************************************************/
@@ -96,7 +103,7 @@ namespace Gaken
             {
                 m_Animator.SetBool("IsDead", true);
                 m_Agent.enabled = false;
-                if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("EnemyDead"))
+                if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("EnemyDead"))
                 {
                     m_EmissionPlus += 0.1f * Time.deltaTime;
 
@@ -105,9 +112,9 @@ namespace Gaken
                     m_BodyRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
                     m_LeftArmRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
                     m_RightArmRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
-                }           
+                }
 
-                if(m_EmissionPlus >= 0.8f)
+                if (m_EmissionPlus >= 0.8f)
                 {
                     m_Dynamite.transform.gameObject.SetActive(true);
                     m_IsDisappear = true;
@@ -130,7 +137,7 @@ namespace Gaken
             ****************************************************************/
             m_LazerCoolDown -= 1f * Time.deltaTime;
             m_WaitTime -= 1f * Time.deltaTime;
-            if(m_IsExplosion)
+            if (m_IsExplosion)
             {
                 m_ExplosionDelay -= 1f * Time.deltaTime;
                 //Debug.Log(m_ExplosionDelay);
@@ -179,20 +186,39 @@ namespace Gaken
                 m_CountDown -= 1 * Time.deltaTime;
             }
 
-            if(m_IsDisappear)
+            if (m_IsDisappear)
             {
                 m_DisappearTime -= 1f * Time.deltaTime;
             }
-            if(m_DisappearTime <= 0)
+            if (m_DisappearTime <= 0)
             {
-                Destroy(gameObject);
-                if(m_IsDead)
+                //Destroy(transform.Find("Enemy3").gameObject);
+                child.SetActive(false);
+                if (m_IsDead)
                 {
                     //クリア遷移
+                    m_isFadeClear = true;
                 }
-                else if(m_IsExplosion)
+                else if (m_IsExplosion)
                 {
                     //ゲームオーバー遷移
+                    m_isFadeOver = true;
+                }
+            }
+            if (m_isFadeOver == true)
+            {
+                m_Panel.GetComponent<FadeManager>().FadeOut("GameOver");
+                if (m_Panel.GetComponent<FadeManager>().alfaOut >= 1.0f)
+                {
+                    m_isFadeOver = false;
+                }
+            }
+            if (m_isFadeOver == true)
+            {
+                m_Panel.GetComponent<FadeManager>().FadeOut("GameClear");
+                if (m_Panel.GetComponent<FadeManager>().alfaIn <= 1.0f)
+                {
+                    m_isFadeClear = false;
                 }
             }
         }
@@ -261,7 +287,7 @@ namespace Gaken
         void EnemyLazer()
         {
             m_Agent.speed = 0;
-            if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Lazer"))
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Lazer"))
             {
                 RotateToPlayer();
             }
@@ -290,9 +316,9 @@ namespace Gaken
 
         void EnemyExplosion()
         {
-            if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"))
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"))
             {
-                if(m_ExplosionDelay <= 0)
+                if (m_ExplosionDelay <= 0)
                 {
                     m_Dynamite.transform.gameObject.SetActive(true);
                     m_IsDisappear = true;
