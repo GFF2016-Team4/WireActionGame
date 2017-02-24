@@ -16,6 +16,8 @@ public class reticlemove : MonoBehaviour
     RectTransform m_rectTransform;
     changeColor m_changeColor;
     reticleRay m_reticleRay;
+    public Sprite orgTex;
+    public Sprite chgTex;
 
     void Awake()
     {
@@ -38,6 +40,7 @@ public class reticlemove : MonoBehaviour
         if (m_reticleRay.isShpereHit())
         {
             m_rectTransform.position = RectTransformUtility.WorldToScreenPoint(Camera.main, m_reticleRay.target.position);
+            img.GetComponent<Image>().sprite = orgTex;
 
             iTween.MoveTo(img, iTween.Hash("position", m_rectTransform.position,
                                            "time", 0.3f));
@@ -46,6 +49,8 @@ public class reticlemove : MonoBehaviour
         else
         {
             //rectTransform.localPosition = new Vector2(0, 0);
+            img.GetComponent<Image>().sprite = chgTex;
+
             iTween.MoveTo(img, iTween.Hash("x", 0f,
                                            "y", 0f,
                                            "time", 0.3f,
