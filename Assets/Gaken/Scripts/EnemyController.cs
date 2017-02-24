@@ -96,13 +96,16 @@ namespace Gaken
             {
                 m_Animator.SetBool("IsDead", true);
                 m_Agent.enabled = false;
-                m_EmissionPlus += 0.1f * Time.deltaTime;
+                if(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("EnemyDead"))
+                {
+                    m_EmissionPlus += 0.1f * Time.deltaTime;
 
-                Mathf.Clamp(m_EmissionPlus, 0, 0.8f);
+                    Mathf.Clamp(m_EmissionPlus, 0, 0.8f);
 
-                m_BodyRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
-                m_LeftArmRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
-                m_RightArmRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
+                    m_BodyRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
+                    m_LeftArmRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
+                    m_RightArmRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
+                }           
 
                 if(m_EmissionPlus >= 0.8f)
                 {
