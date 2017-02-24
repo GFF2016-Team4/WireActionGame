@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class changeColor : MonoBehaviour
 {
 
-    public Color originColor;
-    public Color color;
+    private Color originColor = new Color(1, 1, 1);
+    private Color color = new Color(1, 1, 1);
 
     float A = 1.0f;
 
