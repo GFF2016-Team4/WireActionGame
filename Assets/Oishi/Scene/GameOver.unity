@@ -297,10 +297,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1250649525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67597fe96239a45408ba3bfacffa839a, type: 3}
+  m_Script: {fileID: 11500000, guid: 254c8ab6c8ce872408b5fedcb3e8cb01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Title
+  fadeInSpeed: 0.01
+  fadeOutSpeed: 0.01
+  RespawnfadeInSpeed: 0.01
+  RespawnfadeOutSpeed: 0.01
 --- !u!114 &1250649528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,12 +345,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1250649525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 254c8ab6c8ce872408b5fedcb3e8cb01, type: 3}
+  m_Script: {fileID: 11500000, guid: 67597fe96239a45408ba3bfacffa839a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeInSpeed: 0.01
-  fadeOutSpeed: 0.01
-  judgeObj: {fileID: 0}
+  sceneName: 
 --- !u!1 &1571417235
 GameObject:
   m_ObjectHideFlags: 0
