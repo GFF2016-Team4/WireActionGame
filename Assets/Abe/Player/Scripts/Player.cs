@@ -2,7 +2,7 @@
 using System;
 using UniRx;
 
-public class Player : MonoBehaviour, RopeEventHandlar
+public class Player : MonoBehaviour, RopeEventHandlar, DamageEndHandler
 {
     [SerializeField]
     private float moveSpeed;
@@ -354,7 +354,7 @@ public class Player : MonoBehaviour, RopeEventHandlar
     }
 
     //ダメージアニメーション終了時の処理
-    void DamageEnd()
+    public void DamageEnd()
     {
         isControll = true;
         ropeController.isControl = true;

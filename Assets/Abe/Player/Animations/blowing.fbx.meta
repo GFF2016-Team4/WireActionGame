@@ -107,15 +107,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 1
-        functionName: DamageEnd
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 63a5a6b3e9bb0e64b9df5326efd6234a,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1
