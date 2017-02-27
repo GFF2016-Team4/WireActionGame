@@ -12,7 +12,7 @@ public class EnemyPattern : MonoBehaviour
     //レーザーの範囲
     public float m_Laser;
 
-    public float timer;
+    public float Lasertimer;
 
     [System.NonSerialized]
     public bool Laser;
@@ -21,7 +21,10 @@ public class EnemyPattern : MonoBehaviour
     public bool m_changeTag;
 
     Animator m_Animator;
-    public float m_LazerCoolDown = 10f;
+    private float m_LazerCoolDown = 10f;
+
+    [System.NonSerialized]
+    public bool counter;
 
     // Use this for initialization
     void Start()
@@ -61,18 +64,20 @@ public class EnemyPattern : MonoBehaviour
                 m_changeTag = false;
             }
 
+            //Lasertimer = 0;
+
             //テスト用
-            timer += Time.deltaTime;
-            if (timer >= 10)
-            {
-                //m_changeTag = true;
-                //Debug.Log("パンチ範囲");
-            }
-            if (timer >= 15)
-            {
-                timer = 0;
-                //m_changeTag = false;
-            }
+            //timer += Time.deltaTime;
+            //if (timer >= 10)
+            //{
+            //    m_changeTag = true;
+            //    Debug.Log("パンチ範囲");
+            //}
+            //if (timer >= 15)
+            //{
+            //    timer = 0;
+            //    m_changeTag = false;
+            //}
         }
         //レーザーの範囲内処理
         else if (xDeistance <= m_Laser && xDeistance >= -m_Laser && zDeistance <= m_Laser && zDeistance >= -m_Laser)
@@ -84,9 +89,16 @@ public class EnemyPattern : MonoBehaviour
                 m_Animator.SetBool("IsLazer", true);
                 m_LazerCoolDown = 10f;
             }
-
+           
             if (anim.fullPathHash == Animator.StringToHash("Base Layer.Lazer"))
-                LaserAttack();
+            {
+                counter = true;  
+            }
+            else
+            {
+                Lasertimer = 0;
+            }
+            
 
             Debug.Log("レーザー範囲");
         }
@@ -96,15 +108,18 @@ public class EnemyPattern : MonoBehaviour
             m_Animator.SetBool("IsAttack", false);
             m_Animator.SetBool("IsLazer", false);
         }
+
+        if (counter == true)
+            LaserAttack();
     }
     void LaserAttack()
     {
         if (Laser == false)
-            timer += Time.deltaTime;
+            Lasertimer += Time.deltaTime;
 
-        if (timer >= LaserAttackTime)
+        if (Lasertimer >= LaserAttackTime)
         {
-            timer = 0;
+            Lasertimer = 0;
             Laser = true;
         }
     }

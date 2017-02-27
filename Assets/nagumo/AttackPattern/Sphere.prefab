@@ -410,6 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shooter: {fileID: 1000011407156286}
+  SendPlayer: {fileID: 1000012030882852, guid: 16313cba1e1ca584ca7912f32dda7017, type: 2}
   radiusDecision: 0.005
   laserAttackTime: 0.05
 --- !u!114 &114000010747126128

@@ -5,8 +5,6 @@ namespace Enemy
 {
     public class laserpointer : MonoBehaviour
     {
-
-        public GameObject Laser;
         public GameObject Shooter;
         public GameObject laserBlue;
         private GameObject m_LaserAttack;
@@ -20,21 +18,24 @@ namespace Enemy
         private float AttackTime;
 
         [System.NonSerialized]
-        public bool AttackLaser = false;
+        public bool AttackLaser;
+
         LineRenderer laser;
         laserAttack m_laserBlue;
 
         public float speed = 1.0f;
+
         void Start()
         {
             laser = this.GetComponent<LineRenderer>();
             m_laserBlue = laserBlue.GetComponent<laserAttack>();
+            AttackLaser = false;
         }
 
         public void Update()
         {
             RaycastHit hit;
-            Ray ray = new Ray(transform.position, Shooter.transform.forward);
+            
             //Debug.DrawRay(ray.origin, ray.direction, Color.blue, 1f);
 
             //transform.Rotate(0, Input.GetAxis("Horizontal") * speed, 0);
@@ -55,6 +56,19 @@ namespace Enemy
             if (lineRenderer.enabled == true)
             {
                 pointTime += Time.deltaTime;
+                Ray ray = new Ray(transform.position, Shooter.transform.forward);
+
+                //レーザーポイントの処理
+                var RayHit = Physics.Raycast(ray, out hit);
+                laser.SetPosition(0, transform.position);
+                if (hit.collider.tag != "Enemy")
+                {
+                    laser.SetPosition(1, hit.point);
+                }
+                else
+                {
+                    laser.SetPosition(1, transform.forward * 400);
+                }
             }
 
             //ポイントレーザーからレーザーアタック
@@ -69,7 +83,7 @@ namespace Enemy
                 SoundManager.Instance.StopSE();
 
                 //レーザーアタック
-                Laser.SetActive(true);
+                //Laser.SetActive(true);
                 AttackLaser = true;
                 Charge_L.SetActive(true);
                 SoundManager.Instance.PlaySE(AUDIO.SE_beamFire);
@@ -88,11 +102,13 @@ namespace Enemy
             {
                 AttackTime = 0.0f;
                 AttackLaser = false;
-                Laser.SetActive(false);
+                //Laser.SetActive(false);
+                m_laserBlue.laserBlue.enabled = false;
                 m_LaserAttack.GetComponent<EnemyPattern>().Laser = false;
                 SoundManager.Instance.StopSE();
-
                 Charge_L.SetActive(false);
+
+                m_LaserAttack.GetComponent<EnemyPattern>().counter = false;
             }
             if (AttackTime >= AttackLaserTime - 0.5)
             {
@@ -100,18 +116,7 @@ namespace Enemy
                 Charge_P.SetActive(false);
             }
 
-            //レーザーポイントの処理
-            var RayHit = Physics.Raycast(ray, out hit);
-            laser.SetPosition(0, transform.position);
-            if (hit.collider.tag != "Enemy")
-            {
-                laser.SetPosition(1, hit.point);
-                //Debug.Log(hit.transform.gameObject.name);
-            }
-            else
-            {
-                laser.SetPosition(1, transform.forward * 400);
-            }
+            
         }
         //void FiringBeam(GameObject[] obj)
         //{

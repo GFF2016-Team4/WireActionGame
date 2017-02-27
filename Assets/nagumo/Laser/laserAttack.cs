@@ -15,24 +15,35 @@ namespace Enemy
 
         [System.NonSerialized]
         public float radius = 0.8f;
-        public float radiusDecision;
+        public float radiusDecision;       
 
-        LineRenderer laserBlue;
+        [System.NonSerialized]
+        public LineRenderer laserBlue;
         RaycastHit hit;
 
         [System.NonSerialized]
         public float laserRadius;
         public float laserAttackTime;
+
+        private GameObject m_laserpoint;
+        private bool pointL;
+
         // Use this for initialization
         void Start()
         {
             laserBlue = this.GetComponent<LineRenderer>();
+            pointL = false;
         }
 
         // Update is called once per frame
         void Update()
         {
+            m_laserpoint = transform.root.gameObject;
+            pointL = Shooter.GetComponent<laserpointer>().AttackLaser;
+
             laserBlue.SetPosition(0, transform.position);
+
+            //Ray ray = new Ray(transform.position, Shooter.gameObject.transform.forward);
 
             //レーザーの太さ
             laserBlue.SetWidth(laserRadius, laserRadius);
@@ -43,35 +54,28 @@ namespace Enemy
                 laserRadius -= laserAttackTime;
             }
 
-            Ray ray = new Ray(transform.position, Shooter.transform.forward);
-            var laserhitPoint = Physics.SphereCast(
-                transform.position, radius, transform.forward, out hit, 100);
-
-            if (radius >= 0)
+            if (pointL == true)
             {
-                radius -= radiusDecision;
-            }
+                var laserhitPoint = Physics.SphereCast(
+                    transform.position, radius, Shooter.gameObject.transform.forward, out hit, 100);
 
-            if (hit.collider.tag != "Enemy")
-            {
-                if (laserhitPoint)
+                laserBlue.enabled = true;
+
+                if (radius >= 0)
                 {
-                    laserBlue.SetPosition(1, hit.point);
-
-                    //レーザーの体力
-                    if (hit.collider.tag == "kabe")
-                    {
-                        Debug.Log("hit");
-                        if (laserHP == 2)
-                        {
-                            Destroy(hit.collider.gameObject);
-                        }
-                        laserHP -= 1;
-                    }
+                    radius -= radiusDecision;
                 }
-                else
+
+                if (hit.collider.tag != "Enemy")
                 {
-                    laserBlue.SetPosition(1, transform.forward * 400);
+                    if (laserhitPoint)
+                    {
+                        laserBlue.SetPosition(1, hit.point);
+                    }
+                    else
+                    {
+                        laserBlue.SetPosition(1, transform.forward * 400);
+                    }
                 }
 
                 if (hit.collider.tag == "Player")
@@ -79,6 +83,8 @@ namespace Enemy
                     SendPlayer.GetComponent<Player>().OnDamage();
                 }
             }
+            if (pointL == false)
+                laserBlue.enabled = false;
         }
 
         void OnDrawGizmos()
