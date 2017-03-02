@@ -25,6 +25,8 @@ namespace Enemy
 
         public float speed = 1.0f;
 
+        public bool isPlaySE = false;
+
         void Start()
         {
             laser = this.GetComponent<LineRenderer>();
@@ -51,7 +53,10 @@ namespace Enemy
                 //チャージ
                 Charge_P.SetActive(true);
                 //Charge_C.SetActive(true);
-                SoundManager.Instance.PlaySE(AUDIO.SE_charge);
+                if(isPlaySE)
+                {
+                    SoundManager.Instance.PlaySE(AUDIO.SE_charge);
+                }
             }
             if (lineRenderer.enabled == true)
             {
@@ -89,8 +94,10 @@ namespace Enemy
                 //Laser.SetActive(true);
                 AttackLaser = true;
                 Charge_L.SetActive(true);
-                SoundManager.Instance.PlaySE(AUDIO.SE_beamFire);
-
+                if(isPlaySE)
+                {
+                    SoundManager.Instance.PlaySE(AUDIO.SE_beamFire);
+                }
                 m_laserBlue.laserRadius = 10;
                 m_laserBlue.radius = 1.0f;
                 m_laserBlue.laserHP = 2;

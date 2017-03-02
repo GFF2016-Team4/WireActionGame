@@ -813,6 +813,11 @@ Prefab:
       propertyPath: punchMaxTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013373845822, guid: d1edd0924c6657a40b5a678025a75290,
+        type: 2}
+      propertyPath: isPlaySE
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1edd0924c6657a40b5a678025a75290, type: 2}
   m_IsPrefabParent: 0
