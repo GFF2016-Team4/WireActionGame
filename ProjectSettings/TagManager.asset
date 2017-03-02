@@ -15,6 +15,9 @@ TagManager:
   - Rope/Lock
   - Rope/Catch
   - Field
+  - Destination
+  - LoadNewScene
+  - UIText
   layers:
   - Default
   - TransparentFX
