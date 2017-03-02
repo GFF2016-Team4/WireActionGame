@@ -59,15 +59,18 @@ namespace Enemy
                 Ray ray = new Ray(transform.position, Shooter.transform.forward);
 
                 //レーザーポイントの処理
-                var RayHit = Physics.Raycast(ray, out hit);
+                bool RayHit = Physics.Raycast(ray, out hit);
                 laser.SetPosition(0, transform.position);
-                if (hit.collider.tag != "Enemy")
+                if(RayHit)
                 {
-                    laser.SetPosition(1, hit.point);
-                }
-                else
-                {
-                    laser.SetPosition(1, transform.forward * 400);
+                    if (hit.collider.tag != "Enemy")
+                    {
+                        laser.SetPosition(1, hit.point);
+                    }
+                    else
+                    {
+                        laser.SetPosition(1, transform.forward * 400);
+                    }
                 }
             }
 
@@ -103,7 +106,7 @@ namespace Enemy
                 AttackTime = 0.0f;
                 AttackLaser = false;
                 //Laser.SetActive(false);
-                m_laserBlue.laserBlue.enabled = false;
+                m_laserBlue.DrawEnd();
                 m_LaserAttack.GetComponent<EnemyPattern>().Laser = false;
                 SoundManager.Instance.StopSE();
                 Charge_L.SetActive(false);

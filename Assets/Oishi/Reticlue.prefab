@@ -42,7 +42,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 1000013796282650}
-  rayobj: {fileID: 0}
+  rayCamera: {fileID: 0}
+  radius: 3
+  direction: 1000
+  orgTex: {fileID: 21300000, guid: 06f2d5116674612438d2a6ee409c37f1, type: 3}
+  chgTex: {fileID: 21300000, guid: ed41c9fdc057fe0468ed1a90e70b7ca2, type: 3}
 --- !u!114 &114000014029282150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,8 +85,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b62783cd6eed97a41a8e9cb69e970f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originColor: {r: 0, g: 0.7352941, b: 0.15720077, a: 0}
-  color: {r: 1, g: 0, b: 0, a: 0}
 --- !u!222 &222000013636118050
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -29,7 +29,7 @@ namespace Enemy
         private bool pointL;
 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             laserBlue = this.GetComponent<LineRenderer>();
             pointL = false;
@@ -57,7 +57,7 @@ namespace Enemy
             if (pointL == true)
             {
                 var laserhitPoint = Physics.SphereCast(
-                    transform.position, radius, Shooter.gameObject.transform.forward, out hit, 100);
+                    transform.position, radius, Shooter.gameObject.transform.forward, out hit, 100, ~LayerMask.GetMask("Enemy"));
 
                 laserBlue.enabled = true;
 
@@ -66,25 +66,30 @@ namespace Enemy
                     radius -= radiusDecision;
                 }
 
-                if (hit.collider.tag != "Enemy")
+                if(laserhitPoint)
                 {
-                    if (laserhitPoint)
-                    {
-                        laserBlue.SetPosition(1, hit.point);
-                    }
-                    else
-                    {
-                        laserBlue.SetPosition(1, transform.forward * 400);
-                    }
+                    laserBlue.SetPosition(1, hit.point);
+                }
+                else
+                {
+                    laserBlue.SetPosition(1, transform.forward * 400);
                 }
 
-                if (hit.collider.tag == "Player")
+                if(laserhitPoint)
                 {
-                    SendPlayer.GetComponent<Player>().OnDamage();
+                    if(hit.collider.tag == "Player")
+                    {
+                        SendPlayer.GetComponent<Player>().OnDamage();
+                    }
                 }
             }
             if (pointL == false)
                 laserBlue.enabled = false;
+        }
+
+        public void DrawEnd()
+        {
+            laserBlue.enabled = false;
         }
 
         void OnDrawGizmos()
