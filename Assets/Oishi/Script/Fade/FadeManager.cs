@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -79,8 +80,11 @@ public class FadeManager : MonoBehaviour
     {
         isSceneChange = true;
 
-        yield return FadeOut(fadeSpeed);
+        var eventSystem = FindObjectOfType<EventSystem>();
+        eventSystem.enabled = false;
 
+        yield return FadeOut(fadeSpeed);
+        
         SoundManager.Instance.FadeOutBGM(0.8f);
 
         Resources.LoadAll("Resources", typeof(GameObject));
