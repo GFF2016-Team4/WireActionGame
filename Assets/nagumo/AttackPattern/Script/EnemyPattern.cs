@@ -14,6 +14,12 @@ public class EnemyPattern : MonoBehaviour
     public float punchMaxTime;
     private float punchTime;
 
+    private int punchCount;
+
+    [Header("レートが上がるほどレーザーになる確率が減る")]
+    [SerializeField, Range(1, 100)]
+    private int laserRate;
+
 
     //レーザーの範囲
     public float m_Laser;
@@ -52,79 +58,18 @@ public class EnemyPattern : MonoBehaviour
         AnimatorStateInfo anim = this.m_Animator.GetCurrentAnimatorStateInfo(0);
 
         //パンチの範囲内処理
-        if (xDeistance <= Punch && xDeistance >= -Punch && zDeistance <= Punch && zDeistance >= -Punch)
+        if (xDeistance <= Punch && xDeistance >= -Punch && zDeistance <= Punch && zDeistance >= -Punch && m_LazerCoolDown < 0)
         {
-            //Debug.Log("パンチ範囲");
-
-            if(punchTime > 0)
-            {
-                //Debug.Log("移動");
-                m_Animator.SetBool("IsAttack", false);
-                m_Animator.SetBool("IsLazer", false);
-            }
-
-            if (!m_Animator.GetBool("IsAttack") && 
-                !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion") &&
-                punchTime <= 0)
-            {
-                
-                m_Animator.SetBool("IsAttack", true);
-                m_Animator.SetBool("IsLazer", false);
-                punchTime = Random.Range(punchMinTime, punchMaxTime);
-            }
-
-            if (anim.fullPathHash == Animator.StringToHash("Base Layer.Attack"))
-            {
-                m_changeTag = true;
-            }
-            else
-            {
-                m_changeTag = false;
-            }
-
-            //Lasertimer = 0;
-
-            //テスト用
-            //timer += Time.deltaTime;
-            //if (timer >= 10)
-            //{
-            //    m_changeTag = true;
-            //    Debug.Log("パンチ範囲");
-            //}
-            //if (timer >= 15)
-            //{
-            //    timer = 0;
-            //    m_changeTag = false;
-            //}
+            PunchAttack(anim);
         }
         //レーザーの範囲内処理
-        else if (xDeistance <= m_Laser && xDeistance >= -m_Laser && zDeistance <= m_Laser && zDeistance >= -m_Laser)
+        else if ((xDeistance <= m_Laser && xDeistance >= -m_Laser && zDeistance <= m_Laser && zDeistance >= -m_Laser) || m_LazerCoolDown > 0)
         {
-
-            m_Animator.SetBool("IsAttack", false);
-            if (!m_Animator.GetBool("IsLazer") && m_LazerCoolDown <= 0)
-            {
-                m_Animator.SetBool("IsLazer", true);
-                m_LazerCoolDown = 10f;
-            }
-           
-            if (anim.fullPathHash == Animator.StringToHash("Base Layer.Lazer"))
-            {
-                counter = true;  
-            }
-            else
-            {
-                Lasertimer = 0;
-            }
-            
-
-            //Debug.Log("レーザー範囲");
+            LaserAttack(anim);
         }
         else
         {
-            //Debug.Log("移動");
-            m_Animator.SetBool("IsAttack", false);
-            m_Animator.SetBool("IsLazer", false);
+            Move();
         }
 
         if (counter == true)
@@ -140,5 +85,90 @@ public class EnemyPattern : MonoBehaviour
             Lasertimer = 0;
             Laser = true;
         }
+    }
+
+    void LaserAttack(AnimatorStateInfo anim)
+    {
+        m_Animator.SetBool("IsAttack", false);
+        if (!m_Animator.GetBool("IsLazer") && m_LazerCoolDown <= 0)
+        {
+            m_Animator.SetBool("IsLazer", true);
+            m_LazerCoolDown = 10f;
+        }
+           
+        if (anim.fullPathHash == Animator.StringToHash("Base Layer.Lazer"))
+        {
+            counter = true;  
+        }
+        else
+        {
+            Lasertimer = 0;
+        }
+            
+
+        //Debug.Log("レーザー範囲");
+    }
+
+    void PunchAttack(AnimatorStateInfo anim)
+    {
+        //Debug.Log("パンチ範囲");
+
+        if(punchTime > 0)
+        {
+            Move();
+            return;
+        }
+
+        int rand = Random.Range(punchCount, laserRate+1);
+
+        if(rand == laserRate)
+        {
+            LaserAttack(anim);
+            punchCount = 0;
+            return;
+        }
+
+        if (!m_Animator.GetBool("IsAttack") && 
+            !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion") &&
+            punchTime <= 0)
+        {
+                
+            m_Animator.SetBool("IsAttack", true);
+            m_Animator.SetBool("IsLazer", false);
+            punchTime = Random.Range(punchMinTime, punchMaxTime);
+
+            punchCount++;
+        }
+
+        if (anim.fullPathHash == Animator.StringToHash("Base Layer.Attack"))
+        {
+            m_changeTag = true;
+        }
+        else
+        {
+            m_changeTag = false;
+        }
+
+        //Lasertimer = 0;
+
+        //テスト用
+        //timer += Time.deltaTime;
+        //if (timer >= 10)
+        //{
+        //    m_changeTag = true;
+        //    Debug.Log("パンチ範囲");
+        //}
+        //if (timer >= 15)
+        //{
+        //    timer = 0;
+        //    m_changeTag = false;
+        //}
+    }
+
+    void Move()
+    {
+        //Debug.Log("移動");
+        m_Animator.SetBool("IsAttack", false);
+        m_Animator.SetBool("IsLazer", false);
     }
 }

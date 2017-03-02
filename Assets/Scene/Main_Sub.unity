@@ -818,6 +818,11 @@ Prefab:
       propertyPath: isPlaySE
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011350492852, guid: d1edd0924c6657a40b5a678025a75290,
+        type: 2}
+      propertyPath: laserRate
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1edd0924c6657a40b5a678025a75290, type: 2}
   m_IsPrefabParent: 0
