@@ -81,6 +81,8 @@ public class FadeManager : MonoBehaviour
 
         yield return FadeOut(fadeSpeed);
 
+        SoundManager.Instance.FadeOutBGM(0.8f);
+
         Resources.LoadAll("Resources", typeof(GameObject));
         yield return null;
 
