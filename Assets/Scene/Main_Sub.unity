@@ -408,6 +408,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c33c6ce0dabc2c64f9c6a22861420998, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &68362916 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011715988128, guid: c33c6ce0dabc2c64f9c6a22861420998,
+    type: 2}
+  m_PrefabInternal: {fileID: 68362915}
+  m_Script: {fileID: 11500000, guid: 254c8ab6c8ce872408b5fedcb3e8cb01, type: 3}
 --- !u!1 &69683970
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +758,51 @@ Prefab:
       propertyPath: Pcamera
       value: 
       objectReference: {fileID: 1679910367}
+    - target: {fileID: 114000012566424446, guid: d1edd0924c6657a40b5a678025a75290,
+        type: 2}
+      propertyPath: Shooter
+      value: 
+      objectReference: {fileID: 1957086515}
+    - target: {fileID: 114000010986101936, guid: d1edd0924c6657a40b5a678025a75290,
+        type: 2}
+      propertyPath: Shooter
+      value: 
+      objectReference: {fileID: 1957086515}
+    - target: {fileID: 114000013562403690, guid: d1edd0924c6657a40b5a678025a75290,
+        type: 2}
+      propertyPath: Shooter
+      value: 
+      objectReference: {fileID: 1957086515}
+    - target: {fileID: 114000013273065604, guid: d1edd0924c6657a40b5a678025a75290,
+        type: 2}
+      propertyPath: Shooter
+      value: 
+      objectReference: {fileID: 1957086515}
+    - target: {fileID: 114000012515043246, guid: d1edd0924c6657a40b5a678025a75290,
+        type: 2}
+      propertyPath: Shooter
+      value: 
+      objectReference: {fileID: 1957086515}
+    - target: {fileID: 114000011425917326, guid: d1edd0924c6657a40b5a678025a75290,
+        type: 2}
+      propertyPath: Shooter
+      value: 
+      objectReference: {fileID: 1957086515}
+    - target: {fileID: 114000010276626224, guid: d1edd0924c6657a40b5a678025a75290,
+        type: 2}
+      propertyPath: Shooter
+      value: 
+      objectReference: {fileID: 1957086515}
+    - target: {fileID: 114000010050203510, guid: d1edd0924c6657a40b5a678025a75290,
+        type: 2}
+      propertyPath: Shooter
+      value: 
+      objectReference: {fileID: 1957086515}
+    - target: {fileID: 114000014120458368, guid: d1edd0924c6657a40b5a678025a75290,
+        type: 2}
+      propertyPath: Shooter
+      value: 
+      objectReference: {fileID: 1957086515}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1edd0924c6657a40b5a678025a75290, type: 2}
   m_IsPrefabParent: 0
@@ -5691,7 +5742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPosition: {fileID: 1944580789}
-  fadeManager: {fileID: 0}
+  fadeManager: {fileID: 68362916}
   fadeSpeed: 0.05
 --- !u!1 &1975265240 stripped
 GameObject:

@@ -86,6 +86,7 @@ public class FadeManager : MonoBehaviour
 
         SceneManager.LoadSceneAsync("LoadScene", LoadSceneMode.Additive);
         AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
+        async.allowSceneActivation = false;
         while(async.progress < 0.9f && async.isDone == false)
         {
             yield return null;

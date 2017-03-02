@@ -180,6 +180,8 @@ public class NormalRopeSimulate : MonoBehaviour
         if(isEnd) return;
         isEnd = true;
 
+        isContorll = false;
+
         StopAllCoroutines();
         SimulationStop();
         
