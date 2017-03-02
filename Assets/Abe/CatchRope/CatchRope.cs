@@ -26,6 +26,8 @@ public class CatchRope : MonoBehaviour
     
     void Update()
     {
+        if(!simulate.isContorll) return;
+
         //距離をみて距離が一定以上離れていればロープを外す
         float nowDistance = Vector3.Distance(simulate.tailPosition, rootOrigin.position);
         if(nowDistance >= destroyDistance)
