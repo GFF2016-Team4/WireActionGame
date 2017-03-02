@@ -346,11 +346,10 @@ public class Player : MonoBehaviour, RopeEventHandlar, DamageEndHandler
     {
         if(!isControll) return;
 
+        GetComponent<FadeRespawn>().Respawn();
         animator.SetTrigger("Damage");
         isControll = false;
         ropeController.isControl = false;
-
-        //GetComponent<FadeRespawn>().Respawn();
     }
 
     //ダメージアニメーション終了時の処理
