@@ -69,6 +69,7 @@ public class FadeRespawn : MonoBehaviour
 
     public void Respawn()
     {
+        if(isRespawn) return;
         StartCoroutine(Respawn_());
     }
 
@@ -77,7 +78,7 @@ public class FadeRespawn : MonoBehaviour
         isRespawn = true;
 
         yield return fadeManager.FadeOut(fadeSpeed);
-        transform.position = respawnPosition.transform.position;
+        transform.position = respawnPosition.position;
         yield return fadeManager.FadeIn (fadeSpeed);
 
         isRespawn = false;
