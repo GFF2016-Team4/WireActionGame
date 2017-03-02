@@ -118,10 +118,12 @@ namespace Gaken
                     m_RightArmRender.material.SetColor("_EmissionColor", new Color(m_EmissionPlus, m_EmissionPlus, m_EmissionPlus));
                 }
 
-                if (m_EmissionPlus >= 0.8f)
+                if (m_EmissionPlus >= 0.8f && !m_IsDisappear)
                 {
                     m_Dynamite.transform.gameObject.SetActive(true);
                     m_IsDisappear = true;
+
+                    SoundManager.Instance.PlaySE(AUDIO.SE_Enemy_Destroy);
                 }
 
                 //Debug.Log(body.material.GetColor("_EmissionColor"));
