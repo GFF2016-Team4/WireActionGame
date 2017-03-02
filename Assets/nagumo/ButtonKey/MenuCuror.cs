@@ -7,8 +7,11 @@ public class MenuCuror : MonoBehaviour {
     private RectTransform m_RectTransform;
     private Vector2 m_Curor;
 
+    EventSystem eventSystems;
+
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
     }
 	
 	// Update is called once per frame
@@ -24,11 +27,14 @@ public class MenuCuror : MonoBehaviour {
     void Awake()
     {
         m_RectTransform = GetComponent<RectTransform>();
+        eventSystems    = FindObjectOfType<EventSystem>(); 
     }
 
     //カーソル移動
     void LateUpdate()
     {
+        if(!eventSystems.enabled) return;
+
         GameObject selectedObject = EventSystem.current.currentSelectedGameObject;
         m_Curor = m_RectTransform.anchoredPosition;
 
