@@ -11,7 +11,7 @@ public class GameOver : MonoBehaviour
     void Update()
     {
         if (judge == false) m_fademanager.FadeIn();
-        else m_fademanager.FadeOut(sceneName);
+        else m_fademanager.SceneChange(sceneName);
 
     }
 

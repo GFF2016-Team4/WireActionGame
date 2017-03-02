@@ -212,11 +212,11 @@ namespace Gaken
             }
             if (m_isFadeOver  == true)
             {
-                m_Panel.GetComponent<FadeManager>().FadeOut("GameOver");
+                m_Panel.GetComponent<FadeManager>().SceneChange("GameOver");
             }
             if (m_isFadeClear == true)
             {
-                m_Panel.GetComponent<FadeManager>().FadeOut("GameClear");
+                m_Panel.GetComponent<FadeManager>().SceneChange("GameClear");
             }
         }
 

@@ -3,125 +3,109 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class FadeManager : MonoBehaviour
 {
-    [Header("フェードインの速さ")]
-    public float fadeInSpeed = 0.01f;
+    [Header("デフォルトのフェードの速さ")]
+    public const float defaultFadeSpeed = 1.2f;
 
-    [Header("フェードアウトの長さ")]
-    public float fadeOutSpeed = 0.01f;
+    Image image;
 
-    [Header("リスポーンフェードインの速さ")]
-    public float RespawnfadeInSpeed = 0.01f;
+    bool isFade        = false;
+    bool isSceneChange = false;
 
-    [Header("リスポーンフェードアウトの長さ")]
-    public float RespawnfadeOutSpeed = 0.01f;
-
-    [Header("画面切り替え時、時間停止の長さ")]
-    float alfaTemp = 0.0f;           //画面切り替え時、時間停止の長さ
-
-    //[System.NonSerialized]
-    public float alfaIn = 1.0f;
-    //[System.NonSerialized]
-    public float alfaOut = 0.0f;
-
-    float red, green, blue;         //RGB変数
-
-    void Update()
+    private void Awake()
     {
-        //Debug.Log("シーンの名前は" + SceneManager.GetActiveScene().name);
-
-
-        //if (SceneManager.GetSceneByName("LoadScene").isLoaded)
-        //{
-        //    Debug.Log("ロードシーン中");
-        //}
+        image = GetComponent<Image>();
     }
 
-    public void FadeIn(float timeScale = 0)
+    private IEnumerator Start()
     {
-        //フェードインの色変更
-        //c.a = alfaIn;
-        //GetComponent<Image>().color = c;
-        //SceneManager.UnloadScene("LoadScene");
-
-        Time.timeScale = timeScale;
-
-        GetComponent<Image>().color = new Color(red, green, blue, alfaIn);
-        alfaIn -= fadeInSpeed;
-
-        if (alfaIn <= 0) Time.timeScale = 1;
+        yield return null;
+        FadeIn();
     }
-    public void FadeOut(string sceneName, float timeScale = 0)
+
+    public Coroutine FadeIn(float fadeSpeed = defaultFadeSpeed)
     {
-        GetComponent<Image>().color = new Color(red, green, blue, alfaOut);
-        if (alfaOut <= 1.0f)
+        if(isFade) return null;
+        return StartCoroutine(FadeIn_(fadeSpeed));
+    }
+
+    IEnumerator FadeIn_(float fadeSpeed)
+    {
+        isFade = true;
+        Time.timeScale = 0;
+        for(float t = 1.0f; t >= 0.0f; t -= Time.unscaledDeltaTime * fadeSpeed)
         {
-            alfaOut += fadeOutSpeed;
-            if (alfaOut >= 1.0f)
-            {
-                SceneManager.LoadSceneAsync("LoadScene", LoadSceneMode.Additive);
-                StartCoroutine(Load(sceneName));
-            }
+            SetAlpha(t);
+            yield return null;
         }
-        //if (alfaOut <= alfaTemp) Time.timeScale = 0;
+        Time.timeScale = 1;
+        SetAlpha(0.0f);
+        isFade = false;
     }
 
-    public void RespawnFadeIn()
+    public Coroutine FadeOut(float fadeSpeed = defaultFadeSpeed)
     {
-        GetComponent<Image>().color = new Color(red, green, blue, alfaOut);
-        if (alfaOut <= 1.0f)
+        if(isFade) return null;
+        return StartCoroutine(FadeOut_(fadeSpeed));
+    }
+
+    IEnumerator FadeOut_(float fadeSpeed)
+    {
+        isFade = true;
+        for(float t = 0.0f; t <= 1.0f; t += Time.deltaTime * fadeSpeed)
         {
-            alfaOut += RespawnfadeOutSpeed;
+            SetAlpha(t);
+            yield return null;
         }
-        if (alfaOut <= alfaTemp) Time.timeScale = 0;
-    }
-    public void RespawnFadeOut()
-    {
-        if (alfaOut >= 1.0f)
-        {
-            GetComponent<Image>().color = new Color(red, green, blue, alfaIn);
-            alfaIn -= RespawnfadeInSpeed;
-        }
-        if (alfaIn < 0) Time.timeScale = 1;
-    }
-    public void QuitFadeOut()
-    {
-        GetComponent<Image>().color = new Color(red, green, blue, alfaOut);
-        if (alfaOut <= 1.0f)
-        {
-            alfaOut += fadeOutSpeed;
-        }
-        else Application.Quit();
-
+        SetAlpha(1.0f);
+        isFade = false;
     }
 
-    IEnumerator Load(string sceneName)
+    void SetAlpha(float alpha)
     {
-        yield return StartCoroutine("resourceLoad");
+        Color color = image.color;
+        color.a = alpha;
+        image.color = color;
+    }
 
+    public Coroutine SceneChange(string sceneName, float fadeSpeed = defaultFadeSpeed)
+    {
+        if(isSceneChange) return null;
+        return StartCoroutine(SceneChange_(sceneName, fadeSpeed));
+    }
+
+    IEnumerator SceneChange_(string sceneName, float fadeSpeed)
+    {
+        isSceneChange = true;
+
+        yield return FadeOut(fadeSpeed);
+
+        Resources.LoadAll("Resources", typeof(GameObject));
+        yield return null;
+
+        SceneManager.LoadSceneAsync("LoadScene", LoadSceneMode.Additive);
         AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
-        async.allowSceneActivation = false;
-
-        while (async.progress < 0.9f && async.isDone == false)
+        while(async.progress < 0.9f && async.isDone == false)
         {
             yield return null;
         }
         yield return new WaitForSeconds(1f);
         async.allowSceneActivation = true;
+        isSceneChange = false;
     }
 
-    IEnumerator resourceLoad()
+    public Coroutine GameQuit(float fadeSpeed = defaultFadeSpeed)
     {
-        //Resources.Load("Resources/Audio");
-        //Resources.Load("Resources/Material");
-        //Resources.Load("Resources/MedievalTownExteriors", typeof(GameObject));
-        //Resources.Load("Resources/Motion");
-        //Resources.Load("Resources/Particles");
-        //Resources.Load("Resources/Prefab");
-        //Resources.Load("Resources/Textures");
-        Resources.LoadAll("Resources", typeof(GameObject));
-        yield return null;
+        if(isSceneChange) return null;
+        return StartCoroutine(GameQuit_(fadeSpeed));
+    }
+
+    IEnumerator GameQuit_(float fadeSpeed)
+    {
+        isSceneChange = true;
+        yield return FadeOut(fadeSpeed);
+        Application.Quit();
+        isSceneChange = false;
     }
 }

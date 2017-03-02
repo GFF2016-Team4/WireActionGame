@@ -660,10 +660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254c8ab6c8ce872408b5fedcb3e8cb01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeInSpeed: 0.05
-  fadeOutSpeed: 0.05
-  RespawnfadeInSpeed: 0.01
-  RespawnfadeOutSpeed: 0.01
 --- !u!114 &449808266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,7 +671,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67597fe96239a45408ba3bfacffa839a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Main
 --- !u!114 &449808267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,7 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
