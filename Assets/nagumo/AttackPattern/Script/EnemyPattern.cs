@@ -9,6 +9,12 @@ public class EnemyPattern : MonoBehaviour
     //パンチの範囲
     public float Punch;
 
+    [Header("パンチの行動にする間隔")]
+    public float punchMinTime;
+    public float punchMaxTime;
+    private float punchTime;
+
+
     //レーザーの範囲
     public float m_Laser;
 
@@ -36,6 +42,7 @@ public class EnemyPattern : MonoBehaviour
     void Update()
     {
         m_LazerCoolDown -= 1f * Time.deltaTime;
+        punchTime -= Time.deltaTime;
 
         int xDeistance = Mathf.RoundToInt(this.transform.position.x - m_player.transform.position.x);
         int zDeistance = Mathf.RoundToInt(this.transform.position.z - m_player.transform.position.z);
@@ -47,12 +54,23 @@ public class EnemyPattern : MonoBehaviour
         //パンチの範囲内処理
         if (xDeistance <= Punch && xDeistance >= -Punch && zDeistance <= Punch && zDeistance >= -Punch)
         {
-            Debug.Log("パンチ範囲");
+            //Debug.Log("パンチ範囲");
 
-            if (!m_Animator.GetBool("IsAttack") && !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion"))
+            if(punchTime > 0)
             {
+                //Debug.Log("移動");
+                m_Animator.SetBool("IsAttack", false);
+                m_Animator.SetBool("IsLazer", false);
+            }
+
+            if (!m_Animator.GetBool("IsAttack") && 
+                !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Explosion") &&
+                punchTime <= 0)
+            {
+                
                 m_Animator.SetBool("IsAttack", true);
                 m_Animator.SetBool("IsLazer", false);
+                punchTime = Random.Range(punchMinTime, punchMaxTime);
             }
 
             if (anim.fullPathHash == Animator.StringToHash("Base Layer.Attack"))
@@ -100,11 +118,11 @@ public class EnemyPattern : MonoBehaviour
             }
             
 
-            Debug.Log("レーザー範囲");
+            //Debug.Log("レーザー範囲");
         }
         else
         {
-            Debug.Log("移動");
+            //Debug.Log("移動");
             m_Animator.SetBool("IsAttack", false);
             m_Animator.SetBool("IsLazer", false);
         }

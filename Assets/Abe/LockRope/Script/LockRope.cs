@@ -38,18 +38,11 @@ public class LockRope : MonoBehaviour
         ropePoint.position = point;
         SphereCollider col = ropePoint.GetComponent<SphereCollider>();
 
-        bool isHit = Physics.CheckSphere(ropePoint.position, col.radius, -1 - (1 << gameObject.layer));
+        bool isHit = Physics.CheckSphere(ropePoint.position, col.radius, PlayersLayerMask.IgnorePlayerAndRopes);
 
         if(isHit)
         {
             ropePoint.gameObject.AddComponent<SyncObject>();
-        }
-        else
-        {
-            Rigidbody rig = ropePoint.GetComponent<Rigidbody>();
-            rig.isKinematic = false;
-
-            Destroy(gameObject, 5.0f);
         }
 
         lineDraw.DrawStart();

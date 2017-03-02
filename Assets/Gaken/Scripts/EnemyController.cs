@@ -27,7 +27,7 @@ namespace Gaken
         private float m_ExplosionDelay = 1.5f;
         private float m_EmissionPlus = 0;
         private float m_DisappearTime = 1.0f;
-        private float m_RotateSpeed = 0.2f;
+        private float m_RotateSpeed = 0.05f;
 
         private int m_DeathCount = 0;
 
@@ -97,13 +97,13 @@ namespace Gaken
         void Update()
         {
             //エネミーを即死させる
-            if (Input.GetKey(KeyCode.Z))
-            {
-                m_IsDead = true;
-            }
+            //if(Input.GetKey(KeyCode.Z))
+            //{
+            //    m_IsDead = true;
+            //}
 
             //死亡交代
-            if (m_IsDead)
+            if(m_IsDead)
             {
                 m_Animator.SetBool("IsDead", true);
                 m_Agent.enabled = false;
@@ -126,7 +126,7 @@ namespace Gaken
 
                 //Debug.Log(body.material.GetColor("_EmissionColor"));
                 //m_Controller.enabled = false;
-                Debug.Log("Clear");
+                //Debug.Log("Clear");
                 m_Rigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
                 //transform.GetComponent<CapsuleCollider>().enabled = false;
@@ -210,11 +210,11 @@ namespace Gaken
                     m_isFadeOver = true;
                 }
             }
-            if (m_isFadeOver == true)
+            if (m_isFadeOver  == true)
             {
                 m_Panel.GetComponent<FadeManager>().FadeOut("GameOver");
             }
-            if (m_isFadeOver == true)
+            if (m_isFadeClear == true)
             {
                 m_Panel.GetComponent<FadeManager>().FadeOut("GameClear");
             }
@@ -241,7 +241,7 @@ namespace Gaken
         //トリガーに出ると同時に
         public void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.tag == "Rope/Normal")
+            if (other.gameObject.tag == "Rope/Catch")
             {
                 m_Animator.SetBool("IsKnee", false);
             }
@@ -250,7 +250,7 @@ namespace Gaken
         //トリガに入っているときに
         public void OnTriggerStay(Collider other)
         {
-            if (other.gameObject.tag == "Rope/Normal")
+            if (other.gameObject.tag == "Rope/Catch")
             {
                 m_Animator.SetBool("IsKnee", true);
             }

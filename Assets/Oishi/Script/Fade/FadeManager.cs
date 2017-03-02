@@ -21,22 +21,22 @@ public class FadeManager : MonoBehaviour
     [Header("画面切り替え時、時間停止の長さ")]
     float alfaTemp = 0.0f;           //画面切り替え時、時間停止の長さ
 
-    [System.NonSerialized]
+    //[System.NonSerialized]
     public float alfaIn = 1.0f;
-    [System.NonSerialized]
+    //[System.NonSerialized]
     public float alfaOut = 0.0f;
 
     float red, green, blue;         //RGB変数
 
     void Update()
     {
-        Debug.Log("シーンの名前は" + SceneManager.GetActiveScene().name);
+        //Debug.Log("シーンの名前は" + SceneManager.GetActiveScene().name);
 
 
-        if (SceneManager.GetSceneByName("LoadScene").isLoaded)
-        {
-            Debug.Log("ロードシーン中");
-        }
+        //if (SceneManager.GetSceneByName("LoadScene").isLoaded)
+        //{
+        //    Debug.Log("ロードシーン中");
+        //}
     }
 
     public void FadeIn(float timeScale = 0)
@@ -62,10 +62,10 @@ public class FadeManager : MonoBehaviour
             if (alfaOut >= 1.0f)
             {
                 SceneManager.LoadSceneAsync("LoadScene", LoadSceneMode.Additive);
-                StartCoroutine("Load", sceneName);
+                StartCoroutine(Load(sceneName));
             }
         }
-        if (alfaOut <= alfaTemp) Time.timeScale = 0;
+        //if (alfaOut <= alfaTemp) Time.timeScale = 0;
     }
 
     public void RespawnFadeIn()
@@ -84,7 +84,7 @@ public class FadeManager : MonoBehaviour
             GetComponent<Image>().color = new Color(red, green, blue, alfaIn);
             alfaIn -= RespawnfadeInSpeed;
         }
-        if (alfaIn <= 0) Time.timeScale = 1;
+        if (alfaIn < 0) Time.timeScale = 1;
     }
     public void QuitFadeOut()
     {
