@@ -166,7 +166,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010608968338, guid: e6cc18dcc18d41c4cb15146cf99571f4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000010608968338, guid: e6cc18dcc18d41c4cb15146cf99571f4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -449,6 +449,22 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224000013531274870, guid: c33c6ce0dabc2c64f9c6a22861420998,
     type: 2}
   m_PrefabInternal: {fileID: 649469761}
+--- !u!1 &743095316 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011422153194, guid: c33c6ce0dabc2c64f9c6a22861420998,
+    type: 2}
+  m_PrefabInternal: {fileID: 649469761}
+--- !u!114 &743095317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 743095316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67597fe96239a45408ba3bfacffa839a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &745743244
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +540,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 743095317}
         m_MethodName: ClickFade
         m_Mode: 1
         m_Arguments:
@@ -986,7 +1002,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 743095317}
         m_MethodName: ClickFade2
         m_Mode: 1
         m_Arguments:
