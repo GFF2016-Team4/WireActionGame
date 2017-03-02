@@ -191,8 +191,27 @@ public class Player : MonoBehaviour, RopeEventHandlar, DamageEndHandler
         DampingVerticalVelocity();
         DampingHorizontalVelocity();
 
+        RaycastHit hitInfo;
+        bool isHit = Physics.Raycast(transform.position, Vector3.down, out hitInfo, 0.8f);
+
+        Vector3 slopeVel = Vector3.zero;
+        if(isHit)
+        {
+            slopeVel = hitInfo.normal;
+            slopeVel.y = 0;
+
+            if(slopeVel.magnitude < 0.5f)
+            {
+                slopeVel = Vector3.zero;
+            }
+            else
+            {
+                slopeVel.Normalize();
+            }
+        }
+
         playerVelocity += gravity * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move((playerVelocity + slopeVel) * Time.deltaTime);
 
         CheckJumpState();
     }
