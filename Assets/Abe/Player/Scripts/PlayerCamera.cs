@@ -25,6 +25,9 @@ public class PlayerCamera : MonoBehaviour
     public void Start()
     {
         LockCursor();
+       
+        transform.forward  = target.forward;
+        transform.position = transform.forward * distance + offset;
     }
 
     void LateUpdate()

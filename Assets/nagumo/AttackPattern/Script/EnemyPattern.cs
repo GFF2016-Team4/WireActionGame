@@ -54,11 +54,11 @@ public class EnemyPattern : MonoBehaviour
         //パンチの範囲内処理
         if (xDeistance <= Punch && xDeistance >= -Punch && zDeistance <= Punch && zDeistance >= -Punch)
         {
-            Debug.Log("パンチ範囲");
+            //Debug.Log("パンチ範囲");
 
             if(punchTime > 0)
             {
-                Debug.Log("移動");
+                //Debug.Log("移動");
                 m_Animator.SetBool("IsAttack", false);
                 m_Animator.SetBool("IsLazer", false);
             }
@@ -118,11 +118,11 @@ public class EnemyPattern : MonoBehaviour
             }
             
 
-            Debug.Log("レーザー範囲");
+            //Debug.Log("レーザー範囲");
         }
         else
         {
-            Debug.Log("移動");
+            //Debug.Log("移動");
             m_Animator.SetBool("IsAttack", false);
             m_Animator.SetBool("IsLazer", false);
         }

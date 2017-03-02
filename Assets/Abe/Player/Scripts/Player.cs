@@ -355,7 +355,7 @@ public class Player : MonoBehaviour, RopeEventHandlar, DamageEndHandler
     //ダメージアニメーション終了時の処理
     public void DamageEnd()
     {
-        Debug.Log("damage end");
+        //Debug.Log("damage end");
         isControll = true;
         ropeController.isControl = true;
     }
