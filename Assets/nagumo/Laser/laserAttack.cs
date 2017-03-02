@@ -57,7 +57,7 @@ namespace Enemy
             if (pointL == true)
             {
                 var laserhitPoint = Physics.SphereCast(
-                    transform.position, radius, Shooter.gameObject.transform.forward, out hit, 100, ~LayerMask.GetMask("Enemy"));
+                    transform.position, radius, Shooter.gameObject.transform.forward, out hit, 100);
 
                 laserBlue.enabled = true;
 
@@ -68,7 +68,10 @@ namespace Enemy
 
                 if(laserhitPoint)
                 {
-                    laserBlue.SetPosition(1, hit.point);
+                    if(hit.collider.tag != "Enemy")
+                    {
+                        laserBlue.SetPosition(1, hit.point);
+                    }
                 }
                 else
                 {

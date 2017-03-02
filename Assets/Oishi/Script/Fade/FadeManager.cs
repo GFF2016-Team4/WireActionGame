@@ -62,7 +62,7 @@ public class FadeManager : MonoBehaviour
             if (alfaOut >= 1.0f)
             {
                 SceneManager.LoadSceneAsync("LoadScene", LoadSceneMode.Additive);
-                StartCoroutine("Load", sceneName);
+                StartCoroutine(Load(sceneName));
             }
         }
         if (alfaOut <= alfaTemp) Time.timeScale = 0;

@@ -97,13 +97,13 @@ namespace Gaken
         void Update()
         {
             //エネミーを即死させる
-            if (Input.GetKey(KeyCode.Z))
+            if(Input.GetKey(KeyCode.Z))
             {
                 m_IsDead = true;
             }
 
             //死亡交代
-            if (m_IsDead)
+            if(m_IsDead)
             {
                 m_Animator.SetBool("IsDead", true);
                 m_Agent.enabled = false;
@@ -210,11 +210,11 @@ namespace Gaken
                     m_isFadeOver = true;
                 }
             }
-            if (m_isFadeOver == true)
+            if (m_isFadeOver  == true)
             {
                 m_Panel.GetComponent<FadeManager>().FadeOut("GameOver");
             }
-            if (m_isFadeOver == true)
+            if (m_isFadeClear == true)
             {
                 m_Panel.GetComponent<FadeManager>().FadeOut("GameClear");
             }
