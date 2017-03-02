@@ -4718,6 +4718,7 @@ GameObject:
   - 23: {fileID: 23000011763653030}
   - 120: {fileID: 120000013920472240}
   - 114: {fileID: 114000013373845822}
+  - 82: {fileID: 82000010805134180}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Enemy
@@ -12554,6 +12555,80 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &82000010805134180
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013453211510}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 0
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95000011124718470
 Animator:
   serializedVersion: 3
@@ -14062,6 +14137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa1ad403d0c0d74da4207fc618dc47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE_charge: {fileID: 0}
+  SE_beamFire: {fileID: 0}
   Shooter: {fileID: 1000010586083960}
   laserBlue: {fileID: 1000012341068758}
   Charge_P: {fileID: 1000012415763378}
@@ -17719,8 +17796,9 @@ MonoBehaviour:
   m_player: {fileID: 0}
   LaserAttackTime: 5
   Punch: 50
-  punchMinTime: 0
-  punchMaxTime: 0
+  punchMinTime: 2
+  punchMaxTime: 5
+  laserRate: 8
   m_Laser: 100
   Lasertimer: 0
   m_changeTag: 0
@@ -17735,6 +17813,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa1ad403d0c0d74da4207fc618dc47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE_charge: {fileID: 0}
+  SE_beamFire: {fileID: 0}
   Shooter: {fileID: 1000014169462800}
   laserBlue: {fileID: 1000013959187310}
   Charge_P: {fileID: 1000011198186282}
@@ -22225,6 +22305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa1ad403d0c0d74da4207fc618dc47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE_charge: {fileID: 0}
+  SE_beamFire: {fileID: 0}
   Shooter: {fileID: 1000011786160940}
   laserBlue: {fileID: 1000010122319406}
   Charge_P: {fileID: 1000011522385894}
@@ -24289,6 +24371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa1ad403d0c0d74da4207fc618dc47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE_charge: {fileID: 0}
+  SE_beamFire: {fileID: 0}
   Shooter: {fileID: 1000012990774274}
   laserBlue: {fileID: 1000010878049954}
   Charge_P: {fileID: 1000013069932538}
@@ -24308,6 +24392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa1ad403d0c0d74da4207fc618dc47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE_charge: {fileID: 0}
+  SE_beamFire: {fileID: 0}
   Shooter: {fileID: 1000010388643320}
   laserBlue: {fileID: 1000013666336894}
   Charge_P: {fileID: 1000011745829982}
@@ -25903,6 +25989,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa1ad403d0c0d74da4207fc618dc47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE_charge: {fileID: 8300000, guid: 327f112f4c7532741925423073c2341e, type: 3}
+  SE_beamFire: {fileID: 8300000, guid: fdf2ec3af6179f647adacc320dab0b5a, type: 3}
   Shooter: {fileID: 1000013453211510}
   laserBlue: {fileID: 1000012264051932}
   Charge_P: {fileID: 1000011946551608}
@@ -27348,6 +27436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa1ad403d0c0d74da4207fc618dc47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE_charge: {fileID: 0}
+  SE_beamFire: {fileID: 0}
   Shooter: {fileID: 1000013679683496}
   laserBlue: {fileID: 1000014250990134}
   Charge_P: {fileID: 1000012712186276}
@@ -28309,6 +28399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa1ad403d0c0d74da4207fc618dc47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE_charge: {fileID: 0}
+  SE_beamFire: {fileID: 0}
   Shooter: {fileID: 1000012503448834}
   laserBlue: {fileID: 1000010204657454}
   Charge_P: {fileID: 1000013827628610}
@@ -29345,6 +29437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa1ad403d0c0d74da4207fc618dc47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE_charge: {fileID: 0}
+  SE_beamFire: {fileID: 0}
   Shooter: {fileID: 1000013351210610}
   laserBlue: {fileID: 1000013939676688}
   Charge_P: {fileID: 1000012548361638}

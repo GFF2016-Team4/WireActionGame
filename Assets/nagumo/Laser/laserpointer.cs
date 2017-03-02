@@ -5,6 +5,12 @@ namespace Enemy
 {
     public class laserpointer : MonoBehaviour
     {
+        [SerializeField]
+        AudioClip SE_charge;
+
+        [SerializeField]
+        AudioClip SE_beamFire;
+
         public GameObject Shooter;
         public GameObject laserBlue;
         private GameObject m_LaserAttack;
@@ -25,12 +31,15 @@ namespace Enemy
 
         public float speed = 1.0f;
 
-        public bool isPlaySE = false;
+        AudioSource audioSource;
+
+        //public bool isPlaySE = false;
 
         void Start()
         {
             laser = this.GetComponent<LineRenderer>();
             m_laserBlue = laserBlue.GetComponent<laserAttack>();
+            audioSource = GetComponent<AudioSource>();
             AttackLaser = false;
         }
 
@@ -53,9 +62,9 @@ namespace Enemy
                 //チャージ
                 Charge_P.SetActive(true);
                 //Charge_C.SetActive(true);
-                if(isPlaySE)
+                if(audioSource != null)
                 {
-                    SoundManager.Instance.PlaySE(AUDIO.SE_charge);
+                    audioSource.PlayOneShot(SE_charge);
                 }
             }
             if (lineRenderer.enabled == true)
@@ -88,13 +97,13 @@ namespace Enemy
 
                 //チャージ
                 Charge_C.SetActive(false);
-                SoundManager.Instance.StopSE();
+                if(audioSource != null) audioSource.Stop();
 
                 //レーザーアタック
                 //Laser.SetActive(true);
                 AttackLaser = true;
                 Charge_L.SetActive(true);
-                if(isPlaySE)
+                if(audioSource != null)
                 {
                     SoundManager.Instance.PlaySE(AUDIO.SE_beamFire);
                 }
@@ -115,7 +124,7 @@ namespace Enemy
                 //Laser.SetActive(false);
                 m_laserBlue.DrawEnd();
                 m_LaserAttack.GetComponent<EnemyPattern>().Laser = false;
-                SoundManager.Instance.StopSE();
+                if(audioSource != null) audioSource.Stop();
                 Charge_L.SetActive(false);
 
                 m_LaserAttack.GetComponent<EnemyPattern>().counter = false;
