@@ -143,6 +143,7 @@ namespace Gaken
             m_WaitTime -= 1f * Time.deltaTime;
             if (m_IsExplosion)
             {
+                SoundManager.Instance.FadeOutBGM();
                 m_ExplosionDelay -= 1f * Time.deltaTime;
                 //Debug.Log(m_ExplosionDelay);
             }
@@ -317,8 +318,11 @@ namespace Gaken
             {
                 if (m_ExplosionDelay <= 0)
                 {
+                    if(m_IsDisappear) return;
+
                     m_Dynamite.transform.gameObject.SetActive(true);
                     m_IsDisappear = true;
+                    SoundManager.Instance.PlaySE(AUDIO.SE_Enemy_Destroy);
                 }
             }
         }
